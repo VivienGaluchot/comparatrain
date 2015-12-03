@@ -7,6 +7,6 @@ package comparatrain;
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
-public class Evaluable {
-
+public interface Evaluable {
+	int eval();
 }
