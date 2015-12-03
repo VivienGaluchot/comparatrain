@@ -8,5 +8,6 @@ package comparatrain;
  *
  */
 public class Siege {
+	int id;
 
 }
