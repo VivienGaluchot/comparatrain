@@ -8,5 +8,5 @@ package comparatrain;
  *
  */
 public interface Evaluable {
-	int eval();
+	int eval(Preference pref);
 }

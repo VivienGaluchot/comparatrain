@@ -15,7 +15,7 @@ public class Gare implements Evaluable{
 		ville=v;
 	}
 	
-	public int eval(){
+	public int eval(Preference pref){
 		return 0;
 	}
 }

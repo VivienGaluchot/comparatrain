@@ -29,7 +29,7 @@ public class Train implements Evaluable{
 			places.push(new Siege(j));
 	}
 
-	public int eval() {
+	public int eval(Preference pref) {
 		return 0;
 	}
 }
