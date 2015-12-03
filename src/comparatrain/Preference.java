@@ -15,7 +15,7 @@ public class Preference {
 	LocalDateTime  tDepart;
 	LocalDateTime tArrive;
 	
-	public Preferences(Gare d, Gare a, LocalDateTime ti, LocalDateTime tf){
+	public Preference (Gare d, Gare a, LocalDateTime ti, LocalDateTime tf){
 		gDepart=d;
 		gArrive=a;
 		tDepart=ti;
