@@ -12,10 +12,10 @@ public class classMain {
 		Gare G4 = new Gare(4,"Grenoble");
 		Gare G5 = new Gare(5,"Nante");
 		
-		LocalDateTime D1 = LocalDateTime.of(2015, 12, 18, 16, 30);
-		LocalDateTime D2 = LocalDateTime.of(2015, 12, 19, 17, 30);
-		LocalDateTime D3 = LocalDateTime.of(2015, 12, 20, 18, 30);
-		LocalDateTime D4 = LocalDateTime.of(2015, 12, 21, 19, 30);
+		LocalDateTime D1 = LocalDateTime.of(2015, 12, 18, 14, 30);
+		LocalDateTime D2 = LocalDateTime.of(2015, 12, 18, 17, 30);
+		LocalDateTime D3 = LocalDateTime.of(2015, 12, 18, 15, 30);
+		LocalDateTime D4 = LocalDateTime.of(2015, 12, 18, 19, 30);
 		LocalDateTime D5 = LocalDateTime.of(2015, 12, 22, 20, 30);
 		LocalDateTime D6 = LocalDateTime.of(2015, 12, 23, 21, 30);
 		LocalDateTime D7 = LocalDateTime.of(2015, 12, 24, 22, 30);
@@ -35,13 +35,14 @@ public class classMain {
 			System.out.println("Erreur : " + e);
 		}
 		try {
-			T2 = new Train(2,G4,G2,D3,D4);
+			T2 = new Train(2,G1,G2,D3,D4);
 			System.out.println(T2);
 			Comp.ajoutertrain(T2);
 		} catch (Erreur e) {
 			System.out.println("Erreur : " + e);
 		}
 		try {
+			// Train incohérent
 			T3 = new Train(3,G2,G2,D4,D6);
 			System.out.println(T3);
 			Comp.ajoutertrain(T3);
@@ -63,10 +64,21 @@ public class classMain {
 			System.out.println("Erreur : " + e);
 		}
 		
-		Preference P1 = new Preference(G1, G3, D1, D2);
-		Preference P2 = new Preference(G1, G2, D1, D2);
+		Preference P1 = new Preference(G1, G2, D1, D2);
+		Preference P2 = new Preference(G3, G2, D1, D2);
 		Preference P3 = new Preference(G5, G4, D4, D7);
 		Preference P4 = new Preference(G1, G4, D1, D4);
-		Preference P5 = new Preference(G4, G3, D3, D5);
+		Preference P5 = new Preference(G4, G1, D3, D5);
+		
+		System.out.println("\nComparaiton P1 :");
+		Comp.comparer(P1);
+		System.out.println("Comparaiton P2 :");
+		Comp.comparer(P2);
+		System.out.println("Comparaiton P3 :");
+		Comp.comparer(P3);
+		System.out.println("Comparaiton P4 :");
+		Comp.comparer(P4);
+		System.out.println("Comparaiton P5 :");
+		Comp.comparer(P5);
 	}
 }
