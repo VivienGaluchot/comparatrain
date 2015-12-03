@@ -8,5 +8,6 @@ package comparatrain;
  *
  */
 public class Train {
-
+	Gare arrive;
+	Gare depart;
 }

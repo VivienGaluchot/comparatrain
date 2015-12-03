@@ -4,7 +4,7 @@
 package comparatrain;
 
 /**
- * @author g12079772
+ * @author Vivien Galuchot - Vincent Hernandez
  *
  */
 public class Preferences {

@@ -7,6 +7,7 @@ package comparatrain;
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
-public class Guare {
-
+public class Gare {
+	int id;
+	String ville;
 }
