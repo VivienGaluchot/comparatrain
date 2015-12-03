@@ -19,14 +19,36 @@ public class Train implements Evaluable{
 	
 	ArrayDeque<Siege> places;
 	
-	public Train(int i,Gare gDep,Gare gArr,LocalDateTime tDep,LocalDateTime tArr){
+	/**
+	 * Constructeur de train
+	 * @param i numéro du train
+	 * @param gDep gare de départ
+	 * @param gArr gare d'arrivé
+	 * @param tDep date de départ
+	 * @param tArr date d'arrivé
+	 * La cohérence des paramètre sera vérifiée à la création de l'objet, la fonction retourne
+	 * 1 si tout est valide, 0 en cas d'érreur
+	 */
+	public Train(int i,Gare gDep,Gare gArr,LocalDateTime tDep,LocalDateTime tArr) throws Erreur{
+		//intégrité des données
+		if(i<=0 || (gDep.id == gArr.id) || (tDep.compareTo(tArr)>0))
+			throw new Erreur(1);
 		id = i;
 		gDepart = gDep;
 		gArrive = gArr;
 		tDepart = tDep;
 		tArrive = tArr;
-		for(int j=0;j<50;j++)
-			places.push(new Siege(j));
+		places = new ArrayDeque<Siege>();
+		for(int j=0;j<50;j++){
+			places.add(new Siege(j));
+		}
+	}
+	
+	/**
+	 * Fonction de test : affichage d'un train
+	 */
+	public String toString(){
+		return "Train n°" + id + " : " + gDepart + " " + tDepart + " --> " + gArrive + " " + tArrive;
 	}
 	
 	/**
