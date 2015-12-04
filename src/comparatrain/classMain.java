@@ -65,20 +65,20 @@ public class classMain {
 		}
 		
 		Preference P1 = new Preference(G1, G2, D1, D2);
-		Preference P2 = new Preference(G3, G2, D1, D2);
+		Preference P2 = new Preference(G1, G2, D3, D4);
 		Preference P3 = new Preference(G5, G4, D4, D7);
 		Preference P4 = new Preference(G1, G4, D1, D4);
 		Preference P5 = new Preference(G4, G1, D3, D5);
 		
-		System.out.println("\nComparaiton P1 :");
+		System.out.println("\nComparaison P1 :");
 		Comp.comparer(P1);
-		System.out.println("Comparaiton P2 :");
+		System.out.println("Comparaison P2 :");
 		Comp.comparer(P2);
-		System.out.println("Comparaiton P3 :");
+		System.out.println("Comparaison P3 :");
 		Comp.comparer(P3);
-		System.out.println("Comparaiton P4 :");
+		System.out.println("Comparaison P4 :");
 		Comp.comparer(P4);
-		System.out.println("Comparaiton P5 :");
+		System.out.println("Comparaison P5 :");
 		Comp.comparer(P5);
 	}
 }
