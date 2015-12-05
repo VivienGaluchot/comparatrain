@@ -6,19 +6,19 @@ public class classMain {
 
 	public static void main(String[] args) {
 		
-		Gare G1 = new Gare(1,"Marseille");
-		Gare G2 = new Gare(2,"Paris");
-		Gare G3 = new Gare(3,"Lyon");
-		Gare G4 = new Gare(4,"Grenoble");
-		Gare G5 = new Gare(5,"Nante");
+		Gare G1 = new Gare(1,new Ville(1,"Marseille"));
+		Gare G2 = new Gare(2,new Ville(2,"Paris"));
+		Gare G3 = new Gare(3,new Ville(3,"Lyon"));
+		Gare G4 = new Gare(4,new Ville(4,"Grenoble"));
+		Gare G5 = new Gare(5,new Ville(5,"Nantes"));
 		
-		LocalDateTime D1 = LocalDateTime.of(2015, 12, 18, 14, 30);
-		LocalDateTime D2 = LocalDateTime.of(2015, 12, 18, 17, 30);
-		LocalDateTime D3 = LocalDateTime.of(2015, 12, 18, 15, 30);
-		LocalDateTime D4 = LocalDateTime.of(2015, 12, 18, 19, 30);
-		LocalDateTime D5 = LocalDateTime.of(2015, 12, 22, 20, 30);
-		LocalDateTime D6 = LocalDateTime.of(2015, 12, 23, 21, 30);
-		LocalDateTime D7 = LocalDateTime.of(2015, 12, 24, 22, 30);
+		Horaire D1 = new Horaire(LocalDateTime.of(2015, 12, 18, 14, 30));
+		Horaire D2 = new Horaire(LocalDateTime.of(2015, 12, 18, 17, 30));
+		Horaire D3 = new Horaire(LocalDateTime.of(2015, 12, 18, 15, 30));
+		Horaire D4 = new Horaire(LocalDateTime.of(2015, 12, 18, 19, 30));
+		Horaire D5 = new Horaire(LocalDateTime.of(2015, 12, 22, 20, 30));
+		Horaire D6 = new Horaire(LocalDateTime.of(2015, 12, 23, 21, 30));
+		Horaire D7 = new Horaire(LocalDateTime.of(2015, 12, 24, 22, 30));
 				
 		Train T1;
 		Train T2;

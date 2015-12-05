@@ -7,20 +7,23 @@ package comparatrain;
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
-public class Gare implements Evaluable{
+public class Gare{
 	protected int id;
-	protected String ville;
+	protected Ville ville;
 	
-	public Gare(int i, String v){
+	public Gare(int i, Ville v){
 		id = i;
-		ville=v;
+		ville = v;
 	}
 	
 	public String toString(){
-		return ville;
+		return "Gare de " + ville;
 	}
 	
-	public int eval(Preference pref){
-		return 0;
+	public double eval(Gare g){
+		double res;
+		if(ville.id == g.ville.id) res = 1;
+		else res = 0;
+		return res;
 	}
 }

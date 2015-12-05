@@ -27,9 +27,9 @@ public class Comparateur {
 	 * Tout les trains de la liste ListeTrain sont évalués, les scores et les trains sont stoqués dans une TreeMap
 	 */
 	public void comparer(Preference pref){
-		TreeMap<Integer,Train> evaluations = new TreeMap<Integer,Train>();
+		TreeMap<Double,Train> evaluations = new TreeMap<Double,Train>();
 		for(Train t : ListeTrain){
-			int e = t.eval(pref);
+			Double e = t.eval(pref);
 			evaluations.put(e, t);
 			System.out.println(t.id + " : " + e);
 		}

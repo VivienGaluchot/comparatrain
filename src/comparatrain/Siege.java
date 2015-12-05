@@ -14,7 +14,7 @@ public class Siege implements Evaluable{
 		id=i;
 	}
 	
-	public int eval(Preference pref){
+	public double eval(Preference pref){
 		return 0;
 	}
 }
