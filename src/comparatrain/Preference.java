@@ -8,15 +8,36 @@ package comparatrain;
  *
  */
 public class Preference {
-	Gare gDepart;
-	Gare gArrive;
-	Horaire hDepart;
-	Horaire hArrive;
+	protected String gDepart;
+	protected String gArrive;
 	
-	public Preference (Gare d, Gare a, Horaire hi, Horaire hf){
+	protected Horaire hDepart;
+	protected Horaire hArrive;
+	
+	public Preference(){
+		gDepart = "";
+		gArrive = "";
+		hDepart = null;
+		hArrive = null;
+	}
+	
+	public Preference(String d, String hD, String a, String hA){
 		gDepart = d;
 		gArrive = a;
-		hDepart = hi;
-		hArrive = hf;
+		hDepart = new Horaire(hD);
+		hArrive = new Horaire(hA);
+	}
+	
+	public void setGares(String d, String a){
+		gDepart = d;
+		gArrive = a;
+	}
+	
+	public void setHArrive(String hA){
+		hArrive = new Horaire(hA);
+	}
+	
+	public void setHDepart(String hD){
+		hDepart = new Horaire(hD);
 	}
 }

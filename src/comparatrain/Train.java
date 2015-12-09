@@ -30,7 +30,7 @@ public class Train implements Evaluable{
 	 */
 	public Train(int i,Gare gDep,Gare gArr,Horaire hDep,Horaire hArr) throws Erreur{
 		//intégrité des données
-		if(i<=0 || (gDep.id == gArr.id) || (hDep.compareTo(hArr)>0))
+		if((gDep.id == gArr.id) || (hDep.compareTo(hArr)>0))
 			throw new Erreur(1);
 		id = i;
 		gDepart = gDep;
@@ -58,11 +58,16 @@ public class Train implements Evaluable{
 		
 		// Lieux
 		res *= gDepart.eval(pref.gDepart);
+		if(res == 0) return 0;
 		res *= gArrive.eval(pref.gArrive);
+		if(res == 0) return 0;
 		
 		// Dates
-		res *= hDepart.eval(pref.hDepart);
-		res *= hArrive.eval(pref.hArrive);
+		if(pref.hDepart != null)
+			res *= hDepart.eval(pref.hDepart);
+		if(res == 0) return 0;
+		if(pref.hArrive != null)
+			res *= hArrive.eval(pref.hArrive);
 		
 		return res;
 	}

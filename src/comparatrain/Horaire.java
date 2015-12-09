@@ -1,6 +1,7 @@
 package comparatrain;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class Horaire{
@@ -8,6 +9,11 @@ public class Horaire{
 	
 	public Horaire(LocalDateTime t){
 		time = t;
+	}
+	
+	public Horaire(String s){
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd'/'MM'/'yyyy HH'h'mm");
+		time = LocalDateTime.parse(s, formatter);
 	}
 	
 	public String toString(){
