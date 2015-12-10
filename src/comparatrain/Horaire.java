@@ -6,18 +6,18 @@ import java.time.temporal.ChronoUnit;
 
 public class Horaire{
 	LocalDateTime time;
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd'/'MM'/'yyyy HH'h'mm");
 	
 	public Horaire(LocalDateTime t){
 		time = t;
 	}
 	
 	public Horaire(String s){
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd'/'MM'/'yyyy HH'h'mm");
 		time = LocalDateTime.parse(s, formatter);
 	}
 	
 	public String toString(){
-		return time.toString();
+		return time.format(formatter);
 	}
 	
 	public int compareTo(Horaire h){

@@ -5,8 +5,6 @@ package comparatrain;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
@@ -34,30 +32,14 @@ public class Comparateur {
 	 * @param pref : Preference avec lequeles effectuer la comparaison des offres
 	 * Tout les trains de la liste ListeTrain sont évalués, les scores et les trains sont stoqués dans une TreeMap
 	 */
-	public void comparer(Preference pref){
-		TreeMap<Double,Train> evaluations = new TreeMap<Double,Train>();
-		
+	public Resultat comparer(Preference pref){
+		Resultat evaluations = new Resultat();
 		Double e;
 		for(Train t : listeTrain){
 			e = t.eval(pref);
-			evaluations.put(e, t);
-			if(e!=0){
-				System.out.println(t.id + " : " + e);
-				System.out.println(t);
-			}
+			evaluations.ajouter(e, t);
 		}
-		
-// Marche pas, comprends pas pourquoi
-//
-//		if(evaluations.lastKey() > 0){
-//			Map.Entry<Double, Train> ent;
-//			ent = evaluations.pollLastEntry();
-//			System.out.println(ent.getValue());
-//			while(ent.getKey() > 0){
-//				ent = evaluations.pollLastEntry();
-//				System.out.println(ent.getValue());
-//			}
-//		}
+		return evaluations;
 	}
 	
 	public void ajouterOffresTest(){
@@ -86,10 +68,16 @@ public class Comparateur {
 		ajouterTrain(G1,G6,D3,D4);
 		ajouterTrain(G6,G1,D1,D2);
 		ajouterTrain(G6,G1,D3,D4);
+		
 		ajouterTrain(G6,G5,D1,D4);
 		ajouterTrain(G6,G5,D2,D5);
 		ajouterTrain(G6,G5,D3,D6);
 		ajouterTrain(G6,G5,D4,D7);
+		
+		ajouterTrain(G2,G3,D2,D5);
 		ajouterTrain(G5,G6,D2,D5);
+		ajouterTrain(G5,G2,D2,D5);
+		ajouterTrain(G2,G6,D2,D5);
+		ajouterTrain(G5,G4,D2,D5);
 	}
 }

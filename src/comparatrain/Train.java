@@ -44,7 +44,7 @@ public class Train implements Evaluable{
 	}
 	
 	/**
-	 * Fonction de test : affichage d'un train
+	 * Affichage d'un train
 	 */
 	public String toString(){
 		return "Train n°" + id + " : " + gDepart + " " + hDepart + " --> " + gArrive + " " + hArrive;
@@ -58,14 +58,14 @@ public class Train implements Evaluable{
 		
 		// Lieux
 		res *= gDepart.eval(pref.gDepart);
-		if(res == 0) return 0;
+		if(res == 0) return res;
 		res *= gArrive.eval(pref.gArrive);
-		if(res == 0) return 0;
+		if(res == 0) return res;
 		
 		// Dates
 		if(pref.hDepart != null)
 			res *= hDepart.eval(pref.hDepart);
-		if(res == 0) return 0;
+		if(res == 0) return res;
 		if(pref.hArrive != null)
 			res *= hArrive.eval(pref.hArrive);
 		

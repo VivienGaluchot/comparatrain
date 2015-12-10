@@ -8,18 +8,18 @@ public class classMain {
 		
 		Preference P1 = new Preference("Paris","18/12/2015 15h30", "Marseille", "18/12/2015 16h17");
 		System.out.println("\nComparaison P1 :");
-		Comp.comparer(P1);
+		Comp.comparer(P1).afficher();
 		
 		Preference P2 = new Preference();
 		P2.setGares("Marseille", "Nantes");
 		P2.setHArrive("18/12/2015 21h00");
 		System.out.println("\nComparaison P2 :");
-		Comp.comparer(P2);
+		Comp.comparer(P2).afficher();
 		
 		Preference P3 = new Preference();
 		P3.setGares("Marseille", "Nantes");
 		P3.setHDepart("18/12/2015 16h15");
 		System.out.println("\nComparaison P3 :");
-		Comp.comparer(P3);
+		Comp.comparer(P3).afficher();
 	}
 }
