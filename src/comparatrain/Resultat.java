@@ -27,8 +27,7 @@ public class Resultat extends TreeMap<Double,List<Train>>{
 				l = ent.getValue();
 				for(Train t : l)
 					System.out.println(t);
-			}
-			while(lastKey() > 0);			
+			}while(!isEmpty() && lastKey() > 0);			
 		}
 	}
 }

@@ -29,15 +29,16 @@ public class Comparateur {
 	}
 	
 	/**
-	 * @param pref : Preference avec lequeles effectuer la comparaison des offres
-	 * Tout les trains de la liste ListeTrain sont évalués, les scores et les trains sont stoqués dans une TreeMap
+	 * @param pref : Preference avec lesquelles effectuer la comparaison des offres
+	 * Tout les trains de la liste ListeTrain sont évaluées, les scores et les trains sont dans une TreeMap
 	 */
 	public Resultat comparer(Preference pref){
 		Resultat evaluations = new Resultat();
 		Double e;
 		for(Train t : listeTrain){
 			e = t.eval(pref);
-			evaluations.ajouter(e, t);
+			if(e > 0)
+				evaluations.ajouter(e, t);
 		}
 		return evaluations;
 	}
@@ -56,11 +57,11 @@ public class Comparateur {
 		Gare G5 = new Gare(4,"Gare de Nantes",nantes);
 		Gare G6 = new Gare(5,"Saint Charles",marseille);
 		
-		Horaire D1 = new Horaire(LocalDateTime.of(2015, 12, 18, 14, 30));
-		Horaire D2 = new Horaire(LocalDateTime.of(2015, 12, 18, 17, 30));
-		Horaire D3 = new Horaire(LocalDateTime.of(2015, 12, 18, 15, 30));
-		Horaire D4 = new Horaire(LocalDateTime.of(2015, 12, 18, 19, 30));
-		Horaire D5 = new Horaire(LocalDateTime.of(2015, 12, 18, 20, 30));
+		Horaire D1 = new Horaire(LocalDateTime.of(2015, 12, 18, 14, 31));
+		Horaire D2 = new Horaire(LocalDateTime.of(2015, 12, 18, 17, 37));
+		Horaire D3 = new Horaire(LocalDateTime.of(2015, 12, 18, 15, 31));
+		Horaire D4 = new Horaire(LocalDateTime.of(2015, 12, 18, 19, 14));
+		Horaire D5 = new Horaire(LocalDateTime.of(2015, 12, 18, 20, 47));
 		Horaire D6 = new Horaire(LocalDateTime.of(2015, 12, 18, 21, 30));
 		Horaire D7 = new Horaire(LocalDateTime.of(2015, 12, 18, 22, 30));
 		
