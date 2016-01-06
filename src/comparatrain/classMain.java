@@ -1,5 +1,8 @@
 package comparatrain;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 public class classMain {
 
 	public static void main(String[] args) {
@@ -32,5 +35,17 @@ public class classMain {
 		P5.setHDepart("18/12/2015 16h15");
 		System.out.println("\nComparaison P5 :");
 		Comp.comparer(P5).afficher();
+		
+		
+		
+		
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Dimension dim = tk.getScreenSize();
+		int largeur = dim.width;
+		int hauteur = dim.height;
+		
+		
+		MaFenetre F = new MaFenetre("Comparateur",3*largeur/8,3*hauteur/8,largeur/4,hauteur/4);
+		F.setVisible(true);
 	}
 }
