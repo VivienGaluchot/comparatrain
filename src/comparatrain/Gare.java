@@ -31,7 +31,8 @@ public class Gare{
 	
 	public double eval(String g){
 		double res;
-		if((nom.compareTo(g) == 0)||(ville.nom.compareTo(g) == 0)) res = 1;
+		if(nom.compareTo(g) == 0) res = 1;
+		else if(ville.nom.compareTo(g) == 0) res = 0.8;
 		else res = 0;
 		return res;
 	}

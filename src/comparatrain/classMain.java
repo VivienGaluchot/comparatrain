@@ -21,5 +21,17 @@ public class classMain {
 		P3.setHDepart("18/12/2015 16h15");
 		System.out.println("\nComparaison P3 :");
 		Comp.comparer(P3).afficher();
+		
+		Preference P4 = new Preference();
+		P4.setGares("Avignon", "Nantes");
+		P4.setHDepart("18/12/2015 16h15");
+		System.out.println("\nComparaison P4 :");
+		Comp.comparer(P4).afficher();
+		
+		Preference P5 = new Preference();
+		P5.setGares("Lyon", "Paris");
+		P5.setHDepart("18/12/2015 16h15");
+		System.out.println("\nComparaison P5 :");
+		Comp.comparer(P5).afficher();
 	}
 }
