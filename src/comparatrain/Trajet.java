@@ -15,6 +15,12 @@ public class Trajet {
 	ArrayList<Escale> escales;
 	Arrive arrive;
 	
+	public Trajet(){
+		depart = null;
+		escales = new ArrayList<Escale>();
+		arrive = null;
+	}
+	
 	public Trajet(Depart d, Arrive a){
 		depart = d;
 		escales = new ArrayList<Escale>();

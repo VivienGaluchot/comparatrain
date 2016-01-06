@@ -20,6 +20,16 @@ public class Horaire{
 		return time.format(formatter);
 	}
 	
+	public String jourToString(){
+		DateTimeFormatter formatterJ = DateTimeFormatter.ofPattern("dd'/'MM'/'yyyy");
+		return time.format(formatterJ);
+	}
+	
+	public String heureToString(){
+		DateTimeFormatter formatterJ = DateTimeFormatter.ofPattern("HH'h'mm");
+		return time.format(formatterJ);
+	}
+	
 	public int compareTo(Horaire h){
 		return time.compareTo(h.time);
 	}

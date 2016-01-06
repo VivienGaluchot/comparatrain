@@ -4,7 +4,6 @@ public class classMain {
 
 	public static void main(String[] args) {
 		Comparateur Comp = new Comparateur();
-		Comp.ajouterOffresTest();
 		
 		Preference P1 = new Preference("Paris","18/12/2015 15h30", "Marseille", "18/12/2015 16h17");
 		System.out.println("\nComparaison P1 :");

@@ -49,12 +49,12 @@ public class Train{
 	 * Affichage d'un train
 	 */
 	public String toString(){
-		String s = "Train n°" + id + "\tDepart\t\t\tArrive\n";
-		s += " " + t.depart.g + "\t" + t.depart.h + "\n";
+		String s = "Train n°" + id + "\n";
+		s += " " + t.depart.g + " " + t.depart.h + "\n";
 		for(Escale es : t.escales){
-			s += " " + es.g + "\t" + es.hA + "\t" + es.hD + "\n";
+			s += " " + es.g + " " + es.hA + " " + es.hD + "\n";
 		}
-		s += " " + t.arrive.g + "\t" + t.arrive.h + "\n";
+		s += " " + t.arrive.g + " " + t.arrive.h + "\n";
 		return s;
 	}
 	
