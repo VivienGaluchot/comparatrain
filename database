@@ -1,0 +1,64 @@
+--Ville : Paris
+Gare de Lyon
+Gare du Nord
+Gare Montparnasse
+Massy TGV
+
+--Ville : Marseille
+Gare Saint Charles
+
+--Ville : Nantes
+Gare de Nantes
+
+--Ville : Avignon
+Avignon TGV
+Avignon centre
+
+--Ville : Lyon
+Lyon Pardieu
+
+--Ville : Aix-en-Provence
+Aix-en-Provence TVG
+
+--Ville : Angers
+Angers Saint-Laud
+
+--Train : 5540
+--Jour : 06/01/2016
+Gare Saint Charles : 07h30
+Aix-en-Provence TVG : 07h45 07h50
+Avignon TGV : 08h00 08h02
+Lyon Pardieu : 10h12 10h20
+Massy TGV : 11h00 11h05
+Angers Saint-Laud : 12h20 12h22
+Gare de Nantes : 13h50
+
+--Train : 5541
+--Jour : 06/01/2016
+Gare de Nantes : 14h50
+Angers Saint-Laud : 15h20 15h22
+Massy TGV : 17h00 17h01
+Lyon Pardieu : 18h12 18h14
+Avignon TGV : 19h00 19h02
+Aix-en-Provence TVG : 20h20 20h20
+Gare Saint Charles : 20h42
+
+--Train : 5551
+--Jour : 07/01/2016
+Gare Saint Charles : 07h30
+Aix-en-Provence TVG : 07h45 07h50
+Avignon TGV : 08h00 08h02
+Lyon Pardieu : 10h12 10h20
+Massy TGV : 11h00 11h05
+Angers Saint-Laud : 12h20 12h22
+Gare de Nantes : 13h50
+
+--Train : 5552
+--Jour : 07/01/2016
+Gare de Nantes : 14h50
+Angers Saint-Laud : 15h20 15h22
+Massy TGV : 17h00 17h01
+Lyon Pardieu : 18h12 18h14
+Avignon TGV : 19h00 19h02
+Aix-en-Provence TVG : 20h20 20h20
+Gare Saint Charles : 20h42
