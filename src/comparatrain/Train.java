@@ -49,7 +49,13 @@ public class Train{
 	 * Affichage d'un train
 	 */
 	public String toString(){
-		return "Train n°" + id + " : " + t.depart.g + " " + t.depart.h + " --> " + t.arrive.g + " " + t.arrive.h;
+		String s = "Train n°" + id + "\tDepart\t\t\tArrive\n";
+		s += " " + t.depart.g + "\t" + t.depart.h + "\n";
+		for(Escale es : t.escales){
+			s += " " + es.g + "\t" + es.hA + "\t" + es.hD + "\n";
+		}
+		s += " " + t.arrive.g + "\t" + t.arrive.h + "\n";
+		return s;
 	}
 	
 	/**
@@ -132,7 +138,7 @@ class Segment implements Evaluable{
 	}
 	
 	/**
-	 * Affichage d'un train
+	 * Affichage d'un segment
 	 */
 	public String toString(){
 		return "Train n°" + t.id + " : " + d + " " + hD + " --> " + a + " " + hA;

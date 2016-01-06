@@ -91,6 +91,7 @@ public class Comparateur {
 		Arrive a = new Arrive(G5,D5);
 		
 		ajouterTrain(new Trajet(d,gList,a));
+		System.out.println(listeTrain.get(0));
 		
 		ajouterTrain(G1,G6,D1,D2);
 		ajouterTrain(G1,G6,D3,D4);
