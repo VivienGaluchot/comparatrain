@@ -36,11 +36,9 @@ public class Donnees {
 		}
 	}
 	
-	public boolean charger(String fichier){
+	public void charger(String fichier) throws Erreur{
 		BufferedReader in;
 		try {
-			in = new BufferedReader(new FileReader(fichier));
-			
 			String s;
 			boolean villeState = false;
 			boolean trainState = false;
@@ -49,75 +47,81 @@ public class Donnees {
 			String currentJour = null;
 			ArrayList<String> trajet = null;
 			
-			while(in.ready()){
-				//lecture d'une ligne
-				s = in.readLine();
-				
-				// Nouvelle ville
-				if(s.startsWith("--Ville")){
-					villeState = false;
-					if(trainState){
-						trains.add(creerTrain(currentTrainId,currentJour,trajet));
+			in = new BufferedReader(new FileReader(fichier));
+			try {
+				while(in.ready()){
+					//lecture d'une ligne
+					s = in.readLine();
+					
+					// Commmentaire
+					if(s.startsWith("#")){
 					}
-					trainState = false;
-					s = s.substring(s.indexOf(':')+2);
-					if(s.length() > 0){
-						currentVille = new Ville(villes.size(),s);
-						villes.add(currentVille);
-						villeState = true;
-					}
-				}
-				// Nouveau train
-				else if(s.startsWith("--Train")){
-					villeState = false;
-					if(trainState){
-						trains.add(creerTrain(currentTrainId,currentJour,trajet));
-					}
-					trainState = false;
-					s = s.substring(s.indexOf(':')+2);
-					if(s.length() > 0){
-						currentTrainId = Integer.parseInt(s);
-						currentJour = null;
-						trajet = new ArrayList<String>();
-						trainState = true;
-					}
-				}
-				else if(villeState){
-					// Ajout d'une gare dans ville
-					if(s.length()>0){
-						gares.add(new Gare(gares.size(),s,currentVille));
-					}
-					else
+					// Nouvelle ville
+					else if(s.startsWith("--Ville")){
 						villeState = false;
-				}
-				else if(trainState){
-					if(s.startsWith("--Jour")){
+						if(trainState){
+							trains.add(creerTrain(currentTrainId,currentJour,trajet));
+						}
+						trainState = false;
 						s = s.substring(s.indexOf(':')+2);
-						if(s.length() > 0)
-							currentJour = s;
-						else
-							trainState = false;
+						if(s.length() > 0){
+							currentVille = new Ville(villes.size(),s);
+							villes.add(currentVille);
+							villeState = true;
+						}
+						else throw new Erreur(2);
 					}
-					else{
-						if(s.length() > 0)
-							trajet.add(s);
+					// Nouveau train
+					else if(s.startsWith("--Train")){
+						villeState = false;
+						if(trainState){
+							trains.add(creerTrain(currentTrainId,currentJour,trajet));
+						}
+						trainState = false;
+						s = s.substring(s.indexOf(':')+2);
+						if(s.length() > 0){
+							currentTrainId = Integer.parseInt(s);
+							currentJour = null;
+							trajet = new ArrayList<String>();
+							trainState = true;
+						}
+						else throw new Erreur(2);
+					}
+					else if(villeState){
+						// Ajout d'une gare dans ville
+						if(s.length()>0){
+							gares.add(new Gare(gares.size(),s,currentVille));
+						}
+						else
+							villeState = false;
+					}
+					else if(trainState){
+						if(s.startsWith("--Jour")){
+							s = s.substring(s.indexOf(':')+2);
+							if(s.length() > 0)
+								currentJour = s;
+							else
+								trainState = false;
+						}
+						else{
+							if(s.length() > 0)
+								trajet.add(s);
+						}
 					}
 				}
+				if(trainState){
+					trains.add(creerTrain(currentTrainId,currentJour,trajet));
+				}
+			} finally {
+				in.close();
 			}
-			if(trainState){
-				trains.add(creerTrain(currentTrainId,currentJour,trajet));
-			}
-			
-			in.close();
 		}
 		catch (IOException e) {
 			System.out.println("Fichier non trouvé");
-			return false;
 		}
-		return true;
 	}
 	
-	Train creerTrain(int id, String jour, ArrayList<String> strTrajet){
+	Train creerTrain(int id, String jour, ArrayList<String> strTrajet) throws Erreur{
 		Trajet trajet = new Trajet();
 		
 		for(String s : strTrajet){
@@ -134,7 +138,7 @@ public class Donnees {
 				}
 			}
 			
-			if(idGare == null) return null;
+			if(idGare == null) throw new Erreur(2);
 			
 			s = s.substring(s.indexOf(':')+2);
 			String[] temp = s.split(" ");
@@ -147,7 +151,7 @@ public class Donnees {
 					trajet.arrive = new Arrive(gares.get(idGare),new Horaire(jour + " " + h1));
 				}
 				else{
-					return null;
+					throw new Erreur(2);
 				}
 			}
 			else if(temp.length == 2 && trajet.arrive == null){
@@ -162,7 +166,7 @@ public class Donnees {
 			return new Train(id,trajet);
 		} catch (Erreur e) {
 			System.out.println("Erreur de chargement");
-			return null;
+			throw new Erreur(2);
 		}
 	}
 	

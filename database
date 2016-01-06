@@ -1,3 +1,6 @@
+# Base de donnée
+# Vivien Galuchot - Vincent Hernandez
+
 --Ville : Paris
 Gare de Lyon
 Gare du Nord
@@ -23,15 +26,41 @@ Aix-en-Provence TVG
 --Ville : Angers
 Angers Saint-Laud
 
---Train : 5540
+# ---- TRAINS ----
+
+--Train : 5640
 --Jour : 06/01/2016
 Gare Saint Charles : 07h30
 Aix-en-Provence TVG : 07h45 07h50
 Avignon TGV : 08h00 08h02
 Lyon Pardieu : 10h12 10h20
-Massy TGV : 11h00 11h05
+Gare de Lyon : 11h00
+
+--Train : 5640
+--Jour : 06/01/2016
+Gare Saint Charles : 14h32
+Aix-en-Provence TVG : 14h45 14h57
+Avignon TGV : 15h00 15h02
+Lyon Pardieu : 17h12 17h17
+Gare de Lyon : 18h01
+
+--Train : 5642
+--Jour : 06/01/2016
+Gare Saint Charles : 09h30
+Aix-en-Provence TVG : 09h45 07h50
+Avignon TGV : 09h00 09h02
+Lyon Pardieu : 12h12 12h20
+Gare de Lyon : 13h00
+
+--Train : 5540
+--Jour : 06/01/2016
+Gare Saint Charles : 07h33
+Aix-en-Provence TVG : 07h45 07h50
+Avignon TGV : 08h00 08h02
+Lyon Pardieu : 10h12 10h20
+Massy TGV : 11h02 11h05
 Angers Saint-Laud : 12h20 12h22
-Gare de Nantes : 13h50
+Gare de Nantes : 13h55
 
 --Train : 5541
 --Jour : 06/01/2016
@@ -54,6 +83,26 @@ Angers Saint-Laud : 12h20 12h22
 Gare de Nantes : 13h50
 
 --Train : 5552
+--Jour : 07/01/2016
+Gare de Nantes : 14h50
+Angers Saint-Laud : 15h20 15h22
+Massy TGV : 17h00 17h01
+Lyon Pardieu : 18h12 18h14
+Avignon TGV : 19h00 19h02
+Aix-en-Provence TVG : 20h20 20h20
+Gare Saint Charles : 20h42
+
+--Train : 5561
+--Jour : 07/01/2016
+Gare Saint Charles : 07h30
+Aix-en-Provence TVG : 07h45 07h50
+Avignon TGV : 08h00 08h02
+Lyon Pardieu : 10h12 10h20
+Massy TGV : 11h00 11h05
+Angers Saint-Laud : 12h20 12h22
+Gare de Nantes : 13h50
+
+--Train : 5562
 --Jour : 07/01/2016
 Gare de Nantes : 14h50
 Angers Saint-Laud : 15h20 15h22

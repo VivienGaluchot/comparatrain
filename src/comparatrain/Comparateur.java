@@ -15,9 +15,6 @@ public class Comparateur {
 	
 	public Comparateur(){
 		data = new Donnees();
-		data.charger("database2");
-		System.out.println("Chargement des données effectué");
-		data.sauvegarder("database2");
 	}
 	
 	public Comparateur(Donnees d){

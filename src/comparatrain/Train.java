@@ -33,6 +33,7 @@ public class Train{
 			throw new Erreur(1);
 		id = i;
 		t = new Trajet(new Depart(gDep,hDep), new Arrive(gArr,hArr));
+		
 		places = new ArrayDeque<Siege>();
 		for(int j=0;j<50;j++){
 			places.add(new Siege(j));
@@ -43,6 +44,11 @@ public class Train{
 		//intégrité des données ?
 		id = i;
 		t = trajet;
+		
+		places = new ArrayDeque<Siege>();
+		for(int j=0;j<50;j++){
+			places.add(new Siege(j));
+		}
 	}
 	
 	/**

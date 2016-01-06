@@ -22,8 +22,11 @@ public class Erreur extends Exception {
 		case 1:
 			s = "Données incohérentes";
 			break;
+		case 2:
+			s = "Parse Error";
+			break;
 		default:
-			s = "Erreur " + type;
+			s = "Erreur : " + type;
 		}
 		return s;
 	}

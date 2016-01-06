@@ -1,7 +1,8 @@
 package comparatrain;
 
-
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -22,6 +23,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class MaFenetre extends JFrame{
+	private static final long serialVersionUID = 1L;
+	
+	// Interface
 	private JLabel lblGareD;
 	private JTextField texteD;
 	private JLabel lblGareA;
@@ -34,60 +38,43 @@ public class MaFenetre extends JFrame{
 	
 	private JButton rechercher;
 	
+	// Systeme
+	Comparateur comp;
+	
 	public class MaWindow extends WindowAdapter{
 		public void windowClosing(WindowEvent e){
 			//A changer pour mettre dans la console
-			 int confirm = JOptionPane.showOptionDialog(
-		             null, "Are You Sure to Close Application?", 
-		             "Exit Confirmation", JOptionPane.YES_NO_OPTION, 
-		             JOptionPane.QUESTION_MESSAGE, null, null, null);
-		        if (confirm == 0) {
-		           System.exit(0);
-		        
-		        }
+			int confirm = JOptionPane.showOptionDialog(
+				null, "Are You Sure to Close Application?", 
+				"Exit Confirmation", JOptionPane.YES_NO_OPTION, 
+				JOptionPane.QUESTION_MESSAGE, null, null, null);
+	        if (confirm == 0) {
+	           System.exit(0);
+	        }
 		}
 	}
 	
-	public void ClearOnClick(JTextField textField){
-		String save = textField.getText();
-		textField.addFocusListener(new FocusListener(){
-	        public void focusGained(FocusEvent e){
-	            textField.setText("");
-	            textField.setForeground(Color.BLACK);
-	        }
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (textField.getText().equals("")){
-					textField.setForeground(new Color(100,100,100));
-					textField.setText(save);
-				}
-				else textField.removeFocusListener(this);
-			}
-	    });
-	}
-
-	
-	public MaFenetre(String titre, int x, int y, int l, int h) {
-		
-		Comparateur Comp = new Comparateur();
-		Comp.ajouterOffresTest();
-		
+	public MaFenetre(String titre, Comparateur c) {
 		setTitle(titre);
+		comp = c;
+			
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Dimension dim = tk.getScreenSize();
+		int largeur = dim.width;
+		int hauteur = dim.height;
 		//setLayout(new FlowLayout(FlowLayout.CENTER,10,15));
-		setBounds(x,y,l,h);
+		setBounds(3*largeur/8,3*hauteur/8,largeur/4,hauteur/4);
 		
 		JPanel box = new JPanel();
 		box.setLayout(new BoxLayout(box,BoxLayout.PAGE_AXIS));
 		
 		JPanel box0 = new JPanel();
-	
 		
 			box0.setLayout(new BoxLayout(box0,BoxLayout.PAGE_AXIS));
 			JPanel box1 = new JPanel();
 				lblGareD=new JLabel("Gare départ : ");
 				box1.add(lblGareD);
-				texteD = new JTextField("ex:Gare de Lyon",14);
+				texteD = new JTextField("Gare de Lyon",14);
 				Color color =new Color(100,100,100);
 				texteD.setForeground(color);
 				ClearOnClick(texteD);
@@ -96,7 +83,7 @@ public class MaFenetre extends JFrame{
 			JPanel box2 = new JPanel();
 				lblGareA=new JLabel("Gare d'arrivé : ");
 				box2.add(lblGareA);
-				texteA = new JTextField("ex:Gare de Marseille",14);
+				texteA = new JTextField("Marseille",14);
 				texteA.setForeground(color);
 				ClearOnClick(texteA);
 				box2.add(texteA);
@@ -142,7 +129,7 @@ public class MaFenetre extends JFrame{
 	                }else{
 	                	pref.setHArrive(txtJjmmaaaa.getText()+" "+ txtHeure.getText()+"h"+txtMin.getText());
 	                }
-	                Comp.comparer(pref).afficher();
+	                comp.comparer(pref).afficher();
 	            }
 	        });
 			box4.add(rechercher);
@@ -154,5 +141,23 @@ public class MaFenetre extends JFrame{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
+	public void ClearOnClick(JTextField textField){
+		String save = textField.getText();
+		textField.addFocusListener(new FocusListener(){
+	        public void focusGained(FocusEvent e){
+	            textField.setText("");
+	            textField.setForeground(Color.BLACK);
+	        }
 
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (textField.getText().equals("")){
+					textField.setForeground(new Color(100,100,100));
+					textField.setText(save);
+				}
+				else textField.removeFocusListener(this);
+			}
+	    });
+	}
 }
