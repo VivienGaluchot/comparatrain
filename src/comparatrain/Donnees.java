@@ -7,14 +7,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import modele.Gare;
+import modele.Horaire;
+import modele.Train;
+import modele.Trajet;
+import modele.Trajet.Escale;
+import modele.Ville;
+
 /**
  * @author Vivien Galuchot - Vincent Hernandez
  * Gestion des données, enregistrements
  */
 public class Donnees {
-	ArrayList<Ville> villes;
-	ArrayList<Gare> gares;
-	ArrayList<Train> trains;
+	private ArrayList<Ville> villes;
+	private ArrayList<Gare> gares;
+	private ArrayList<Train> trains;
+	
+	public ArrayList<Train> getTrains() {
+		return trains;
+	}
 	
 	public Donnees(){
 		villes = new ArrayList<Ville>();
@@ -31,20 +42,21 @@ public class Donnees {
 			System.out.println(g);
 		}
 		System.out.println("\n\n");
-		for(Train t : trains){
+		for(Train t : getTrains()){
 			System.out.println(t);
 		}
 	}
 	
-	public void charger(String fichier) throws Erreur{
+	public void charger(String fichier){
 		BufferedReader in;
+		int ligne = 0;
+		
 		try {
 			String s;
 			boolean villeState = false;
 			boolean trainState = false;
 			Ville currentVille = null;
 			int currentTrainId = 0;
-			String currentJour = null;
 			ArrayList<String> trajet = null;
 			
 			in = new BufferedReader(new FileReader(fichier));
@@ -52,6 +64,7 @@ public class Donnees {
 				while(in.ready()){
 					//lecture d'une ligne
 					s = in.readLine();
+					ligne++;
 					
 					// Commmentaire
 					if(s.startsWith("#")){
@@ -60,7 +73,7 @@ public class Donnees {
 					else if(s.startsWith("--Ville")){
 						villeState = false;
 						if(trainState){
-							trains.add(creerTrain(currentTrainId,currentJour,trajet));
+							getTrains().add(creerTrain(currentTrainId,trajet));
 						}
 						trainState = false;
 						s = s.substring(s.indexOf(':')+2);
@@ -75,13 +88,12 @@ public class Donnees {
 					else if(s.startsWith("--Train")){
 						villeState = false;
 						if(trainState){
-							trains.add(creerTrain(currentTrainId,currentJour,trajet));
+							getTrains().add(creerTrain(currentTrainId,trajet));
 						}
 						trainState = false;
 						s = s.substring(s.indexOf(':')+2);
 						if(s.length() > 0){
 							currentTrainId = Integer.parseInt(s);
-							currentJour = null;
 							trajet = new ArrayList<String>();
 							trainState = true;
 						}
@@ -89,29 +101,19 @@ public class Donnees {
 					}
 					else if(villeState){
 						// Ajout d'une gare dans ville
-						if(s.length()>0){
+						if(s.length()>0)
 							gares.add(new Gare(gares.size(),s,currentVille));
-						}
-						else
-							villeState = false;
 					}
 					else if(trainState){
-						if(s.startsWith("--Jour")){
-							s = s.substring(s.indexOf(':')+2);
-							if(s.length() > 0)
-								currentJour = s;
-							else
-								trainState = false;
-						}
-						else{
-							if(s.length() > 0)
-								trajet.add(s);
-						}
+						if(s.length() > 0)
+							trajet.add(s);
 					}
 				}
 				if(trainState){
-					trains.add(creerTrain(currentTrainId,currentJour,trajet));
+					getTrains().add(creerTrain(currentTrainId,trajet));
 				}
+			} catch (Erreur e) {
+				System.out.println(e + " - ligne " + ligne);
 			} finally {
 				in.close();
 			}
@@ -121,53 +123,43 @@ public class Donnees {
 		}
 	}
 	
-	Train creerTrain(int id, String jour, ArrayList<String> strTrajet) throws Erreur{
+	Train creerTrain(int id, ArrayList<String> strTrajet) throws Erreur{
 		Trajet trajet = new Trajet();
 		
 		for(String s : strTrajet){
 			String sGare = null;
 			Integer idGare = null;
-			String h1 = null;
-			String h2 = null;
 			
 			sGare = s.substring(0, s.indexOf(":")-1);
 			for(Gare g : gares){
-				if(g.nom.compareTo(sGare) == 0){
-					idGare = g.id;
+				if(g.getNom().compareTo(sGare) == 0){
+					idGare = g.getId();
 					break;
 				}
 			}
 			
-			if(idGare == null) throw new Erreur(2);
+			if(idGare == null) throw new Erreur(3);
 			
 			s = s.substring(s.indexOf(':')+2);
 			String[] temp = s.split(" ");
-			if(temp.length == 1){
-				h1 = temp[0];
-				if(trajet.depart == null){
-					trajet.depart = new Depart(gares.get(idGare),new Horaire(jour + " " + h1));
+			if(temp.length == 2){
+				if(trajet.getDepart() == null){
+					trajet.setDepart(gares.get(idGare),new Horaire(temp[0] + " " + temp[1]));
 				}
-				else if(trajet.arrive == null){
-					trajet.arrive = new Arrive(gares.get(idGare),new Horaire(jour + " " + h1));
+				else if(trajet.getArrivee() == null){
+					trajet.setArrivee(gares.get(idGare),new Horaire(temp[0] + " " + temp[1]));
 				}
 				else{
-					throw new Erreur(2);
+					throw new Erreur(3);
 				}
 			}
-			else if(temp.length == 2 && trajet.arrive == null){
-				h1 = temp[0];
-				h2 = temp[1];
-				
-				trajet.escales.add(new Escale(gares.get(idGare), new Horaire(jour + " " + h1), new Horaire(jour + " " + h2)));
+			else if(temp.length == 4 && trajet.getArrivee() == null){
+				trajet.addEscale(gares.get(idGare), new Horaire(temp[0] + " " + temp[1]), new Horaire(temp[2] + " " + temp[3]));
 			}
+			else throw new Erreur(3);
 		}
-		
-		try {
-			return new Train(id,trajet);
-		} catch (Erreur e) {
-			System.out.println("Erreur de chargement");
-			throw new Erreur(2);
-		}
+	
+		return new Train(id,trajet);
 	}
 	
 	boolean sauvegarder(String fichier){
@@ -177,22 +169,22 @@ public class Donnees {
 			FileWriter writer = new FileWriter(fichier);
 			try {
 				for(Ville v : villes){
-					writer.write("--Ville : " + v.nom + "\n");
+					writer.write("--Ville : " + v.getNom() + "\n");
 					for(Gare g : gares){
-						if(g.ville.id == v.id){
-							writer.write(g.nom + "\n");
+						if(g.getVille().getId() == v.getId()){
+							writer.write(g.getNom() + "\n");
 						}
 					}
+					writer.write("\n");
 				}
 				writer.write("\n");
 				for(Train t : trains){
-					writer.write("--Train : " + t.id + "\n");
-					writer.write("--Jour : " + t.t.depart.h.jourToString() + "\n");
-					writer.write(t.t.depart.g.nom + " : " + t.t.depart.h.heureToString() + "\n");
-					for(Escale e : t.t.escales){
-						writer.write(e.g.nom + " : " + e.hA.heureToString() + " " + e.hD.heureToString() + "\n");
+					writer.write("--Train : " + t.getId() + "\n");
+					writer.write(t.getTrajet().getDepart().toData() + "\n");
+					for(Escale e : t.getTrajet().getEscales()){
+						writer.write(e.toData() + "\n");
 					}
-					writer.write(t.t.arrive.g.nom + " : " + t.t.arrive.h.heureToString() + "\n");
+					writer.write(t.getTrajet().getArrivee().toData() + "\n\n");
 				}
 				writer.write("\n");
 			} finally {

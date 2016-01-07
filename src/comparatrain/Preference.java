@@ -3,41 +3,87 @@
  */
 package comparatrain;
 
+import modele.Horaire;
+
 /**
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
 public class Preference {
-	protected String gDepart;
-	protected String gArrive;
+	private String gDepart;
+	private String gArrive;
 	
-	protected Horaire hDepart;
-	protected Horaire hArrive;
+	private Horaire hDepart;
+	private Horaire hArrive;
 	
 	public Preference(){
-		gDepart = "";
-		gArrive = "";
-		hDepart = null;
-		hArrive = null;
+		setgDepart("");
+		setgArrive("");
+		sethDepart(null);
+		sethArrive(null);
 	}
 	
 	public Preference(String d, String hD, String a, String hA){
-		gDepart = d;
-		gArrive = a;
-		hDepart = new Horaire(hD);
-		hArrive = new Horaire(hA);
+		setgDepart(d);
+		setgArrive(a);
+		try {
+			sethDepart(new Horaire(hD));
+			sethArrive(new Horaire(hA));
+		} catch (Erreur e) {
+			System.out.println(e);
+		}
 	}
 	
 	public void setGares(String d, String a){
-		gDepart = d;
-		gArrive = a;
+		setgDepart(d);
+		setgArrive(a);
 	}
 	
 	public void setHArrive(String hA){
-		hArrive = new Horaire(hA);
+		try {
+			sethArrive(new Horaire(hA));
+		} catch (Erreur e) {
+			System.out.println(e);
+		}
 	}
 	
 	public void setHDepart(String hD){
-		hDepart = new Horaire(hD);
+		try {
+			sethDepart(new Horaire(hD));
+		} catch (Erreur e) {
+			System.out.println(e);
+		}
+	}
+
+	public String getgDepart() {
+		return gDepart;
+	}
+
+	public void setgDepart(String gDepart) {
+		this.gDepart = gDepart;
+	}
+
+	public String getgArrive() {
+		return gArrive;
+	}
+
+	public void setgArrive(String gArrive) {
+		this.gArrive = gArrive;
+	}
+
+	public Horaire gethDepart() {
+		return hDepart;
+	}
+
+	public void sethDepart(Horaire hDepart) {
+		this.hDepart = hDepart;
+	}
+
+	public Horaire gethArrive() {
+		return hArrive;
+	}
+
+	public void sethArrive(Horaire hArrive) {
+		this.hArrive = hArrive;
 	}
 }

@@ -31,6 +31,8 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import comparaison.Comparateur;
+
 public class MaFenetre extends JFrame{
 	private static final long serialVersionUID = 1L;
 	

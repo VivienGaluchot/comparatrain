@@ -1,15 +1,13 @@
 package comparatrain;
 
+import comparaison.Comparateur;
+
 public class classMain {
 
 	public static void main(String[] args) {
 		Donnees data = new Donnees();
-		try {
-			data.charger("database");
-			System.out.println("Chargement des données effectué");
-		} catch (Erreur e) {
-			System.out.println(e);
-		}
+		
+		data.charger("database");
 		
 		Comparateur comp = new Comparateur(data);
 		
@@ -17,7 +15,7 @@ public class classMain {
 		F.setVisible(true);
 		
 		Preference P1 = new Preference("Paris","18/12/2015 15h30", "Marseille", "18/12/2015 16h17");
-		System.out.println("\nComparaison P1 :");
+		System.out.println("Comparaison P1 :");
 		comp.comparer(P1).afficher();
 		
 		Preference P2 = new Preference();

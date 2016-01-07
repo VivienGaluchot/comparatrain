@@ -25,6 +25,9 @@ public class Erreur extends Exception {
 		case 2:
 			s = "Parse Error";
 			break;
+		case 3:
+			s = "Train Parse Error";
+			break;
 		default:
 			s = "Erreur : " + type;
 		}
