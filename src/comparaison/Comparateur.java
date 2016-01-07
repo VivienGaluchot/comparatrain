@@ -1,9 +1,13 @@
 /**
  * 
  */
-package comparatrain;
+package comparaison;
 
 import java.util.ArrayList;
+
+import comparatrain.Donnees;
+import comparatrain.Preference;
+import modele.Train;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
@@ -28,7 +32,7 @@ public class Comparateur {
 	public Resultat comparer(Preference pref){
 		Resultat evaluations = new Resultat();
 		
-		for(Train t : data.trains){
+		for(Train t : data.getTrains()){
 			ArrayList<Segment> e = t.eval(pref);
 			for(Segment s : e)
 				evaluations.ajouter(s.eval, s);

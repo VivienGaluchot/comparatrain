@@ -1,33 +1,34 @@
-package comparatrain;
+package modele;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+
+import comparatrain.Erreur;
 
 public class Horaire{
 	LocalDateTime time;
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd'/'MM'/'yyyy HH'h'mm");
+	
+	String parseJour = "dd'/'MM'/'yyyy";
+	String parseHeure = "HH'h'mm";
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(parseJour + " " + parseHeure);
 	
 	public Horaire(LocalDateTime t){
 		time = t;
 	}
 	
-	public Horaire(String s){
-		time = LocalDateTime.parse(s, formatter);
+	public Horaire(String s) throws Erreur{
+		try{
+			time = LocalDateTime.parse(s, formatter);
+		}
+		catch (DateTimeParseException e){
+			throw new Erreur(2);
+		}
 	}
 	
 	public String toString(){
 		return time.format(formatter);
-	}
-	
-	public String jourToString(){
-		DateTimeFormatter formatterJ = DateTimeFormatter.ofPattern("dd'/'MM'/'yyyy");
-		return time.format(formatterJ);
-	}
-	
-	public String heureToString(){
-		DateTimeFormatter formatterJ = DateTimeFormatter.ofPattern("HH'h'mm");
-		return time.format(formatterJ);
 	}
 	
 	public int compareTo(Horaire h){

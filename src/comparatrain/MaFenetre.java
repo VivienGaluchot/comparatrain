@@ -22,6 +22,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import comparaison.Comparateur;
+
 public class MaFenetre extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
