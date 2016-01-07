@@ -5,6 +5,7 @@ package comparaison;
 
 import comparatrain.Erreur;
 import modele.Horaire;
+import modele.physique.Wagon;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
@@ -18,6 +19,7 @@ public class Preference {
 	private Horaire hArrive;
 	
 	private Boolean wagonBar = null;
+	private Integer classe = null;
 	
 	public Preference(){
 		setgDepart("");
@@ -37,11 +39,29 @@ public class Preference {
 		}
 	}
 	
+	// Gares
 	public void setGares(String d, String a){
 		setgDepart(d);
 		setgArrive(a);
 	}
 	
+	public String getgDepart() {
+		return gDepart;
+	}
+
+	public void setgDepart(String gDepart) {
+		this.gDepart = gDepart;
+	}
+
+	public String getgArrive() {
+		return gArrive;
+	}
+
+	public void setgArrive(String gArrive) {
+		this.gArrive = gArrive;
+	}
+	
+	// Horaires
 	public void setHArrive(String hA){
 		try {
 			sethArrive(new Horaire(hA));
@@ -58,26 +78,6 @@ public class Preference {
 		}
 	}
 	
-	public void setWagonBar(boolean b){
-		wagonBar = new Boolean(b);
-	}
-
-	public String getgDepart() {
-		return gDepart;
-	}
-
-	public void setgDepart(String gDepart) {
-		this.gDepart = gDepart;
-	}
-
-	public String getgArrive() {
-		return gArrive;
-	}
-
-	public void setgArrive(String gArrive) {
-		this.gArrive = gArrive;
-	}
-
 	public Horaire gethDepart() {
 		return hDepart;
 	}
@@ -92,5 +92,16 @@ public class Preference {
 
 	public void sethArrive(Horaire hArrive) {
 		this.hArrive = hArrive;
+	}
+	
+	// Wagon
+	public void setWagonBar(boolean b){
+		wagonBar = new Boolean(b);
+	}
+	
+	public void setClasse(int c){
+		if(c == Wagon.PREMIERE || c == Wagon.SECONDE){
+			classe = c;
+		}
 	}
 }

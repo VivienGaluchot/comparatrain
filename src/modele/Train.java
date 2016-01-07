@@ -21,8 +21,6 @@ public class Train{
 	private int id;
 	private Trajet trajet;
 	
-	ArrayDeque<Siege> places;
-	
 	/**
 	 * Constructeur de train
 	 * La cohérence des paramètre sera vérifiée à la création de l'objet, la fonction retourne
@@ -34,22 +32,12 @@ public class Train{
 			throw new Erreur(1);
 		setId(i);
 		trajet = new Trajet(gDep,hDep,gArr,hArr);
-		
-		places = new ArrayDeque<Siege>();
-		for(int j=0;j<50;j++){
-			places.add(new Siege(j));
-		}
 	}
 	
 	public Train(int i,Trajet t) throws Erreur{
 		//intégrité des données ?
 		setId(i);
 		trajet = t;
-		
-		places = new ArrayDeque<Siege>();
-		for(int j=0;j<50;j++){
-			places.add(new Siege(j));
-		}
 	}
 	
 	public String toString(){
