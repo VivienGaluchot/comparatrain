@@ -13,52 +13,52 @@ public class Trajet {
 	
 	Depart depart;
 	ArrayList<Escale> escales;
-	Arrive arrive;
+	Arrivee arrivee;
 	
 	public Trajet(){
 		depart = null;
 		escales = new ArrayList<Escale>();
-		arrive = null;
+		arrivee = null;
 	}
 	
-	public Trajet(Depart d, Arrive a){
+	public Trajet(Depart d, Arrivee a){
 		depart = d;
 		escales = new ArrayList<Escale>();
-		arrive = a;
+		arrivee = a;
 	}
 	
-	public Trajet(Depart d, ArrayList<Escale> e, Arrive a){
+	public Trajet(Depart d, ArrayList<Escale> e, Arrivee a){
 		depart = d;
 		escales = e;
-		arrive = a;
+		arrivee = a;
 	}
 }
 
 class Depart {
-	Gare g;
-	Horaire h;
-	public Depart(Gare gare, Horaire horaire){
-		g = gare;
-		h = horaire;
+	Gare gare;
+	Horaire horaire;
+	public Depart(Gare g, Horaire h){
+		gare = g;
+		horaire = h;
 	}
 }
 
 class Escale {
-	Gare g;
-	Horaire hA;
-	Horaire hD;
-	public Escale(Gare gare, Horaire horaireA, Horaire horaireD){
-		g = gare;
-		hA = horaireA;
-		hD = horaireD;
+	Gare gare;
+	Horaire horaireA;
+	Horaire horaireD;
+	public Escale(Gare g, Horaire hA, Horaire hD){
+		gare = g;
+		horaireA = hA;
+		horaireD = hD;
 	}
 }
 
-class Arrive {
-	Gare g;
-	Horaire h;
-	public Arrive(Gare gare, Horaire horaire){
-		g = gare;
-		h = horaire;
+class Arrivee {
+	Gare gare;
+	Horaire horaire;
+	public Arrivee(Gare g, Horaire h){
+		gare = g;
+		horaire = h;
 	}
 }

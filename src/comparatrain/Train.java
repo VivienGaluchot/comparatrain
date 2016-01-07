@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Train{
 	int id;
 	
-	Trajet t;
+	Trajet trajet;
 	
 	ArrayDeque<Siege> places;
 	
@@ -32,7 +32,7 @@ public class Train{
 		if((gDep.id == gArr.id) || (hDep.compareTo(hArr)>0))
 			throw new Erreur(1);
 		id = i;
-		t = new Trajet(new Depart(gDep,hDep), new Arrive(gArr,hArr));
+		trajet = new Trajet(new Depart(gDep,hDep), new Arrivee(gArr,hArr));
 		
 		places = new ArrayDeque<Siege>();
 		for(int j=0;j<50;j++){
@@ -40,10 +40,10 @@ public class Train{
 		}
 	}
 	
-	public Train(int i,Trajet trajet) throws Erreur{
+	public Train(int i,Trajet t) throws Erreur{
 		//intégrité des données ?
 		id = i;
-		t = trajet;
+		trajet = t;
 		
 		places = new ArrayDeque<Siege>();
 		for(int j=0;j<50;j++){
@@ -56,11 +56,11 @@ public class Train{
 	 */
 	public String toString(){
 		String s = "Train n°" + id + "\n";
-		s += " " + t.depart.g + " " + t.depart.h + "\n";
-		for(Escale es : t.escales){
-			s += " " + es.g + " " + es.hA + " " + es.hD + "\n";
+		s += " " + trajet.depart.gare + " " + trajet.depart.horaire + "\n";
+		for(Escale es : trajet.escales){
+			s += " " + es.gare + " " + es.horaireA + " " + es.horaireD + "\n";
 		}
-		s += " " + t.arrive.g + " " + t.arrive.h + "\n";
+		s += " " + trajet.arrivee.gare + " " + trajet.arrivee.horaire + "\n";
 		return s;
 	}
 	
@@ -73,80 +73,23 @@ public class Train{
 		Segment s = new Segment(this);
 		
 		// Gare depart = t.depart
-		for(Escale e : t.escales){
-			s.set(t.depart.g, e.g, t.depart.h, e.hA);
+		for(Escale e : trajet.escales){
+			s.set(trajet.depart.gare, e.gare, trajet.depart.horaire, e.horaireA);
 			if(s.eval(pref) > 0) resultat.add(s.clone());
 		}
-		s.set(t.depart.g, t.arrive.g, t.depart.h, t.arrive.h);
+		s.set(trajet.depart.gare, trajet.arrivee.gare, trajet.depart.horaire, trajet.arrivee.horaire);
 		if(s.eval(pref) > 0) resultat.add(s.clone());
 		
 		// Gare depart = escale
-		for(int i=0;i<t.escales.size();i++){
-			for(int j=i+1;j<t.escales.size();j++){
-				s.set(t.escales.get(i).g, t.escales.get(j).g, t.escales.get(i).hD, t.escales.get(j).hA);
+		for(int i=0;i<trajet.escales.size();i++){
+			for(int j=i+1;j<trajet.escales.size();j++){
+				s.set(trajet.escales.get(i).gare, trajet.escales.get(j).gare, trajet.escales.get(i).horaireD, trajet.escales.get(j).horaireA);
 				if(s.eval(pref) > 0) resultat.add(s.clone());
 			}
-			s.set(t.escales.get(i).g, t.arrive.g, t.escales.get(i).hD, t.arrive.h);
+			s.set(trajet.escales.get(i).gare, trajet.arrivee.gare, trajet.escales.get(i).horaireD, trajet.arrivee.horaire);
 			if(s.eval(pref) > 0) resultat.add(s.clone());
 		}
 		
 		return resultat;
-	}
-}
-
-class Segment implements Evaluable{
-	Gare d;
-	Gare a;
-	Horaire hD;
-	Horaire hA;
-	
-	Train t;
-	
-	Double eval;
-	
-	public Segment(Train train){
-		t = train;
-	}
-	
-	public void set(Gare depart, Gare arrive, Horaire hDepart, Horaire hArrive){
-		a = arrive;
-		d = depart;
-		hD = hDepart;
-		hA = hArrive;
-	}
-	
-	public double eval(Preference pref) {
-		double res = 1;
-		
-		// Lieux
-		res *= d.eval(pref.gDepart);
-		if(res == 0) return res;
-		res *= a.eval(pref.gArrive);
-		if(res == 0) return res;
-		
-		// Dates
-		if(pref.hDepart != null)
-			res *= hD.eval(pref.hDepart);
-		if(res == 0) return res;
-		if(pref.hArrive != null)
-			res *= hA.eval(pref.hArrive);
-		
-		eval = res;
-		
-		return res;
-	}
-	
-	public Segment clone(){
-		Segment s = new Segment(t);
-		s.set(d, a, hD, hA);
-		s.eval = eval;
-		return s;
-	}
-	
-	/**
-	 * Affichage d'un segment
-	 */
-	public String toString(){
-		return "Train n°" + t.id + " : " + d + " " + hD + " --> " + a + " " + hA;
 	}
 }

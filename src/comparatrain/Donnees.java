@@ -147,14 +147,14 @@ public class Donnees {
 				if(trajet.depart == null){
 					trajet.depart = new Depart(gares.get(idGare),new Horaire(jour + " " + h1));
 				}
-				else if(trajet.arrive == null){
-					trajet.arrive = new Arrive(gares.get(idGare),new Horaire(jour + " " + h1));
+				else if(trajet.arrivee == null){
+					trajet.arrivee = new Arrivee(gares.get(idGare),new Horaire(jour + " " + h1));
 				}
 				else{
 					throw new Erreur(2);
 				}
 			}
-			else if(temp.length == 2 && trajet.arrive == null){
+			else if(temp.length == 2 && trajet.arrivee == null){
 				h1 = temp[0];
 				h2 = temp[1];
 				
@@ -187,12 +187,12 @@ public class Donnees {
 				writer.write("\n");
 				for(Train t : trains){
 					writer.write("--Train : " + t.id + "\n");
-					writer.write("--Jour : " + t.t.depart.h.jourToString() + "\n");
-					writer.write(t.t.depart.g.nom + " : " + t.t.depart.h.heureToString() + "\n");
-					for(Escale e : t.t.escales){
-						writer.write(e.g.nom + " : " + e.hA.heureToString() + " " + e.hD.heureToString() + "\n");
+					writer.write("--Jour : " + t.trajet.depart.horaire.jourToString() + "\n");
+					writer.write(t.trajet.depart.gare.nom + " : " + t.trajet.depart.horaire.heureToString() + "\n");
+					for(Escale e : t.trajet.escales){
+						writer.write(e.gare.nom + " : " + e.horaireA.heureToString() + " " + e.horaireD.heureToString() + "\n");
 					}
-					writer.write(t.t.arrive.g.nom + " : " + t.t.arrive.h.heureToString() + "\n");
+					writer.write(t.trajet.arrivee.gare.nom + " : " + t.trajet.arrivee.horaire.heureToString() + "\n");
 				}
 				writer.write("\n");
 			} finally {
