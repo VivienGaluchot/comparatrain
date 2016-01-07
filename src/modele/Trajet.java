@@ -92,6 +92,7 @@ public class Trajet {
 		Gare gare;
 		Horaire horaireA;
 		Horaire horaireD;
+		
 		public Escale(Gare g, Horaire hA, Horaire hD){
 			gare = g;
 			horaireA = hA;

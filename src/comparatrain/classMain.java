@@ -2,6 +2,7 @@ package comparatrain;
 
 import comparaison.Comparateur;
 import comparaison.Preference;
+import modele.physique.Rame;
 
 public class classMain {
 
@@ -44,5 +45,8 @@ public class classMain {
 		P5.setHDepart("06/01/2016 16h15");
 		System.out.println("\nComparaison P5 :");
 		comp.comparer(P5).afficher();
+		
+		Rame r = new Rame(0);
+		System.out.println(r);
 	}
 }
