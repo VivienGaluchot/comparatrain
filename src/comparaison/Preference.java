@@ -1,8 +1,9 @@
 /**
  * 
  */
-package comparatrain;
+package comparaison;
 
+import comparatrain.Erreur;
 import modele.Horaire;
 
 /**
@@ -15,6 +16,8 @@ public class Preference {
 	
 	private Horaire hDepart;
 	private Horaire hArrive;
+	
+	private Boolean wagonBar = null;
 	
 	public Preference(){
 		setgDepart("");
@@ -53,6 +56,10 @@ public class Preference {
 		} catch (Erreur e) {
 			System.out.println(e);
 		}
+	}
+	
+	public void setWagonBar(boolean b){
+		wagonBar = new Boolean(b);
 	}
 
 	public String getgDepart() {

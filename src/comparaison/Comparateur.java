@@ -6,7 +6,6 @@ package comparaison;
 import java.util.ArrayList;
 
 import comparatrain.Donnees;
-import comparatrain.Preference;
 import modele.Train;
 
 /**
@@ -15,7 +14,7 @@ import modele.Train;
  */
 public class Comparateur {
 	
-	Donnees data;
+	private Donnees data;
 	
 	public Comparateur(){
 		data = new Donnees();
@@ -38,5 +37,9 @@ public class Comparateur {
 				evaluations.ajouter(s.eval, s);
 		}
 		return evaluations;
+	}
+	
+	public Donnees getData(){
+		return data;
 	}
 }

@@ -1,6 +1,7 @@
 package comparatrain;
 
 import comparaison.Comparateur;
+import comparaison.Preference;
 
 public class classMain {
 
@@ -8,6 +9,8 @@ public class classMain {
 		Donnees data = new Donnees();
 		
 		data.charger("database");
+		
+		System.out.println(data.getTrains());
 		
 		Comparateur comp = new Comparateur(data);
 		
