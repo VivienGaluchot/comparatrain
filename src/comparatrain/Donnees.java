@@ -23,10 +23,6 @@ public class Donnees {
 	private ArrayList<Gare> gares;
 	private ArrayList<Train> trains;
 	
-	public ArrayList<Train> getTrains() {
-		return trains;
-	}
-	
 	public Donnees(){
 		villes = new ArrayList<Ville>();
 		gares = new ArrayList<Gare>();
@@ -45,6 +41,18 @@ public class Donnees {
 		for(Train t : getTrains()){
 			System.out.println(t);
 		}
+	}
+	
+	public ArrayList<Ville> getVilles(){
+		return villes;
+	}
+	
+	public ArrayList<Gare> getGares(){
+		return gares;
+	}
+	
+	public ArrayList<Train> getTrains(){
+		return trains;
 	}
 	
 	public void charger(String fichier){

@@ -32,6 +32,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import comparaison.Comparateur;
+import comparaison.Preference;
 
 public class MaFenetre extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -273,7 +274,7 @@ public class MaFenetre extends JFrame{
 	  
 		
 		WindowListener exitListener = new MaWindow();
-		addWindowListener(exitListener);
+		//addWindowListener(exitListener);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

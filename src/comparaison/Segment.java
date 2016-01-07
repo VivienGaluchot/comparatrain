@@ -1,6 +1,6 @@
 package comparaison;
 
-import comparatrain.Preference;
+import modele.Evaluable;
 import modele.Gare;
 import modele.Horaire;
 import modele.Train;

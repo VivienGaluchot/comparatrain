@@ -1,10 +1,10 @@
 /**
  * 
  */
-package modele;
+package modele.physique;
 
-import comparaison.Evaluable;
-import comparatrain.Preference;
+import comparaison.Preference;
+import modele.Evaluable;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez

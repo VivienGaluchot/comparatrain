@@ -6,29 +6,25 @@ package modele;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
+import comparaison.Preference;
 import comparaison.Segment;
 import comparatrain.Erreur;
-import comparatrain.Preference;
 import modele.Trajet.Escale;
+import modele.physique.Siege;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
  * Classe de train
  */
 public class Train{
-	private int id;
 	
+	private int id;
 	private Trajet trajet;
 	
 	ArrayDeque<Siege> places;
 	
 	/**
 	 * Constructeur de train
-	 * @param i numéro du train
-	 * @param gDep gare de départ
-	 * @param gArr gare d'arrivé
-	 * @param tDep date de départ
-	 * @param tArr date d'arrivé
 	 * La cohérence des paramètre sera vérifiée à la création de l'objet, la fonction retourne
 	 * 1 si tout est valide, 0 en cas d'érreur
 	 */
@@ -56,9 +52,6 @@ public class Train{
 		}
 	}
 	
-	/**
-	 * Affichage d'un train
-	 */
 	public String toString(){
 		String s = "Train n°" + getId() + "\n";
 		s += " " + trajet.getDepart().gare + " " + trajet.getDepart().horaire + "\n";
@@ -94,7 +87,7 @@ public class Train{
 		
 		return resultat;
 	}
-
+	
 	public int getId() {
 		return id;
 	}

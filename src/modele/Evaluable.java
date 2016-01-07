@@ -1,9 +1,9 @@
 /**
  * 
  */
-package comparaison;
+package modele;
 
-import comparatrain.Preference;
+import comparaison.Preference;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
