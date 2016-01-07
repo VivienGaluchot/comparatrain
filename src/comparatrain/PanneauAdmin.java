@@ -1,10 +1,12 @@
 package comparatrain;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.lang.reflect.Array;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -13,7 +15,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 
 import comparaison.Comparateur;
 import modele.Gare;
@@ -21,11 +27,11 @@ import modele.Gare;
 public class PanneauAdmin extends JPanel{
 	
 	private JLabel lblGareD;
-	private JComboBox<Gare> comboBoxD;
+	private JComboBox<String> comboBoxD;
 	private JLabel lblGareA;
-	private JComboBox<Gare> comboBoxA;
+	private JComboBox<String> comboBoxA;
 	private JLabel lblGareE;
-	private JComboBox<Gare> comboBoxE;
+	private JComboBox<String> comboBoxE;
 	private JLabel lblHoraires;
 	
 	private JTextField txtJjmmaaaa1;
@@ -44,7 +50,9 @@ public class PanneauAdmin extends JPanel{
 	private JTextField txtHeure4;
 	private JTextField txtMin4;
 	
+	private JButton ajouterE;
 	private JButton ajouter;
+	private JButton deco;
 	
 	
 	public void ClearOnClick(JTextField textField){
@@ -66,7 +74,8 @@ public class PanneauAdmin extends JPanel{
 	    });
 	}
 	
-	public PanneauAdmin(Comparateur comp){
+	
+	public void remplirPanneauAdmin(Comparateur comp){
 		
 		Color color =new Color(100,100,100);
 		
@@ -78,8 +87,12 @@ public class PanneauAdmin extends JPanel{
 			JPanel box11 = new JPanel();
 				lblGareD = new JLabel("Gare départ : ");
 			box11.add(lblGareD);
-				comboBoxD = new JComboBox<Gare>();
-				//comboBoxD.setModel(new DefaultComboBoxModel<Gare>(comp));
+				comboBoxD = new JComboBox<String>();
+				String[] gareA = new String[comp.getData().getGares().size()];
+				for( int i=0;i<gareA.length;i++){
+					gareA[i]=comp.getData().getGares().get(i).toString();
+				}
+				comboBoxD.setModel(new DefaultComboBoxModel<String>(gareA));
 			box11.add(comboBoxD);
 		box1.add(box11);
 			JPanel box12 = new JPanel();
@@ -108,7 +121,40 @@ public class PanneauAdmin extends JPanel{
 		
 		JPanel box2 = new JPanel();
 			box2.setLayout(new BoxLayout(box2,BoxLayout.PAGE_AXIS));
-			JPanel box21 = new JPanel();
+			JPanel box20 = new JPanel();
+			JTextArea textArea = new JTextArea(10, 40);
+			textArea.setSize(400, 400);
+			textArea.setLineWrap(true);
+			textArea.setWrapStyleWord(true);
+			JScrollPane scrollPane = new JScrollPane(textArea);
+			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			textArea.setEditable(false);
+			box20.add(scrollPane);
+		box2.add(box20);
+		
+		JPanel box22 = new JPanel();
+			lblGareE = new JLabel("Escale : ");
+			box22.add(lblGareE);
+			comboBoxE = new JComboBox<String>();
+			comboBoxE.setModel(new DefaultComboBoxModel<String>(gareA));
+			box22.add(comboBoxE);
+			ajouterE = new JButton("Ajouter!");
+			ajouterE.addActionListener(new ActionListener() {
+				 
+	            public void actionPerformed(ActionEvent e)
+	            {
+	            	
+	            	
+	                textArea.append("-"+comboBoxE.getSelectedItem().toString()
+	                			+"   "+txtJjmmaaaa2.getText()+" "+ txtHeure2.getText()+"h"+txtMin2.getText()
+	                		  +"   "+txtJjmmaaaa3.getText()+" "+ txtHeure3.getText()+"h"+txtMin3.getText()
+	                		  +"\n");
+	            }
+	        });
+			box22.add(ajouterE);
+		box2.add(box22);
+		
+		JPanel box21 = new JPanel();
 			lblHoraires = new JLabel("Horaires d'arrivée : ");
 			box21.add(lblHoraires);
 			txtJjmmaaaa2 = new JTextField("jj/mm/aaaa",10);
@@ -126,14 +172,6 @@ public class PanneauAdmin extends JPanel{
 			ClearOnClick(txtMin2);
 			box21.add(txtMin2);
 		box2.add(box21);
-		
-		JPanel box22 = new JPanel();
-			lblGareE = new JLabel("Escale : ");
-			box22.add(lblGareE);
-			comboBoxE = new JComboBox<Gare>();
-			//comboBoxE.setModel(new DefaultComboBoxModel<Gare>(comp));
-			box22.add(comboBoxE);
-		box2.add(box22);
 		
 		JPanel box23 = new JPanel();
 			lblHoraires = new JLabel("Horaires de départ : ");
@@ -165,8 +203,9 @@ public class PanneauAdmin extends JPanel{
 		JPanel box31 = new JPanel();
 			lblGareA = new JLabel("Gare d'arrivée : ");
 			box31.add(lblGareA);
-			comboBoxA = new JComboBox<Gare>();
-			//comboBoxA.setModel(new DefaultComboBoxModel<Gare>(comp));
+			comboBoxA = new JComboBox<String>();
+			
+			comboBoxA.setModel(new DefaultComboBoxModel<String>(gareA));
 			box31.add(comboBoxA);
 		box3.add(box31);
 		JPanel box32 = new JPanel();
@@ -190,8 +229,7 @@ public class PanneauAdmin extends JPanel{
 	box3.setBorder(BorderFactory.createTitledBorder("Arrivée"));
 	this.add(box3);
 		
-		
-		JPanel box5 = new JPanel();
+		JPanel box4 = new JPanel();
 			
 			ajouter = new JButton("Ajouter!");
 			ajouter.addActionListener(new ActionListener() {
@@ -201,8 +239,21 @@ public class PanneauAdmin extends JPanel{
 	                
 	            }
 	        });
-			box5.add(ajouter);
-		this.add(box5);
+			box4.add(ajouter);
+			
+			deco = new JButton("Déconnexion!");
+			deco.addActionListener(new ActionListener() {
+				 
+	            public void actionPerformed(ActionEvent e)
+	            {
+	            	removeAll();
+	            	repaint();
+	                
+	            }
+	        });
+			//deco.setHorizontalAlignment(SwingConstants.RIGHT);
+			box4.add(deco);
+		this.add(box4);
 	}
 }
 	

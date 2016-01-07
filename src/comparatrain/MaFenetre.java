@@ -68,17 +68,16 @@ public class MaFenetre extends JFrame{
 		
 		int hauteur = dim.height;
 		//setLayout(new FlowLayout(FlowLayout.CENTER,10,15));
-		setBounds(3*largeur/8,3*hauteur/8,largeur/4,3*hauteur/8);
+		setBounds(2*largeur/8,2*hauteur/8,largeur/2,3*hauteur/4);
 		
 		
 		
 		JTabbedPane onglets = new JTabbedPane();
-		JPanel vide = new JPanel();
 		JPanel PClient = new PanneauClient(c);
-		JPanel PAdmin = new PanneauAdmin(c);
+		PanneauAdmin PAdmin = new PanneauAdmin();
 	  
         onglets.addTab("Client", null, PClient, null); //
-        onglets.addTab("Admin", null, vide, null); //
+        onglets.addTab("Admin", null, PAdmin, null); //
         
 
         onglets.addChangeListener(new ChangeListener() { //add the Listener
@@ -86,7 +85,7 @@ public class MaFenetre extends JFrame{
 
         	@Override
             public void stateChanged(ChangeEvent e) {
-                if(onglets.getSelectedIndex()==1 && vide.getComponentCount()==0) //Index starts at 0, so Index 1 = onglet2
+                if(onglets.getSelectedIndex()==1 && PAdmin.getComponentCount()==0) //Index starts at 0, so Index 1 = onglet2
                 {
                 	
                 	
@@ -99,9 +98,9 @@ public class MaFenetre extends JFrame{
 
                 	int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
                 	if (option == JOptionPane.OK_OPTION) {
-                	    if (username.getText().equals("admin") && password.getText().equals("admin")) {
-                	    	vide.setLayout(new BoxLayout(vide,BoxLayout.PAGE_AXIS));
-                	    	vide.add(PAdmin);
+                	    if (username.getText().equals("") && password.getText().equals("")) {
+                	    	PAdmin.setLayout(new BoxLayout(PAdmin,BoxLayout.PAGE_AXIS));
+                	    	PAdmin.remplirPanneauAdmin(c);
                 	        System.out.println("Login successful");
                 	    } else {
                 	    	onglets.setSelectedIndex(0);

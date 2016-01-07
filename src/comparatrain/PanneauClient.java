@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import comparaison.Comparateur;
+import comparaison.Preference;
 
 public class PanneauClient extends JPanel {
 	
