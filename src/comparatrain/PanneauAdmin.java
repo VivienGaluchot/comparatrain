@@ -11,9 +11,11 @@ import java.lang.reflect.Array;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -121,18 +123,17 @@ public class PanneauAdmin extends JPanel{
 		JPanel box2 = new JPanel();
 			box2.setLayout(new BoxLayout(box2,BoxLayout.PAGE_AXIS));
 			JPanel box20 = new JPanel();
-			JTextArea textArea = new JTextArea(10, 40);
-			textArea.setSize(400, 400);
-			textArea.setLineWrap(true);
-			textArea.setWrapStyleWord(true);
-			JScrollPane scrollPane = new JScrollPane(textArea);
+			DefaultListModel listeM = new DefaultListModel();
+			JList liste = new JList(listeM);
+			JScrollPane scrollPane = new JScrollPane(liste);
 			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			textArea.setEditable(false);
+			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			scrollPane.setPreferredSize(new Dimension(500,120));
 			box20.add(scrollPane);
 		box2.add(box20);
 		
 		JPanel box22 = new JPanel();
-			lblGareE = new JLabel("Escale : ");
+			lblGareE = new JLabel("Gare : ");
 			box22.add(lblGareE);
 			comboBoxE = new JComboBox<String>();
 			comboBoxE.setModel(new DefaultComboBoxModel<String>(gareA));
@@ -144,7 +145,7 @@ public class PanneauAdmin extends JPanel{
 	            {
 	            	
 	            	
-	                textArea.append("-"+comboBoxE.getSelectedItem().toString()
+	                listeM.addElement("-"+comboBoxE.getSelectedItem().toString()
 	                			+"   "+txtJjmmaaaa2.getText()+" "+ txtHeure2.getText()+"h"+txtMin2.getText()
 	                		  +"   "+txtJjmmaaaa3.getText()+" "+ txtHeure3.getText()+"h"+txtMin3.getText()
 	                		  +"\n");
