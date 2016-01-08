@@ -55,7 +55,7 @@ public class PanneauClient extends JPanel {
 	
 	public PanneauClient(Comparateur comp){
 		
-		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+		//this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		
 		JPanel box0 = new JPanel();
 		

@@ -79,10 +79,9 @@ public class PanneauAdmin extends JPanel{
 		
 		Color color =new Color(100,100,100);
 		
-		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+		//this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		
 		JPanel box1 = new JPanel();
-		
 			box1.setLayout(new BoxLayout(box1,BoxLayout.PAGE_AXIS));
 			JPanel box11 = new JPanel();
 				lblGareD = new JLabel("Gare départ : ");
