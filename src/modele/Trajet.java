@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
- *
  */
 public class Trajet {
 	
@@ -38,19 +37,21 @@ public class Trajet {
 		setEscales(e);
 		setArrivee(a);
 	}
-
+	
+	// Départ
 	public Depart getDepart() {
 		return depart;
-	}
-
-	public void setDepart(Gare g, Horaire h) {
-		depart = new Depart(g,h);
 	}
 	
 	public void setDepart(Depart depart) {
 		this.depart = depart;
 	}
 
+	public void setDepart(Gare g, Horaire h) {
+		depart = new Depart(g,h);
+	}
+	
+	// Arrivee
 	public Arrivee getArrivee() {
 		return arrivee;
 	}
@@ -62,7 +63,8 @@ public class Trajet {
 	public void setArrivee(Gare g, Horaire h) {
 		arrivee = new Arrivee(g,h);
 	}
-
+	
+	// Escales
 	public ArrayList<Escale> getEscales() {
 		return escales;
 	}
@@ -78,6 +80,12 @@ public class Trajet {
 	public class Depart {
 		Gare gare;
 		Horaire horaire;
+		
+		public Depart(){
+			gare = null;
+			horaire = null;
+		}
+		
 		public Depart(Gare g, Horaire h){
 			gare = g;
 			horaire = h;
@@ -93,6 +101,12 @@ public class Trajet {
 		Horaire horaireA;
 		Horaire horaireD;
 		
+		public Escale(){
+			gare = null;
+			horaireA = null;
+			horaireD = null;
+		}
+		
 		public Escale(Gare g, Horaire hA, Horaire hD){
 			gare = g;
 			horaireA = hA;
@@ -107,6 +121,12 @@ public class Trajet {
 	public class Arrivee {
 		Gare gare;
 		Horaire horaire;
+		
+		public Arrivee(){
+			gare = new Gare();
+			horaire = new Horaire();
+		}
+		
 		public Arrivee(Gare g, Horaire h){
 			gare = g;
 			horaire = h;

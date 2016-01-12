@@ -8,9 +8,15 @@ package modele;
  *
  */
 public class Gare implements Evaluable<Gare>, Comparable<Gare>{
-	private int id;
+	private Integer id;
 	private String nom;
 	private Ville ville;
+	
+	public Gare(){
+		id = null;
+		nom = null;
+		ville = null;
+	}
 	
 	public Gare(int i, String n, Ville v){
 		setId(i);
@@ -45,11 +51,11 @@ public class Gare implements Evaluable<Gare>, Comparable<Gare>{
 		this.nom = nom;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

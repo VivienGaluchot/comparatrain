@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import yamlbeans.YamlWriter;
+
 import modele.Gare;
 import modele.Horaire;
 import modele.Train;
@@ -140,6 +142,31 @@ public class Donnees {
 		}
 	}
 	
+	public void sauvegarder(){
+	    YamlWriter test;
+		try {
+			test = new YamlWriter(new FileWriter("Villes.yml"));
+		    test.write(villes);
+		    test.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			test = new YamlWriter(new FileWriter("Gares.yml"));
+		    test.write(gares);
+		    test.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			test = new YamlWriter(new FileWriter("Trains.yml"));
+		    test.write(trains);
+		    test.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	Train creerTrain(int id, ArrayList<String> strTrajet) throws Erreur{
 		Trajet trajet = new Trajet();
 		
@@ -177,39 +204,5 @@ public class Donnees {
 		}
 	
 		return new Train(id,trajet);
-	}
-	
-	boolean sauvegarder(String fichier){
-		File file =new File(fichier);
-        try {
-			file .createNewFile();
-			FileWriter writer = new FileWriter(fichier);
-			try {
-				for(Ville v : villes){
-					writer.write("--Ville : " + v.getNom() + "\n");
-					for(Gare g : gares){
-						if(g.getVille().getId() == v.getId()){
-							writer.write(g.getNom() + "\n");
-						}
-					}
-					writer.write("\n");
-				}
-				writer.write("\n");
-				for(Train t : trains){
-					writer.write("--Train : " + t.getId() + "\n");
-					writer.write(t.getTrajet().getDepart().toData() + "\n");
-					for(Escale e : t.getTrajet().getEscales()){
-						writer.write(e.toData() + "\n");
-					}
-					writer.write(t.getTrajet().getArrivee().toData() + "\n\n");
-				}
-				writer.write("\n");
-			} finally {
-			    writer.close();
-			}
-        } catch (Exception e) {
-            System.out.println("Impossible de creer le fichier");
-        }
-		return false;
 	}
 }

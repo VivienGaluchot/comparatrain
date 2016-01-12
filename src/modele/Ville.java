@@ -5,8 +5,13 @@ package modele;
  *
  */
 public class Ville {
-	private int id;
+	private Integer id;
 	private String nom;
+	
+	public Ville(){
+		id = null;
+		nom = null;
+	}
 	
 	public Ville(int i, String n){
 		setId(i);
@@ -25,11 +30,11 @@ public class Ville {
 		this.nom = nom;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 }

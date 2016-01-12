@@ -18,9 +18,13 @@ import modele.physique.Siege;
  */
 public class Train{
 	
-	private int id;
-	private Trajet trajet;
+	protected Integer id;
+	protected Trajet trajet;
 	
+	public Train(){
+		id = null;
+		trajet = null;
+	}
 	/**
 	 * Constructeur de train
 	 * La cohérence des paramètre sera vérifiée à la création de l'objet, la fonction retourne
@@ -76,15 +80,19 @@ public class Train{
 		return resultat;
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
 	public Trajet getTrajet(){
 		return trajet;
+	}
+	
+	public void setTrajet( Trajet trajet){
+		this.trajet = trajet;
 	}
 }

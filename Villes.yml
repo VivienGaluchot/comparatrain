@@ -1,0 +1,21 @@
+- !modele.Ville
+   id: 0
+   nom: Paris
+- !modele.Ville
+   id: 1
+   nom: Marseille
+- !modele.Ville
+   id: 2
+   nom: Nantes
+- !modele.Ville
+   id: 3
+   nom: Avignon
+- !modele.Ville
+   id: 4
+   nom: Lyon
+- !modele.Ville
+   id: 5
+   nom: Aix-en-Provence
+- !modele.Ville
+   id: 6
+   nom: Angers

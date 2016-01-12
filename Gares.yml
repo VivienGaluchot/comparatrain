@@ -1,0 +1,58 @@
+- !modele.Gare
+   id: 0
+   nom: Gare de Lyon
+   ville: &1
+      id: 0
+      nom: Paris
+- !modele.Gare
+   id: 1
+   nom: Gare du Nord
+   ville: *1
+- !modele.Gare
+   id: 2
+   nom: Gare Montparnasse
+   ville: *1
+- !modele.Gare
+   id: 3
+   nom: Massy TGV
+   ville: *1
+- !modele.Gare
+   id: 4
+   nom: Gare Saint Charles
+   ville: 
+      id: 1
+      nom: Marseille
+- !modele.Gare
+   id: 5
+   nom: Gare de Nantes
+   ville: 
+      id: 2
+      nom: Nantes
+- !modele.Gare
+   id: 6
+   nom: Avignon TGV
+   ville: &2
+      id: 3
+      nom: Avignon
+- !modele.Gare
+   id: 7
+   nom: Avignon centre
+   ville: *2
+- !modele.Gare
+   id: 8
+   nom: Lyon Pardieu
+   ville: 
+      id: 4
+      nom: Lyon
+- !modele.Gare
+   id: 9
+   nom: Aix-en-Provence TVG
+   ville: 
+      id: 5
+      nom: Aix-en-Provence
+- !modele.Gare
+   id: 10
+   nom: Angers Saint-Laud
+   ville: 
+      id: 6
+      nom: Angers

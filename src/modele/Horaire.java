@@ -15,6 +15,10 @@ public class Horaire implements Evaluable<Horaire>{
 	String parseHeure = "HH'h'mm";
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(parseJour + " " + parseHeure);
 	
+	public Horaire(){
+		time = null;
+	}
+	
 	public Horaire(LocalDateTime t){
 		time = t;
 	}
