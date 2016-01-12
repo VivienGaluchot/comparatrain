@@ -1,7 +1,11 @@
 # Comparatrain
 
-Projet etudiant visant à concevoir un comparateur interne d'offre de train.
+Projet étudiant visant à concevoir un comparateur interne d'offre de train.
 
 ## Etudiants
-* Vivien *Galuchot* : vivien.galuchot@etu.univ-amu.fr
-* Vincent *Hernandez* : vincent.hernandez@etu.univ-amu.fr
+* Vivien **Galuchot** : vivien.galuchot@etu.univ-amu.fr
+* Vincent **Hernandez** : vincent.hernandez@etu.univ-amu.fr
+
+## Base de donnée
+
+Les données sont pour le moment sauvegardées dans un fichier au format YAML à l'aide de la librairie Java [YamlBeams](https://github.com/EsotericSoftware/yamlbeans).
