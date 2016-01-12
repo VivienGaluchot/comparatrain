@@ -13,7 +13,6 @@ import modele.Gare;
 import modele.Horaire;
 import modele.Train;
 import modele.Trajet;
-import modele.Trajet.Escale;
 import modele.Ville;
 
 /**

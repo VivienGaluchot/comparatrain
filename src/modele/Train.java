@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import comparaison.Preference;
 import comparaison.Segment;
 import defaut.Erreur;
-import modele.Trajet.Escale;
 import modele.physique.Siege;
 
 /**

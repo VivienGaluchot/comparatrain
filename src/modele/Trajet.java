@@ -76,64 +76,88 @@ public class Trajet {
 	public void setEscales(ArrayList<Escale> escales) {
 		this.escales = escales;
 	}
+}
+
+class Depart {
+	Gare gare;
+	Horaire horaire;
 	
-	public class Depart {
-		Gare gare;
-		Horaire horaire;
-		
-		public Depart(){
-			gare = null;
-			horaire = null;
-		}
-		
-		public Depart(Gare g, Horaire h){
-			gare = g;
-			horaire = h;
-		}
-		
-		public String toData(){
-			return gare + " : " + horaire;
-		}
+	public Depart(){
+		gare = null;
+		horaire = null;
 	}
-
-	public class Escale {
-		Gare gare;
-		Horaire horaireA;
-		Horaire horaireD;
-		
-		public Escale(){
-			gare = null;
-			horaireA = null;
-			horaireD = null;
-		}
-		
-		public Escale(Gare g, Horaire hA, Horaire hD){
-			gare = g;
-			horaireA = hA;
-			horaireD = hD;
-		}
-		
-		public String toData(){
-			return gare + " : " + horaireA + " " + horaireD;
-		}
+	
+	public Depart(Gare g, Horaire h){
+		gare = g;
+		horaire = h;
 	}
+	
+	public String toData(){
+		return gare + " : " + horaire;
+	}
+	
+	public Gare getGare(){
+		return gare;
+	}
+	
+	public void setGare(Gare gare){
+		this.gare = gare;
+	}
+}
 
-	public class Arrivee {
-		Gare gare;
-		Horaire horaire;
-		
-		public Arrivee(){
-			gare = new Gare();
-			horaire = new Horaire();
-		}
-		
-		public Arrivee(Gare g, Horaire h){
-			gare = g;
-			horaire = h;
-		}
-		
-		public String toData(){
-			return gare + " : " + horaire;
-		}
+class Escale {
+	Gare gare;
+	Horaire horaireA;
+	Horaire horaireD;
+	
+	public Escale(){
+		gare = null;
+		horaireA = null;
+		horaireD = null;
+	}
+	
+	public Escale(Gare g, Horaire hA, Horaire hD){
+		gare = g;
+		horaireA = hA;
+		horaireD = hD;
+	}
+	
+	public String toData(){
+		return gare + " : " + horaireA + " " + horaireD;
+	}
+	
+	public Gare getGare(){
+		return gare;
+	}
+	
+	public void setGare(Gare gare){
+		this.gare = gare;
+	}
+}
+
+class Arrivee {
+	Gare gare;
+	Horaire horaire;
+	
+	public Arrivee(){
+		gare = null;
+		horaire = null;
+	}
+	
+	public Arrivee(Gare g, Horaire h){
+		gare = g;
+		horaire = h;
+	}
+	
+	public String toData(){
+		return gare + " : " + horaire;
+	}
+	
+	public Gare getGare(){
+		return gare;
+	}
+	
+	public void setGare(Gare gare){
+		this.gare = gare;
 	}
 }
