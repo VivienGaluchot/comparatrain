@@ -17,7 +17,7 @@ public class Segment implements Evaluable<Preference>{
 		eval = null;
 	}
 	
-	public void set(Gare gD, Gare gA, Horaire hD, Horaire hA){		
+	public void set(Gare gD, Horaire hD, Gare gA, Horaire hA){		
 		depart = new GareHoraire(gD,hD);
 		arrivee = new GareHoraire(gA,hA);
 	}

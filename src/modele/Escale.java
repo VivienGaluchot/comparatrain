@@ -20,4 +20,12 @@ public class Escale {
 	public String toString(){
 		return gare + " " + horaireA + " " + horaireD;
 	}
+	
+	public GareHoraire getArrivee(){
+		return new GareHoraire(gare,horaireA);
+	}
+	
+	public GareHoraire getDepart(){
+		return new GareHoraire(gare,horaireD);
+	}
 }

@@ -43,19 +43,19 @@ public class Train{
 		
 		// Gare depart = t.depart
 		for(Escale e : escales){
-			s.set(getDepart().gare, e.gare, getDepart().horaire, e.horaireA);
+			s.set(depart, e.getArrivee());
 			if(s.eval(pref) > 0) resultat.add(s.clone());
 		}
-		s.set(getDepart().gare, getArrivee().gare, getDepart().horaire, getArrivee().horaire);
+		s.set(depart, arrivee);
 		if(s.eval(pref) > 0) resultat.add(s.clone());
 		
 		// Gare depart = escale
 		for(int i=0;i<escales.size();i++){
 			for(int j=i+1;j<escales.size();j++){
-				s.set(escales.get(i).gare, escales.get(j).gare, escales.get(i).horaireD, escales.get(j).horaireA);
+				s.set(escales.get(i).getDepart(), escales.get(j).getArrivee());
 				if(s.eval(pref) > 0) resultat.add(s.clone());
 			}
-			s.set(escales.get(i).gare, getArrivee().gare, escales.get(i).horaireD, getArrivee().horaire);
+			s.set(escales.get(i).getDepart(), arrivee);
 			if(s.eval(pref) > 0) resultat.add(s.clone());
 		}
 		
@@ -65,11 +65,11 @@ public class Train{
 	// Utilitaire
 	public String toString(){
 		String s = "Train n°" + getId() + "\n";
-		s += " " + getDepart().gare + " " + getDepart().horaire + "\n";
+		s += " " + depart + "\n";
 		for(Escale e : escales){
-			s += " " + e.gare + " " + e.horaireA + " " + e.horaireD + "\n";
+			s += " " + e + "\n";
 		}
-		s += " " + getArrivee().gare + " " + getArrivee().horaire + "\n";
+		s += " " + arrivee + "\n";
 		return s;
 	}
 	
