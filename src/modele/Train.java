@@ -3,13 +3,10 @@
  */
 package modele;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 import comparaison.Preference;
-import comparaison.Segment;
 import defaut.Erreur;
-import modele.physique.Siege;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
@@ -18,67 +15,65 @@ import modele.physique.Siege;
 public class Train{
 	
 	protected Integer id;
-	protected Trajet trajet;
 	
+	private GareHoraire depart;
+	private ArrayList<Escale> escales;
+	private GareHoraire arrivee;
+	
+	// Constructeurs	
 	public Train(){
 		id = null;
-		trajet = null;
-	}
-	/**
-	 * Constructeur de train
-	 * La cohérence des paramètre sera vérifiée à la création de l'objet, la fonction retourne
-	 * 1 si tout est valide, 0 en cas d'érreur
-	 */
-	public Train(int i,Gare gDep,Gare gArr,Horaire hDep,Horaire hArr) throws Erreur{
-		//intégrité des données
-		if((gDep.getId() == gArr.getId()) || (hDep.compareTo(hArr)>0))
-			throw new Erreur(1);
-		setId(i);
-		trajet = new Trajet(gDep,hDep,gArr,hArr);
+		setDepart(null);
+		escales = null;	
+		setArrivee(null);	
 	}
 	
-	public Train(int i,Trajet t) throws Erreur{
-		//intégrité des données ?
-		setId(i);
-		trajet = t;
+	public Train(int i) throws Erreur{
+		id = i;
+		setDepart(null);
+		escales = null;	
+		setArrivee(null);	
 	}
 	
-	public String toString(){
-		String s = "Train n°" + getId() + "\n";
-		s += " " + trajet.getDepart().gare + " " + trajet.getDepart().horaire + "\n";
-		for(Escale es : trajet.getEscales()){
-			s += " " + es.gare + " " + es.horaireA + " " + es.horaireD + "\n";
-		}
-		s += " " + trajet.getArrivee().gare + " " + trajet.getArrivee().horaire + "\n";
-		return s;
-	}
-	
+	// Evaluation
 	public ArrayList<Segment> eval(Preference pref) {
 		ArrayList<Segment> resultat = new ArrayList<Segment>();
 		
 		Segment s = new Segment(this);
 		
 		// Gare depart = t.depart
-		for(Escale e : trajet.getEscales()){
-			s.set(trajet.getDepart().gare, e.gare, trajet.getDepart().horaire, e.horaireA);
+		for(Escale e : escales){
+			s.set(getDepart().gare, e.gare, getDepart().horaire, e.horaireA);
 			if(s.eval(pref) > 0) resultat.add(s.clone());
 		}
-		s.set(trajet.getDepart().gare, trajet.getArrivee().gare, trajet.getDepart().horaire, trajet.getArrivee().horaire);
+		s.set(getDepart().gare, getArrivee().gare, getDepart().horaire, getArrivee().horaire);
 		if(s.eval(pref) > 0) resultat.add(s.clone());
 		
 		// Gare depart = escale
-		for(int i=0;i<trajet.getEscales().size();i++){
-			for(int j=i+1;j<trajet.getEscales().size();j++){
-				s.set(trajet.getEscales().get(i).gare, trajet.getEscales().get(j).gare, trajet.getEscales().get(i).horaireD, trajet.getEscales().get(j).horaireA);
+		for(int i=0;i<escales.size();i++){
+			for(int j=i+1;j<escales.size();j++){
+				s.set(escales.get(i).gare, escales.get(j).gare, escales.get(i).horaireD, escales.get(j).horaireA);
 				if(s.eval(pref) > 0) resultat.add(s.clone());
 			}
-			s.set(trajet.getEscales().get(i).gare, trajet.getArrivee().gare, trajet.getEscales().get(i).horaireD, trajet.getArrivee().horaire);
+			s.set(escales.get(i).gare, getArrivee().gare, escales.get(i).horaireD, getArrivee().horaire);
 			if(s.eval(pref) > 0) resultat.add(s.clone());
 		}
 		
 		return resultat;
 	}
 	
+	// Utilitaire
+	public String toString(){
+		String s = "Train n°" + getId() + "\n";
+		s += " " + getDepart().gare + " " + getDepart().horaire + "\n";
+		for(Escale e : escales){
+			s += " " + e.gare + " " + e.horaireA + " " + e.horaireD + "\n";
+		}
+		s += " " + getArrivee().gare + " " + getArrivee().horaire + "\n";
+		return s;
+	}
+	
+	// Id
 	public Integer getId() {
 		return id;
 	}
@@ -86,12 +81,36 @@ public class Train{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	public Trajet getTrajet(){
-		return trajet;
+		
+	// Depart
+	public GareHoraire getDepart() {
+		return depart;
+	}
+
+	public void setDepart(GareHoraire depart) {
+		this.depart = depart;
 	}
 	
-	public void setTrajet( Trajet trajet){
-		this.trajet = trajet;
+	// Escales
+	public ArrayList<Escale> getEscales() {
+		return escales;
+	}
+
+	public void setEscales(ArrayList<Escale> escales) {
+		this.escales = escales;
+	}
+	
+	public void addEscale(Gare g, Horaire hA, Horaire hD) {
+		if(escales == null) escales = new ArrayList<Escale>();
+		escales.add(new Escale(g,hA,hD));
+	}
+	
+	// Arrivee
+	public GareHoraire getArrivee() {
+		return arrivee;
+	}
+
+	public void setArrivee(GareHoraire arrivee) {
+		this.arrivee = arrivee;
 	}
 }

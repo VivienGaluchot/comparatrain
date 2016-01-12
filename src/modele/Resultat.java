@@ -1,4 +1,4 @@
-package comparaison;
+package modele;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,14 +8,14 @@ import java.util.TreeMap;
 public class Resultat extends TreeMap<Double,List<Segment>>{
 	private static final long serialVersionUID = 1L;
 	
-	public void ajouter(Double e, Segment t){
+	public void ajouter(Segment t){
 		List<Segment> l;
-		if(containsKey(e))
-			l = get(e);
+		if(containsKey(t.eval))
+			l = get(t.eval);
 		else
 			l = new ArrayList<Segment>();
 		l.add(t);
-		put(e, l);
+		put(t.eval, l);
 	}
 	
 	public void afficher(){

@@ -6,6 +6,9 @@ package comparaison;
 import java.util.ArrayList;
 
 import defaut.Donnees;
+
+import modele.Resultat;
+import modele.Segment;
 import modele.Train;
 
 /**
@@ -34,7 +37,7 @@ public class Comparateur {
 		for(Train t : data.getTrains()){
 			ArrayList<Segment> e = t.eval(pref);
 			for(Segment s : e)
-				evaluations.ajouter(s.eval, s);
+				evaluations.ajouter(s);
 		}
 		return evaluations;
 	}

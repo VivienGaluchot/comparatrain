@@ -1,15 +1,14 @@
 package defaut;
 
 import comparaison.Comparateur;
-import modele.physique.Rame;
 
 public class classMain {
 
 	public static void main(String[] args) {
 		Donnees data = new Donnees();
 		
-		data.charger("database");
-		data.sauvegarder();
+		data.chargerYaml("database.yml");
+		data.sauvegarder("database.yml");
 		
 		Comparateur comp = new Comparateur(data);
 		

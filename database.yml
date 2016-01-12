@@ -1,0 +1,195 @@
+- &1 !modele.Ville
+   id: 0
+   nom: Paris
+- &2 !modele.Ville
+   id: 1
+   nom: Marseille
+- &3 !modele.Ville
+   id: 2
+   nom: Nantes
+- &4 !modele.Ville
+   id: 3
+   nom: Avignon
+- &5 !modele.Ville
+   id: 4
+   nom: Lyon
+- &6 !modele.Ville
+   id: 5
+   nom: Aix-en-Provence
+- &7 !modele.Ville
+   id: 6
+   nom: Angers
+--- 
+- &8 !modele.Gare
+   id: 0
+   nom: Gare de Lyon
+   ville: *1
+- !modele.Gare
+   id: 1
+   nom: Gare du Nord
+   ville: *1
+- !modele.Gare
+   id: 2
+   nom: Gare Montparnasse
+   ville: *1
+- &9 !modele.Gare
+   id: 3
+   nom: Massy TGV
+   ville: *1
+- &10 !modele.Gare
+   id: 4
+   nom: Gare Saint Charles
+   ville: *2
+- &11 !modele.Gare
+   id: 5
+   nom: Gare de Nantes
+   ville: *3
+- &12 !modele.Gare
+   id: 6
+   nom: Avignon TGV
+   ville: *4
+- !modele.Gare
+   id: 7
+   nom: Avignon centre
+   ville: *4
+- &13 !modele.Gare
+   id: 8
+   nom: Lyon Pardieu
+   ville: *5
+- &14 !modele.Gare
+   id: 9
+   nom: Aix-en-Provence TVG
+   ville: *6
+- &15 !modele.Gare
+   id: 10
+   nom: Angers Saint-Laud
+   ville: *7
+--- 
+- !modele.Train
+   id: 5540
+   arrivee: 
+      gare: *11
+      horaire: 
+         serialTime: 06/01/2016 13h55
+   depart: 
+      gare: *10
+      horaire: 
+         serialTime: 06/01/2016 07h33
+   escales: 
+   - !modele.Escale
+      gare: *14
+      horaireA: 
+         serialTime: 06/01/2016 07h45
+      horaireD: 
+         serialTime: 06/01/2016 07h50
+   - !modele.Escale
+      gare: *12
+      horaireA: 
+         serialTime: 06/01/2016 08h00
+      horaireD: 
+         serialTime: 06/01/2016 08h02
+   - !modele.Escale
+      gare: *13
+      horaireA: 
+         serialTime: 06/01/2016 10h12
+      horaireD: 
+         serialTime: 06/01/2016 10h20
+   - !modele.Escale
+      gare: *9
+      horaireA: 
+         serialTime: 06/01/2016 11h02
+      horaireD: 
+         serialTime: 06/01/2016 11h05
+   - !modele.Escale
+      gare: *15
+      horaireA: 
+         serialTime: 06/01/2016 12h20
+      horaireD: 
+         serialTime: 06/01/2016 12h22
+- !modele.Train
+   id: 5640
+   arrivee: 
+      gare: *8
+      horaire: 
+         serialTime: 06/01/2016 11h00
+   depart: 
+      gare: *10
+      horaire: 
+         serialTime: 06/01/2016 07h30
+   escales: 
+   - !modele.Escale
+      gare: *14
+      horaireA: 
+         serialTime: 06/01/2016 07h45
+      horaireD: 
+         serialTime: 06/01/2016 07h50
+   - !modele.Escale
+      gare: *12
+      horaireA: 
+         serialTime: 06/01/2016 08h00
+      horaireD: 
+         serialTime: 06/01/2016 08h02
+   - !modele.Escale
+      gare: *13
+      horaireA: 
+         serialTime: 06/01/2016 10h12
+      horaireD: 
+         serialTime: 06/01/2016 10h20
+- !modele.Train
+   id: 5650
+   arrivee: 
+      gare: *8
+      horaire: 
+         serialTime: 06/01/2016 18h01
+   depart: 
+      gare: *10
+      horaire: 
+         serialTime: 06/01/2016 14h32
+   escales: 
+   - !modele.Escale
+      gare: *14
+      horaireA: 
+         serialTime: 06/01/2016 14h45
+      horaireD: 
+         serialTime: 06/01/2016 14h57
+   - !modele.Escale
+      gare: *12
+      horaireA: 
+         serialTime: 06/01/2016 15h00
+      horaireD: 
+         serialTime: 06/01/2016 15h02
+   - !modele.Escale
+      gare: *13
+      horaireA: 
+         serialTime: 06/01/2016 17h12
+      horaireD: 
+         serialTime: 06/01/2016 17h17
+- !modele.Train
+   id: 5642
+   arrivee: 
+      gare: *8
+      horaire: 
+         serialTime: 06/01/2016 13h00
+   depart: 
+      gare: *10
+      horaire: 
+         serialTime: 06/01/2016 09h30
+   escales: 
+   - !modele.Escale
+      gare: *14
+      horaireA: 
+         serialTime: 06/01/2016 09h45
+      horaireD: 
+         serialTime: 06/01/2016 07h50
+   - !modele.Escale
+      gare: *12
+      horaireA: 
+         serialTime: 06/01/2016 09h00
+      horaireD: 
+         serialTime: 06/01/2016 09h02
+   - !modele.Escale
+      gare: *13
+      horaireA: 
+         serialTime: 06/01/2016 12h12
+      horaireD: 
+         serialTime: 06/01/2016 12h20
