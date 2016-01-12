@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
 
 import defaut.Erreur;
 
-public class Horaire implements Evaluable<Horaire>{
+public class Horaire implements Evaluable<Horaire>, Comparable<Horaire>{
 	
 	private LocalDateTime time;	
 	private String serialTime;

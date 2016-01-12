@@ -23,25 +23,31 @@ public class Train{
 	// Constructeurs	
 	public Train(){
 		id = null;
-		setDepart(null);
+		depart = null;
 		escales = null;	
-		setArrivee(null);	
+		arrivee = null;	
 	}
 	
-	public Train(int i) throws Erreur{
+	public Train(Integer i){
 		id = i;
-		setDepart(null);
+		depart = null;
 		escales = null;	
-		setArrivee(null);	
+		arrivee = null;	
+	}
+	
+	public Train (Integer i, GareHoraire d, ArrayList<Escale> e, GareHoraire a) throws Erreur{
+		id = i;
+		depart = d;
+		escales = e;	
+		arrivee = a;
+		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
 	}
 	
 	// Evaluation
-	public ArrayList<Segment> eval(Preference pref) {
-		ArrayList<Segment> resultat = new ArrayList<Segment>();
+	public ArrayList<Offre> eval(Preference pref) {
+		ArrayList<Offre> resultat = new ArrayList<Offre>();
+		Offre s = new Offre(this);
 		
-		Segment s = new Segment(this);
-		
-		// Gare depart = t.depart
 		for(Escale e : escales){
 			s.set(depart, e.getArrivee());
 			if(s.eval(pref) > 0) resultat.add(s.clone());
@@ -49,7 +55,6 @@ public class Train{
 		s.set(depart, arrivee);
 		if(s.eval(pref) > 0) resultat.add(s.clone());
 		
-		// Gare depart = escale
 		for(int i=0;i<escales.size();i++){
 			for(int j=i+1;j<escales.size();j++){
 				s.set(escales.get(i).getDepart(), escales.get(j).getArrivee());
@@ -65,12 +70,30 @@ public class Train{
 	// Utilitaire
 	public String toString(){
 		String s = "Train n°" + getId() + "\n";
-		s += " " + depart + "\n";
+		s += depart + "\n";
 		for(Escale e : escales){
-			s += " " + e + "\n";
+			s += e + "\n";
 		}
-		s += " " + arrivee + "\n";
+		s += arrivee + "\n";
 		return s;
+	}
+	
+	/**
+	 * Un train est coherent si ses escales sont cohérentes,
+	 * et si l'odre chronologique depart - escales - arrivee est respecté
+	 */
+	public boolean estCoherent(){
+		// Non init
+		if(depart == null && escales == null && arrivee == null) return true;
+		// Seulement l'arrivee est initialisée
+		else if(depart == null && escales == null) return true;
+		// Seulement le départ est initialisée
+		else if(escales == null && arrivee == null) return true;
+		
+		else if(escales == null) return arrivee.compareTo(depart)>0;
+		
+		// PAS FINI
+		return true;
 	}
 	
 	// Id
@@ -87,8 +110,9 @@ public class Train{
 		return depart;
 	}
 
-	public void setDepart(GareHoraire depart) {
+	public void setDepart(GareHoraire depart) throws Erreur{
 		this.depart = depart;
+		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
 	}
 	
 	// Escales
@@ -96,11 +120,12 @@ public class Train{
 		return escales;
 	}
 
-	public void setEscales(ArrayList<Escale> escales) {
+	public void setEscales(ArrayList<Escale> escales) throws Erreur{
 		this.escales = escales;
+		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
 	}
 	
-	public void addEscale(Gare g, Horaire hA, Horaire hD) {
+	public void addEscale(Gare g, Horaire hA, Horaire hD) throws Erreur{
 		if(escales == null) escales = new ArrayList<Escale>();
 		escales.add(new Escale(g,hA,hD));
 	}
@@ -110,7 +135,8 @@ public class Train{
 		return arrivee;
 	}
 
-	public void setArrivee(GareHoraire arrivee) {
+	public void setArrivee(GareHoraire arrivee) throws Erreur{
 		this.arrivee = arrivee;
+		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
 	}
 }

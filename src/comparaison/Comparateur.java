@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import defaut.Donnees;
 
 import modele.Resultat;
-import modele.Segment;
+import modele.Offre;
 import modele.Train;
 
 /**
@@ -35,8 +35,8 @@ public class Comparateur {
 		Resultat evaluations = new Resultat();
 		
 		for(Train t : data.getTrains()){
-			ArrayList<Segment> e = t.eval(pref);
-			for(Segment s : e)
+			ArrayList<Offre> e = t.eval(pref);
+			for(Offre s : e)
 				evaluations.ajouter(s);
 		}
 		return evaluations;

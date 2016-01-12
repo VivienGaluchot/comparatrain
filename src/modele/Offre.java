@@ -2,7 +2,7 @@ package modele;
 
 import comparaison.Preference;
 
-public class Segment implements Evaluable<Preference>{
+public class Offre implements Evaluable<Preference>{
 	GareHoraire depart;
 	GareHoraire arrivee;
 	
@@ -10,7 +10,7 @@ public class Segment implements Evaluable<Preference>{
 	
 	Double eval;
 	
-	public Segment(Train t){
+	public Offre(Train t){
 		train = t;
 		depart = null;
 		arrivee = null;
@@ -48,16 +48,16 @@ public class Segment implements Evaluable<Preference>{
 		return res;
 	}
 	
-	public Segment clone(){
-		Segment s = new Segment(train);
-		s.depart = depart;
-		s.arrivee = arrivee;
-		s.eval = eval;
-		return s;
+	public Offre clone(){
+		Offre o = new Offre(train);
+		o.depart = depart;
+		o.arrivee = arrivee;
+		o.eval = eval;
+		return o;
 	}
 	
 	/**
-	 * Affichage d'un segment
+	 * Affichage d'une offre
 	 */
 	public String toString(){
 		return "Train n°" + train.getId() + " : " + depart + " --> " + arrivee;

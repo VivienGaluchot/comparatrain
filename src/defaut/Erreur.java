@@ -10,6 +10,9 @@ package defaut;
 public class Erreur extends Exception {
 	private static final long serialVersionUID = 1L;
 	
+	public static final int INCOHERENCE = 1;
+	public static final int INVALIDE = 2;
+	
 	int type;
 	
 	public Erreur(int t){
@@ -19,14 +22,11 @@ public class Erreur extends Exception {
 	public String toString(){
 		String s = "";
 		switch(type){
-		case 1:
+		case INCOHERENCE:
 			s = "Données incohérentes";
 			break;
-		case 2:
-			s = "Parse Error";
-			break;
-		case 3:
-			s = "Train Parse Error";
+		case INVALIDE:
+			s = "Entrée invalide";
 			break;
 		default:
 			s = "Erreur : " + type;
