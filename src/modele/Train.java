@@ -83,16 +83,25 @@ public class Train{
 	 * et si l'odre chronologique depart - escales - arrivee est respecté
 	 */
 	public boolean estCoherent(){
-		// Non init
-		if(depart == null && escales == null && arrivee == null) return true;
-		// Seulement l'arrivee est initialisée
-		else if(depart == null && escales == null) return true;
-		// Seulement le départ est initialisée
-		else if(escales == null && arrivee == null) return true;
+		// Si le départ est après l'arrivee de la premiere escale
+		if(depart != null && escales != null && escales.size()>0)
+			if(depart.compareTo(escales.get(0).getArrivee())>=0) return false;
 		
-		else if(escales == null) return arrivee.compareTo(depart)>0;
+		// Si l'une des escale est après celle d'après
+		if(escales != null)
+			for(int i=0;i<escales.size()-1;i++){
+				if(escales.get(i).compareTo(escales.get(i+1))>=0) return false;
+				if(!escales.get(i).estCoherent()) return false;
+			}
 		
-		// PAS FINI
+		// Si l'arrivee est avant le départ de la derniere escale
+		if(arrivee != null && escales != null && escales.size()>0)			
+			if(arrivee.compareTo(escales.get(escales.size()-1).getDepart())<=0) return false;
+		
+		// Si le depart est après l'arrivee
+		if(depart != null && arrivee != null)
+			if(depart.compareTo(arrivee) >= 0) return false;
+		
 		return true;
 	}
 	

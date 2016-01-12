@@ -2,7 +2,7 @@ package modele;
 
 import defaut.Erreur;
 
-public class Escale {
+public class Escale implements Comparable<Escale>{
 	public Gare gare;
 	public Horaire horaireA;
 	public Horaire horaireD;
@@ -25,12 +25,12 @@ public class Escale {
 	}
 	
 	/**
-	 * L'escale est coherente si horaireA est avant horaireD
+	 * L'escale est coherente si horaireA est strictement avant horaireD
 	 */
 	public boolean estCoherent(){
 		if(horaireD == null || horaireA == null) return true;
-		else if(horaireA.compareTo(horaireD) > 0) return true;
-		else return false;
+		if(horaireA.compareTo(horaireD) < 0) return true;
+		return false;
 	}
 	
 	public GareHoraire getArrivee(){
@@ -39,5 +39,12 @@ public class Escale {
 	
 	public GareHoraire getDepart(){
 		return new GareHoraire(gare,horaireD);
+	}
+	
+	/**
+	 * Return > 0 si son depart est après l'arrivee de o
+	 */
+	public int compareTo(Escale o) {
+		return horaireD.compareTo(o.horaireA);
 	}
 }
