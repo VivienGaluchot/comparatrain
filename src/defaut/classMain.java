@@ -1,7 +1,6 @@
-package comparatrain;
+package defaut;
 
 import comparaison.Comparateur;
-import comparaison.Preference;
 import modele.physique.Rame;
 
 public class classMain {

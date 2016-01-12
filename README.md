@@ -1,2 +1,3 @@
-# comparatrain
-comparateur d'offre de train
+# Comparatrain
+
+Comparateur interne d'offre de train

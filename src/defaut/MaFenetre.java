@@ -1,4 +1,4 @@
-package comparatrain;
+package defaut;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;

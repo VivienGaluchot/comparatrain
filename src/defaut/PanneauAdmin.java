@@ -1,4 +1,4 @@
-package comparatrain;
+package defaut;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -56,7 +56,6 @@ public class PanneauAdmin extends JPanel{
 	private JButton ajouter;
 	private JButton deco;
 	
-	
 	public void ClearOnClick(JTextField textField){
 		String save = textField.getText();
 		textField.addFocusListener(new FocusListener(){
@@ -81,6 +80,9 @@ public class PanneauAdmin extends JPanel{
 		
 		Color color =new Color(100,100,100);
 		
+		// Liste des gares
+		String[] gareA = comp.getData().getGaresAlph();	
+		
 		//this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		
 		JPanel box1 = new JPanel();
@@ -89,10 +91,6 @@ public class PanneauAdmin extends JPanel{
 				lblGareD = new JLabel("Gare départ : ");
 			box11.add(lblGareD);
 				comboBoxD = new JComboBox<String>();
-				String[] gareA = new String[comp.getData().getGares().size()];
-				for( int i=0;i<gareA.length;i++){
-					gareA[i]=comp.getData().getGares().get(i).toString();
-				}
 				comboBoxD.setModel(new DefaultComboBoxModel<String>(gareA));
 			box11.add(comboBoxD);
 		box1.add(box11);

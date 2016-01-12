@@ -1,4 +1,4 @@
-package comparatrain;
+package defaut;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;

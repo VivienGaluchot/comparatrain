@@ -5,7 +5,7 @@ import modele.Gare;
 import modele.Horaire;
 import modele.Train;
 
-public class Segment implements Evaluable{
+public class Segment implements Evaluable<Preference>{
 	Gare gareD;
 	Gare gareA;
 	Horaire horaireD;

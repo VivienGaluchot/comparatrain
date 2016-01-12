@@ -7,7 +7,7 @@ package modele;
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
-public class Gare{
+public class Gare implements Evaluable<Gare>, Comparable<Gare>{
 	private int id;
 	private String nom;
 	private Ville ville;
@@ -59,5 +59,10 @@ public class Gare{
 
 	public void setVille(Ville ville) {
 		this.ville = ville;
+	}
+
+	@Override
+	public int compareTo(Gare o) {
+		return nom.compareTo(o.nom);
 	}
 }

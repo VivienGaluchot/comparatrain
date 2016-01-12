@@ -1,4 +1,4 @@
-package comparatrain;
+package defaut;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -53,6 +53,15 @@ public class Donnees {
 	
 	public ArrayList<Train> getTrains(){
 		return trains;
+	}
+	
+	public String[] getGaresAlph(){
+		gares.sort(null);
+		String[] res = new String[gares.size()];
+		for( int i=0;i<res.length;i++){
+			res[i]=gares.get(i).toString();
+		}
+		return res;
 	}
 	
 	public void charger(String fichier){

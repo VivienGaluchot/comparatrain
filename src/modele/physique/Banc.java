@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import comparaison.Preference;
 import modele.Evaluable;
 
-public class Banc implements Evaluable{	
+public class Banc implements Evaluable<Preference>{	
 	public static final boolean GAUCHE = false;
 	public static final boolean DROIT = true;
 	

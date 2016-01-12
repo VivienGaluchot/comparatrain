@@ -1,7 +1,7 @@
 /**
  * 
  */
-package comparatrain;
+package defaut;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez

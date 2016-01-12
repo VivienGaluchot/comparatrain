@@ -5,9 +5,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
-import comparatrain.Erreur;
+import comparaison.Preference;
+import defaut.Erreur;
 
-public class Horaire{
+public class Horaire implements Evaluable<Horaire>{
 	LocalDateTime time;
 	
 	String parseJour = "dd'/'MM'/'yyyy";

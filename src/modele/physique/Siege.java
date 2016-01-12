@@ -10,7 +10,7 @@ import modele.Evaluable;
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
-public class Siege implements Evaluable{
+public class Siege implements Evaluable<Preference>{
 	public static final boolean AVANT = true;
 	public static final boolean ARRIERE = false;
 	public static final boolean FENETRE = true;

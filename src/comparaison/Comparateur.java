@@ -5,7 +5,7 @@ package comparaison;
 
 import java.util.ArrayList;
 
-import comparatrain.Donnees;
+import defaut.Donnees;
 import modele.Train;
 
 /**

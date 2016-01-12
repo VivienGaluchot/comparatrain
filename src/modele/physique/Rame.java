@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import comparaison.Preference;
 import modele.Evaluable;
 
-public class Rame implements Evaluable{
+public class Rame implements Evaluable<Preference>{
 	int id;
 	ArrayList<Wagon> wagons;
 	

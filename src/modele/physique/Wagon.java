@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import comparaison.Preference;
 import modele.Evaluable;
 
-public class Wagon implements Evaluable{
+public class Wagon implements Evaluable<Preference>{
 	public static final int PREMIERE = 1;
 	public static final int SECONDE = 2;
 	public static final int BAR = 3;
