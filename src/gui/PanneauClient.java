@@ -18,8 +18,11 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
 
@@ -72,7 +75,38 @@ public class PanneauClient extends JPanel {
 	    });
 	}
 	
-	public PanneauClient(Comparateur comp){
+	
+	public void connexionCompte(Comparateur comp,JTabbedPane onglets){
+		PanneauAdmin PAdmin = new PanneauAdmin(comp,onglets);
+		JTextField username = new JTextField();
+    	JTextField password = new JPasswordField();
+    	Object[] message = {
+    	    "Username:", username,
+    	    "Password:", password
+    	};
+
+    	int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
+    	if (option == JOptionPane.OK_OPTION) {
+    	    if (username.getText().equals("") && password.getText().equals("") && onglets.getTabCount()<2) {
+    	    	setSize(550, 600);
+    	    	onglets.addTab("Admin", null, PAdmin, null);
+    	    	onglets.setSelectedIndex(1);
+    	        System.out.println("Login successful");
+    	    } else if(username.getText().equals("") && password.getText().equals("")){
+    	    	onglets.setSelectedIndex(1);
+    	    	setSize(550, 600);
+    	        System.out.println("Already Loged In");
+    	    } else {
+    	    	onglets.setSelectedIndex(0);
+    	        System.out.println("login failed");
+    	    }
+    	} else {
+    		onglets.setSelectedIndex(0);
+    	    System.out.println("Login canceled");
+    	}
+	}
+	
+	public PanneauClient(Comparateur comp,JTabbedPane onglets){
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		
@@ -83,7 +117,7 @@ public class PanneauClient extends JPanel {
 			 
             public void actionPerformed(ActionEvent e)
             {
-               
+            	connexionCompte(comp,onglets);
             }
         });
 		box5.add(connexion);

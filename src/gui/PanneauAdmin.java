@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
@@ -82,7 +83,7 @@ public class PanneauAdmin extends JPanel{
 	}
 	
 	
-	public void remplirPanneauAdmin(Comparateur comp){
+	public PanneauAdmin(Comparateur comp,JTabbedPane onglets){
 		
 		Color color =new Color(100,100,100);
 		
@@ -153,7 +154,7 @@ public class PanneauAdmin extends JPanel{
 	                try {
 						escales.add( new Escale((Gare) comboBoxE.getSelectedItem(),new Horaire(s1),new Horaire(s2)));
 						
-						listeM.addElement("-"+comboBoxE.getSelectedItem().toString()+"   "+s1 +"   "+s2+"\n");
+						listeM.addElement(comboBoxE.getSelectedItem().toString()+"   "+s1 +"   "+s2+"\n");
 					} catch (Erreur e1) {
 						System.out.println(e1);
 					}
@@ -254,8 +255,7 @@ public class PanneauAdmin extends JPanel{
 				 
 	            public void actionPerformed(ActionEvent e)
 	            {
-	            	removeAll();
-	            	repaint();
+	            	onglets.remove(1);
 	                
 	            }
 	        });

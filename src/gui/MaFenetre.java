@@ -49,44 +49,19 @@ public class MaFenetre extends JFrame{
 		//setResizable(false);
 		
 		JTabbedPane onglets = new JTabbedPane();
-		JPanel PClient = new PanneauClient(c);
-		PanneauAdmin PAdmin = new PanneauAdmin();
+		JPanel PClient = new PanneauClient(c,onglets);
 	  
-        onglets.addTab("Client", null, PClient, null); //
-        onglets.addTab("Admin", null, PAdmin, null); //
+        onglets.addTab("Acceuil", null, PClient, null); //
         
         onglets.addChangeListener(new ChangeListener() { //add the Listener
         	
         	@Override
             public void stateChanged(ChangeEvent e) {
-                if(onglets.getSelectedIndex()==1 && PAdmin.getComponentCount()==0) {//Index starts at 0, so Index 1 = onglet2
-                	JTextField username = new JTextField();
-                	JTextField password = new JPasswordField();
-                	Object[] message = {
-                	    "Username:", username,
-                	    "Password:", password
-                	};
-
-                	int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
-                	if (option == JOptionPane.OK_OPTION) {
-                	    if (username.getText().equals("") && password.getText().equals("")) {
-                	    	setSize(550, 600);
-                	    	PAdmin.remplirPanneauAdmin(c);
-                	        System.out.println("Login successful");
-                	    } else {
-                	    	onglets.setSelectedIndex(0);
-                	        System.out.println("login failed");
-                	    }
-                	} else {
-                		onglets.setSelectedIndex(0);
-                	    System.out.println("Login canceled");
-                	}      
-                }
-                else if(onglets.getSelectedIndex()==1){
-                	setSize(550, 600);
+                if(onglets.getSelectedIndex()==1 ) {//Index starts at 0, so Index 1 = onglet2
+                	setSize(550, 600);  
                 }
                 else if(onglets.getSelectedIndex()==0){
-                	setSize(350, 280);
+                	setSize(430, 340);
                 }
             }
         });
