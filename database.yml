@@ -1,3 +1,22 @@
+- !utilisateur.Client
+   id: 0
+   login: Herta
+   motDePasse: '654321'
+   nom: Bon
+   prenom: Jean
+- !utilisateur.Client
+   id: 1
+   login: Herta2
+   motDePasse: '789'
+   nom: Bon
+   prenom: JeanPatric
+- !utilisateur.Client
+   id: 2
+   login: Pamoul
+   motDePasse: '123456'
+   nom: Moulu
+   prenom: Patrice
+--- 
 - &1 !modele.Ville
    id: 0
    nom: Paris
@@ -19,7 +38,7 @@
 - &7 !modele.Ville
    id: 6
    nom: Angers
---- 
+---
 - &8 !modele.Gare
    id: 0
    nom: Gare de Lyon
@@ -193,3 +212,4 @@
          serialTime: 06/01/2016 12h12
       horaireD: 
          serialTime: 06/01/2016 12h20
+--- 

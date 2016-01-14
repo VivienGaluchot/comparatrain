@@ -1,4 +1,4 @@
-package modele;
+package comparaison;
 
 import java.util.ArrayList;
 import java.util.List;

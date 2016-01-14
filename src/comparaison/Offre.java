@@ -1,6 +1,10 @@
-package modele;
+package comparaison;
 
-import comparaison.Preference;
+import modele.Evaluable;
+import modele.Gare;
+import modele.GareHoraire;
+import modele.Horaire;
+import modele.Train;
 
 public class Offre implements Evaluable<Preference>{
 	GareHoraire depart;

@@ -12,6 +12,7 @@ public class Erreur extends Exception {
 	
 	public static final int INCOHERENCE = 1;
 	public static final int INVALIDE = 2;
+	public static final int EXISTE = 3;
 	
 	int type;
 	
@@ -27,6 +28,9 @@ public class Erreur extends Exception {
 			break;
 		case INVALIDE:
 			s = "Entrée invalide";
+			break;
+		case EXISTE:
+			s = "Entrée existante";
 			break;
 		default:
 			s = "Erreur : " + type;

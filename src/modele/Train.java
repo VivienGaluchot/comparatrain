@@ -5,6 +5,7 @@ package modele;
 
 import java.util.ArrayList;
 
+import comparaison.Offre;
 import comparaison.Preference;
 import defaut.Erreur;
 
