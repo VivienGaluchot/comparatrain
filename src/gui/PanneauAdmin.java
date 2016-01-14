@@ -1,4 +1,4 @@
-package defaut;
+package gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -24,16 +25,19 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 import comparaison.Comparateur;
+import defaut.Erreur;
+import modele.Escale;
 import modele.Gare;
+import modele.Horaire;
 
 public class PanneauAdmin extends JPanel{
 	
 	private JLabel lblGareD;
-	private JComboBox<String> comboBoxD;
+	private JComboBox<Gare> comboBoxD;
 	private JLabel lblGareA;
-	private JComboBox<String> comboBoxA;
+	private JComboBox<Gare> comboBoxA;
 	private JLabel lblGareE;
-	private JComboBox<String> comboBoxE;
+	private JComboBox<Gare> comboBoxE;
 	private JLabel lblHoraires;
 	
 	private JTextField txtJjmmaaaa1;
@@ -55,6 +59,8 @@ public class PanneauAdmin extends JPanel{
 	private JButton ajouterE;
 	private JButton ajouter;
 	private JButton deco;
+	
+	private ArrayList<Escale> escales = new ArrayList<Escale>();
 	
 	public void ClearOnClick(JTextField textField){
 		String save = textField.getText();
@@ -81,7 +87,8 @@ public class PanneauAdmin extends JPanel{
 		Color color =new Color(100,100,100);
 		
 		// Liste des gares
-		String[] gareA = comp.getData().getGaresAlph();	
+		//Gare[] gareA = new Gare[] {new Gare(1,"1",null),new Gare(2,"2",null),new Gare(3,"3",null),new Gare(4,"4",null)};
+		Gare[] gareA = comp.getData().getGaresAlph();	
 		
 		//this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		
@@ -90,8 +97,8 @@ public class PanneauAdmin extends JPanel{
 			JPanel box11 = new JPanel();
 				lblGareD = new JLabel("Gare départ : ");
 			box11.add(lblGareD);
-				comboBoxD = new JComboBox<String>();
-				comboBoxD.setModel(new DefaultComboBoxModel<String>(gareA));
+				comboBoxD = new JComboBox<Gare>();
+				comboBoxD.setModel(new DefaultComboBoxModel<Gare>(gareA));
 			box11.add(comboBoxD);
 		box1.add(box11);
 			JPanel box12 = new JPanel();
@@ -121,7 +128,7 @@ public class PanneauAdmin extends JPanel{
 		JPanel box2 = new JPanel();
 			box2.setLayout(new BoxLayout(box2,BoxLayout.PAGE_AXIS));
 			JPanel box20 = new JPanel();
-			DefaultListModel listeM = new DefaultListModel();
+			DefaultListModel<String> listeM = new DefaultListModel();
 			JList liste = new JList(listeM);
 			JScrollPane scrollPane = new JScrollPane(liste);
 			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -133,20 +140,23 @@ public class PanneauAdmin extends JPanel{
 		JPanel box22 = new JPanel();
 			lblGareE = new JLabel("Gare : ");
 			box22.add(lblGareE);
-			comboBoxE = new JComboBox<String>();
-			comboBoxE.setModel(new DefaultComboBoxModel<String>(gareA));
+			comboBoxE = new JComboBox<Gare>();
+			comboBoxE.setModel(new DefaultComboBoxModel<Gare>(gareA));
 			box22.add(comboBoxE);
 			ajouterE = new JButton("Ajouter!");
 			ajouterE.addActionListener(new ActionListener() {
 				 
 	            public void actionPerformed(ActionEvent e)
 	            {
-	            	
-	            	
-	                listeM.addElement("-"+comboBoxE.getSelectedItem().toString()
-	                			+"   "+txtJjmmaaaa2.getText()+" "+ txtHeure2.getText()+"h"+txtMin2.getText()
-	                		  +"   "+txtJjmmaaaa3.getText()+" "+ txtHeure3.getText()+"h"+txtMin3.getText()
-	                		  +"\n");
+	            	String s1 = txtJjmmaaaa2.getText()+" "+ txtHeure2.getText()+"h"+txtMin2.getText();
+	            	String s2 = txtJjmmaaaa3.getText()+" "+ txtHeure3.getText()+"h"+txtMin3.getText();
+	                try {
+						escales.add( new Escale((Gare) comboBoxE.getSelectedItem(),new Horaire(s1),new Horaire(s2)));
+						
+						listeM.addElement("-"+comboBoxE.getSelectedItem().toString()+"   "+s1 +"   "+s2+"\n");
+					} catch (Erreur e1) {
+						System.out.println(e1);
+					}
 	            }
 	        });
 			box22.add(ajouterE);
@@ -201,9 +211,9 @@ public class PanneauAdmin extends JPanel{
 		JPanel box31 = new JPanel();
 			lblGareA = new JLabel("Gare d'arrivée : ");
 			box31.add(lblGareA);
-			comboBoxA = new JComboBox<String>();
+			comboBoxA = new JComboBox<Gare>();
 			
-			comboBoxA.setModel(new DefaultComboBoxModel<String>(gareA));
+			comboBoxA.setModel(new DefaultComboBoxModel<Gare>(gareA));
 			box31.add(comboBoxA);
 		box3.add(box31);
 		JPanel box32 = new JPanel();

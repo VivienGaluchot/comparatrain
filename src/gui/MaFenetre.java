@@ -1,4 +1,4 @@
-package defaut;
+package gui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -45,8 +45,8 @@ public class MaFenetre extends JFrame{
 		int largeur = dim.width;
 		int hauteur = dim.height;
 		//setLayout(new FlowLayout(FlowLayout.CENTER,10,15));
-		setBounds(largeur/2-175,hauteur/2-140,350,280);
-		setResizable(false);
+		setBounds(largeur/2-215,hauteur/2-170,430,340);
+		//setResizable(false);
 		
 		JTabbedPane onglets = new JTabbedPane();
 		JPanel PClient = new PanneauClient(c);

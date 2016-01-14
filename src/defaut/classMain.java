@@ -1,6 +1,7 @@
 package defaut;
 
 import comparaison.Comparateur;
+import gui.MaFenetre;
 
 public class classMain {
 
