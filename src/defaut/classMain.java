@@ -7,8 +7,8 @@ public class classMain {
 	public static void main(String[] args) {
 		Donnees data = new Donnees();
 		
-		data.chargerYaml("database.yml");
-		data.sauvegarder("databaseSave.yml");
+		data.charger("database.yml");
+//		data.sauvegarder("databaseSave.yml");
 		
 		Comparateur comp = new Comparateur(data);
 		

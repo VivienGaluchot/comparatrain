@@ -6,9 +6,6 @@ package comparaison;
 import java.util.ArrayList;
 
 import defaut.Donnees;
-
-import modele.Resultat;
-import modele.Offre;
 import modele.Train;
 
 /**
