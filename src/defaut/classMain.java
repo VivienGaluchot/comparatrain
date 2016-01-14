@@ -9,7 +9,7 @@ public class classMain {
 		Donnees data = new Donnees();
 		
 		data.charger("database.yml");
-//		data.sauvegarder("databaseSave.yml");
+		data.afficher();
 		
 		Comparateur comp = new Comparateur(data);
 		

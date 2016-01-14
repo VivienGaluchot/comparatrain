@@ -36,11 +36,11 @@ public class Donnees {
 		for(Ville v : villes){
 			System.out.println(v);
 		}
-		System.out.println("\n\n");
+		System.out.println("---");
 		for(Gare g : gares){
 			System.out.println(g);
 		}
-		System.out.println("\n\n");
+		System.out.println("---");
 		for(Train t : getTrains()){
 			System.out.println(t);
 		}
