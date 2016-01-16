@@ -10,7 +10,7 @@ public class Wagon implements Evaluable<Preference>{
 	public static final int SECONDE = 2;
 	public static final int BAR = 3;
 	
-	int id;
+	private int id;
 	int type;
 	
 	ArrayList<Banc> bancs;
@@ -18,7 +18,7 @@ public class Wagon implements Evaluable<Preference>{
 	ArrayList<Banc> bancsDroits;
 	
 	public Wagon(int i){
-		id = i;
+		setId(i);
 		
 		bancs = new ArrayList<Banc>();
 		bancsGauches = new ArrayList<Banc>();
@@ -75,6 +75,14 @@ public class Wagon implements Evaluable<Preference>{
 		
 		return res;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }
 
 class WagonPremiere extends Wagon{
@@ -90,7 +98,7 @@ class WagonPremiere extends Wagon{
 		}
 	}
 	public String toString(){
-		String res ="-- -- Wagon " + id + " (I)\n";
+		String res ="-- -- Wagon " + getId() + " (I)\n";
 		res += super.toString();
 		res += "-- --\n";
 		return res;
@@ -122,7 +130,7 @@ class WagonSeconde extends Wagon{
 		}
 	}
 	public String toString(){
-		String res ="-- -- Wagon " + id + " (II)\n";
+		String res ="-- -- Wagon " + getId() + " (II)\n";
 		res += super.toString();
 		res += "-- --\n";
 		return res;

@@ -10,7 +10,7 @@ import modele.Train;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
- * Objet evaluant les offres
+ * utilise le modele pour comparer la base de donnée avec le modele
  */
 public class Comparateur {
 	
@@ -26,7 +26,6 @@ public class Comparateur {
 	
 	/**
 	 * @param pref : Preference avec lesquelles effectuer la comparaison des offres
-	 * Tout les trains de la liste ListeTrain sont évaluées, les scores et les trains sont dans une TreeMap
 	 */
 	public Resultat comparer(Preference pref){
 		Resultat evaluations = new Resultat();

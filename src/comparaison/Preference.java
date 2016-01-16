@@ -6,7 +6,6 @@ package comparaison;
 import defaut.Erreur;
 
 import modele.Horaire;
-import modele.physique.Wagon;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
@@ -19,8 +18,10 @@ public class Preference {
 	private Horaire hDepart;
 	private Horaire hArrive;
 	
-	private Boolean wagonBar = null;
-	private Integer classe = null;
+	// Optionel
+	Boolean direct = null;
+	Integer nombre = null;
+	Integer classe = null;
 	
 	public Preference(){
 		setgDepart("");
@@ -93,16 +94,5 @@ public class Preference {
 
 	public void sethArrive(Horaire hArrive) {
 		this.hArrive = hArrive;
-	}
-	
-	// Wagon
-	public void setWagonBar(boolean b){
-		wagonBar = new Boolean(b);
-	}
-	
-	public void setClasse(int c){
-		if(c == Wagon.PREMIERE || c == Wagon.SECONDE){
-			classe = c;
-		}
 	}
 }

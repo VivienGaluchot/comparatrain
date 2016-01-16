@@ -20,8 +20,8 @@ public class Resultat extends TreeMap<Double,List<Offre>>{
 	
 	public void afficher(){
 		List<Offre> l;
-		if(this.isEmpty()) System.out.println("Aucun résultat");
-		else if(lastKey() > 0){
+		if(this.isEmpty() || lastKey() <= 0) System.out.println("Aucun résultat");
+		else{
 			Map.Entry<Double, List<Offre>> ent;
 			do{
 				ent = pollLastEntry();
@@ -30,5 +30,26 @@ public class Resultat extends TreeMap<Double,List<Offre>>{
 					System.out.println(t);
 			}while(!isEmpty() && lastKey() > 0);			
 		}
+	}
+	
+	public ArrayList<Offre> getMeilleurs(int n){
+		ArrayList<Offre> res = new ArrayList<Offre>();
+		
+		// Si arbre vide : fin
+		if(this.isEmpty() || lastKey() <= 0) return res;
+		
+		List<Offre> l;
+		Map.Entry<Double, List<Offre>> ent;
+		int i = 0;
+		do{
+			ent = pollLastEntry();
+			l = ent.getValue();
+			for(int j=0;j<l.size() && i<n; j++){
+				res.add(l.get(j));
+				i++;
+			}
+		}while(!isEmpty() && lastKey() > 0 && i<n);	
+		
+		return res;
 	}
 }

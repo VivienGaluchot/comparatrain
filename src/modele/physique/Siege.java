@@ -16,21 +16,21 @@ public class Siege implements Evaluable<Preference>{
 	public static final boolean FENETRE = true;
 	public static final boolean COULOIR = false;
 	
-	int id;
+	private Integer id;
 	boolean sens;
 	boolean cote;
 	
 	protected boolean occupe;
 	
-	public Siege(int i,boolean sens, boolean cote){
-		id=i;
+	public Siege(Integer i,boolean sens, boolean cote){
+		setId(i);
 		this.sens = sens;
 		this.cote = cote;
 		occupe = false;
 	}
 	
-	public Siege(int i,boolean sens, boolean cote, boolean occupe){
-		id=i;
+	public Siege(Integer i,boolean sens, boolean cote, boolean occupe){
+		setId(i);
 		this.sens = sens;
 		this.cote = cote;
 		this.occupe = occupe;
@@ -58,5 +58,13 @@ public class Siege implements Evaluable<Preference>{
 		else
 			res = "n";
 		return res;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

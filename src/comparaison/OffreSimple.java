@@ -1,36 +1,25 @@
 package comparaison;
 
 import modele.Evaluable;
-import modele.Gare;
 import modele.GareHoraire;
-import modele.Horaire;
 import modele.Train;
-import modele.physique.Siege;
+import modele.physique.Place;
 
-public class Offre implements Evaluable<Preference>{
+public class OffreSimple implements Evaluable<Preference>{
 	GareHoraire depart;
 	GareHoraire arrivee;
 	
 	Train train;
-	Siege siege;
+	Place place;
 	
 	Double eval;
 	
-	public Offre(Train t){
-		train = t;
-		depart = null;
-		arrivee = null;
-		eval = null;
-	}
-	
-	public void set(Gare gD, Horaire hD, Gare gA, Horaire hA){		
-		depart = new GareHoraire(gD,hD);
-		arrivee = new GareHoraire(gA,hA);
-	}
-	
-	public void set(GareHoraire depart, GareHoraire arrivee){		
+	public OffreSimple(Train train, Place place, GareHoraire depart, GareHoraire arrivee){
 		this.depart = depart;
 		this.arrivee = arrivee;
+		this.train = train;
+		this.place = place;
+		eval = null;
 	}
 	
 	public double eval(Preference pref) {
@@ -54,18 +43,11 @@ public class Offre implements Evaluable<Preference>{
 		return res;
 	}
 	
-	public Offre clone(){
-		Offre o = new Offre(train);
-		o.depart = depart;
-		o.arrivee = arrivee;
-		o.eval = eval;
-		return o;
-	}
-	
 	/**
 	 * Affichage d'une offre
 	 */
 	public String toString(){
-		return "Train n°" + train.getId() + " : " + depart + " --> " + arrivee;
+		return "Train n°" + train.getId() + " : " + depart + " --> " + arrivee + "\n"
+				+ place;
 	}
 }
