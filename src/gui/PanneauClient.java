@@ -24,6 +24,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
 import javax.swing.text.NumberFormatter;
 
 import comparaison.Comparateur;
@@ -34,10 +36,8 @@ public class PanneauClient extends JPanel {
 
 	private JButton connexion;
 	
-	private JLabel lblGareD;
-	private JTextField texteD;
-	private JLabel lblGareA;
-	private JTextField texteA;
+	private MonTextField texteD;
+	private MonTextField texteA;
 	
 	private JComboBox<String> comboBox;
 	private JTextField txtJjmmaaaa;
@@ -127,20 +127,12 @@ public class PanneauClient extends JPanel {
 		
 			box0.setLayout(new BoxLayout(box0,BoxLayout.PAGE_AXIS));
 			JPanel box1 = new JPanel();
-				lblGareD=new JLabel("Gare départ : ");
-				box1.add(lblGareD);
-				texteD = new JTextField("Gare de Lyon",14);
+				texteD = new MonTextField("Départ : ", "Nom de ville ou gare", 14);
 				Color color =new Color(100,100,100);
-				texteD.setForeground(color);
-				ClearOnClick(texteD);
 				box1.add(texteD);
 			box0.add(box1);
 			JPanel box2 = new JPanel();
-				lblGareA=new JLabel("Gare d'arrivé : ");
-				box2.add(lblGareA);
-				texteA = new JTextField("Marseille",14);
-				texteA.setForeground(color);
-				ClearOnClick(texteA);
+				texteA = new MonTextField("Arrivée : ", "Nom de ville ou gare", 14);
 				box2.add(texteA);
 			box0.add(box2);
 		box0.setBorder(BorderFactory.createTitledBorder("Trajet"));
@@ -149,7 +141,7 @@ public class PanneauClient extends JPanel {
 		JPanel box3 = new JPanel();
 		
 			comboBox = new JComboBox<String>();
-			comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"départ", "arrivé"}));
+			comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"départ", "arrivée"}));
 			box3.add(comboBox);
 			
 			txtJjmmaaaa = new JTextField("jj/mm/aaaa",10);
