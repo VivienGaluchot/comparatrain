@@ -37,19 +37,25 @@ public class MonTextField extends JPanel{
 		this.add(textField);
 		
 		popup = new JPopupMenu();
-		String[] list = new String[2];
+		String[] list = new String[3];
 		list[0] = "Bonjour";
 		list [1] = "Salut";
 		
 		textField.getDocument().addDocumentListener(new DocumentListener(){
 			public void removeUpdate(DocumentEvent e){
-				if(getText().length()>0 && !init)
+				if(getText().length()>0 && !init){
+					list[2] = getText();
 					pop(list);
 				}
+				else popup.setVisible(false);
+			}
 			public void insertUpdate(DocumentEvent e){
-				if(getText().length()>0 && !init)
+				if(getText().length()>0 && !init){
+					list[2] = getText();
 					pop(list);
 				}
+				else popup.setVisible(false);
+			}
 			public void changedUpdate(DocumentEvent e){ }
 		});
 	}
@@ -66,11 +72,12 @@ public class MonTextField extends JPanel{
 	}
 	
 	public void pop(String[] list){
-		popup.hide();
+		popup.setVisible(false);
 		popup.removeAll();
 		for(String s : list)
 			popup.add(new JMenuItem(s));
-		//popup.show(this.getParent(), 0, 20);
+		popup.show(textField, 0, textField.getHeight());
+		textField.requestFocus();
 	}
 	
 	public void ClearOnClick(JTextField textField){
@@ -89,6 +96,7 @@ public class MonTextField extends JPanel{
 					init = true;
 					textField.setForeground(Color.GRAY);
 					textField.setText(initText);
+					popup.setVisible(false);
 				}
 			}
 	    });
