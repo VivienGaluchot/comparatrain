@@ -98,6 +98,24 @@ public class Donnees {
 		return res;
 	}
 	
+	public String[] getEntry(String str){
+		ArrayList<String> list = new ArrayList<String>();
+		for(Ville v : villes){
+			if(v.getNom().toLowerCase().contains(str.toLowerCase())){
+				list.add(v.getNom());
+			}
+		}
+		for(Gare g : gares){
+			if(g.getNom().toLowerCase().contains(str.toLowerCase())){
+				list.add(g.getNom());
+			}
+		}
+		list.sort(null);
+		String [] res = new String[list.size()];
+		list.toArray(res);
+		return res;
+	}
+	
 	// Ecriture / lecture
 	
 	@SuppressWarnings("unchecked")

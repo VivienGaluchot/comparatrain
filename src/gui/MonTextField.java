@@ -1,20 +1,20 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
-import javax.swing.Popup;
-import javax.swing.PopupFactory;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import comparaison.Comparateur;
 
 @SuppressWarnings("serial")
 public class MonTextField extends JPanel{
@@ -24,9 +24,10 @@ public class MonTextField extends JPanel{
 	boolean init;
 	JPopupMenu popup;
 	JMenuItem menuItem;
+	JMenuItem i = null;
+	Comparateur comp;
 	
-	
-	public MonTextField(String labelText, String initText, int lenght){
+	public MonTextField(String labelText, String initText, int lenght, Comparateur comp){
 		label = new JLabel(labelText);
 		this.add(label);
 		this.initText = initText;
@@ -35,26 +36,22 @@ public class MonTextField extends JPanel{
 		textField.setForeground(Color.GRAY);
 		ClearOnClick(textField);
 		this.add(textField);
+		this.comp = comp;
 		
 		popup = new JPopupMenu();
-		String[] list = new String[3];
-		list[0] = "Bonjour";
-		list [1] = "Salut";
 		
 		textField.getDocument().addDocumentListener(new DocumentListener(){
 			public void removeUpdate(DocumentEvent e){
-				if(getText().length()>0 && !init){
-					list[2] = getText();
-					pop(list);
-				}
-				else popup.setVisible(false);
+				if(getText().length()>0 && !init)
+					pop(comp.getData().getEntry(getText()));
+				else
+					popup.setVisible(false);
 			}
 			public void insertUpdate(DocumentEvent e){
-				if(getText().length()>0 && !init){
-					list[2] = getText();
-					pop(list);
-				}
-				else popup.setVisible(false);
+				if(getText().length()>0 && !init)
+					pop(comp.getData().getEntry(getText()));
+				else
+					popup.setVisible(false);
 			}
 			public void changedUpdate(DocumentEvent e){ }
 		});
@@ -74,8 +71,16 @@ public class MonTextField extends JPanel{
 	public void pop(String[] list){
 		popup.setVisible(false);
 		popup.removeAll();
-		for(String s : list)
-			popup.add(new JMenuItem(s));
+		for(String s : list){
+			i = new JMenuItem(s);
+			i.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent ev) {
+		        	textField.setText(s);
+		        	popup.setVisible(false);
+		        }
+		    });
+			popup.add(i);
+		}
 		popup.show(textField, 0, textField.getHeight());
 		textField.requestFocus();
 	}
