@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
@@ -15,6 +16,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import comparaison.Comparateur;
+import modele.Gare;
+import modele.Ville;
 
 @SuppressWarnings("serial")
 public class MonTextField extends JPanel{
@@ -43,13 +46,13 @@ public class MonTextField extends JPanel{
 		textField.getDocument().addDocumentListener(new DocumentListener(){
 			public void removeUpdate(DocumentEvent e){
 				if(getText().length()>0 && !init)
-					pop(comp.getData().getEntry(getText()));
+					pop(getEntry(getText()));
 				else
 					popup.setVisible(false);
 			}
 			public void insertUpdate(DocumentEvent e){
 				if(getText().length()>0 && !init)
-					pop(comp.getData().getEntry(getText()));
+					pop(getEntry(getText()));
 				else
 					popup.setVisible(false);
 			}
@@ -83,6 +86,29 @@ public class MonTextField extends JPanel{
 		}
 		popup.show(textField, 0, textField.getHeight());
 		textField.requestFocus();
+	}
+	
+	public String[] getEntry(String str){
+		ArrayList<String> list = new ArrayList<String>();
+		int i = 0;
+		for(Ville v : comp.getData().getVilles()){
+			if(i>10) break;
+			if(v.getNom().toLowerCase().contains(str.toLowerCase())){
+				list.add(v.getNom());
+				i++;
+			}
+		}
+		for(Gare g : comp.getData().getGares()){
+			if(i>10) break;
+			if(g.getNom().toLowerCase().contains(str.toLowerCase())){
+				list.add(g.getNom());
+				i++;
+			}
+		}
+		list.sort(null);
+		String [] res = new String[list.size()];
+		list.toArray(res);
+		return res;
 	}
 	
 	public void ClearOnClick(JTextField textField){

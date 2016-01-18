@@ -27,17 +27,17 @@ public class Donnees {
 	private ArrayList<Train> trains;
 	
 	public Donnees(){
-		villes = new ArrayList<Ville>();
-		gares = new ArrayList<Gare>();
+		setVilles(new ArrayList<Ville>());
+		setGares(new ArrayList<Gare>());
 		trains = new ArrayList<Train>();
 	}
 	
 	public void afficher(){
-		for(Ville v : villes){
+		for(Ville v : getVilles()){
 			System.out.println(v);
 		}
 		System.out.println("---");
-		for(Gare g : gares){
+		for(Gare g : getGares()){
 			System.out.println(g);
 		}
 		System.out.println("---");
@@ -54,15 +54,15 @@ public class Donnees {
 	}
 	
 	public void addVille(Ville ville) throws Erreur{
-		for(Ville v : villes)
+		for(Ville v : getVilles())
 			if(ville.getId() == v.getId()) throw new Erreur(Erreur.EXISTE);
-		villes.add(ville);
+		getVilles().add(ville);
 	}
 	
 	public void addGare(Gare gare) throws Erreur{
-		for(Gare g : gares)
+		for(Gare g : getGares())
 			if(gare.getId() == g.getId()) throw new Erreur(Erreur.EXISTE);
-		gares.add(gare);
+		getGares().add(gare);
 	}
 	
 	public void addTrain(Train train) throws Erreur{
@@ -90,29 +90,11 @@ public class Donnees {
 	}
 	
 	public Gare[] getGaresAlph(){
-		gares.sort(null);
-		Gare[] res = new Gare[gares.size()];
+		getGares().sort(null);
+		Gare[] res = new Gare[getGares().size()];
 		for( int i=0;i<res.length;i++){
-			res[i]=gares.get(i);
+			res[i]=getGares().get(i);
 		}
-		return res;
-	}
-	
-	public String[] getEntry(String str){
-		ArrayList<String> list = new ArrayList<String>();
-		for(Ville v : villes){
-			if(v.getNom().toLowerCase().contains(str.toLowerCase())){
-				list.add(v.getNom());
-			}
-		}
-		for(Gare g : gares){
-			if(g.getNom().toLowerCase().contains(str.toLowerCase())){
-				list.add(g.getNom());
-			}
-		}
-		list.sort(null);
-		String [] res = new String[list.size()];
-		list.toArray(res);
 		return res;
 	}
 	
@@ -133,8 +115,8 @@ public class Donnees {
 			nTrains = reader.read(nTrains.getClass());
 			System.out.println("Chargement de la base de donnée effectuée");
 			clients = nClients;
-			villes = nVilles;
-			gares = nGares;
+			setVilles(nVilles);
+			setGares(nGares);
 			trains = nTrains;
 		} catch (FileNotFoundException | YamlException e1) {
 			e1.printStackTrace();
@@ -146,13 +128,29 @@ public class Donnees {
 		try {
 			test = new YamlWriter(new FileWriter(fichier));
 			test.write(clients);
-			test.write(villes);
-			test.write(gares);
+			test.write(getVilles());
+			test.write(getGares());
 			test.write(trains);
 			test.close();
 			System.out.println("Sauvegarde de la base de donnée effectuée");
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+	}
+
+	public ArrayList<Ville> getVilles() {
+		return villes;
+	}
+
+	public void setVilles(ArrayList<Ville> villes) {
+		this.villes = villes;
+	}
+
+	public ArrayList<Gare> getGares() {
+		return gares;
+	}
+
+	public void setGares(ArrayList<Gare> gares) {
+		this.gares = gares;
 	}
 }
