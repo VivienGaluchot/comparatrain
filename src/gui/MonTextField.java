@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -27,7 +28,6 @@ public class MonTextField extends JPanel{
 	boolean init;
 	JPopupMenu popup;
 	JMenuItem menuItem;
-	JMenuItem i = null;
 	Comparateur comp;
 	
 	public MonTextField(String labelText, String initText, int lenght, Comparateur comp){
@@ -75,14 +75,17 @@ public class MonTextField extends JPanel{
 		popup.setVisible(false);
 		popup.removeAll();
 		for(String s : list){
-			i = new JMenuItem(s);
-			i.addActionListener(new ActionListener() {
+			menuItem = new JMenuItem(s);
+			menuItem.setPreferredSize(new Dimension(textField.getWidth(),18));
+			menuItem.setFont(textField.getFont());
+			menuItem.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent ev) {
 		        	textField.setText(s);
 		        	popup.setVisible(false);
 		        }
 		    });
-			popup.add(i);
+			menuItem.setBackground(Color.white);
+			popup.add(menuItem);
 		}
 		popup.show(textField, 0, textField.getHeight());
 		textField.requestFocus();
@@ -92,14 +95,14 @@ public class MonTextField extends JPanel{
 		ArrayList<String> list = new ArrayList<String>();
 		int i = 0;
 		for(Ville v : comp.getData().getVilles()){
-			if(i>10) break;
+			if(i>=5) break;
 			if(v.getNom().toLowerCase().contains(str.toLowerCase())){
 				list.add(v.getNom());
 				i++;
 			}
 		}
 		for(Gare g : comp.getData().getGares()){
-			if(i>10) break;
+			if(i>=5) break;
 			if(g.getNom().toLowerCase().contains(str.toLowerCase())){
 				list.add(g.getNom());
 				i++;

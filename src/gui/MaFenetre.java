@@ -58,7 +58,7 @@ public class MaFenetre extends JFrame{
         	@Override
             public void stateChanged(ChangeEvent e) {
                 if(onglets.getSelectedIndex()==1 ) {//Index starts at 0, so Index 1 = onglet2
-                	setSize(550, 600);  
+                	setSize(550, 600);
                 }
                 else if(onglets.getSelectedIndex()==0){
                 	setSize(430, 340);
@@ -67,6 +67,8 @@ public class MaFenetre extends JFrame{
         });
         
         add(onglets);
+        
+        pack();
 	  
 		WindowListener exitListener = new MaWindow();
 		//addWindowListener(exitListener);

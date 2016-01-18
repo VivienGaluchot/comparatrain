@@ -122,19 +122,15 @@ public class PanneauClient extends JPanel {
         });
 		box5.add(connexion);
 	this.add(box5);
-		
-		JPanel box0 = new JPanel();
-		
+	
+	Color color = new Color(100,100,100);
+	
+		JPanel box0 = new JPanel();		
 			box0.setLayout(new BoxLayout(box0,BoxLayout.PAGE_AXIS));
-			JPanel box1 = new JPanel();
-				texteD = new MonTextField("Départ : ", "Nom de ville ou gare", 14, comp);
-				Color color =new Color(100,100,100);
-				box1.add(texteD);
-			box0.add(box1);
-			JPanel box2 = new JPanel();
-				texteA = new MonTextField("Arrivée : ", "Nom de ville ou gare", 14, comp);
-				box2.add(texteA);
-			box0.add(box2);
+			texteD = new MonTextField("Départ : ", "Nom de ville ou gare", 25, comp);
+			box0.add(texteD);
+			texteA = new MonTextField("Arrivée : ", "Nom de ville ou gare", 25, comp);
+			box0.add(texteA);
 		box0.setBorder(BorderFactory.createTitledBorder("Trajet"));
 		this.add(box0);
 		
