@@ -59,9 +59,18 @@ public class Horaire implements Evaluable<Horaire>, Comparable<Horaire>{
 		}
 	}
 	
+	public boolean estInit(){
+		return time != null;
+	}
+	
 	// Utilitaires
 	public String toString(){
 		return time.format(formatterCourt);
+	}
+	
+	// Utilitaires
+	public String toStringLong(){
+		return time.format(formatter);
 	}
 	
 	public int compareTo(Horaire h){

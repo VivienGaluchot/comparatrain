@@ -36,8 +36,8 @@ public class PanneauClient extends JPanel {
 
 	private JButton connexion;
 	
-	private MonTextField texteD;
-	private MonTextField texteA;
+	private VilleGareTextField texteD;
+	private VilleGareTextField texteA;
 	
 	private JComboBox<String> comboBox;
 	private JTextField txtJjmmaaaa;
@@ -127,9 +127,9 @@ public class PanneauClient extends JPanel {
 	
 		JPanel box0 = new JPanel();		
 			box0.setLayout(new BoxLayout(box0,BoxLayout.PAGE_AXIS));
-			texteD = new MonTextField("Départ : ", "Nom de ville ou gare", 25, comp);
+			texteD = new VilleGareTextField("Départ : ", "Nom de ville ou gare", 25, comp);
 			box0.add(texteD);
-			texteA = new MonTextField("Arrivée : ", "Nom de ville ou gare", 25, comp);
+			texteA = new VilleGareTextField("Arrivée : ", "Nom de ville ou gare", 25, comp);
 			box0.add(texteA);
 		box0.setBorder(BorderFactory.createTitledBorder("Trajet"));
 		this.add(box0);

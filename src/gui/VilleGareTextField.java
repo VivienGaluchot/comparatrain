@@ -8,9 +8,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -21,29 +19,27 @@ import modele.Gare;
 import modele.Ville;
 
 @SuppressWarnings("serial")
-public class MonTextField extends JPanel{
-	JLabel label;
-	JTextField textField;
+public class VilleGareTextField extends Champ<JTextField>{
 	String initText;
 	boolean init;
 	JPopupMenu popup;
 	JMenuItem menuItem;
-	Comparateur comp;
+	Comparateur comparateur;
 	
-	public MonTextField(String labelText, String initText, int lenght, Comparateur comp){
-		label = new JLabel(labelText);
-		this.add(label);
+	public VilleGareTextField(String labelText, String initText, int lenght, Comparateur comparateur){
+		super(labelText, new JTextField(initText,lenght));
+		
+		this.comparateur = comparateur;
+		
 		this.initText = initText;
 		init = true;
-		textField = new JTextField(initText,lenght);
-		textField.setForeground(Color.GRAY);
-		ClearOnClick(textField);
-		this.add(textField);
-		this.comp = comp;
+
+		champ.setForeground(Color.GRAY);
+		ClearOnClick(champ);
 		
 		popup = new JPopupMenu();
 		
-		textField.getDocument().addDocumentListener(new DocumentListener(){
+		champ.getDocument().addDocumentListener(new DocumentListener(){
 			public void removeUpdate(DocumentEvent e){
 				if(getText().length()>0 && !init)
 					pop(getEntry(getText()));
@@ -61,14 +57,7 @@ public class MonTextField extends JPanel{
 	}
 	
 	public String getText(){
-		return textField.getText();
-	}
-	
-	public void setWrong(boolean b){
-		if(b)
-			textField.setForeground(Color.RED);
-		else
-			textField.setForeground(Color.BLACK);
+		return champ.getText();
 	}
 	
 	public void pop(String[] list){
@@ -76,32 +65,32 @@ public class MonTextField extends JPanel{
 		popup.removeAll();
 		for(String s : list){
 			menuItem = new JMenuItem(s);
-			menuItem.setPreferredSize(new Dimension(textField.getWidth(),18));
-			menuItem.setFont(textField.getFont());
+			menuItem.setPreferredSize(new Dimension(champ.getWidth(),18));
+			menuItem.setFont(champ.getFont());
 			menuItem.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent ev) {
-		        	textField.setText(s);
+		        	champ.setText(s);
 		        	popup.setVisible(false);
 		        }
 		    });
 			menuItem.setBackground(Color.white);
 			popup.add(menuItem);
 		}
-		popup.show(textField, 0, textField.getHeight());
-		textField.requestFocus();
+		popup.show(champ, 0, champ.getHeight());
+		champ.requestFocus();
 	}
 	
 	public String[] getEntry(String str){
 		ArrayList<String> list = new ArrayList<String>();
 		int i = 0;
-		for(Ville v : comp.getData().getVilles()){
+		for(Ville v : comparateur.getData().getVilles()){
 			if(i>=5) break;
 			if(v.getNom().toLowerCase().contains(str.toLowerCase())){
 				list.add(v.getNom());
 				i++;
 			}
 		}
-		for(Gare g : comp.getData().getGares()){
+		for(Gare g : comparateur.getData().getGares()){
 			if(i>=5) break;
 			if(g.getNom().toLowerCase().contains(str.toLowerCase())){
 				list.add(g.getNom());
