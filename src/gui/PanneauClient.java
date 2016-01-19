@@ -1,12 +1,10 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -22,14 +20,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.Popup;
-import javax.swing.PopupFactory;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.text.NumberFormatter;
 
 import comparaison.Comparateur;
 import comparaison.Preference;
+import defaut.Erreur;
+import modele.Escale;
+import modele.Gare;
+import modele.Horaire;
 
 public class PanneauClient extends JPanel {
 	
@@ -39,14 +42,10 @@ public class PanneauClient extends JPanel {
 	private VilleGareTextField texteD;
 	private VilleGareTextField texteA;
 	
-	private JComboBox<String> comboBox;
-	private JTextField txtJjmmaaaa;
-	private JTextField txtHeure;
-	private JTextField txtMin;
+	private ChampHoraire comboBoxHoraires;
 	
 	private JCheckBox cbDirect;
 	private JLabel lblNbPlaces;
-	private JComboBox<String> comboBoxNbPlaces;
 	
 	private JLabel lblClasse;
 	private JRadioButton rbClasse1;
@@ -74,6 +73,8 @@ public class PanneauClient extends JPanel {
 			}
 	    });
 	}
+	
+	
 	
 	
 	public void connexionCompte(Comparateur comp,JTabbedPane onglets){
@@ -121,9 +122,8 @@ public class PanneauClient extends JPanel {
             }
         });
 		box5.add(connexion);
-	this.add(box5);
+		this.add(box5);
 	
-	Color color = new Color(100,100,100);
 	
 		JPanel box0 = new JPanel();		
 			box0.setLayout(new BoxLayout(box0,BoxLayout.PAGE_AXIS));
@@ -136,24 +136,8 @@ public class PanneauClient extends JPanel {
 		
 		JPanel box3 = new JPanel();
 		
-			comboBox = new JComboBox<String>();
-			comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"départ", "arrivée"}));
-			box3.add(comboBox);
-			
-			txtJjmmaaaa = new JTextField("jj/mm/aaaa",10);
-			txtJjmmaaaa.setForeground(color);
-			ClearOnClick(txtJjmmaaaa);
-			box3.add(txtJjmmaaaa);
-			
-			txtHeure = new JTextField("heure",4);
-			txtHeure.setForeground(color);
-			ClearOnClick(txtHeure);
-			box3.add(txtHeure);
-			
-			txtMin = new JTextField("min",4);
-			txtMin.setForeground(color);
-			ClearOnClick(txtMin);
-			box3.add(txtMin);
+			comboBoxHoraires = new ChampHoraire("Départ","Arrivée");
+			box3.add(comboBoxHoraires);
 		
 		box3.setBorder(BorderFactory.createTitledBorder("Horaires"));
 		this.add(box3);
@@ -174,17 +158,10 @@ public class PanneauClient extends JPanel {
 				lblNbPlaces = new JLabel("Nb de places :");
 				box61.add(lblNbPlaces);
 			
-				
-				NumberFormat longFormat = NumberFormat.getIntegerInstance();
-	
-				NumberFormatter numberFormatter = new NumberFormatter(longFormat);
-				numberFormatter.setValueClass(Long.class); //optional, ensures you will always get a long value
-				numberFormatter.setAllowsInvalid(false); //this is the key!!
-				numberFormatter.setMinimum(0l); //Optional
-				//numberFormatter.setMaximum(100); 
-	
-				JFormattedTextField nbPlaces = new JFormattedTextField(numberFormatter);
-				nbPlaces.setColumns(3);
+				SpinnerModel model = new SpinnerNumberModel(1,1,99,1);
+				JSpinner nbPlaces = new JSpinner(model);
+				JFormattedTextField txt = ((JSpinner.NumberEditor) nbPlaces.getEditor()).getTextField();
+				((NumberFormatter) txt.getFormatter()).setAllowsInvalid(false);
 				box61.add(nbPlaces);
 				
 				box61.add(Box.createHorizontalStrut(12));
@@ -201,13 +178,9 @@ public class PanneauClient extends JPanel {
 				box61.add(rbClasse2);
 				box61.add(Box.createHorizontalStrut(7));
 			box6.add(box61);
-//			comboBoxNbPlaces = new JComboBox<String>();
-//			comboBoxNbPlaces.setModel(new DefaultComboBoxModel<String>(new String[] {"1","2","3","4"}));
-//			box6.add(comboBoxNbPlaces);
 			
 			box6.setBorder(BorderFactory.createTitledBorder("Option"));	
 		this.add(box6);
-		
 		
 		JPanel box4 = new JPanel();
 		
@@ -216,14 +189,24 @@ public class PanneauClient extends JPanel {
 			 
             public void actionPerformed(ActionEvent e)
             {
-                Preference pref = new Preference();
-                pref.setGares(texteD.getText(), texteA.getText());
-                if (comboBox.getSelectedItem().equals("départ")){
-                	pref.setHDepart(txtJjmmaaaa.getText()+" "+ txtHeure.getText()+"h"+txtMin.getText());
-                }else{
-                	pref.setHArrive(txtJjmmaaaa.getText()+" "+ txtHeure.getText()+"h"+txtMin.getText());
-                }
-                comp.comparer(pref).afficher();
+            	Horaire h = comboBoxHoraires.getHoraire();
+            	Preference pref = new Preference();
+            	if(h.estInit()){
+					try {
+		            	pref.setGares(texteD.getText(), texteA.getText());
+						if(comboBoxHoraires.getComboBox().getSelectedItem().equals("Départ")){
+							pref.setHDepart(h.toStringLong());	
+						}else if(comboBoxHoraires.getComboBox().getSelectedItem().equals("Arrivée")){
+							pref.setHArrive(h.toStringLong());
+						}
+		                comp.comparer(pref).afficher();   
+					}catch (Erreur e1) {
+						comboBoxHoraires.setWrong(true);
+						System.out.println(e1);
+					}
+            	}
+            	
+                
             }
         });
 		box4.add(rechercher);
