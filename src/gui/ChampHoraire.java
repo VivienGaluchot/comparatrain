@@ -58,7 +58,7 @@ public class ChampHoraire extends JPanel{
 		add(mm);
 	}
 	
-	public ChampHoraire(String val1,String val2){
+	public ChampHoraire(String val1, String val2){
 		if(val1.length() > 0 && val2.length() >0){
 			comboBox = new JComboBox<String>();
 			comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {val1, val2}));

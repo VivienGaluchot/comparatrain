@@ -34,6 +34,7 @@ import modele.Escale;
 import modele.Gare;
 import modele.Horaire;
 
+@SuppressWarnings("serial")
 public class PanneauClient extends JPanel {
 	
 
@@ -42,7 +43,7 @@ public class PanneauClient extends JPanel {
 	private VilleGareTextField texteD;
 	private VilleGareTextField texteA;
 	
-	private ChampHoraire comboBoxHoraires;
+	private ChampHoraire champHoiraire;
 	
 	private JCheckBox cbDirect;
 	private JLabel lblNbPlaces;
@@ -136,8 +137,8 @@ public class PanneauClient extends JPanel {
 		
 		JPanel box3 = new JPanel();
 		
-			comboBoxHoraires = new ChampHoraire("Départ","Arrivée");
-			box3.add(comboBoxHoraires);
+			champHoiraire = new ChampHoraire("Départ","Arrivée");
+			box3.add(champHoiraire);
 		
 		box3.setBorder(BorderFactory.createTitledBorder("Horaires"));
 		this.add(box3);
@@ -189,21 +190,16 @@ public class PanneauClient extends JPanel {
 			 
             public void actionPerformed(ActionEvent e)
             {
-            	Horaire h = comboBoxHoraires.getHoraire();
+            	Horaire h = champHoiraire.getHoraire();
             	Preference pref = new Preference();
             	if(h.estInit()){
-					try {
-		            	pref.setGares(texteD.getText(), texteA.getText());
-						if(comboBoxHoraires.getComboBox().getSelectedItem().equals("Départ")){
-							pref.setHDepart(h.toStringLong());	
-						}else if(comboBoxHoraires.getComboBox().getSelectedItem().equals("Arrivée")){
-							pref.setHArrive(h.toStringLong());
-						}
-		                comp.comparer(pref).afficher();   
-					}catch (Erreur e1) {
-						comboBoxHoraires.setWrong(true);
-						System.out.println(e1);
+	            	pref.setGares(texteD.getText(), texteA.getText());
+					if(champHoiraire.getComboBox().getSelectedItem().equals("Départ")){
+						pref.setHDepart(h.toStringLong());	
+					}else if(champHoiraire.getComboBox().getSelectedItem().equals("Arrivée")){
+						pref.setHArrive(h.toStringLong());
 					}
+	                comp.comparer(pref).afficher();   
             	}
             	
                 

@@ -100,8 +100,8 @@ public class PanneauAdmin extends JPanel{
 			ajouterE.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e)
 	            {
-	            	Horaire h1 = champHoraire2.getHoraire();;
-	            	Horaire h2 = champHoraire3.getHoraire();;
+	            	Horaire h1 = champHoraire2.getHoraire();
+	            	Horaire h2 = champHoraire3.getHoraire();
 	            	if(h1.estInit() && h2.estInit()){
 						try {
 							escales.add( new Escale((Gare) comboBoxE.getSelectedItem(),h1,h2));
