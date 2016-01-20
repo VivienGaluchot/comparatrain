@@ -5,42 +5,33 @@ import modele.GareHoraire;
 import modele.Train;
 import modele.physique.Place;
 
-public class OffreSimple implements Evaluable<Preference>{
+public class OffreSimple extends Offre implements Evaluable<Preference>{
 	GareHoraire depart;
 	GareHoraire arrivee;
 	
 	Train train;
 	Place place;
 	
-	Double eval;
-	
 	public OffreSimple(Train train, Place place, GareHoraire depart, GareHoraire arrivee){
+		super();
 		this.depart = depart;
 		this.arrivee = arrivee;
 		this.train = train;
 		this.place = place;
-		eval = null;
 	}
 	
 	public double eval(Preference pref) {
 		double res = 1;
-		
-		// Lieux
-		res *= depart.gare.eval(pref.getgDepart());
-		if(res == 0) return res;
-		res *= arrivee.gare.eval(pref.getgArrive());
-		if(res == 0) return res;
-		
-		// Dates
-		if(pref.gethDepart() != null)
-			res *= depart.horaire.eval(pref.gethDepart());
-		if(res == 0) return res;
-		if(pref.gethArrive() != null)
-			res *= arrivee.horaire.eval(pref.gethArrive());
-		
-		eval = res;
-		
+		res *= depart.eval(pref.getGDepart(),pref.getHDepart());
+		res *= arrivee.eval(pref.getGArrivee(),pref.getHArrivee());
+		eval = res;		
 		return res;
+	}	
+	
+	public OffreSimple clone(){
+		OffreSimple o = new OffreSimple(train,place,depart,arrivee);
+		o.eval = eval;
+		return o;
 	}
 	
 	/**

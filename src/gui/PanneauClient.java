@@ -192,9 +192,9 @@ public class PanneauClient extends JPanel {
 					if(champHoiraire.getComboBox().getSelectedItem().equals("Départ")){
 						pref.setHDepart(h.toStringLong());	
 					}else if(champHoiraire.getComboBox().getSelectedItem().equals("Arrivée")){
-						pref.setHArrive(h.toStringLong());
+						pref.setHArrivee(h.toStringLong());
 					}
-	                comp.comparer(pref).afficher();   
+	                comp.comparer(pref).afficher();
             	}
             	
                 

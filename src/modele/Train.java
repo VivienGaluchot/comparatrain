@@ -5,8 +5,7 @@ package modele;
 
 import java.util.ArrayList;
 
-import comparaison.Offre;
-import comparaison.Preference;
+import comparaison.OffreSimple;
 import defaut.Erreur;
 
 /**
@@ -42,30 +41,6 @@ public class Train{
 		escales = e;	
 		arrivee = a;
 		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
-	}
-	
-	// Evaluation
-	public ArrayList<Offre> eval(Preference pref) {
-		ArrayList<Offre> resultat = new ArrayList<Offre>();
-		Offre s = new Offre(this);
-		
-		for(Escale e : escales){
-			s.set(depart, e.getArrivee());
-			if(s.eval(pref) > 0) resultat.add(s.clone());
-		}
-		s.set(depart, arrivee);
-		if(s.eval(pref) > 0) resultat.add(s.clone());
-		
-		for(int i=0;i<escales.size();i++){
-			for(int j=i+1;j<escales.size();j++){
-				s.set(escales.get(i).getDepart(), escales.get(j).getArrivee());
-				if(s.eval(pref) > 0) resultat.add(s.clone());
-			}
-			s.set(escales.get(i).getDepart(), arrivee);
-			if(s.eval(pref) > 0) resultat.add(s.clone());
-		}
-		
-		return resultat;
 	}
 	
 	// Utilitaire
@@ -106,6 +81,29 @@ public class Train{
 		return true;
 	}
 	
+	public OffreSimple parcourOffre(int i, int j){
+		if(i<0 || j<=i || nbStop()<=j) return null;
+		GareHoraire depart = null;
+		GareHoraire arrivee = null;
+		
+		if(i == 0)
+			depart = this.depart;
+		else
+			depart = this.escales.get(i-1).getDepart();
+		
+		if(j == nbStop()-1)
+			arrivee = this.arrivee;
+		else
+			arrivee = this.escales.get(j-1).getArrivee();
+		
+			
+		return new OffreSimple(this, null, depart, arrivee);
+	}
+	
+	public int nbStop(){
+		return 2 + escales.size();
+	}
+	
 	// Id
 	public Integer getId() {
 		return id;
@@ -128,6 +126,18 @@ public class Train{
 	// Escales
 	public ArrayList<Escale> getEscales() {
 		return escales;
+	}
+	
+	public Escale getEscale(int i){
+		return escales.get(i);
+	}
+	
+	public GareHoraire getEscaleArrivee(int i){
+		return escales.get(i).getArrivee();
+	}
+	
+	public GareHoraire getEscaleDepart(int i){
+		return escales.get(i).getDepart();
 	}
 
 	public void setEscales(ArrayList<Escale> escales) throws Erreur{

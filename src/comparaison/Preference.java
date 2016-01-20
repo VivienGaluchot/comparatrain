@@ -13,10 +13,10 @@ import modele.Horaire;
  */
 public class Preference {
 	private String gDepart;
-	private String gArrive;
+	private String gArrivee;
 	
 	private Horaire hDepart;
-	private Horaire hArrive;
+	private Horaire hArrivee;
 	
 	// Optionel
 	Boolean direct = null;
@@ -24,18 +24,18 @@ public class Preference {
 	Integer classe = null;
 	
 	public Preference(){
-		setgDepart("");
-		setgArrive("");
-		sethDepart(null);
-		sethArrive(null);
+		gDepart = "";
+		gArrivee = "";
+		hDepart = null;
+		hArrivee = null;
 	}
 	
 	public Preference(String d, String hD, String a, String hA){
-		setgDepart(d);
-		setgArrive(a);
+		setGDepart(d);
+		setGArrivee(a);
 		try {
-			sethDepart(new Horaire(hD));
-			sethArrive(new Horaire(hA));
+			setHDepart(new Horaire(hD));
+			setHArrivee(new Horaire(hA));
 		} catch (Erreur e) {
 			System.out.println(e);
 		}
@@ -43,30 +43,30 @@ public class Preference {
 	
 	// Gares
 	public void setGares(String d, String a){
-		setgDepart(d);
-		setgArrive(a);
+		setGDepart(d);
+		setGArrivee(a);
 	}
 	
-	public String getgDepart() {
+	public String getGDepart() {
 		return gDepart;
 	}
 
-	public void setgDepart(String gDepart) {
+	public void setGDepart(String gDepart) {
 		this.gDepart = gDepart;
 	}
 
-	public String getgArrive() {
-		return gArrive;
+	public String getGArrivee() {
+		return gArrivee;
 	}
 
-	public void setgArrive(String gArrive) {
-		this.gArrive = gArrive;
+	public void setGArrivee(String gArrivee) {
+		this.gArrivee = gArrivee;
 	}
 	
 	// Horaires
-	public void setHArrive(String hA){
+	public void setHArrivee(String hA){
 		try {
-			sethArrive(new Horaire(hA));
+			setHArrivee(new Horaire(hA));
 		} catch (Erreur e) {
 			System.out.println(e);
 		}
@@ -74,25 +74,25 @@ public class Preference {
 	
 	public void setHDepart(String hD){
 		try {
-			sethDepart(new Horaire(hD));
+			setHDepart(new Horaire(hD));
 		} catch (Erreur e) {
 			System.out.println(e);
 		}
 	}
 	
-	public Horaire gethDepart() {
+	public Horaire getHDepart() {
 		return hDepart;
 	}
 
-	public void sethDepart(Horaire hDepart) {
+	public void setHDepart(Horaire hDepart) {
 		this.hDepart = hDepart;
 	}
 
-	public Horaire gethArrive() {
-		return hArrive;
+	public Horaire getHArrivee() {
+		return hArrivee;
 	}
 
-	public void sethArrive(Horaire hArrive) {
-		this.hArrive = hArrive;
+	public void setHArrivee(Horaire hArrivee) {
+		this.hArrivee = hArrivee;
 	}
 }
