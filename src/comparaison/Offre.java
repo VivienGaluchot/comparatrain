@@ -1,16 +1,12 @@
 package comparaison;
 
-import java.util.ArrayList;
-
 import modele.Evaluable;
 import modele.GareHoraire;
 
-public class Offre implements Evaluable<Preference>{
-	ArrayList<OffreSimple> offre;
+public abstract class Offre implements Evaluable<Preference>{
 	Double eval;
 	
 	public Offre(){
-		offre = new ArrayList<OffreSimple>();
 		eval = null;
 	}
 	
@@ -22,22 +18,7 @@ public class Offre implements Evaluable<Preference>{
 		return res;
 	}
 	
-	public GareHoraire getDepart(){
-		return offre.get(0).depart;
-	}
+	public abstract GareHoraire getDepart();
 	
-	public GareHoraire getArrivee(){
-		return offre.get(offre.size()-1).arrivee;
-	}
-	
-	
-	/**
-	 * Affichage d'une offre
-	 */
-	public String toString(){
-		String res = "";
-		for(OffreSimple o : offre)
-			res += o + "\n";
-		return res;
-	}
+	public abstract GareHoraire getArrivee();
 }

@@ -1,11 +1,10 @@
 package comparaison;
 
-import modele.Evaluable;
 import modele.GareHoraire;
 import modele.Train;
 import modele.physique.Place;
 
-public class OffreSimple extends Offre implements Evaluable<Preference>{
+public class OffreSimple extends Offre{
 	GareHoraire depart;
 	GareHoraire arrivee;
 	
@@ -20,18 +19,20 @@ public class OffreSimple extends Offre implements Evaluable<Preference>{
 		this.place = place;
 	}
 	
-	public double eval(Preference pref) {
-		double res = 1;
-		res *= depart.eval(pref.getGDepart(),pref.getHDepart());
-		res *= arrivee.eval(pref.getGArrivee(),pref.getHArrivee());
-		eval = res;		
-		return res;
-	}	
-	
 	public OffreSimple clone(){
 		OffreSimple o = new OffreSimple(train,place,depart,arrivee);
 		o.eval = eval;
 		return o;
+	}
+	
+	@Override
+	public GareHoraire getDepart() {
+		return depart;
+	}
+
+	@Override
+	public GareHoraire getArrivee() {
+		return arrivee;
 	}
 	
 	/**

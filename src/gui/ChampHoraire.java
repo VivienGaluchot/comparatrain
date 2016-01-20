@@ -18,8 +18,6 @@ import modele.Horaire;
 
 @SuppressWarnings("serial")
 public class ChampHoraire extends JPanel{
-	JLabel label;
-	JLabel labelH;
 	JComboBox<String> comboBox;
 	JTextField jjmmaaaa;
 	JTextField hh;
@@ -35,26 +33,20 @@ public class ChampHoraire extends JPanel{
 	
 	public ChampHoraire(String labelText){
 		if(labelText.length() > 0){
-			label = new JLabel(labelText);
+			JLabel label = new JLabel(labelText);
 			add(label);
 		}
 		
 		jjmmaaaa = new JTextField(dat,10);
-		jjmmaaaa.setForeground(Color.GRAY);
-		ClearOnClick(jjmmaaaa);
 		add(jjmmaaaa);
 		
 		hh = new JTextField(heure,4);
-		hh.setForeground(Color.GRAY);
-		ClearOnClick(hh);
 		add(hh);
 		
-		labelH = new JLabel("h");
+		JLabel labelH = new JLabel("h");
 		add(labelH);
 		
 		mm = new JTextField(min,4);
-		mm.setForeground(Color.GRAY);
-		ClearOnClick(mm);
 		add(mm);
 	}
 	
@@ -66,21 +58,15 @@ public class ChampHoraire extends JPanel{
 		}
 		
 		jjmmaaaa = new JTextField(dat,10);
-		jjmmaaaa.setForeground(Color.GRAY);
-		ClearOnClick(jjmmaaaa);
 		add(jjmmaaaa);
 		
 		hh = new JTextField(heure,4);
-		hh.setForeground(Color.GRAY);
-		ClearOnClick(hh);
 		add(hh);
 		
-		labelH = new JLabel("h");
+		JLabel labelH = new JLabel("h");
 		add(labelH);
 		
 		mm = new JTextField(min,4);
-		mm.setForeground(Color.GRAY);
-		ClearOnClick(mm);
 		add(mm);
 	}
 	
@@ -109,30 +95,7 @@ public class ChampHoraire extends JPanel{
 	}
 	
 	public JComboBox<String> getComboBox(){
+		if(comboBox == null) return null;
 		return comboBox;
-	}
-	
-	public void ClearOnClick(JTextField textField){
-		textField.addFocusListener(new FocusListener(){
-			boolean init = true;
-			String initText = textField.getText();
-			
-	        public void focusGained(FocusEvent e){
-	        	if(init){
-		            textField.setText("");
-		            init = false;
-	        	}
-	        	textField.setForeground(Color.BLACK);
-	        }
-	        
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(textField.getText().length() == 0){
-					init = true;
-					textField.setForeground(Color.GRAY);
-					textField.setText(initText);
-				}
-			}
-	    });
 	}
 }

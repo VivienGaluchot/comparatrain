@@ -27,6 +27,8 @@ public class Comparateur {
 	public Resultat comparer(Preference pref){
 		Resultat resultat = new Resultat();
 		
+		// A FAIRE
+		
 		ArrayList<OffreSimple> e = trouverOffreSimple(pref);
 		
 		for(OffreSimple o : e)
@@ -35,8 +37,8 @@ public class Comparateur {
 		return resultat;
 	}
 	
-	public ArrayList<Offre> trouverOffre(Preference pref) {
-		ArrayList<Offre> resultat = new ArrayList<Offre>();
+	public ArrayList<OffreMultiple> trouverOffreMuliple(Preference pref) {
+		ArrayList<OffreMultiple> resultat = new ArrayList<OffreMultiple>();
 		
 		// A FAIRE
 		
