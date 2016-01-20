@@ -10,10 +10,8 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,9 +27,6 @@ import javax.swing.text.NumberFormatter;
 
 import comparaison.Comparateur;
 import comparaison.Preference;
-import defaut.Erreur;
-import modele.Escale;
-import modele.Gare;
 import modele.Horaire;
 
 @SuppressWarnings("serial")
