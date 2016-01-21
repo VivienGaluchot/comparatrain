@@ -37,7 +37,7 @@ public class Comparateur {
 		return resultat;
 	}
 	
-	public ArrayList<OffreMultiple> trouverOffreMuliple(Preference pref) {
+	public ArrayList<OffreMultiple> trouverOffreMultiple(Preference pref) {
 		ArrayList<OffreMultiple> resultat = new ArrayList<OffreMultiple>();
 		
 		// A FAIRE

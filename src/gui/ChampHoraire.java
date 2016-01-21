@@ -1,8 +1,6 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;

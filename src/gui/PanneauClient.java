@@ -38,7 +38,7 @@ public class PanneauClient extends JPanel {
 	private VilleGareTextField texteD;
 	private VilleGareTextField texteA;
 	
-	private ChampHoraire champHoiraire;
+	private ChampHoraire champHoraire;
 	
 	private JCheckBox cbDirect;
 	private JLabel lblNbPlaces;
@@ -132,8 +132,8 @@ public class PanneauClient extends JPanel {
 		
 		JPanel box3 = new JPanel();
 		
-			champHoiraire = new ChampHoraire("Départ","Arrivée");
-			box3.add(champHoiraire);
+			champHoraire = new ChampHoraire("Départ","Arrivée");
+			box3.add(champHoraire);
 		
 		box3.setBorder(BorderFactory.createTitledBorder("Horaires"));
 		this.add(box3);
@@ -185,13 +185,13 @@ public class PanneauClient extends JPanel {
 			 
             public void actionPerformed(ActionEvent e)
             {
-            	Horaire h = champHoiraire.getHoraire();
+            	Horaire h = champHoraire.getHoraire();
             	Preference pref = new Preference();
             	if(h.estInit()){
 	            	pref.setGares(texteD.getText(), texteA.getText());
-					if(champHoiraire.getComboBox().getSelectedItem().equals("Départ")){
+					if(champHoraire.getComboBox().getSelectedItem().equals("Départ")){
 						pref.setHDepart(h.toStringLong());	
-					}else if(champHoiraire.getComboBox().getSelectedItem().equals("Arrivée")){
+					}else if(champHoraire.getComboBox().getSelectedItem().equals("Arrivée")){
 						pref.setHArrivee(h.toStringLong());
 					}
 	                comp.comparer(pref).afficher();
