@@ -98,6 +98,15 @@ public class Donnees {
 		return res;
 	}
 	
+	
+	public ArrayList<Gare> getGares(String gare){
+		ArrayList<Gare> res = new ArrayList<Gare>();
+		for(Gare g : gares){
+			if(g.eval(gare)>0) res.add(g);
+		}
+		return res;
+	}
+	
 	// Ecriture / lecture
 	
 	@SuppressWarnings("unchecked")

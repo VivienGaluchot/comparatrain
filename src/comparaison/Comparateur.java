@@ -6,6 +6,7 @@ package comparaison;
 import java.util.ArrayList;
 
 import defaut.Donnees;
+import modele.Gare;
 import modele.Train;
 
 /**
@@ -27,24 +28,17 @@ public class Comparateur {
 	public Resultat comparer(Preference pref){
 		Resultat resultat = new Resultat();
 		
-		// A FAIRE
+		ArrayList<Offre> e = trouverOffre(pref);
 		
-		ArrayList<OffreSimple> e = trouverOffreSimple(pref);
-		
-		for(OffreSimple o : e)
+		for(Offre o : e){
+			o.eval(pref);
 			resultat.ajouter(o);
-			
-		return resultat;
-	}
-	
-	public ArrayList<OffreMultiple> trouverOffreMultiple(Preference pref) {
-		ArrayList<OffreMultiple> resultat = new ArrayList<OffreMultiple>();
-		
-		// A FAIRE
+		}
 		
 		return resultat;
 	}
 	
+	// En attendant
 	public ArrayList<OffreSimple> trouverOffreSimple(Preference pref){
 		ArrayList<OffreSimple> resultat = new ArrayList<OffreSimple>();
 		
@@ -58,6 +52,42 @@ public class Comparateur {
 		}
 			
 		return resultat;
+	}
+	
+	public ArrayList<Offre> trouverOffre(Preference pref) {
+		ArrayList<Offre> resultat = new ArrayList<Offre>();
+		
+		ArrayList<Gare> garesD = data.getGares(pref.getGDepart());
+		ArrayList<Gare> garesA = data.getGares(pref.getGArrivee());
+		
+		for(Gare gD : garesD)
+			for(Gare gA : garesA)
+				resultat.addAll(trouverOffre(gD,gA,pref.direct));
+		
+		return resultat;
+	}
+	
+	public ArrayList<Offre> trouverOffre(Gare depart, Gare arrivee, Boolean direct){
+		ArrayList<Offre> resultat = new ArrayList<Offre>();
+		
+		// OffreSimple		
+		for(Train t : data.getTrains()){
+			OffreSimple o = t.offreSimpleTrajet(depart, arrivee);
+			if(o != null) resultat.add(o);
+		}
+		
+		// OffreMultiple
+		if(direct==null || !direct){
+			// A FAIRE
+		}
+		
+		return resultat;
+	}
+	
+	public ArrayList<Offre> trouverOffreBacktrack(ArrayList<Train> trains, Gare depart, Gare arrivee){
+		// A FAIRE
+		
+		return null;
 	}
 	
 	public Donnees getData(){

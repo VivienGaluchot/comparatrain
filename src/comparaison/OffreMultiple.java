@@ -5,19 +5,23 @@ import java.util.ArrayList;
 import modele.GareHoraire;
 
 public class OffreMultiple extends Offre{
-	ArrayList<OffreSimple> offre;
+	ArrayList<OffreSimple> trains;
 	
 	public OffreMultiple(){
 		super();
-		offre = new ArrayList<OffreSimple>();
+		trains = new ArrayList<OffreSimple>();
 	}
 	
 	public GareHoraire getDepart(){
-		return offre.get(0).depart;
+		return trains.get(0).depart;
 	}
 	
 	public GareHoraire getArrivee(){
-		return offre.get(offre.size()-1).arrivee;
+		return trains.get(trains.size()-1).arrivee;
+	}
+	
+	public int getNbCorres(){
+		return trains.size()-1;
 	}
 	
 	/**
@@ -25,7 +29,7 @@ public class OffreMultiple extends Offre{
 	 */
 	public String toString(){
 		String res = "";
-		for(OffreSimple o : offre)
+		for(OffreSimple o : trains)
 			res += o + "\n";
 		return res;
 	}
