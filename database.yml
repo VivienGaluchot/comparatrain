@@ -206,20 +206,20 @@
    depart: 
       gare: *12
       horaire: 
-         serialTime: 06/01/2016 09h30
+         serialTime: 06/01/2016 08h30
    escales: 
    - !modele.Escale
       gare: *16
       horaireA: 
-         serialTime: 06/01/2016 09h45
+         serialTime: 06/01/2016 08h45
       horaireD: 
-         serialTime: 06/01/2016 09h50
+         serialTime: 06/01/2016 08h50
    - !modele.Escale
       gare: *14
       horaireA: 
-         serialTime: 06/01/2016 11h50
+         serialTime: 06/01/2016 09h10
       horaireD: 
-         serialTime: 06/01/2016 11h55
+         serialTime: 06/01/2016 09h13
    - !modele.Escale
       gare: *15
       horaireA: 

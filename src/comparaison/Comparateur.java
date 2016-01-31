@@ -31,8 +31,8 @@ public class Comparateur {
 		ArrayList<Offre> e = trouverOffre(pref);
 		
 		for(Offre o : e){
-			o.eval(pref);
-			resultat.ajouter(o);
+			if(o.eval(pref) > 0)			
+				resultat.ajouter(o);
 		}
 		
 		return resultat;

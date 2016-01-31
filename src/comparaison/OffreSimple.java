@@ -22,6 +22,7 @@ public class OffreSimple extends Offre{
 	public OffreSimple clone(){
 		OffreSimple o = new OffreSimple(train,place,depart,arrivee);
 		o.eval = eval;
+		o.id = id;
 		return o;
 	}
 	
