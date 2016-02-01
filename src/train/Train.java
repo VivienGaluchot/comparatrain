@@ -6,10 +6,12 @@ package train;
 import java.util.ArrayList;
 
 import defaut.Erreur;
+
 import elements.Escale;
 import elements.Gare;
 import elements.GareHoraire;
 import elements.Horaire;
+import elements.Segment;
 import elements.SegmentHoraire;
 
 /**
@@ -112,23 +114,23 @@ public class Train{
 		return new SegmentHoraire(depart,arrivee);
 	}
 	
-	public SegmentHoraire trouverSegment(Gare depart, Gare arrivee){
+	public SegmentHoraire trouver(Segment s){
 		int i = -1;
 		int j = -1;
 		for(int x=0;x<gares.size();x++){
-			if(gares.get(x).getId() == depart.getId()) i = x;
-			if(gares.get(x).getId() == arrivee.getId()) j = x;
+			if(gares.get(x).getId() == s.depart.getId()) i = x;
+			if(gares.get(x).getId() == s.arrivee.getId()) j = x;
 		}
 		
 		return getSegementHoraire(i,j);
 	}
 	
-	public boolean dessertSegment(Gare depart, Gare arrivee){
+	public boolean dessert(Segment s){
 		int i = -1;
 		int j = -1;
 		for(int x=0;x<gares.size();x++){
-			if(gares.get(x).getId() == depart.getId()) i = x;
-			if(gares.get(x).getId() == arrivee.getId()) j = x;
+			if(gares.get(x).getId() == s.depart.getId()) i = x;
+			if(gares.get(x).getId() == s.arrivee.getId()) j = x;
 		}
 		return i>-1 && j>i;
 	}

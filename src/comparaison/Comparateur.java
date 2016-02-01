@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import donnée.Donnees;
 import elements.Gare;
+import elements.Segment;
 import elements.SegmentHoraire;
 import train.Train;
 
@@ -47,17 +48,17 @@ public class Comparateur {
 		
 		for(Gare gD : garesD)
 			for(Gare gA : garesA)
-				resultat.addAll(trouverOffre(gD,gA,pref.direct));
+				resultat.addAll(trouverOffre(new Segment(gD,gA),pref.direct));
 		
 		return resultat;
 	}
 	
-	public ArrayList<Offre> trouverOffre(Gare depart, Gare arrivee, Boolean direct){
+	public ArrayList<Offre> trouverOffre(Segment segment, Boolean direct){
 		ArrayList<Offre> resultat = new ArrayList<Offre>();
 		
 		// OffreSimple		
 		for(Train t : data.getTrains()){
-			SegmentHoraire s = t.trouverSegment(depart, arrivee);
+			SegmentHoraire s = t.trouver(segment);
 			if(s != null) resultat.add(new OffreSimple(t,t.getPlace(),s));
 		}
 		
