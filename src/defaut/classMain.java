@@ -1,6 +1,7 @@
 package defaut;
 
 import comparaison.Comparateur;
+import donnée.Donnees;
 import gui.MaFenetre;
 
 public class classMain {
@@ -9,6 +10,7 @@ public class classMain {
 		Donnees data = new Donnees();
 		
 		data.charger("database.yml");
+		data.sauvegarder("databaseSave.yml");
 		
 		Comparateur comp = new Comparateur(data);
 		

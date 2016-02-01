@@ -1,7 +1,7 @@
 package comparaison;
 
-import modele.Evaluable;
-import modele.GareHoraire;
+import elements.Evaluable;
+import elements.GareHoraire;
 
 public abstract class Offre implements Evaluable<Preference>, Comparable<Offre>{
 	private static int compteur = 0;

@@ -15,8 +15,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import comparaison.Comparateur;
-import modele.Gare;
-import modele.Ville;
+import elements.Gare;
+import elements.Ville;
 
 @SuppressWarnings("serial")
 public class VilleGareTextField extends Champ<JTextField>{

@@ -2,26 +2,26 @@ package comparaison;
 
 import java.util.ArrayList;
 
-import modele.GareHoraire;
+import elements.GareHoraire;
 
 public class OffreMultiple extends Offre{
-	ArrayList<OffreSimple> trains;
+	ArrayList<OffreSimple> offres;
 	
 	public OffreMultiple(){
 		super();
-		trains = new ArrayList<OffreSimple>();
+		offres = new ArrayList<OffreSimple>();
 	}
 	
 	public GareHoraire getDepart(){
-		return trains.get(0).depart;
+		return offres.get(0).getDepart();
 	}
 	
 	public GareHoraire getArrivee(){
-		return trains.get(trains.size()-1).arrivee;
+		return offres.get(offres.size()-1).getArrivee();
 	}
 	
 	public int getNbCorres(){
-		return trains.size()-1;
+		return offres.size()-1;
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class OffreMultiple extends Offre{
 	 */
 	public String toString(){
 		String res = "";
-		for(OffreSimple o : trains)
+		for(OffreSimple o : offres)
 			res += o + "\n";
 		return res;
 	}

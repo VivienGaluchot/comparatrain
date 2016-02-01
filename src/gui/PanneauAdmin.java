@@ -27,9 +27,9 @@ import javax.swing.SwingConstants;
 
 import comparaison.Comparateur;
 import defaut.Erreur;
-import modele.Escale;
-import modele.Gare;
-import modele.Horaire;
+import elements.Escale;
+import elements.Gare;
+import elements.Horaire;
 
 public class PanneauAdmin extends JPanel{
 	

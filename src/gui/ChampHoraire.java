@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import defaut.Erreur;
-import modele.Horaire;
+import elements.Horaire;
 
 @SuppressWarnings("serial")
 public class ChampHoraire extends JPanel{

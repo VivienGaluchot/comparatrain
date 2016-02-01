@@ -7,7 +7,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
 import comparaison.Comparateur;
-import modele.Gare;
+import elements.Gare;
 
 @SuppressWarnings("serial")
 public class GareComboBox extends Champ<JComboBox<Gare>>{

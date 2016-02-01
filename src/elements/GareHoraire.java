@@ -1,4 +1,4 @@
-package modele;
+package elements;
 
 public class GareHoraire implements Comparable<GareHoraire>, Evaluable<GareHoraire> {
 	public Gare gare;

@@ -1,4 +1,4 @@
-package modele.physique;
+package train;
 
 public class Place {
 	Rame rame;

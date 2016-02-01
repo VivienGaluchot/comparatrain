@@ -1,4 +1,4 @@
-package modele;
+package elements;
 
 import defaut.Erreur;
 

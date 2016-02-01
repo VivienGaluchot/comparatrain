@@ -4,8 +4,7 @@
 package comparaison;
 
 import defaut.Erreur;
-
-import modele.Horaire;
+import elements.Horaire;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez

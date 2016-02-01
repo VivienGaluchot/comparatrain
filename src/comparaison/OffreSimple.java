@@ -1,26 +1,25 @@
 package comparaison;
 
-import modele.GareHoraire;
-import modele.Train;
-import modele.physique.Place;
+import elements.GareHoraire;
+import elements.SegmentHoraire;
+import train.Place;
+import train.Train;
 
 public class OffreSimple extends Offre{
-	GareHoraire depart;
-	GareHoraire arrivee;
+	SegmentHoraire segment;
 	
 	Train train;
 	Place place;
 	
-	public OffreSimple(Train train, Place place, GareHoraire depart, GareHoraire arrivee){
+	public OffreSimple(Train train, Place place, SegmentHoraire segment){
 		super();
-		this.depart = depart;
-		this.arrivee = arrivee;
+		this.segment = segment;
 		this.train = train;
 		this.place = place;
 	}
 	
 	public OffreSimple clone(){
-		OffreSimple o = new OffreSimple(train,place,depart,arrivee);
+		OffreSimple o = new OffreSimple(train,place,segment);
 		o.eval = eval;
 		o.id = id;
 		return o;
@@ -28,19 +27,19 @@ public class OffreSimple extends Offre{
 	
 	@Override
 	public GareHoraire getDepart() {
-		return depart;
+		return segment.depart;
 	}
 
 	@Override
 	public GareHoraire getArrivee() {
-		return arrivee;
+		return segment.arrivee;
 	}
 	
 	/**
 	 * Affichage d'une offre
 	 */
 	public String toString(){
-		return "Train n°" + train.getId() + " : " + depart + " --> " + arrivee + "\n"
+		return "Train n°" + train.getId() + " : " + segment + "\n"
 				+ place;
 	}
 }

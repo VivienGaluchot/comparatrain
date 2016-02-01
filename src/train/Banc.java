@@ -1,9 +1,9 @@
-package modele.physique;
+package train;
 
 import java.util.ArrayList;
 
 import comparaison.Preference;
-import modele.Evaluable;
+import elements.Evaluable;
 
 public class Banc implements Evaluable<Preference>{	
 	public static final boolean GAUCHE = false;

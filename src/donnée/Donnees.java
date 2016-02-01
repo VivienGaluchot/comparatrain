@@ -1,4 +1,4 @@
-package defaut;
+package donnée;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import modele.Gare;
-import modele.Train;
-import modele.Ville;
-
+import defaut.Erreur;
+import elements.Gare;
+import elements.Ville;
+import train.Train;
 import utilisateur.Client;
 
 import yamlbeans.YamlException;
@@ -74,10 +74,6 @@ public class Donnees {
 		trains.add(train);
 	}
 	
-	public ArrayList<Train> getTrains(){
-		return trains;
-	}
-	
 	public Client findClient(String login, String motDePasse){
 		for(Client c : clients){
 			if(c.getLogin().compareTo(login) == 0)
@@ -104,12 +100,18 @@ public class Donnees {
 		return res;
 	}
 	
+	// Getters
+	
 	public List<Gare> getGares(){
 		return Collections.unmodifiableList(gares);
 	}
 	
 	public List<Ville> getVilles(){
 		return Collections.unmodifiableList(villes);
+	}
+	
+	public List<Train> getTrains(){
+		return Collections.unmodifiableList(trains);
 	}
 	
 	
@@ -124,10 +126,10 @@ public class Donnees {
 	    ArrayList<Train> nTrains = new ArrayList<Train>();
 		try {
 			reader = new YamlReader(new FileReader("database.yml"));
-			nClients = reader.read(nClients.getClass());
-			nVilles = reader.read(nVilles.getClass());
-			nGares = reader.read(nGares.getClass());
-			nTrains = reader.read(nTrains.getClass());
+			nClients = reader.read(clients.getClass());
+			nVilles = reader.read(villes.getClass());
+			nGares = reader.read(gares.getClass());
+			nTrains = reader.read(trains.getClass());
 			System.out.println("Chargement de la base de donnée effectuée");
 			clients = nClients;
 			villes = nVilles;

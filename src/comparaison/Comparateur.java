@@ -5,9 +5,10 @@ package comparaison;
 
 import java.util.ArrayList;
 
-import defaut.Donnees;
-import modele.Gare;
-import modele.Train;
+import donnée.Donnees;
+import elements.Gare;
+import elements.SegmentHoraire;
+import train.Train;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
@@ -31,26 +32,10 @@ public class Comparateur {
 		ArrayList<Offre> e = trouverOffre(pref);
 		
 		for(Offre o : e){
-			if(o.eval(pref) > 0)			
+			if(o.eval(pref) > 0)
 				resultat.ajouter(o);
 		}
 		
-		return resultat;
-	}
-	
-	// En attendant
-	public ArrayList<OffreSimple> trouverOffreSimple(Preference pref){
-		ArrayList<OffreSimple> resultat = new ArrayList<OffreSimple>();
-		
-		for(Train t : data.getTrains()){
-			for(int i=0;i<t.nbStop();i++){
-				for(int j=i+1;j<t.nbStop();j++){
-					OffreSimple offre = t.parcourOffre(i, j);
-					if(offre.eval(pref) > 0) resultat.add(offre.clone());
-				}
-			}
-		}
-			
 		return resultat;
 	}
 	
@@ -72,8 +57,8 @@ public class Comparateur {
 		
 		// OffreSimple		
 		for(Train t : data.getTrains()){
-			OffreSimple o = t.offreSimpleTrajet(depart, arrivee);
-			if(o != null) resultat.add(o);
+			SegmentHoraire s = t.trouverSegment(depart, arrivee);
+			if(s != null) resultat.add(new OffreSimple(t,t.getPlace(),s));
 		}
 		
 		// OffreMultiple
@@ -82,12 +67,6 @@ public class Comparateur {
 		}
 		
 		return resultat;
-	}
-	
-	public ArrayList<Offre> trouverOffreBacktrack(ArrayList<Train> trains, Gare depart, Gare arrivee){
-		// A FAIRE
-		
-		return null;
 	}
 	
 	public Donnees getData(){

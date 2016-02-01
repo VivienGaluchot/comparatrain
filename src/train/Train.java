@@ -1,13 +1,16 @@
 /**
  * 
  */
-package modele;
+package train;
 
 import java.util.ArrayList;
 
-import comparaison.OffreSimple;
 import defaut.Erreur;
-import modele.physique.Place;
+import elements.Escale;
+import elements.Gare;
+import elements.GareHoraire;
+import elements.Horaire;
+import elements.SegmentHoraire;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
@@ -88,7 +91,10 @@ public class Train{
 		return true;
 	}
 	
-	public OffreSimple parcourOffre(int i, int j){
+	/**
+	 * Retourne de couple gareHoraire du trajet i-j
+	 */
+	public SegmentHoraire getSegementHoraire(int i, int j){
 		if(i<0 || j<=i || nbStop()<=j) return null;
 		GareHoraire depart = null;
 		GareHoraire arrivee = null;
@@ -103,14 +109,21 @@ public class Train{
 		else
 			arrivee = this.escales.get(j-1).getArrivee();
 		
-		return new OffreSimple(this, this.trouverPlace(), depart, arrivee);
+		return new SegmentHoraire(depart,arrivee);
 	}
 	
-	public int nbStop(){
-		return 2 + escales.size();
+	public SegmentHoraire trouverSegment(Gare depart, Gare arrivee){
+		int i = -1;
+		int j = -1;
+		for(int x=0;x<gares.size();x++){
+			if(gares.get(x).getId() == depart.getId()) i = x;
+			if(gares.get(x).getId() == arrivee.getId()) j = x;
+		}
+		
+		return getSegementHoraire(i,j);
 	}
 	
-	public boolean dessertTrajet(Gare depart, Gare arrivee){
+	public boolean dessertSegment(Gare depart, Gare arrivee){
 		int i = -1;
 		int j = -1;
 		for(int x=0;x<gares.size();x++){
@@ -120,19 +133,13 @@ public class Train{
 		return i>-1 && j>i;
 	}
 	
-	public OffreSimple offreSimpleTrajet(Gare depart, Gare arrivee){
-		int i = -1;
-		int j = -1;
-		for(int x=0;x<gares.size();x++){
-			if(gares.get(x).getId() == depart.getId()) i = x;
-			if(gares.get(x).getId() == arrivee.getId()) j = x;
-		}
-		return parcourOffre(i,j);
-	}
-	
-	public Place trouverPlace(){
+	public Place getPlace(){
 		// A FAIRE
 		return null;
+	}
+	
+	public int nbStop(){
+		return 2 + escales.size();
 	}
 	
 	// Id

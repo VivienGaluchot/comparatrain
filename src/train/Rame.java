@@ -1,9 +1,9 @@
-package modele.physique;
+package train;
 
 import java.util.ArrayList;
 
 import comparaison.Preference;
-import modele.Evaluable;
+import elements.Evaluable;
 
 public class Rame implements Evaluable<Preference>{
 	int id;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package modele;
+package elements;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez

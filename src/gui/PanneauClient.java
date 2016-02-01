@@ -27,7 +27,7 @@ import javax.swing.text.NumberFormatter;
 
 import comparaison.Comparateur;
 import comparaison.Preference;
-import modele.Horaire;
+import elements.Horaire;
 
 @SuppressWarnings("serial")
 public class PanneauClient extends JPanel {
