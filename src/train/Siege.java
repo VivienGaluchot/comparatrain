@@ -5,18 +5,18 @@ package train;
 
 import comparaison.Preference;
 import elements.Evaluable;
+import elements.Identified;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
-public class Siege implements Evaluable<Preference>{
+public class Siege extends Identified implements Evaluable<Preference>{
 	public static final boolean AVANT = true;
 	public static final boolean ARRIERE = false;
 	public static final boolean FENETRE = true;
 	public static final boolean COULOIR = false;
 	
-	private Integer id;
 	boolean sens;
 	boolean cote;
 	
@@ -58,13 +58,5 @@ public class Siege implements Evaluable<Preference>{
 		else
 			res = "n";
 		return res;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 }

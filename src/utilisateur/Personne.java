@@ -1,6 +1,8 @@
 package utilisateur;
 
-public class Personne {
+import elements.Identified;
+
+public class Personne extends Identified{
 	private String prenom;
 	private String nom;
 	

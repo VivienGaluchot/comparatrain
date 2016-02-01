@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import comparaison.Preference;
 import elements.Evaluable;
+import elements.Identified;
 
-public class Rame implements Evaluable<Preference>{
-	int id;
+public class Rame extends Identified implements Evaluable<Preference>{
 	ArrayList<Wagon> wagons;
 	
 	public Rame(int i){
-		id = i;
+		setId(i);
 		wagons = new ArrayList<Wagon>();
 		
 		wagons.add(new WagonPremiere(0));

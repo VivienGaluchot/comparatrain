@@ -18,6 +18,7 @@ import train.Train;
 public class Comparateur {
 	
 	private Donnees data;
+	private GrapheCorrespondances graphe;
 	
 	public Comparateur(){
 		data = new Donnees();
@@ -25,6 +26,7 @@ public class Comparateur {
 	
 	public Comparateur(Donnees d){
 		data = d;
+		buildGraph();
 	}
 	
 	public Resultat comparer(Preference pref){
@@ -68,6 +70,14 @@ public class Comparateur {
 		}
 		
 		return resultat;
+	}
+	
+	public void buildGraph(){
+		graphe = new GrapheCorrespondances();
+		for(Train t : data.getTrains()){
+			graphe.addTrain(t);
+		}
+		graphe.connect();
 	}
 	
 	public Donnees getData(){

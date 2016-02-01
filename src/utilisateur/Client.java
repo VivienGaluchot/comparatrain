@@ -1,7 +1,6 @@
 package utilisateur;
 
 public class Client extends Personne{
-	private Integer id;
 	private String login;
 	private String motDePasse;
 	
@@ -22,15 +21,6 @@ public class Client extends Personne{
 	public String toString(){
 		String res = "Client n°" + getId() + " : " + getLogin();
 		return res;
-	}
-	
-	// Id
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	// Login

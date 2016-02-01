@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import comparaison.Preference;
 import elements.Evaluable;
+import elements.Identified;
 
-public class Wagon implements Evaluable<Preference>{
+public class Wagon extends Identified implements Evaluable<Preference>{
 	public static final int PREMIERE = 1;
 	public static final int SECONDE = 2;
 	public static final int BAR = 3;
 	
-	private int id;
 	int type;
 	
 	ArrayList<Banc> bancs;
@@ -74,14 +74,6 @@ public class Wagon implements Evaluable<Preference>{
 		}
 		
 		return res;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 }
 

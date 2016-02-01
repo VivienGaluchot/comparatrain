@@ -4,12 +4,10 @@ package elements;
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
-public class Ville {
-	private Integer id;
+public class Ville extends Identified{
 	private String nom;
 	
 	public Ville(){
-		id = null;
 		nom = null;
 	}
 	
@@ -28,13 +26,5 @@ public class Ville {
 
 	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 }

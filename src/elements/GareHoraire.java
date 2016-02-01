@@ -1,5 +1,7 @@
 package elements;
 
+import java.time.Duration;
+
 public class GareHoraire implements Comparable<GareHoraire>, Evaluable<GareHoraire> {
 	public Gare gare;
 	public Horaire horaire;
@@ -20,6 +22,17 @@ public class GareHoraire implements Comparable<GareHoraire>, Evaluable<GareHorai
 	
 	public int compareTo(GareHoraire o){
 		return horaire.compareTo(o.horaire);
+	}
+	
+	/**
+	 * Est connecté si est avant (o.horaire+durée d'escale),
+	 * moins de 5h avant o.horaire
+	 * meme gare de o
+	 */
+	public boolean isConnectedTo(GareHoraire o){
+		Duration delta = gare.isConnectedTo(o.gare);
+		if(delta == null) return false;		
+		return horaire.isConnectedTo(o.horaire, delta);
 	}
 
 	public double eval(GareHoraire o) {

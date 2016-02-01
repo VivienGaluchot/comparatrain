@@ -11,6 +11,7 @@ import elements.Escale;
 import elements.Gare;
 import elements.GareHoraire;
 import elements.Horaire;
+import elements.Identified;
 import elements.Segment;
 import elements.SegmentHoraire;
 
@@ -18,10 +19,7 @@ import elements.SegmentHoraire;
  * @author Vivien Galuchot - Vincent Hernandez
  * Classe de train
  */
-public class Train{
-	
-	protected Integer id;
-	
+public class Train extends Identified{	
 	private GareHoraire depart;
 	private ArrayList<Escale> escales;
 	private GareHoraire arrivee;
@@ -31,7 +29,6 @@ public class Train{
 	
 	// Constructeurs	
 	public Train(){
-		id = null;
 		depart = null;
 		escales = null;	
 		arrivee = null;	
@@ -39,7 +36,7 @@ public class Train{
 	}
 	
 	public Train(Integer i){
-		id = i;
+		setId(i);
 		depart = null;
 		escales = null;	
 		arrivee = null;
@@ -47,7 +44,7 @@ public class Train{
 	}
 	
 	public Train (Integer i, GareHoraire d, ArrayList<Escale> e, GareHoraire a) throws Erreur{
-		id = i;
+		setId(i)
 		depart = d;
 		escales = e;	
 		arrivee = a;
@@ -96,7 +93,7 @@ public class Train{
 	/**
 	 * Retourne de couple gareHoraire du trajet i-j
 	 */
-	public SegmentHoraire getSegementHoraire(int i, int j){
+	public SegmentHoraire getSegmentHoraire(int i, int j){
 		if(i<0 || j<=i || nbStop()<=j) return null;
 		GareHoraire depart = null;
 		GareHoraire arrivee = null;
@@ -122,7 +119,7 @@ public class Train{
 			if(gares.get(x).getId() == s.arrivee.getId()) j = x;
 		}
 		
-		return getSegementHoraire(i,j);
+		return getSegmentHoraire(i,j);
 	}
 	
 	public boolean dessert(Segment s){
@@ -142,15 +139,6 @@ public class Train{
 	
 	public int nbStop(){
 		return 2 + escales.size();
-	}
-	
-	// Id
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 		
 	// Depart

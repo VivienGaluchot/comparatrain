@@ -3,17 +3,17 @@
  */
 package elements;
 
+import java.time.Duration;
+
 /**
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
-public class Gare implements Evaluable<Gare>, Comparable<Gare>{
-	private Integer id;
+public class Gare extends Identified implements Evaluable<Gare>, Comparable<Gare>{
 	private String nom;
 	private Ville ville;
 	
 	public Gare(){
-		id = null;
 		nom = null;
 		ville = null;
 	}
@@ -42,6 +42,17 @@ public class Gare implements Evaluable<Gare>, Comparable<Gare>{
 		else res = 0;
 		return res;
 	}
+	
+	/**
+	 * Pour le moment toutes les gares sont a 15 minutes
+	 */
+	public Duration isConnectedTo(Gare g){
+		if(this == g)
+			return Duration.ofMinutes(0);
+		if(this.getVille() == g.getVille())
+			return Duration.ofMinutes(15);
+		return null;
+	}
 
 	public String getNom() {
 		return nom;
@@ -49,14 +60,6 @@ public class Gare implements Evaluable<Gare>, Comparable<Gare>{
 
 	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public Ville getVille() {

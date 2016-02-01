@@ -1,9 +1,11 @@
 package elements;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAmount;
 
 import defaut.Erreur;
 
@@ -68,12 +70,25 @@ public class Horaire implements Evaluable<Horaire>, Comparable<Horaire>{
 		return time.format(formatterCourt);
 	}
 	
-	// Utilitaires
 	public String toStringLong(){
 		return time.format(formatter);
 	}
 	
 	public int compareTo(Horaire h){
 		return time.compareTo(h.time);
+	}
+	
+	/**
+	 * Est connecté si est avant (o.horaire+d),
+	 * moins de 5h avant o.horaire
+	 */
+	public boolean isConnectedTo(Horaire o, Duration d){
+		LocalDateTime min = time.minus(d);
+		// A FAIRE
+		return true;
+	}
+	
+	public Horaire minus(TemporalAmount amount){
+		return new Horaire(time.minus(amount));
 	}
 }
