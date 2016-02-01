@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import modele.Gare;
 import modele.Train;
@@ -27,17 +29,18 @@ public class Donnees {
 	private ArrayList<Train> trains;
 	
 	public Donnees(){
-		setVilles(new ArrayList<Ville>());
-		setGares(new ArrayList<Gare>());
+		clients = new ArrayList<Client>();
+		villes = new ArrayList<Ville>();
+		gares = new ArrayList<Gare>();
 		trains = new ArrayList<Train>();
 	}
 	
 	public void afficher(){
-		for(Ville v : getVilles()){
+		for(Ville v : villes){
 			System.out.println(v);
 		}
 		System.out.println("---");
-		for(Gare g : getGares()){
+		for(Gare g : gares){
 			System.out.println(g);
 		}
 		System.out.println("---");
@@ -46,7 +49,7 @@ public class Donnees {
 		}
 	}
 	
-	// Données
+	// Utilitaires
 	public void addClient(Client client) throws Erreur{
 		for(Client c : clients)
 			if(client.getId() == c.getId()) throw new Erreur(Erreur.EXISTE);
@@ -54,15 +57,15 @@ public class Donnees {
 	}
 	
 	public void addVille(Ville ville) throws Erreur{
-		for(Ville v : getVilles())
+		for(Ville v : villes)
 			if(ville.getId() == v.getId()) throw new Erreur(Erreur.EXISTE);
-		getVilles().add(ville);
+		villes.add(ville);
 	}
 	
 	public void addGare(Gare gare) throws Erreur{
-		for(Gare g : getGares())
+		for(Gare g : gares)
 			if(gare.getId() == g.getId()) throw new Erreur(Erreur.EXISTE);
-		getGares().add(gare);
+		gares.add(gare);
 	}
 	
 	public void addTrain(Train train) throws Erreur{
@@ -75,11 +78,6 @@ public class Donnees {
 		return trains;
 	}
 	
-	// Utilitaires
-	/**
-	 * Renvois le client associé au login et motDePasse donnés,
-	 * Renvois null si aucun client est trouvé
-	 */
 	public Client findClient(String login, String motDePasse){
 		for(Client c : clients){
 			if(c.getLogin().compareTo(login) == 0)
@@ -90,14 +88,13 @@ public class Donnees {
 	}
 	
 	public Gare[] getGaresAlph(){
-		getGares().sort(null);
-		Gare[] res = new Gare[getGares().size()];
+		gares.sort(null);
+		Gare[] res = new Gare[gares.size()];
 		for( int i=0;i<res.length;i++){
-			res[i]=getGares().get(i);
+			res[i]=gares.get(i);
 		}
 		return res;
 	}
-	
 	
 	public ArrayList<Gare> getGares(String gare){
 		ArrayList<Gare> res = new ArrayList<Gare>();
@@ -107,7 +104,16 @@ public class Donnees {
 		return res;
 	}
 	
-	// Ecriture / lecture
+	public List<Gare> getGares(){
+		return Collections.unmodifiableList(gares);
+	}
+	
+	public List<Ville> getVilles(){
+		return Collections.unmodifiableList(villes);
+	}
+	
+	
+	// Sauvegarde - Chargement
 	
 	@SuppressWarnings("unchecked")
 	public void charger(String fichier){
@@ -124,8 +130,8 @@ public class Donnees {
 			nTrains = reader.read(nTrains.getClass());
 			System.out.println("Chargement de la base de donnée effectuée");
 			clients = nClients;
-			setVilles(nVilles);
-			setGares(nGares);
+			villes = nVilles;
+			gares = nGares;
 			trains = nTrains;
 		} catch (FileNotFoundException | YamlException e1) {
 			e1.printStackTrace();
@@ -137,29 +143,13 @@ public class Donnees {
 		try {
 			test = new YamlWriter(new FileWriter(fichier));
 			test.write(clients);
-			test.write(getVilles());
-			test.write(getGares());
+			test.write(villes);
+			test.write(gares);
 			test.write(trains);
 			test.close();
 			System.out.println("Sauvegarde de la base de donnée effectuée");
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-	}
-
-	public ArrayList<Ville> getVilles() {
-		return villes;
-	}
-
-	public void setVilles(ArrayList<Ville> villes) {
-		this.villes = villes;
-	}
-
-	public ArrayList<Gare> getGares() {
-		return gares;
-	}
-
-	public void setGares(ArrayList<Gare> gares) {
-		this.gares = gares;
 	}
 }
