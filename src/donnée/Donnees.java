@@ -130,10 +130,10 @@ public class Donnees {
 			nVilles = reader.read(villes.getClass());
 			nGares = reader.read(gares.getClass());
 			nTrains = reader.read(trains.getClass());
-			System.out.println("Chargement de la base de donnée effectuée");
-			System.out.println(nClients.size() + " clients");
-			System.out.println(nVilles.size() + " villes");
-			System.out.println(nGares.size() + " gares");
+			System.out.println("Chargement de la base de donnée effectuée :");
+			System.out.print(nClients.size() + " clients, ");
+			System.out.print(nVilles.size() + " villes, ");
+			System.out.print(nGares.size() + " gares, ");
 			System.out.println(nTrains.size() + " trains");
 			clients = nClients;
 			villes = nVilles;

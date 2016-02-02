@@ -82,7 +82,7 @@ public class Horaire implements Evaluable<Horaire>, Comparable<Horaire>{
 	 * (time) avant (o.time - d)
 	 * (time) apres (o.time - 5h)
 	 */
-	public boolean isConnectedTo(Horaire o, Duration d){
+	public boolean isConnectableTo(Horaire o, Duration d){
 		LocalDateTime A = o.time.minus(d);
 		LocalDateTime B = o.time.minus(Duration.ofHours(5));
 		

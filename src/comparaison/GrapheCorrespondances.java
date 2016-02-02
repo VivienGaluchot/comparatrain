@@ -1,7 +1,6 @@
 package comparaison;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.jgrapht.alg.FloydWarshallShortestPaths;
 import org.jgrapht.graph.DefaultDirectedGraph;
@@ -47,15 +46,12 @@ public class GrapheCorrespondances {
 	
 	public void connect(){
 		FloydWarshallShortestPaths<GareHoraire, SegmentHoraire> FloydWarshallPath = new FloydWarshallShortestPaths<GareHoraire, SegmentHoraire>(graph);
-		
-		int i = 0;
-		
+		int i = 0;		
 		for(GareHoraire A : arrivees){
 			for(GareHoraire B : departs){
 				if(!A.equals(B)){
-					if(A.isConnectedTo(B)){
+					if(A.isConnectableTo(B)){
 						if(FloydWarshallPath.getShortestPath(A,B) == null){
-							System.out.println(A + " --- " + B);
 							i++;
 							graph.addEdge(A, B, new SegmentHoraire(A,B));
 						}

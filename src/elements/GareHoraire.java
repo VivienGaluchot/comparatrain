@@ -29,10 +29,10 @@ public class GareHoraire implements Comparable<GareHoraire>, Evaluable<GareHorai
 	 * moins de 5h avant o.horaire
 	 * meme gare de o
 	 */
-	public boolean isConnectedTo(GareHoraire o){
-		Duration delta = gare.isConnectedTo(o.gare);
+	public boolean isConnectableTo(GareHoraire o){
+		Duration delta = gare.isConnectableTo(o.gare);
 		if(delta == null) return false;		
-		return horaire.isConnectedTo(o.horaire, delta);
+		return horaire.isConnectableTo(o.horaire, delta);
 	}
 
 	public double eval(GareHoraire o) {
