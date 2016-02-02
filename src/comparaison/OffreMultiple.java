@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import elements.GareHoraire;
 
 public class OffreMultiple extends Offre{
-	ArrayList<OffreSimple> offres;
+	private ArrayList<OffreSimple> offres;
 	
 	public OffreMultiple(){
 		super();
@@ -22,6 +22,10 @@ public class OffreMultiple extends Offre{
 	
 	public int getNbCorres(){
 		return offres.size()-1;
+	}
+	
+	public void addOffreSimple(OffreSimple o){
+		offres.add(o);
 	}
 	
 	/**

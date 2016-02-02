@@ -1,7 +1,9 @@
 package comparaison;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.jgrapht.GraphPath;
 import org.jgrapht.alg.FloydWarshallShortestPaths;
 import org.jgrapht.graph.DefaultDirectedGraph;
 
@@ -11,6 +13,7 @@ import train.Train;
 
 public class GrapheCorrespondances {
 	DefaultDirectedGraph<GareHoraire, SegmentHoraire> graph;
+	FloydWarshallShortestPaths<GareHoraire, SegmentHoraire> FloydWarshallPath;
 	
 	// Listes permettant de calculer les connections
 	ArrayList<GareHoraire> departs;
@@ -20,6 +23,10 @@ public class GrapheCorrespondances {
 		graph = new DefaultDirectedGraph<GareHoraire,SegmentHoraire>(SegmentHoraire.class);
 		departs = new ArrayList<GareHoraire>();
 		arrivees = new ArrayList<GareHoraire>();
+	}
+	
+	private void computeFloydWarshallPath(){
+		FloydWarshallPath = new FloydWarshallShortestPaths<GareHoraire, SegmentHoraire>(graph);
 	}
 	
 	public void addTrain(Train t){
@@ -45,7 +52,7 @@ public class GrapheCorrespondances {
 	}
 	
 	public void connect(){
-		FloydWarshallShortestPaths<GareHoraire, SegmentHoraire> FloydWarshallPath = new FloydWarshallShortestPaths<GareHoraire, SegmentHoraire>(graph);
+		computeFloydWarshallPath();
 		int i = 0;		
 		for(GareHoraire A : arrivees){
 			for(GareHoraire B : departs){
@@ -59,7 +66,18 @@ public class GrapheCorrespondances {
 				}
 			}
 		}
-		
+		computeFloydWarshallPath();
 		System.out.println(i + " connexions réalisées");
+	}
+	
+	public ArrayList<Offre> trouverOffre(SegmentHoraire segment){
+		ArrayList<Offre> resultat = new ArrayList<Offre>();
+		
+		GraphPath<GareHoraire, SegmentHoraire> path = FloydWarshallPath.getShortestPath(segment.depart, segment.arrivee);
+		List<SegmentHoraire> list = path.getEdgeList();
+		
+		// A FAIRE - DUR
+		
+		return resultat;
 	}
 }
