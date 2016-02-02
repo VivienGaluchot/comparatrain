@@ -44,7 +44,7 @@ public class Train extends Identified{
 	}
 	
 	public Train (Integer i, GareHoraire d, ArrayList<Escale> e, GareHoraire a) throws Erreur{
-		setId(i)
+		setId(i);
 		depart = d;
 		escales = e;	
 		arrivee = a;

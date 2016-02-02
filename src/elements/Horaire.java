@@ -79,16 +79,21 @@ public class Horaire implements Evaluable<Horaire>, Comparable<Horaire>{
 	}
 	
 	/**
-	 * Est connecté si est avant (o.horaire+d),
-	 * moins de 5h avant o.horaire
+	 * (time) avant (o.time - d)
+	 * (time) apres (o.time - 5h)
 	 */
 	public boolean isConnectedTo(Horaire o, Duration d){
-		LocalDateTime min = time.minus(d);
-		// A FAIRE
-		return true;
+		LocalDateTime A = o.time.minus(d);
+		LocalDateTime B = o.time.minus(Duration.ofHours(5));
+		
+		return time.isBefore(A) && time.isAfter(B);
 	}
 	
 	public Horaire minus(TemporalAmount amount){
 		return new Horaire(time.minus(amount));
+	}
+	
+	public boolean equals(Horaire h){
+		return time.equals(h.time);
 	}
 }

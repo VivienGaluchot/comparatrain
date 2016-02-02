@@ -36,18 +36,21 @@ public class GrapheCorrespondances {
 		GareHoraire depart;
 		GareHoraire arrivee;
 		
+		int i = 0;
+		
 		Iterator<GareHoraire> i1 = set.iterator();
 		while(i1.hasNext()){
 			depart = i1.next();
 			Iterator<GareHoraire> i2 = set.iterator();
 			while(i2.hasNext()){
 				arrivee = i2.next();
-				if(depart != arrivee){
-					if(depart.isConnectedTo(arrivee) ){
-						
-					}
+				if(depart != arrivee &&	depart.isConnectedTo(arrivee) && graph.getAllEdges(depart, arrivee)==null){
+						i++;
+						graph.addEdge(depart, arrivee, new SegmentHoraire(depart,arrivee));
 				}
 			}
 		}
+		
+		System.out.println(i + " connections réalisées");
 	}
 }

@@ -52,25 +52,25 @@ public class Donnees {
 	// Utilitaires
 	public void addClient(Client client) throws Erreur{
 		for(Client c : clients)
-			if(client.getId() == c.getId()) throw new Erreur(Erreur.EXISTE);
+			if(client.equals(c)) throw new Erreur(Erreur.EXISTE);
 		clients.add(client);
 	}
 	
 	public void addVille(Ville ville) throws Erreur{
 		for(Ville v : villes)
-			if(ville.getId() == v.getId()) throw new Erreur(Erreur.EXISTE);
+			if(ville.equals(v)) throw new Erreur(Erreur.EXISTE);
 		villes.add(ville);
 	}
 	
 	public void addGare(Gare gare) throws Erreur{
 		for(Gare g : gares)
-			if(gare.getId() == g.getId()) throw new Erreur(Erreur.EXISTE);
+			if(gare.equals(g)) throw new Erreur(Erreur.EXISTE);
 		gares.add(gare);
 	}
 	
 	public void addTrain(Train train) throws Erreur{
 		for(Train t : trains)
-			if(train.getId() == t.getId()) throw new Erreur(Erreur.EXISTE);
+			if(train.equals(t)) throw new Erreur(Erreur.EXISTE);
 		trains.add(train);
 	}
 	

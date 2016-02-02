@@ -47,9 +47,9 @@ public class Gare extends Identified implements Evaluable<Gare>, Comparable<Gare
 	 * Pour le moment toutes les gares sont a 15 minutes
 	 */
 	public Duration isConnectedTo(Gare g){
-		if(this == g)
+		if(this.equals(g))
 			return Duration.ofMinutes(0);
-		if(this.getVille() == g.getVille())
+		if(this.getVille().equals(g.getVille()))
 			return Duration.ofMinutes(15);
 		return null;
 	}

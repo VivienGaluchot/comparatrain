@@ -2,6 +2,10 @@ package defaut;
 
 import comparaison.Comparateur;
 import donnée.Donnees;
+import elements.Gare;
+import elements.GareHoraire;
+import elements.Horaire;
+import elements.Ville;
 import gui.MaFenetre;
 
 public class classMain {

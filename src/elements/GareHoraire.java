@@ -55,4 +55,8 @@ public class GareHoraire implements Comparable<GareHoraire>, Evaluable<GareHorai
 			res *= horaire.eval(h);
 		return res;
 	}
+	
+	public boolean equals(GareHoraire h){
+		return gare.equals(h.gare) && horaire.equals(h.horaire);
+	}
 }
