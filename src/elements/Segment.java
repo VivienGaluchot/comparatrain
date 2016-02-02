@@ -10,6 +10,6 @@ public class Segment {
 	}
 	
 	public String toString(){
-		return depart + " " + arrivee;
+		return depart + " --> " + arrivee;
 	}
 }

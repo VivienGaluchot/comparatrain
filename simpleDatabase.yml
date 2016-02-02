@@ -1,0 +1,163 @@
+- !utilisateur.Client
+   id: 0
+   login: Herta
+   motDePasse: '654321'
+   nom: Bon
+   prenom: Jean
+- !utilisateur.Client
+   id: 1
+   login: Herta2
+   motDePasse: '789'
+   nom: Bon
+   prenom: JeanPatric
+- !utilisateur.Client
+   id: 2
+   login: Pamoul
+   motDePasse: '123456'
+   nom: Moulu
+   prenom: Patrice
+- !utilisateur.Client
+   id: 3
+   login: Vivien
+   motDePasse: 'mdp'
+   nom: Vivien
+   prenom: Galuchot
+---
+- &1 !elements.Ville
+   id: 0
+   nom: Paris
+- &2 !elements.Ville
+   id: 1
+   nom: Marseille
+- &3 !elements.Ville
+   id: 2
+   nom: Nantes
+- &4 !elements.Ville
+   id: 3
+   nom: Avignon
+- &5 !elements.Ville
+   id: 4
+   nom: Lyon
+- &6 !elements.Ville
+   id: 5
+   nom: Aix-en-Provence
+- &7 !elements.Ville
+   id: 6
+   nom: Angers
+- &8 !elements.Ville
+   id: 7
+   nom: Strasbourg
+- &9 !elements.Ville
+   id: 8
+   nom: Reims
+--- 
+- &10 !elements.Gare
+   id: 0
+   nom: Gare de Lyon
+   ville: *1
+- !elements.Gare
+   id: 1
+   nom: Gare du Nord
+   ville: *1
+- !elements.Gare
+   id: 2
+   nom: Gare Montparnasse
+   ville: *1
+- &11 !elements.Gare
+   id: 3
+   nom: Massy TGV
+   ville: *1
+- &12 !elements.Gare
+   id: 4
+   nom: Gare Saint Charles
+   ville: *2
+- &13 !elements.Gare
+   id: 5
+   nom: Gare de Nantes
+   ville: *3
+- &14 !elements.Gare
+   id: 6
+   nom: Avignon TGV
+   ville: *4
+- !elements.Gare
+   id: 7
+   nom: Avignon centre
+   ville: *4
+- &15 !elements.Gare
+   id: 8
+   nom: Lyon Pardieu
+   ville: *5
+- &16 !elements.Gare
+   id: 9
+   nom: Aix-en-Provence TVG
+   ville: *6
+- &17 !elements.Gare
+   id: 10
+   nom: Angers Saint-Laud
+   ville: *7
+- &18 !elements.Gare
+   id: 11
+   nom: Gare de Strasbourg
+   ville: *8
+- &19 !elements.Gare
+   id: 12
+   nom: Gare de Champagne-Ardenne TGV
+   ville: *9
+--- 
+- !train.Train
+   id: 5642
+   depart: 
+      gare: *12 # St Charles
+      horaire: 
+         serialTime: 06/01/2016 08h30
+   escales: 
+   - !elements.Escale
+      gare: *14 # Avignon
+      horaireA: 
+         serialTime: 06/01/2016 09h10
+      horaireD: 
+         serialTime: 06/01/2016 09h13
+   - !elements.Escale
+      gare: *15 # Lyon Pardieux
+      horaireA: 
+         serialTime: 06/01/2016 10h12
+      horaireD: 
+         serialTime: 06/01/2016 10h20
+   arrivee: 
+      gare: *10 # Gare de Lyon
+      horaire: 
+         serialTime: 06/01/2016 13h00
+- !train.Train
+   id: 7010
+   depart: 
+      gare: *10 # Gare de Lyon
+      horaire: 
+         serialTime: 06/01/2016 13h30
+   escales: 
+   - !elements.Escale
+      gare: *19 # Champagne-Ardenne
+      horaireA: 
+         serialTime: 06/01/2016 15h45
+      horaireD: 
+         serialTime: 06/01/2016 15h50
+   arrivee: 
+      gare: *18 # Strasbourg
+      horaire: 
+         serialTime: 06/01/2016 17h00
+- !train.Train
+   id: 4050
+   depart: 
+      gare: *15 # Lyon Pardieux
+      horaire: 
+         serialTime: 06/01/2016 13h30
+   escales: 
+   - !elements.Escale
+      gare: *11 # Massy
+      horaireA: 
+         serialTime: 06/01/2016 16h00
+      horaireD: 
+         serialTime: 06/01/2016 16h10
+   arrivee: 
+      gare: *13 # Nantes
+      horaire: 
+         serialTime: 06/01/2016 19h00

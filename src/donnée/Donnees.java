@@ -120,22 +120,26 @@ public class Donnees {
 	@SuppressWarnings("unchecked")
 	public void charger(String fichier){
 	    YamlReader reader;
-	    ArrayList<Client> nClients = new ArrayList<Client>();
-	    ArrayList<Ville> nVilles = new ArrayList<Ville>();
-	    ArrayList<Gare> nGares = new ArrayList<Gare>();
-	    ArrayList<Train> nTrains = new ArrayList<Train>();
+	    ArrayList<Client> nClients;
+	    ArrayList<Ville> nVilles;
+	    ArrayList<Gare> nGares;
+	    ArrayList<Train> nTrains;
 		try {
-			reader = new YamlReader(new FileReader("database.yml"));
+			reader = new YamlReader(new FileReader(fichier));
 			nClients = reader.read(clients.getClass());
 			nVilles = reader.read(villes.getClass());
 			nGares = reader.read(gares.getClass());
 			nTrains = reader.read(trains.getClass());
 			System.out.println("Chargement de la base de donnée effectuée");
+			System.out.println(nClients.size() + " clients");
+			System.out.println(nVilles.size() + " villes");
+			System.out.println(nGares.size() + " gares");
+			System.out.println(nTrains.size() + " trains");
 			clients = nClients;
 			villes = nVilles;
 			gares = nGares;
 			trains = nTrains;
-		} catch (FileNotFoundException | YamlException e1) {
+		} catch (FileNotFoundException | YamlException | NullPointerException e1) {
 			e1.printStackTrace();
 		}
 	}

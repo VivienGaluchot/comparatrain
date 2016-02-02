@@ -108,7 +108,7 @@ public class Train extends Identified{
 		else
 			arrivee = this.escales.get(j-1).getArrivee();
 		
-		return new SegmentHoraire(depart,arrivee);
+		return new SegmentHoraire(this,depart,arrivee);
 	}
 	
 	public SegmentHoraire trouver(Segment s){
@@ -138,6 +138,7 @@ public class Train extends Identified{
 	}
 	
 	public int nbStop(){
+		if(escales == null) return 2;
 		return 2 + escales.size();
 	}
 		
