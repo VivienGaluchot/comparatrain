@@ -1,30 +1,34 @@
 package comparaison;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.alg.FloydWarshallShortestPaths;
 import org.jgrapht.graph.DefaultDirectedGraph;
 
-import donnée.Donnees;
 import elements.GareHoraire;
 import elements.SegmentHoraire;
-import gui.MaFenetre;
 import train.Train;
 
 public class GrapheCorrespondances {
-	DefaultDirectedGraph<GareHoraire, SegmentHoraire> graph;
+	DefaultDirectedGraph<GareHoraire, OffreSegment> graph;
 	
 	// Listes permettant de calculer les connections
+	
 	ArrayList<GareHoraire> departs;
 	ArrayList<GareHoraire> arrivees;
 	
-	public GrapheCorrespondances(){
-		graph = new DefaultDirectedGraph<GareHoraire,SegmentHoraire>(SegmentHoraire.class);
+	public GrapheCorrespondances(List<Train> trains){
+		graph = new DefaultDirectedGraph<GareHoraire,OffreSegment>(OffreSegment.class);
 		departs = new ArrayList<GareHoraire>();
 		arrivees = new ArrayList<GareHoraire>();
+		
+		for(Train t : trains){
+			addTrain(t);
+		}
+		
+		connect();
 	}
 	
 	public void addTrain(Train t){
@@ -41,16 +45,16 @@ public class GrapheCorrespondances {
 			departs.add(segment.depart);
 			arrivees.add(segment.arrivee);
 			
-			graph.addEdge(segment.depart, segment.arrivee, segment);
+			graph.addEdge(segment.depart, segment.arrivee, new OffreSegment(t,t.getPlace(),segment));
 			
 			if(prevSegment != null){
-				graph.addEdge(prevSegment.arrivee, segment.depart,new SegmentHoraire(t,prevSegment.arrivee, segment.depart));
+				graph.addEdge(prevSegment.arrivee, segment.depart, new OffreSegment(t,t.getPlace(),prevSegment.arrivee, segment.depart));
 			}
 		}
 	}
 	
 	public void connect(){
-		FloydWarshallShortestPaths<GareHoraire, SegmentHoraire> FloydWarshallPath = new FloydWarshallShortestPaths<GareHoraire, SegmentHoraire>(graph);
+		FloydWarshallShortestPaths<GareHoraire, OffreSegment> FloydWarshallPath = new FloydWarshallShortestPaths<GareHoraire, OffreSegment>(graph);
 		
 		int i = 0;		
 		for(GareHoraire A : arrivees){
@@ -59,7 +63,7 @@ public class GrapheCorrespondances {
 					if(A.isConnectableTo(B)){
 						if(FloydWarshallPath.getShortestPath(A,B) == null){
 							i++;
-							graph.addEdge(A, B, new SegmentHoraire(A,B));
+							graph.addEdge(A, B, new OffreSegment(null,null,A,B));
 						}
 					}
 				}
@@ -70,13 +74,13 @@ public class GrapheCorrespondances {
 	
 	public List<Offre> trouverOffre(SegmentHoraire segment){
 		ArrayList<Offre> resultat = new ArrayList<Offre>();
-		DijkstraShortestPath<GareHoraire, SegmentHoraire> dijkstra = null;
-		List<SegmentHoraire> list = null;
+		DijkstraShortestPath<GareHoraire, OffreSegment> dijkstra = null;
+		List<OffreSegment> list = null;
 		
-		DefaultDirectedGraph<GareHoraire, SegmentHoraire> tempGraph = (DefaultDirectedGraph<GareHoraire, SegmentHoraire>) graph.clone();
+		DefaultDirectedGraph<GareHoraire, OffreSegment> tempGraph = (DefaultDirectedGraph<GareHoraire, OffreSegment>) graph.clone();
 		
 		do{
-			dijkstra = new DijkstraShortestPath<GareHoraire, SegmentHoraire>(tempGraph,segment.depart,segment.arrivee);
+			dijkstra = new DijkstraShortestPath<GareHoraire, OffreSegment>(tempGraph,segment.depart,segment.arrivee);
 			list = dijkstra.getPathEdgeList();
 			if(list != null){
 				resultat.add(fabriquerOffre(list));
@@ -87,13 +91,13 @@ public class GrapheCorrespondances {
 		return resultat;
 	}
 	
-	public Offre fabriquerOffre(List<SegmentHoraire> segments){
-		OffreMultiple o = new OffreMultiple();
+	public Offre fabriquerOffre(List<OffreSegment> segments){
+		Offre o = new Offre();
 		Train train = null;
 		GareHoraire depart = null;
 		GareHoraire arrivee = null;
 		
-		for(SegmentHoraire s : segments){
+		for(OffreSegment s : segments){
 			if(s.train != train){
 				if(depart != null && arrivee != null){
 					o.addOffreSimple(train,train.getPlace(),new SegmentHoraire(train,depart,arrivee));
@@ -102,10 +106,10 @@ public class GrapheCorrespondances {
 				}
 				else{
 					train = s.train;
-					depart = s.depart;
+					depart = s.getDepart();
 				}
 			}
-			arrivee = s.arrivee;
+			arrivee = s.getArrivee();
 		}
 		o.addOffreSimple(train,train.getPlace(),new SegmentHoraire(train,depart,arrivee));
 		

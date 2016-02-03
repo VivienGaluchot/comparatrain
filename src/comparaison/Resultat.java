@@ -1,6 +1,7 @@
 package comparaison;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 public class Resultat extends TreeSet<Offre>{
@@ -13,10 +14,9 @@ public class Resultat extends TreeSet<Offre>{
 	public void afficher(){
 		if(this.isEmpty() || last().eval == 0) System.out.println("Aucun résultat");
 		else{
-			do{
-				Offre t = pollLast();
-				System.out.println(t);
-			}while(!isEmpty());			
+			Iterator<Offre> it = descendingIterator();
+			while(it.hasNext())
+				System.out.println(it.next());		
 		}
 	}
 	

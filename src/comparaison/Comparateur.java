@@ -6,11 +6,9 @@ package comparaison;
 import java.util.ArrayList;
 import java.util.List;
 
-import defaut.Erreur;
 import donnée.Donnees;
 import elements.Gare;
 import elements.GareHoraire;
-import elements.Horaire;
 import elements.Segment;
 import elements.SegmentHoraire;
 import train.Train;
@@ -30,7 +28,9 @@ public class Comparateur {
 	
 	public Comparateur(Donnees d){
 		data = d;
-		buildGraph();
+		
+		graph = new GrapheCorrespondances(data.getTrains());
+		
 		GareHoraire a;
 		GareHoraire b;
 		a = data.getTrain(5642).getDepart(); // stcharles
@@ -45,9 +45,9 @@ public class Comparateur {
 	public Resultat comparer(Preference pref){
 		Resultat resultat = new Resultat();
 		
-		ArrayList<Offre> e = trouverOffre(pref);
+		ArrayList<Offre> offres = trouverOffre(pref);
 		
-		for(Offre o : e){
+		for(Offre o : offres){
 			if(o.eval(pref) > 0)
 				resultat.ajouter(o);
 		}
@@ -55,6 +55,9 @@ public class Comparateur {
 		return resultat;
 	}
 	
+	/**
+	 * Recherche les offrec pouvant correspondre aux preferences
+	 */
 	public ArrayList<Offre> trouverOffre(Preference pref) {
 		ArrayList<Offre> resultat = new ArrayList<Offre>();
 		
@@ -71,26 +74,9 @@ public class Comparateur {
 	public ArrayList<Offre> trouverOffre(Segment segment, Boolean direct){
 		ArrayList<Offre> resultat = new ArrayList<Offre>();
 		
-		// OffreSimple		
-		for(Train t : data.getTrains()){
-			SegmentHoraire s = t.trouver(segment);
-			if(s != null) resultat.add(new OffreSimple(t,t.getPlace(),s));
-		}
-		
-		// OffreMultiple
-		if(direct==null || !direct){
-			// A FAIRE
-		}
+		// A FAIRE
 		
 		return resultat;
-	}
-	
-	public void buildGraph(){
-		graph = new GrapheCorrespondances();
-		for(Train t : data.getTrains()){
-			graph.addTrain(t);
-		}
-		graph.connect();
 	}
 	
 	public Donnees getData(){
