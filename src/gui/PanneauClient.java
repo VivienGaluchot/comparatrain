@@ -27,7 +27,11 @@ import javax.swing.text.NumberFormatter;
 
 import comparaison.Comparateur;
 import comparaison.Preference;
+import defaut.Erreur;
+import elements.Gare;
+import elements.GareHoraire;
 import elements.Horaire;
+import elements.Ville;
 
 @SuppressWarnings("serial")
 public class PanneauClient extends JPanel {
@@ -49,6 +53,7 @@ public class PanneauClient extends JPanel {
 	
 	
 	private JButton rechercher;
+	private FenetreRes frameRes = null;
 	
 	
 	public void ClearOnClick(JTextField textField){
@@ -195,6 +200,10 @@ public class PanneauClient extends JPanel {
 						pref.setHArrivee(h.toStringLong());
 					}
 	                comp.comparer(pref).afficher();
+	                if (frameRes == null)
+	                	frameRes = new FenetreRes("resultats",comp.comparer(pref));
+	                if (!frameRes.isVisible())
+	                	frameRes.setVisible(true);
             	}
             	
                 
@@ -202,6 +211,12 @@ public class PanneauClient extends JPanel {
         });
 		box4.add(rechercher);
 	this.add(box4);
+	try {
+		this.add(new PanneauTrain(new GareHoraire(new Gare(1,"testr",new Ville(1,"1")),new Horaire("06/01/2015 08h30")),new GareHoraire(new Gare(2,"test2",new Ville(2,"2")),new Horaire("06/01/2015 08h40"))));
+	} catch (Erreur e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
 	}
 }
 	
