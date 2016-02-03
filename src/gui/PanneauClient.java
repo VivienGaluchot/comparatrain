@@ -200,10 +200,8 @@ public class PanneauClient extends JPanel {
 						pref.setHArrivee(h.toStringLong());
 					}
 	                comp.comparer(pref).afficher();
-	                if (frameRes == null)
-	                	frameRes = new FenetreRes("resultats",comp.comparer(pref));
-	                if (!frameRes.isVisible())
-	                	frameRes.setVisible(true);
+	                frameRes = new FenetreRes("resultats",comp.comparer(pref));
+	                frameRes.setVisible(true);
             	}
             	
                 
@@ -211,12 +209,7 @@ public class PanneauClient extends JPanel {
         });
 		box4.add(rechercher);
 	this.add(box4);
-	try {
-		this.add(new PanneauTrain(new GareHoraire(new Gare(1,"testr",new Ville(1,"1")),new Horaire("06/01/2015 08h30")),new GareHoraire(new Gare(2,"test2",new Ville(2,"2")),new Horaire("06/01/2015 08h40"))));
-	} catch (Erreur e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
+	
 	}
 }
 	

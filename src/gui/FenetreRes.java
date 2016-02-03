@@ -30,6 +30,5 @@ public class FenetreRes extends JFrame{
 		
 		this.add(main);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
