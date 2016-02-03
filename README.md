@@ -8,4 +8,4 @@ Projet étudiant visant à concevoir un comparateur interne d'offre de train.
 
 ## Base de donnée
 
-Les données sont pour le moment sauvegardées dans un fichier au format YAML à l'aide de la librairie Java [YamlBeams](https://github.com/EsotericSoftware/yamlbeans).
+Les données sont pour le moment sauvegardées dans un fichier au format YAML à l'aide de la librairie Java [YamlBeans](https://github.com/EsotericSoftware/yamlbeans).
