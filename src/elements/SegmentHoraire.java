@@ -21,8 +21,8 @@ public class SegmentHoraire {
 	
 	public String toString(){
 		if(train == null)
-			return depart + " --> " + arrivee;
+			return depart + " --C--> " + arrivee;
 		else
-			return depart + " -Train " + train.getId() + "-> " + arrivee;
+			return depart + " --Train " + train.getId() + "--> " + arrivee;
 	}
 }

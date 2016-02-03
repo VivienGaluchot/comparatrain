@@ -4,9 +4,13 @@
 package comparaison;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import defaut.Erreur;
 import donnée.Donnees;
 import elements.Gare;
+import elements.GareHoraire;
+import elements.Horaire;
 import elements.Segment;
 import elements.SegmentHoraire;
 import train.Train;
@@ -18,7 +22,7 @@ import train.Train;
 public class Comparateur {
 	
 	private Donnees data;
-	private GrapheCorrespondances graphe;
+	private GrapheCorrespondances graph;
 	
 	public Comparateur(){
 		data = new Donnees();
@@ -27,6 +31,15 @@ public class Comparateur {
 	public Comparateur(Donnees d){
 		data = d;
 		buildGraph();
+		GareHoraire a;
+		GareHoraire b;
+		a = data.getTrain(5642).getDepart(); // stcharles
+		b = data.getTrain(7010).getArrivee(); // nantes
+		
+		SegmentHoraire segment = new SegmentHoraire(a,b);
+		List<Offre> l = graph.trouverOffre(segment);
+		for(Offre o : l)
+			System.out.println(o);
 	}
 	
 	public Resultat comparer(Preference pref){
@@ -73,11 +86,11 @@ public class Comparateur {
 	}
 	
 	public void buildGraph(){
-		graphe = new GrapheCorrespondances();
+		graph = new GrapheCorrespondances();
 		for(Train t : data.getTrains()){
-			graphe.addTrain(t);
+			graph.addTrain(t);
 		}
-		graphe.connect();
+		graph.connect();
 	}
 	
 	public Donnees getData(){

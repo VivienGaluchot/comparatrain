@@ -114,6 +114,27 @@ public class Donnees {
 		return Collections.unmodifiableList(trains);
 	}
 	
+	public Gare getGare(int id){
+		for(Gare g : gares)
+			if(g.getId() == id)
+				return g;
+		return null;
+	}
+	
+	public Ville getVille(int id){
+		for(Ville v : villes)
+			if(v.getId() == id)
+				return v;
+		return null;
+	}
+	
+	public Train getTrain(int id){
+		for(Train t : trains)
+			if(t.getId() == id)
+				return t;
+		return null;
+	}
+	
 	
 	// Sauvegarde - Chargement
 	
