@@ -72,11 +72,28 @@ public class GrapheCorrespondances {
 		System.out.println(i + " connexions réalisées");
 	}
 	
+	public List<Offre> trouverOffre(Preference pref){
+		ArrayList<Offre> resultat = new ArrayList<Offre>();
+		
+		for(GareHoraire depart : departs){
+			if(Evaluateur.evalDepart(depart,pref) > 0){
+				for(GareHoraire arrivee : arrivees){
+					if(Evaluateur.evalArrivee(arrivee, pref) > 0){
+						resultat.addAll(trouverOffre(new SegmentHoraire(depart,arrivee)));
+					}
+				}
+			}
+		}
+		
+		return resultat;
+	}
+	
 	public List<Offre> trouverOffre(SegmentHoraire segment){
 		ArrayList<Offre> resultat = new ArrayList<Offre>();
 		DijkstraShortestPath<GareHoraire, OffreSegment> dijkstra = null;
 		List<OffreSegment> list = null;
 		
+		@SuppressWarnings("unchecked")
 		DefaultDirectedGraph<GareHoraire, OffreSegment> tempGraph = (DefaultDirectedGraph<GareHoraire, OffreSegment>) graph.clone();
 		
 		do{

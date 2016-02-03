@@ -15,8 +15,9 @@ public class Resultat extends TreeSet<Offre>{
 		if(this.isEmpty() || last().eval == 0) System.out.println("Aucun résultat");
 		else{
 			Iterator<Offre> it = descendingIterator();
+			int i = 1;
 			while(it.hasNext())
-				System.out.println(it.next());		
+				System.out.println("Billet " + (i++) + "\n" + it.next());		
 		}
 	}
 	
