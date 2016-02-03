@@ -9,8 +9,8 @@ public class classMain {
 	public static void main(String[] args) {
 		Donnees data = new Donnees();
 
-		data.charger("simpleDatabase.yml");
-//		data.charger("databaseSave.yml");
+//		data.charger("simpleDatabase.yml");
+		data.charger("databaseSave.yml");
 //		data.sauvegarder("databaseSave.yml");
 		
 		Comparateur comp = new Comparateur(data);

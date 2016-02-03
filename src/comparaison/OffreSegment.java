@@ -42,8 +42,19 @@ public class OffreSegment{
 	 * Affichage d'une offre
 	 */
 	public String toString(){
-		if(train == null) return segment.depart + " -- cor. --> " + segment.arrivee;
-		return segment.depart + " --Train " + train.getId() + "--> " + segment.arrivee + "\n"
-				+ place;
+		String res = "";
+		if(train == null){
+			res += segment.depart + " -- cor. --> " + segment.arrivee;
+		}
+		else {
+			res += segment.depart + " --Train " + train.getId() + "--> " + segment.arrivee;
+			if(place != null){
+				res += "\n" + place;
+			}
+			else {
+				res += "\n" + "Aucune place attribuée";
+			}
+		}
+		return res;
 	}
 }
