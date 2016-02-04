@@ -78,6 +78,10 @@ public class Horaire implements Evaluable<Horaire>, Comparable<Horaire>{
 		return time.compareTo(h.time);
 	}
 	
+	public long until(Horaire h){
+		return time.until(h.time, ChronoUnit.SECONDS);
+	}
+	
 	/**
 	 * (time) avant (o.time - d)
 	 * (time) apres (o.time - 5h)

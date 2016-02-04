@@ -33,9 +33,9 @@ public class FenetreRes extends JFrame{
 		//setResizable(false);
 		JPanel main = new JPanel();
 		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
+
 		List<Offre> r = res.getMeilleurs(10);
-		
-	
+
 		for ( Offre o : r){
 
 			main.add(new PanneauTrain(o));

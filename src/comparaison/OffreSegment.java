@@ -38,6 +38,10 @@ public class OffreSegment{
 		return segment.arrivee;
 	}
 	
+	public Train getTrain(){
+		return train;
+	}
+	
 	/**
 	 * Affichage d'une offre
 	 */
