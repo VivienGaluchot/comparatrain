@@ -1,14 +1,11 @@
 package gui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -23,20 +20,14 @@ import train.Train;
  *
  */
 @SuppressWarnings("serial")
-public class AdminTrainFrame extends JFrame{
+public class AdminTrainFrame extends MyJFrame{
 	
-	public AdminTrainFrame(Donnees data){
-		
+	public AdminTrainFrame(){		
 		setTitle("Trains");
-		Toolkit tk = Toolkit.getDefaultToolkit();
-		Dimension dim = tk.getScreenSize();
-		int largeur = dim.width;
-		int hauteur = dim.height;
-		setBounds(largeur/2-300,hauteur/2-200,600,400);
 		
 		DefaultListModel<Train> listeM = new DefaultListModel<Train>();
 		
-		for(Train t : data.getTrains())
+		for(Train t : Donnees.getInstance().getTrains())
 			listeM.addElement(t);
 		
 		JList<Train> list = new JList<Train>(listeM);
@@ -55,7 +46,7 @@ public class AdminTrainFrame extends JFrame{
 			addTrain.addActionListener(new ActionListener(){
 	            public void actionPerformed(ActionEvent e)
 	            {
-	            	EditTrainFrame ajoutTrain = new EditTrainFrame(data,null);
+	            	EditTrainFrame ajoutTrain = new EditTrainFrame(null);
 	            	ajoutTrain.setVisible(true);
 	            }
 	        });
@@ -66,7 +57,7 @@ public class AdminTrainFrame extends JFrame{
 	            public void actionPerformed(ActionEvent e)
 	            {
 	            	Train train = listeM.getElementAt(list.getSelectedIndex());
-	            	EditTrainFrame editTrain = new EditTrainFrame(data,train);
+	            	EditTrainFrame editTrain = new EditTrainFrame(train);
 	            	editTrain.setVisible(true);
 	            }
 	        });
@@ -83,6 +74,7 @@ public class AdminTrainFrame extends JFrame{
 		main.add(box1);
 		
 		this.add(main);
-		pack();
+		
+		positionner();
 	}
 }

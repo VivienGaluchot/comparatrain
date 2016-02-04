@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import comparaison.Comparateur;
+import donnée.Donnees;
 import elements.Gare;
 import elements.Ville;
 
@@ -24,12 +24,9 @@ public class VilleGareTextField extends Champ<JTextField>{
 	boolean init;
 	JPopupMenu popup;
 	JMenuItem menuItem;
-	Comparateur comparateur;
 	
-	public VilleGareTextField(String labelText, String initText, int lenght, Comparateur comparateur){
+	public VilleGareTextField(String labelText, String initText, int lenght){
 		super(labelText, new JTextField(initText,lenght));
-		
-		this.comparateur = comparateur;
 		
 		this.initText = initText;
 		init = true;
@@ -83,14 +80,14 @@ public class VilleGareTextField extends Champ<JTextField>{
 	public String[] getEntry(String str){
 		ArrayList<String> list = new ArrayList<String>();
 		int i = 0;
-		for(Ville v : comparateur.getData().getVilles()){
+		for(Ville v : Donnees.getInstance().getVilles()){
 			if(i>=5) break;
 			if(v.getNom().toLowerCase().contains(str.toLowerCase())){
 				list.add(v.getNom());
 				i++;
 			}
 		}
-		for(Gare g : comparateur.getData().getGares()){
+		for(Gare g : Donnees.getInstance().getGares()){
 			if(i>=5) break;
 			if(g.getNom().toLowerCase().contains(str.toLowerCase())){
 				list.add(g.getNom());

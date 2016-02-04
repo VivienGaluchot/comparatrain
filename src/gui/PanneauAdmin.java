@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import comparaison.Comparateur;
+import donnée.Donnees;
 import elements.Gare;
 import elements.Ville;
 import utilisateur.Client;
@@ -21,70 +21,56 @@ public class PanneauAdmin extends JPanel{
 	AdminFrame<Gare> adminGare;
 	AdminTrainFrame adminTrain;
 	
-	public PanneauAdmin(Comparateur comp,JTabbedPane onglets){
+	public PanneauAdmin(JTabbedPane onglets){
 		
-		adminTrain = new AdminTrainFrame(comp.getData());
-		adminCli = new AdminFrame<Client>("Clients",comp.getData().getClients(),comp.getData());
-		adminVille = new AdminFrame<Ville>("Villes",comp.getData().getVilles(),comp.getData());
-		adminGare = new AdminFrame<Gare>("Gares",comp.getData().getGares(),comp.getData());
+		adminTrain = new AdminTrainFrame();
+		adminCli = new AdminFrame<Client>("Gestion des clients",Donnees.getInstance().getClients());
+		adminVille = new AdminFrame<Ville>("Gestion des villes",Donnees.getInstance().getVilles());
+		adminGare = new AdminFrame<Gare>("Gestion des gares",Donnees.getInstance().getGares());
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		
 		JPanel box0 = new JPanel();
 			JButton adminTrainButton = new JButton("Trains");
-			adminTrainButton.addActionListener(new ActionListener(){
-	            public void actionPerformed(ActionEvent e)
-	            {
-	            	adminTrain.setVisible(true);
-	            }
-	        });
+			adminTrainButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+	            	adminTrain.afficher();
+	        }});
 			box0.add(adminTrainButton);
 		this.add(box0);
 		
 		JPanel box1 = new JPanel();			
-			JButton adminClientButton = new JButton("Client");
-			adminClientButton.addActionListener(new ActionListener(){
-	            public void actionPerformed(ActionEvent e)
-	            {
-	            	adminCli.setVisible(true);
-	            }
-	        });
+			JButton adminClientButton = new JButton("Clients");
+			adminClientButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+	            	adminCli.afficher();
+	        }});
 			box1.add(adminClientButton);
 		this.add(box1);
-		
-		JPanel box2 = new JPanel();			
+	
+		JPanel box2 = new JPanel();
+			JButton adminVilleButton = new JButton("Ville");
+			adminVilleButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+	            	adminVille.afficher();
+	        }});
+			box2.add(adminVilleButton);
+			
 			JButton adminGaresButton = new JButton("Gares");
-			adminGaresButton.addActionListener(new ActionListener(){
-	            public void actionPerformed(ActionEvent e)
-	            {
-	            	adminGare.setVisible(true);
-	            }
-	        });
+			adminGaresButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+	            	adminGare.afficher();
+	        }});
 			box2.add(adminGaresButton);
 		this.add(box2);
 		
-		JPanel box3 = new JPanel();
-			JButton adminVilleButton = new JButton("Ville");
-			adminVilleButton.addActionListener(new ActionListener(){
-	            public void actionPerformed(ActionEvent e)
-	            {
-	            	adminVille.setVisible(true);
-	            }
-	        });
-			box3.add(adminVilleButton);
-		this.add(box3);
-		
 		JPanel box4 = new JPanel();
 			JButton deco = new JButton("Déconnexion");
-			deco.addActionListener(new ActionListener() {
-				 
-	            public void actionPerformed(ActionEvent e)
-	            {
+			deco.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
 	            	onglets.remove(1);
-	                
-	            }
-	        });
+	        }});
 			box4.add(deco);
+			JButton save = new JButton("Sauvegarder");
+			save.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
+	            	// A FAIRE
+	        }});
+			box4.add(save);
 		this.add(box4);
 	}
 }

@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -9,21 +8,19 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import defaut.Erreur;
-import donnée.Donnees;
 import elements.Escale;
 import elements.Gare;
 import elements.Horaire;
 import train.Train;
 
 @SuppressWarnings("serial")
-public class EditTrainFrame extends JFrame{
+public class EditTrainFrame extends MyJFrame{
 	
 	Train train;
 	
@@ -41,7 +38,7 @@ public class EditTrainFrame extends JFrame{
 	
 	private ArrayList<Escale> escales = new ArrayList<Escale>();
 	
-	public EditTrainFrame(Donnees data, Train train){
+	public EditTrainFrame(Train train){
 		
 		if(train == null){
 			this.train = new Train();
@@ -51,17 +48,12 @@ public class EditTrainFrame extends JFrame{
 		}
 		
 		setTitle("Edition");
-		Toolkit tk = Toolkit.getDefaultToolkit();
-		Dimension dim = tk.getScreenSize();
-		int largeur = dim.width;
-		int hauteur = dim.height;
-		setBounds(largeur/2-215,hauteur/2-170,430,340);
 		
 		JPanel main = new JPanel();
 		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
 		
 		JPanel box1 = new GroupPanel("Départ");
-			comboBoxD = new GareComboBox("Gare de départ : ",data);
+			comboBoxD = new GareComboBox("Gare de départ : ");
 			comboBoxD.setSelectedGare(train.getDepart().gare);
 			box1.add(comboBoxD);
 			champHoraire1 = new ChampHoraire("Horaire : ");
@@ -80,7 +72,7 @@ public class EditTrainFrame extends JFrame{
 		box2.add(box20);
 		
 		JPanel box22 = new JPanel();
-			comboBoxE = new GareComboBox("Gare : ",data);
+			comboBoxE = new GareComboBox("Gare : ");
 			box22.add(comboBoxE);
 			ajouterE = new JButton("Ajouter!");
 			ajouterE.addActionListener(new ActionListener() {
@@ -111,7 +103,7 @@ public class EditTrainFrame extends JFrame{
 		
 		
 		JPanel box3 = new GroupPanel("Arrivée");
-		comboBoxA = new GareComboBox("Gare d'arrivée : ",data);
+		comboBoxA = new GareComboBox("Gare d'arrivée : ");
 		comboBoxA.setSelectedGare(train.getArrivee().gare);
 		box3.add(comboBoxA);
 		champHoraire4 = new ChampHoraire("Horaires : ");
@@ -133,6 +125,7 @@ public class EditTrainFrame extends JFrame{
 		main.add(box4);
 		
 		add(main);
-		pack();
+		
+		positionner();
 	}
 }

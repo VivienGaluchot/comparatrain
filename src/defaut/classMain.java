@@ -2,20 +2,20 @@ package defaut;
 
 import comparaison.Comparateur;
 import donnée.Donnees;
-import gui.MaFenetre;
+import gui.MainFrame;
 
 public class classMain {
 
 	public static void main(String[] args) {
-		Donnees data = new Donnees();
+		Donnees.setFichier("database.yml");
 
-//		data.charger("simpleDatabase.yml");
-		data.charger("database.yml");
-//		data.sauvegarder("databaseSave.yml");
+		Donnees.charger();
+//		Donnees.getInstance().sauvegarder("databaseSave.yml");
 		
-		Comparateur comp = new Comparateur(data);
+		Comparateur comp = Comparateur.getInstance();
+		comp.setData(Donnees.getInstance());
 		
-		MaFenetre F = new MaFenetre("ComparaTrain",comp);
+		MainFrame F = new MainFrame();
 		F.setVisible(true);
 		
 //		Rame r = new Rame(0);

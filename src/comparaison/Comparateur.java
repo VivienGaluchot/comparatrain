@@ -12,20 +12,29 @@ import donnée.Donnees;
  * utilise le modele pour comparer la base de donnée avec le modele
  */
 public class Comparateur {
+	// Singleton
+	private static volatile Comparateur instance = null;
 	
-	private Donnees data;
-	private GrapheCorrespondances graph;
+	private Donnees data = null;
+	private static GrapheCorrespondances graph = null;
 	
-	public Comparateur(){
-		data = new Donnees();
+	private Comparateur(){
 	}
 	
-	public Comparateur(Donnees d){
-		data = d;
-		graph = new GrapheCorrespondances(data.getTrains());
-	}
+	public final static Comparateur getInstance() {
+        if (Comparateur.instance == null) {
+           synchronized(Comparateur.class) {
+             if (Comparateur.instance == null) {
+            	 Comparateur.instance = new Comparateur();
+             }
+           }
+        }
+        return Comparateur.instance;
+    }
 	
-	public Resultat comparer(Preference pref){
+	public final static Resultat comparer(Preference pref){
+		if(graph == null) return null;
+		
 		Resultat resultat = new Resultat();
 		
 		List<Offre> offres = graph.trouverOffre(pref);
@@ -36,6 +45,11 @@ public class Comparateur {
 		}
 		
 		return resultat;
+	}
+	
+	public void setData(Donnees d){
+		data = d;
+		graph = new GrapheCorrespondances(data.getTrains());
 	}
 	
 	public Donnees getData(){

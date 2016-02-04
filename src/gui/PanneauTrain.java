@@ -2,9 +2,6 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,8 +9,8 @@ import javax.swing.JPanel;
 
 import comparaison.Offre;
 
+@SuppressWarnings("serial")
 public class PanneauTrain extends JPanel{
-	
 	Ligne l;
 	
 	public PanneauTrain (Offre o){
@@ -21,19 +18,11 @@ public class PanneauTrain extends JPanel{
 		l = new Ligne(o);
 		JLabel ha = new JLabel(o.getArrivee().horaire.getHeure()+" ");
 		JButton reserver = new JButton("Réserver");
-		reserver.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		reserver.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
 			}});
 		JButton info = new JButton("Info");
-		info.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+		info.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e) {
 				
 			}});
 		add(hd);
@@ -41,8 +30,5 @@ public class PanneauTrain extends JPanel{
 		add(ha);
 		add(reserver);
 		add(info);
-
-	
-	
 	}
 }

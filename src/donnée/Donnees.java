@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import comparaison.Comparateur;
 import defaut.Erreur;
 import elements.Gare;
 import elements.Ville;
@@ -23,17 +24,33 @@ import yamlbeans.YamlWriter;
  * Gestion des données, enregistrements
  */
 public class Donnees {
+	// Singleton
+	private static volatile Donnees instance = null;
+	
+	private static String fichier = "database.yml";
+		
 	private ArrayList<Client> clients;
 	private ArrayList<Ville> villes;
 	private ArrayList<Gare> gares;
 	private ArrayList<Train> trains;
 	
-	public Donnees(){
+	private Donnees(){
 		clients = new ArrayList<Client>();
 		villes = new ArrayList<Ville>();
 		gares = new ArrayList<Gare>();
 		trains = new ArrayList<Train>();
 	}
+	
+	public final static Donnees getInstance() {
+        if (Donnees.instance == null) {
+           synchronized(Comparateur.class) {
+             if (Donnees.instance == null) {
+            	 Donnees.instance = new Donnees();
+             }
+           }
+        }
+        return Donnees.instance;
+    }
 	
 	public void afficher(){
 		for(Ville v : villes){
@@ -141,6 +158,21 @@ public class Donnees {
 	
 	
 	// Sauvegarde - Chargement
+	
+	public static void setFichier(String fichier){
+		Donnees.getInstance();
+		Donnees.fichier = fichier;
+	}
+	
+	public static final void sauvegarder(){
+		Donnees.getInstance();
+		Donnees.getInstance().sauvegarder(fichier);
+	}
+	
+	public static final void charger(){
+		Donnees.getInstance();
+		Donnees.getInstance().charger(fichier);
+	}
 	
 	@SuppressWarnings("unchecked")
 	public void charger(String fichier){

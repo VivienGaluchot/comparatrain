@@ -12,11 +12,9 @@ import elements.Gare;
 @SuppressWarnings("serial")
 public class GareComboBox extends Champ<JComboBox<Gare>>{
 	Gare[] gares;
-	Donnees data;
 
-	public GareComboBox(String labelText, Donnees data) {
+	public GareComboBox(String labelText) {
 		super(labelText, new JComboBox<Gare>());
-		this.data = data;
 		champ.setBackground(Color.white);
 		champ.setFont(new javax.swing.plaf.FontUIResource("Arial",Font.PLAIN,12));;
 		update();
@@ -27,7 +25,7 @@ public class GareComboBox extends Champ<JComboBox<Gare>>{
 	}
 	
 	public void update(){
-		gares = data.getGaresAlph();
+		gares = Donnees.getInstance().getGaresAlph();
 		champ.setModel(new DefaultComboBoxModel<Gare>(gares));
 	}
 	

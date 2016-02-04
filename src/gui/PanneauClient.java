@@ -1,10 +1,7 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -27,16 +24,10 @@ import javax.swing.text.NumberFormatter;
 
 import comparaison.Comparateur;
 import comparaison.Preference;
-import defaut.Erreur;
-import elements.Gare;
-import elements.GareHoraire;
 import elements.Horaire;
-import elements.Ville;
 
 @SuppressWarnings("serial")
 public class PanneauClient extends JPanel {
-	
-
 	private JButton connexion;
 	
 	private VilleGareTextField texteD;
@@ -51,86 +42,27 @@ public class PanneauClient extends JPanel {
 	private JRadioButton rbClasse1;
 	private JRadioButton rbClasse2;
 	
-	
 	private JButton rechercher;
-	private FenetreRes frameRes = null;
+	private FenetreRes frameRes = null;	
 	
-	
-	public void ClearOnClick(JTextField textField){
-		String save = textField.getText();
-		textField.addFocusListener(new FocusListener(){
-	        public void focusGained(FocusEvent e){
-	            textField.setText("");
-	            textField.setForeground(Color.BLACK);
-	        }
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (textField.getText().equals("")){
-					textField.setForeground(new Color(100,100,100));
-					textField.setText(save);
-				}
-				else textField.removeFocusListener(this);
-			}
-	    });
-	}
-	
-	
-	
-	
-	public void connexionCompte(Comparateur comp,JTabbedPane onglets){
-		PanneauAdmin PAdmin = new PanneauAdmin(comp,onglets);
-		JTextField username = new JTextField();
-    	JTextField password = new JPasswordField();
-    	Object[] message = {
-    	    "Username:", username,
-    	    "Password:", password
-    	};
-
-    	int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
-    	if (option == JOptionPane.OK_OPTION) {
-    	    if (username.getText().equals("") && password.getText().equals("") && onglets.getTabCount()<2) {
-    	    	setSize(550, 600);
-    	    	onglets.addTab("Admin", null, PAdmin, null);
-    	    	onglets.setSelectedIndex(1);
-    	        System.out.println("Login successful");
-    	    } else if(username.getText().equals("") && password.getText().equals("")){
-    	    	onglets.setSelectedIndex(1);
-    	    	setSize(550, 600);
-    	        System.out.println("Already Loged In");
-    	    } else {
-    	    	onglets.setSelectedIndex(0);
-    	        System.out.println("login failed");
-    	    }
-    	} else {
-    		onglets.setSelectedIndex(0);
-    	    System.out.println("Login canceled");
-    	}
-	}
-	
-	public PanneauClient(Comparateur comp,JTabbedPane onglets){
+	public PanneauClient(JTabbedPane onglets){
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		
 		JPanel box5 = new JPanel();
 		
-		connexion = new JButton("Se connecter !");
-		connexion.addActionListener(new ActionListener() {
-			 
-            public void actionPerformed(ActionEvent e)
-            {
-            	connexionCompte(comp,onglets);
-            }
-        });
+		connexion = new JButton("Se connecter");
+		connexion.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+        	connexionCompte(onglets);
+        }});
 		box5.add(connexion);
 		this.add(box5);
 	
-	
 		JPanel box0 = new JPanel();		
 			box0.setLayout(new BoxLayout(box0,BoxLayout.PAGE_AXIS));
-			texteD = new VilleGareTextField("Départ : ", "Nom de ville ou gare", 25, comp);
+			texteD = new VilleGareTextField("Départ : ", "Nom de ville ou gare", 25);
 			box0.add(texteD);
-			texteA = new VilleGareTextField("Arrivée : ", "Nom de ville ou gare", 25, comp);
+			texteA = new VilleGareTextField("Arrivée : ", "Nom de ville ou gare", 25);
 			box0.add(texteA);
 		box0.setBorder(BorderFactory.createTitledBorder("Trajet"));
 		this.add(box0);
@@ -143,11 +75,8 @@ public class PanneauClient extends JPanel {
 		box3.setBorder(BorderFactory.createTitledBorder("Horaires"));
 		this.add(box3);
 		
-		
-		
 		JPanel box6 = new JPanel();
-		box6.setLayout(new BoxLayout(box6,BoxLayout.LINE_AXIS));
-			
+		box6.setLayout(new BoxLayout(box6,BoxLayout.LINE_AXIS));			
 			
 			JPanel box61 = new JPanel();
 			
@@ -185,32 +114,52 @@ public class PanneauClient extends JPanel {
 		
 		JPanel box4 = new JPanel();
 		
-		rechercher = new JButton("Rechercher!");
-		rechercher.addActionListener(new ActionListener() {
-			 
-            public void actionPerformed(ActionEvent e)
-            {
-            	Horaire h = champHoraire.getHoraire();
-            	Preference pref = new Preference();
-            	if(h.estInit()){
-	            	pref.setGares(texteD.getText(), texteA.getText());
-					if(champHoraire.getComboBox().getSelectedItem().equals("Départ")){
-						pref.setHDepart(h.toStringLong());	
-					}else if(champHoraire.getComboBox().getSelectedItem().equals("Arrivée")){
-						pref.setHArrivee(h.toStringLong());
-					}
-	                comp.comparer(pref).afficher();
-	                frameRes = new FenetreRes("resultats",comp.comparer(pref));
-	                frameRes.setVisible(true);
-            	}
-            	
-                
-            }
-        });
+		rechercher = new JButton("Rechercher");
+		rechercher.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
+        	Horaire h = champHoraire.getHoraire();
+        	Preference pref = new Preference();
+        	if(h.estInit()){
+            	pref.setGares(texteD.getText(), texteA.getText());
+				if(champHoraire.getComboBox().getSelectedItem().equals("Départ")){
+					pref.setHDepart(h.toStringLong());	
+				}else if(champHoraire.getComboBox().getSelectedItem().equals("Arrivée")){
+					pref.setHArrivee(h.toStringLong());
+				}
+                Comparateur.comparer(pref).afficher();
+                frameRes = new FenetreRes(Comparateur.comparer(pref));
+                frameRes.setVisible(true);
+        	}
+        }});
 		box4.add(rechercher);
 	this.add(box4);
 	}
+	
+	public void connexionCompte(JTabbedPane onglets){
+		PanneauAdmin PAdmin = new PanneauAdmin(onglets);
+		JTextField username = new JTextField();
+    	JTextField password = new JPasswordField();
+    	Object[] message = {
+    	    "Username:", username,
+    	    "Password:", password
+    	};
+    	int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
+    	if (option == JOptionPane.OK_OPTION) {
+    	    if (username.getText().equals("") && password.getText().equals("") && onglets.getTabCount()<2) {
+    	    	setSize(550, 600);
+    	    	onglets.addTab("Admin", null, PAdmin, null);
+    	    	onglets.setSelectedIndex(1);
+    	        System.out.println("Login successful");
+    	    } else if(username.getText().equals("") && password.getText().equals("")){
+    	    	onglets.setSelectedIndex(1);
+    	    	setSize(550, 600);
+    	        System.out.println("Already Loged In");
+    	    } else {
+    	    	onglets.setSelectedIndex(0);
+    	        System.out.println("login failed");
+    	    }
+    	} else {
+    		onglets.setSelectedIndex(0);
+    	    System.out.println("Login canceled");
+    	}
+	}
 }
-	
-	
-	
