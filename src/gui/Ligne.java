@@ -36,7 +36,7 @@ public class Ligne extends JPanel{
 	private PanneauGare Arrivée;
 	
 	
-	Color[] couleur = {new Color(7019114),new Color(7771648),new Color(16747652),new Color(14366112),new Color(9174374)};
+	Color[] couleur = {new Color(16424219),new Color(564687),new Color(7019114),new Color(7771648),new Color(16747652),new Color(14366112),new Color(9174374)};
 	Offre offre;
 	
 	
@@ -53,18 +53,21 @@ public class Ligne extends JPanel{
 		Double echelle = longeur/(Td.until(Ta,ChronoUnit.SECONDS));
 		
 
-		g2.drawString(offre.getDepart().gare.getNom(), 4,this.getHeight()/2 - 4);
+		g2.drawString(offre.getDepart().gare.getNom(), 0,this.getHeight()/2 - 4);
 		Font font = getFont();
 		FontMetrics fm = getFontMetrics(font);
-		int sizeChaine = fm.stringWidth(offre.getArrivee().gare.getNom());
-		g2.drawString(offre.getArrivee().gare.getNom(), this.getWidth()-sizeChaine-4 ,this.getHeight()/2-4);
+		int sizeChaineG = fm.stringWidth(offre.getArrivee().gare.getNom());
+		int heightChaine = fm.getHeight();
+		g2.drawString(offre.getArrivee().gare.getNom(), this.getWidth()-sizeChaineG ,this.getHeight()/2-4);
 		for(OffreSegment o : offre.getOffres()){
 			Point2D deb = new Point2D.Double(echelle*(Td.until(o.getDepart().horaire.getTime(),ChronoUnit.SECONDS)),height);
 			Point2D fin = new Point2D.Double(echelle*(Td.until(o.getArrivee().horaire.getTime(),ChronoUnit.SECONDS)),height);
 			Line2D l = new Line2D.Double(deb, fin);
 			Rectangle2D rect1 = new Rectangle2D.Double(deb.getX(), deb.getY()-3, 6, 6);
 			Rectangle2D rect2 = new Rectangle2D.Double(fin.getX()-6, fin.getY()-3, 6, 6);
-			g2.setColor(couleur[o.getTrain().getId()%5]);
+			g2.setColor(couleur[o.getTrain().getId()%7]);
+			int sizeChaineT = fm.stringWidth("Train n°"+o.getTrain().getId());
+			g2.drawString("Train n°"+o.getTrain().getId(),(int)Math.min(deb.getX()+2,longeur-sizeChaineT), (int) (height+heightChaine) );
 			g2.fill(rect1);
 			g2.fill(rect2);
 			g2.draw(l);

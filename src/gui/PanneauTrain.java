@@ -19,9 +19,17 @@ public class PanneauTrain extends JPanel{
 	public PanneauTrain (Offre o){
 		JLabel hd = new JLabel(o.getDepart().horaire.toString());
 		l = new Ligne(o);
-		JLabel ha = new JLabel(o.getArrivee().horaire.toString());
+		JLabel ha = new JLabel(o.getArrivee().horaire.getHeure()+" ");
 		JButton reserver = new JButton("Réserver");
 		reserver.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}});
+		JButton info = new JButton("Info");
+		info.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -32,6 +40,7 @@ public class PanneauTrain extends JPanel{
 		add(l);
 		add(ha);
 		add(reserver);
+		add(info);
 
 	
 	

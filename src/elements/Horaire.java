@@ -16,6 +16,7 @@ public class Horaire implements Evaluable<Horaire>, Comparable<Horaire>{
 	
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd'/'MM'/'yyyy HH'h'mm");
 	DateTimeFormatter formatterCourt = DateTimeFormatter.ofPattern("dd'/'MM HH'h'mm");
+	DateTimeFormatter formatterHeure = DateTimeFormatter.ofPattern("HH'h'mm");
 	
 	// Constructeurs
 	
@@ -68,6 +69,10 @@ public class Horaire implements Evaluable<Horaire>, Comparable<Horaire>{
 	// Utilitaires
 	public String toString(){
 		return time.format(formatterCourt);
+	}
+	
+	public String getHeure(){
+		return time.format(formatterHeure);
 	}
 	
 	public String toStringLong(){
