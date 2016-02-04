@@ -93,6 +93,10 @@ public class Horaire implements Evaluable<Horaire>, Comparable<Horaire>{
 		return new Horaire(time.minus(amount));
 	}
 	
+	public LocalDateTime getTime(){
+		return time;
+	}
+	
 	public boolean equals(Horaire h){
 		return time.equals(h.time);
 	}

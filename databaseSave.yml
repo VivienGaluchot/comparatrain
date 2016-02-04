@@ -16,6 +16,12 @@
    motDePasse: '123456'
    nom: Moulu
    prenom: Patrice
+- !utilisateur.Client
+   id: 3
+   login: Vivien
+   motDePasse: mdp
+   nom: Vivien
+   prenom: Galuchot
 --- 
 - &1 !elements.Ville
    id: 0
@@ -231,15 +237,32 @@
    arrivee: 
       gare: *18
       horaire: 
-         serialTime: 06/01/2016 18h00
+         serialTime: 06/01/2016 13h00
    depart: 
       gare: *11
       horaire: 
-         serialTime: 06/01/2016 15h30
+         serialTime: 06/01/2016 10h30
    escales: 
    - !elements.Escale
       gare: *19
       horaireA: 
-         serialTime: 06/01/2016 16h45
+         serialTime: 06/01/2016 11h45
       horaireD: 
-         serialTime: 06/01/2016 16h50
+         serialTime: 06/01/2016 11h50
+- !train.Train
+   id: 7011
+   arrivee: 
+      gare: *18
+      horaire: 
+         serialTime: 06/01/2016 17h00
+   depart: 
+      gare: *11
+      horaire: 
+         serialTime: 06/01/2016 13h30
+   escales: 
+   - !elements.Escale
+      gare: *19
+      horaireA: 
+         serialTime: 06/01/2016 15h45
+      horaireD: 
+         serialTime: 06/01/2016 15h50

@@ -8,11 +8,8 @@ import java.util.ArrayList;
 import defaut.Erreur;
 
 import elements.Escale;
-import elements.Gare;
 import elements.GareHoraire;
-import elements.Horaire;
 import elements.Identified;
-import elements.Segment;
 import elements.SegmentHoraire;
 
 /**
@@ -24,15 +21,11 @@ public class Train extends Identified{
 	private ArrayList<Escale> escales;
 	private GareHoraire arrivee;
 	
-	//Utilisé pour optimiser les recherches
-	private ArrayList<Gare> gares;
-	
 	// Constructeurs	
 	public Train(){
 		depart = null;
 		escales = null;	
-		arrivee = null;	
-		gares = null;
+		arrivee = null;
 	}
 	
 	public Train(Integer i){
@@ -40,7 +33,6 @@ public class Train extends Identified{
 		depart = null;
 		escales = null;	
 		arrivee = null;
-		gares = null;
 	}
 	
 	public Train (Integer i, GareHoraire d, ArrayList<Escale> e, GareHoraire a) throws Erreur{
@@ -49,7 +41,6 @@ public class Train extends Identified{
 		escales = e;	
 		arrivee = a;
 		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
-		updateGares();
 	}
 	
 	// Utilitaire
@@ -111,27 +102,6 @@ public class Train extends Identified{
 		return new SegmentHoraire(this,depart,arrivee);
 	}
 	
-	public SegmentHoraire trouver(Segment s){
-		int i = -1;
-		int j = -1;
-		for(int x=0;x<gares.size();x++){
-			if(gares.get(x).getId() == s.depart.getId()) i = x;
-			if(gares.get(x).getId() == s.arrivee.getId()) j = x;
-		}
-		
-		return getSegmentHoraire(i,j);
-	}
-	
-	public boolean dessert(Segment s){
-		int i = -1;
-		int j = -1;
-		for(int x=0;x<gares.size();x++){
-			if(gares.get(x).getId() == s.depart.getId()) i = x;
-			if(gares.get(x).getId() == s.arrivee.getId()) j = x;
-		}
-		return i>-1 && j>i;
-	}
-	
 	public Place getPlace(){
 		// A FAIRE
 		return null;
@@ -150,7 +120,6 @@ public class Train extends Identified{
 	public void setDepart(GareHoraire depart) throws Erreur{
 		this.depart = depart;
 		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
-		updateGares();
 	}
 	
 	// Escales
@@ -161,26 +130,10 @@ public class Train extends Identified{
 	public Escale getEscale(int i){
 		return escales.get(i);
 	}
-	
-	public GareHoraire getEscaleArrivee(int i){
-		return escales.get(i).getArrivee();
-	}
-	
-	public GareHoraire getEscaleDepart(int i){
-		return escales.get(i).getDepart();
-	}
 
 	public void setEscales(ArrayList<Escale> escales) throws Erreur{
 		this.escales = escales;
 		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
-		updateGares();
-	}
-	
-	public void addEscale(Gare g, Horaire hA, Horaire hD) throws Erreur{
-		if(escales == null) escales = new ArrayList<Escale>();
-		escales.add(new Escale(g,hA,hD));
-		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
-		updateGares();
 	}
 	
 	// Arrivee
@@ -191,22 +144,5 @@ public class Train extends Identified{
 	public void setArrivee(GareHoraire arrivee) throws Erreur{
 		this.arrivee = arrivee;
 		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
-		updateGares();
-	}
-	
-	// Gares
-	public void updateGares(){
-		gares = new ArrayList<Gare>();
-		if(depart != null)
-			gares.add(depart.gare);
-		if(escales != null)
-			for(Escale e : escales)
-				gares.add(e.gare);
-		if(arrivee != null)
-			gares.add(arrivee.gare);
-	}
-	
-	public ArrayList<Gare> getGares(){		
-		return gares;
 	}
 }

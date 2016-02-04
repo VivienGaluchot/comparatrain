@@ -1,6 +1,8 @@
 package comparaison;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import elements.Evaluable;
 import elements.GareHoraire;
@@ -57,6 +59,10 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 	
 	public OffreSegment getOffreSimple(int i){
 		return offres.get(i);
+	}
+	
+	public List<OffreSegment> getOffres(){
+		return Collections.unmodifiableList(offres);
 	}
 	
 	public void addOffreSimple(Train train, Place place, SegmentHoraire segment){

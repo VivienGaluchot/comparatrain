@@ -32,7 +32,7 @@ public class Comparateur {
 		
 		for(Offre o : offres){
 			if(o.eval(pref) > 0)
-				resultat.ajouter(o);
+				resultat.add(o);
 		}
 		
 		return resultat;
