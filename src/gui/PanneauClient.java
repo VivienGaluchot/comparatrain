@@ -209,7 +209,6 @@ public class PanneauClient extends JPanel {
         });
 		box4.add(rechercher);
 	this.add(box4);
-	
 	}
 }
 	
