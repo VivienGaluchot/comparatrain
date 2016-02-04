@@ -6,24 +6,28 @@ import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
-import comparaison.Comparateur;
+import donnée.Donnees;
 import elements.Gare;
 
 @SuppressWarnings("serial")
 public class GareComboBox extends Champ<JComboBox<Gare>>{
 	Gare[] gares;
-	Comparateur comparateur;
+	Donnees data;
 
-	public GareComboBox(String labelText, Comparateur comparateur) {
+	public GareComboBox(String labelText, Donnees data) {
 		super(labelText, new JComboBox<Gare>());
-		this.comparateur = comparateur;
+		this.data = data;
 		champ.setBackground(Color.white);
 		champ.setFont(new javax.swing.plaf.FontUIResource("Arial",Font.PLAIN,12));;
 		update();
 	}
 	
+	public void setSelectedGare(Gare g){
+		this.champ.setSelectedItem(g);
+	}
+	
 	public void update(){
-		gares = comparateur.getData().getGaresAlph();
+		gares = data.getGaresAlph();
 		champ.setModel(new DefaultComboBoxModel<Gare>(gares));
 	}
 	

@@ -114,6 +114,10 @@ public class Donnees {
 		return Collections.unmodifiableList(trains);
 	}
 	
+	public List<Client> getClients(){
+		return Collections.unmodifiableList(clients);
+	}
+	
 	public Gare getGare(int id){
 		for(Gare g : gares)
 			if(g.getId() == id)

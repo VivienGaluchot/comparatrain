@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public abstract class Champ<E extends Component> extends JPanel{
-	JLabel label;
-	E champ;
+	public JLabel label;
+	public E champ;
 	
 	public Champ(String labelText, E champ){		
 		if(labelText.length() > 0){

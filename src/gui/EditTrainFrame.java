@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -14,14 +15,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-import comparaison.Comparateur;
 import defaut.Erreur;
+import donnée.Donnees;
 import elements.Escale;
 import elements.Gare;
 import elements.Horaire;
+import train.Train;
 
 @SuppressWarnings("serial")
-public class AdminTrainAjoutFrame extends JFrame{
+public class EditTrainFrame extends JFrame{
+	
+	Train train;
 	
 	private GareComboBox comboBoxD;
 	private GareComboBox comboBoxA;
@@ -37,13 +41,28 @@ public class AdminTrainAjoutFrame extends JFrame{
 	
 	private ArrayList<Escale> escales = new ArrayList<Escale>();
 	
-	public AdminTrainAjoutFrame(Comparateur comp){
+	public EditTrainFrame(Donnees data, Train train){
+		
+		if(train == null){
+			this.train = new Train();
+		}
+		else{
+			this.train = train;
+		}
+		
+		setTitle("Edition");
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Dimension dim = tk.getScreenSize();
+		int largeur = dim.width;
+		int hauteur = dim.height;
+		setBounds(largeur/2-215,hauteur/2-170,430,340);
 		
 		JPanel main = new JPanel();
-		main.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
 		
 		JPanel box1 = new GroupPanel("Départ");
-			comboBoxD = new GareComboBox("Gare de départ : ",comp);
+			comboBoxD = new GareComboBox("Gare de départ : ",data);
+			comboBoxD.setSelectedGare(train.getDepart().gare);
 			box1.add(comboBoxD);
 			champHoraire1 = new ChampHoraire("Horaire : ");
 		box1.add(champHoraire1);
@@ -61,7 +80,7 @@ public class AdminTrainAjoutFrame extends JFrame{
 		box2.add(box20);
 		
 		JPanel box22 = new JPanel();
-			comboBoxE = new GareComboBox("Gare : ",comp);
+			comboBoxE = new GareComboBox("Gare : ",data);
 			box22.add(comboBoxE);
 			ajouterE = new JButton("Ajouter!");
 			ajouterE.addActionListener(new ActionListener() {
@@ -92,7 +111,8 @@ public class AdminTrainAjoutFrame extends JFrame{
 		
 		
 		JPanel box3 = new GroupPanel("Arrivée");
-		comboBoxA = new GareComboBox("Gare d'arrivée : ",comp);
+		comboBoxA = new GareComboBox("Gare d'arrivée : ",data);
+		comboBoxA.setSelectedGare(train.getArrivee().gare);
 		box3.add(comboBoxA);
 		champHoraire4 = new ChampHoraire("Horaires : ");
 		box3.add(champHoraire4);
@@ -100,7 +120,7 @@ public class AdminTrainAjoutFrame extends JFrame{
 		
 		JPanel box4 = new JPanel();
 			
-			ajouter = new JButton("Ajouter!");
+			ajouter = new JButton("Sauvegarder");
 			ajouter.addActionListener(new ActionListener() {
 				 
 	            public void actionPerformed(ActionEvent e)
@@ -113,6 +133,6 @@ public class AdminTrainAjoutFrame extends JFrame{
 		main.add(box4);
 		
 		add(main);
-		
+		pack();
 	}
 }

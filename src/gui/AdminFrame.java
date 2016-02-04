@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -14,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import donnée.Donnees;
-import train.Train;
 
 /**
  * liste des train
@@ -23,32 +23,29 @@ import train.Train;
  *
  */
 @SuppressWarnings("serial")
-public class AdminTrainFrame extends JFrame{
+public class AdminFrame<E> extends JFrame{
 	
-	public AdminTrainFrame(Donnees data){
+	public AdminFrame(String titre, List<E> list, Donnees data){
 		
-		setTitle("Trains");
+		setTitle(titre);
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension dim = tk.getScreenSize();
 		int largeur = dim.width;
 		int hauteur = dim.height;
 		setBounds(largeur/2-300,hauteur/2-200,600,400);
 		
-		DefaultListModel<Train> listeM = new DefaultListModel<Train>();
+		DefaultListModel<E> listeM = new DefaultListModel<E>();
 		
-		for(Train t : data.getTrains())
+		for(E t : list)
 			listeM.addElement(t);
 		
-		JList<Train> list = new JList<Train>(listeM);
-		JScrollPane scrollPane = new JScrollPane(list);
+		JList<E> jlist = new JList<E>(listeM);
+		JScrollPane scrollPane = new JScrollPane(jlist);
 		
 		JPanel main = new JPanel();
 		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
 		
-		GroupPanel group1 = new GroupPanel("Liste des trains");
-		group1.add(scrollPane);
-		
-		main.add(group1);
+		main.add(scrollPane);
 		
 		JPanel box1 = new JPanel();
 			JButton addTrain = new JButton("Nouveau");
@@ -65,9 +62,7 @@ public class AdminTrainFrame extends JFrame{
 			editTrain.addActionListener(new ActionListener(){
 	            public void actionPerformed(ActionEvent e)
 	            {
-	            	Train train = listeM.getElementAt(list.getSelectedIndex());
-	            	EditTrainFrame editTrain = new EditTrainFrame(data,train);
-	            	editTrain.setVisible(true);
+	            	// A FAIRE
 	            }
 	        });
 			box1.add(editTrain);
