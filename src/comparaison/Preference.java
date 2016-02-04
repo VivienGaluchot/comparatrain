@@ -23,8 +23,8 @@ public class Preference {
 	Integer classe = null;
 	
 	public Preference(){
-		gDepart = "";
-		gArrivee = "";
+		gDepart = null;
+		gArrivee = null;
 		hDepart = null;
 		hArrivee = null;
 	}

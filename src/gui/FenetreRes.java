@@ -3,6 +3,7 @@ package gui;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -24,7 +25,7 @@ public class FenetreRes extends JFrame{
 		//setResizable(false);
 		JPanel main = new JPanel();
 		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
-		ArrayList<Offre> r = res.getMeilleurs(5);
+		List<Offre> r = res.getMeilleurs(5);
 		for ( Offre o : r)
 			main.add(new PanneauTrain(o.getDepart(),o.getArrivee()));
 		

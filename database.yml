@@ -165,9 +165,9 @@
    - !elements.Escale
       gare: *14
       horaireA: 
-         serialTime: 06/01/2016 08h00
+         serialTime: 06/01/2016 08h10
       horaireD: 
-         serialTime: 06/01/2016 08h02
+         serialTime: 06/01/2016 08h15
    - !elements.Escale
       gare: *15
       horaireA: 
