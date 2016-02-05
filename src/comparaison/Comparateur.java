@@ -5,7 +5,7 @@ package comparaison;
 
 import java.util.List;
 
-import donnée.Donnees;
+import donnee.Donnees;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez

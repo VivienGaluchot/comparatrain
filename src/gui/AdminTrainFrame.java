@@ -10,7 +10,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import donnée.Donnees;
+import donnee.Donnees;
 import train.Train;
 
 /**

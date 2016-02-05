@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import donnée.Donnees;
+import donnee.Donnees;
 import elements.Gare;
 import elements.Ville;
 

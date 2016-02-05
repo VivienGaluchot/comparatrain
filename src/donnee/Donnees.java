@@ -1,4 +1,4 @@
-package donnée;
+package donnee;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import donnée.Donnees;
+import donnee.Donnees;
 import elements.Gare;
 import elements.Ville;
 import utilisateur.Client;

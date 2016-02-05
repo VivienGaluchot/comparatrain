@@ -1,7 +1,7 @@
 package defaut;
 
 import comparaison.Comparateur;
-import donnée.Donnees;
+import donnee.Donnees;
 import gui.MainFrame;
 
 public class classMain {

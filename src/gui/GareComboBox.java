@@ -6,7 +6,7 @@ import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
-import donnée.Donnees;
+import donnee.Donnees;
 import elements.Gare;
 
 @SuppressWarnings("serial")
