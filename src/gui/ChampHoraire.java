@@ -92,6 +92,12 @@ public class ChampHoraire extends JPanel{
 		return h;
 	}
 	
+	public void setHoraire(Horaire h){
+		jjmmaaaa.setText(h.getJour());
+		hh.setText(h.getHH());
+		mm.setText(h.getMm());
+	}
+	
 	public JComboBox<String> getComboBox(){
 		if(comboBox == null) return null;
 		return comboBox;

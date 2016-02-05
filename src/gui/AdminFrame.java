@@ -38,24 +38,24 @@ public class AdminFrame<E> extends MyJFrame{
 		main.add(scrollPane);
 		
 		JPanel box1 = new JPanel();
-			JButton addTrain = new JButton("Nouveau");
-			addTrain.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
+			JButton nouveau = new JButton("Nouveau");
+			nouveau.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
 	            	EditTrainFrame ajoutTrain = new EditTrainFrame(null);
 	            	ajoutTrain.setVisible(true);
 	        }});
-			box1.add(addTrain);
+			box1.add(nouveau);
 			
-			JButton editTrain = new JButton("Editer");
-			editTrain.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
+			JButton editer = new JButton("Editer");
+			editer.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
 	            	// A FAIRE
 	        }});
-			box1.add(editTrain);
+			box1.add(editer);
 			
-			JButton delTrain = new JButton("Supprimer");
-			delTrain.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
+			JButton supprimer = new JButton("Supprimer");
+			supprimer.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
 	            	// A FAIRE
 	        }});
-			box1.add(delTrain);
+			box1.add(supprimer);
 		main.add(box1);
 		
 		this.add(main);

@@ -21,7 +21,7 @@ public class Escale implements Comparable<Escale>{
 	}
 	
 	public String toString(){
-		return gare + " " + horaireA + " " + horaireD;
+		return gare + " : " + horaireA.getHeure() + " " + horaireD.getHeure();
 	}
 	
 	/**

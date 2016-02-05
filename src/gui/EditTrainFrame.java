@@ -54,7 +54,6 @@ public class EditTrainFrame extends MyJFrame{
 		
 		JPanel box1 = new GroupPanel("Départ");
 			comboBoxD = new GareComboBox("Gare de départ : ");
-			comboBoxD.setSelectedGare(train.getDepart().gare);
 			box1.add(comboBoxD);
 			champHoraire1 = new ChampHoraire("Horaire : ");
 		box1.add(champHoraire1);
@@ -62,12 +61,9 @@ public class EditTrainFrame extends MyJFrame{
 		
 		JPanel box2 = new GroupPanel("Escales");
 			JPanel box20 = new JPanel();
-			DefaultListModel<String> listeM = new DefaultListModel<String>();
-			JList<String> liste = new JList<String>(listeM);
+			DefaultListModel<Escale> listeM = new DefaultListModel<Escale>();
+			JList<Escale> liste = new JList<Escale>(listeM);
 			JScrollPane scrollPane = new JScrollPane(liste);
-			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollPane.setPreferredSize(new Dimension(500,120));
 			box20.add(scrollPane);
 		box2.add(box20);
 		
@@ -83,7 +79,8 @@ public class EditTrainFrame extends MyJFrame{
 	            	if(h1.estInit() && h2.estInit()){
 						try {
 							escales.add( new Escale((Gare) comboBoxE.getSelectedItem(),h1,h2));
-							listeM.addElement(comboBoxE.getSelectedItem().toString()+"   "+ h1.toStringLong() +"   "+ h2.toStringLong() +"\n");
+							Escale escale = new Escale(comboBoxE.getSelectedItem(),h1,h2);
+							listeM.addElement(escale);
 						} catch (Erreur e1) {
 							champHoraire2.setWrong(true);
 							champHoraire3.setWrong(true);
@@ -104,7 +101,6 @@ public class EditTrainFrame extends MyJFrame{
 		
 		JPanel box3 = new GroupPanel("Arrivée");
 		comboBoxA = new GareComboBox("Gare d'arrivée : ");
-		comboBoxA.setSelectedGare(train.getArrivee().gare);
 		box3.add(comboBoxA);
 		champHoraire4 = new ChampHoraire("Horaires : ");
 		box3.add(champHoraire4);
@@ -112,9 +108,8 @@ public class EditTrainFrame extends MyJFrame{
 		
 		JPanel box4 = new JPanel();
 			
-			ajouter = new JButton("Sauvegarder");
+			ajouter = new JButton("Valider");
 			ajouter.addActionListener(new ActionListener() {
-				 
 	            public void actionPerformed(ActionEvent e)
 	            {
 	                // A FAIRE
@@ -123,6 +118,15 @@ public class EditTrainFrame extends MyJFrame{
 			box4.add(ajouter);
 			
 		main.add(box4);
+		
+		champHoraire1.setHoraire(train.getDepart().horaire);
+		comboBoxD.setSelectedGare(train.getDepart().gare);
+		if(train.getEscales() != null){
+			for(Escale e : train.getEscales())
+				listeM.addElement(e);
+		}
+		champHoraire4.setHoraire(train.getArrivee().horaire);
+		comboBoxA.setSelectedGare(train.getArrivee().gare);
 		
 		add(main);
 		

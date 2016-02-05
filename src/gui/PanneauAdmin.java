@@ -29,22 +29,6 @@ public class PanneauAdmin extends JPanel{
 		adminGare = new AdminFrame<Gare>("Gestion des gares",Donnees.getInstance().getGares());
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
-		
-		JPanel box0 = new JPanel();
-			JButton adminTrainButton = new JButton("Trains");
-			adminTrainButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
-	            	adminTrain.afficher();
-	        }});
-			box0.add(adminTrainButton);
-		this.add(box0);
-		
-		JPanel box1 = new JPanel();			
-			JButton adminClientButton = new JButton("Clients");
-			adminClientButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
-	            	adminCli.afficher();
-	        }});
-			box1.add(adminClientButton);
-		this.add(box1);
 	
 		JPanel box2 = new JPanel();
 			JButton adminVilleButton = new JButton("Ville");
@@ -59,6 +43,20 @@ public class PanneauAdmin extends JPanel{
 	        }});
 			box2.add(adminGaresButton);
 		this.add(box2);
+		
+		JPanel box0 = new JPanel();
+			JButton adminTrainButton = new JButton("Trains");
+			adminTrainButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+	            	adminTrain.afficher();
+	        }});
+			box0.add(adminTrainButton);
+			
+			JButton adminClientButton = new JButton("Clients");
+			adminClientButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+	            	adminCli.afficher();
+	        }});
+			box0.add(adminClientButton);
+		this.add(box0);
 		
 		JPanel box4 = new JPanel();
 			JButton deco = new JButton("Déconnexion");

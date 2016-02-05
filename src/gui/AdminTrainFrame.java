@@ -22,7 +22,7 @@ import train.Train;
 @SuppressWarnings("serial")
 public class AdminTrainFrame extends MyJFrame{
 	
-	public AdminTrainFrame(){		
+	public AdminTrainFrame(){
 		setTitle("Trains");
 		
 		DefaultListModel<Train> listeM = new DefaultListModel<Train>();
@@ -43,33 +43,29 @@ public class AdminTrainFrame extends MyJFrame{
 		
 		JPanel box1 = new JPanel();
 			JButton addTrain = new JButton("Nouveau");
-			addTrain.addActionListener(new ActionListener(){
-	            public void actionPerformed(ActionEvent e)
-	            {
-	            	EditTrainFrame ajoutTrain = new EditTrainFrame(null);
-	            	ajoutTrain.setVisible(true);
-	            }
-	        });
+			addTrain.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+            	EditTrainFrame ajoutTrain = new EditTrainFrame(null);
+            	ajoutTrain.setVisible(true);
+			}});
 			box1.add(addTrain);
 			
 			JButton editTrain = new JButton("Editer");
-			editTrain.addActionListener(new ActionListener(){
-	            public void actionPerformed(ActionEvent e)
-	            {
-	            	Train train = listeM.getElementAt(list.getSelectedIndex());
-	            	EditTrainFrame editTrain = new EditTrainFrame(train);
-	            	editTrain.setVisible(true);
-	            }
-	        });
+			editTrain.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+            	Train train = listeM.getElementAt(list.getSelectedIndex());
+            	EditTrainFrame editTrain = new EditTrainFrame(train);
+            	editTrain.setVisible(true);
+			}});
 			box1.add(editTrain);
 			
 			JButton delTrain = new JButton("Supprimer");
-			delTrain.addActionListener(new ActionListener(){
-	            public void actionPerformed(ActionEvent e)
-	            {
-	            	// A FAIRE
-	            }
-	        });
+			delTrain.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+            	Train train = listeM.getElementAt(list.getSelectedIndex());
+            	Donnees.getInstance().removeTrain(train);
+            	
+            	listeM.clear();
+        		for(Train t : Donnees.getInstance().getTrains())
+        			listeM.addElement(t);
+			}});
 			box1.add(delTrain);
 		main.add(box1);
 		

@@ -45,7 +45,7 @@ public class Train extends Identified{
 	
 	// Utilitaire
 	public String toString(){
-		String s = "Train n°" + getId() + " : " + depart + " --> " + arrivee + "\n";
+		String s = getId() + " : " + depart + " --> " + arrivee + "\n";
 		return s;
 	}
 	

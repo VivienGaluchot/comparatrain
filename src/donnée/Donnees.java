@@ -73,10 +73,18 @@ public class Donnees {
 		clients.add(client);
 	}
 	
+	public void removeClient(Client client){
+		clients.remove(client);
+	}
+	
 	public void addVille(Ville ville) throws Erreur{
 		for(Ville v : villes)
 			if(ville.equals(v)) throw new Erreur(Erreur.EXISTE);
 		villes.add(ville);
+	}
+	
+	public void removeVille(Ville ville){
+		villes.remove(ville);
 	}
 	
 	public void addGare(Gare gare) throws Erreur{
@@ -85,10 +93,18 @@ public class Donnees {
 		gares.add(gare);
 	}
 	
+	public void removeGare(Gare gare){
+		gares.remove(gare);
+	}
+	
 	public void addTrain(Train train) throws Erreur{
 		for(Train t : trains)
 			if(train.equals(t)) throw new Erreur(Erreur.EXISTE);
 		trains.add(train);
+	}
+	
+	public void removeTrain(Train train){
+		trains.remove(train);
 	}
 	
 	public Client findClient(String login, String motDePasse){
