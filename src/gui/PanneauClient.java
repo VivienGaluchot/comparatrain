@@ -125,7 +125,8 @@ public class PanneauClient extends JPanel {
 				}else if(champHoraire.getComboBox().getSelectedItem().equals("Arrivée")){
 					pref.setHArrivee(h.toStringLong());
 				}
-                Comparateur.comparer(pref).afficher();
+				pref.setDirect(cbDirect.isSelected());
+                // Comparateur.comparer(pref).afficher();
                 frameRes = new FenetreRes(Comparateur.comparer(pref));
                 frameRes.setVisible(true);
         	}

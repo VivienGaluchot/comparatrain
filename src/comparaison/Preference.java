@@ -18,7 +18,7 @@ public class Preference {
 	private Horaire hArrivee;
 	
 	// Optionel
-	Boolean direct = null;
+	private Boolean direct = null;
 	Integer nombre = null;
 	Integer classe = null;
 	
@@ -93,5 +93,13 @@ public class Preference {
 
 	public void setHArrivee(Horaire hArrivee) {
 		this.hArrivee = hArrivee;
+	}
+
+	public Boolean getDirect() {
+		return direct;
+	}
+
+	public void setDirect(Boolean direct) {
+		this.direct = direct;
 	}
 }

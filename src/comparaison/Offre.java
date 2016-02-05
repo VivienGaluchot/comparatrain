@@ -27,6 +27,7 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 	
 	public double eval(Preference pref) {
 		double res = 1;
+		if(pref.getDirect() && getNbCorres()>0) return 0;
 		res *= getDepart().eval(pref.getGDepart(),pref.getHDepart());
 		res *= getArrivee().eval(pref.getGArrivee(),pref.getHArrivee());
 		res *= getDepart().horaire.eval(getArrivee().horaire);
