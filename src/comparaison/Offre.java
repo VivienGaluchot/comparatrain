@@ -83,7 +83,7 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 	public String toString(){
 		String res = "";
 		for(OffreSegment o : offres)
-			res += o + "\n";
+			res += "\n" + o + "\n";
 		return res;
 	}
 }

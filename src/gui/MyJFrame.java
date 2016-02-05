@@ -12,9 +12,9 @@ public class MyJFrame extends JFrame{
 		Dimension dim = tk.getScreenSize();
 		int screenW = dim.width;
 		int screenH = dim.height;
-		
+
 		pack();
-		setBounds((screenW-this.getHeight())/2,(screenH-this.getHeight())/2,this.getWidth(),this.getHeight());
+		setBounds((screenW-this.getWidth())/2,(screenH-this.getHeight())/2,this.getWidth(),this.getHeight());
 	}
 	
 	public void afficher(){

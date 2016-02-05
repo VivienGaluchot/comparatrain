@@ -11,14 +11,13 @@ import java.awt.Stroke;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import comparaison.Offre;
 import comparaison.OffreSegment;
+import elements.Horaire;
 
 @SuppressWarnings("serial")
 public class Ligne extends JPanel{	
@@ -33,9 +32,9 @@ public class Ligne extends JPanel{
 		
 		Double height =  this.getHeight()/2.;
 		Double longeur = (double) this.getWidth();
-		LocalDateTime Td = offre.getDepart().horaire.getTime();
-		LocalDateTime Ta = offre.getArrivee().horaire.getTime();
-		Double echelle = longeur/(Td.until(Ta,ChronoUnit.SECONDS));
+		Horaire Td = offre.getDepart().horaire;
+		Horaire Ta = offre.getArrivee().horaire;
+		Double echelle = longeur/(Td.until(Ta));
 		
 		g2.drawString(offre.getDepart().gare.getNom(), 0,this.getHeight()/2 - 4);
 		Font font = getFont();
@@ -46,8 +45,8 @@ public class Ligne extends JPanel{
 		for(OffreSegment o : offre.getOffres()){
 			g2.setColor(couleur[o.getTrain().getId()%7]);
 			
-			Point2D deb = new Point2D.Double(echelle*(Td.until(o.getDepart().horaire.getTime(),ChronoUnit.SECONDS)),height);
-			Point2D fin = new Point2D.Double(echelle*(Td.until(o.getArrivee().horaire.getTime(),ChronoUnit.SECONDS)),height);
+			Point2D deb = new Point2D.Double(echelle*(Td.until(o.getDepart().horaire)),height);
+			Point2D fin = new Point2D.Double(echelle*(Td.until(o.getArrivee().horaire)),height);
 			Line2D l = new Line2D.Double(deb, fin);
 			g2.draw(l);
 			
@@ -56,14 +55,15 @@ public class Ligne extends JPanel{
 			g2.fill(rect1);
 			g2.fill(rect2);
 			
-			int sizeChaineT = fm.stringWidth("Train n°"+o.getTrain().getId());
-			g2.drawString("Train n°"+o.getTrain().getId(),(int)Math.min(deb.getX()+2,longeur-sizeChaineT), (int) (height+heightChaine) );
+			String str = "" + o.getTrain().getId();
+			int sizeChaineT = fm.stringWidth(str);
+			g2.drawString(str,(int)Math.min(deb.getX()+2,longeur-sizeChaineT), (int) (height+heightChaine) );
 		}
 	}
 	
 	public Ligne (Offre o){
 		setLayout(new BoxLayout(this,BoxLayout.LINE_AXIS));
 		offre = o;
-		this.setPreferredSize(new Dimension(500,50));
+		this.setPreferredSize(new Dimension(700,50));
 	}
 }

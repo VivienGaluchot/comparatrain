@@ -20,8 +20,14 @@
    id: 3
    login: Vivien
    motDePasse: 'mdp'
-   nom: Vivien
-   prenom: Galuchot
+   nom: Galuchot
+   prenom: Vivien
+- !utilisateur.Client
+   id: 3
+   login: Vincent
+   motDePasse: 'mdp'
+   nom: Hernandez
+   prenom: Vincent
 --- 
 - &1 !elements.Ville
    id: 0

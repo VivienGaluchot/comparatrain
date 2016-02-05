@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import comparaison.Offre;
 import comparaison.Resultat;
@@ -21,9 +20,8 @@ public class FenetreRes extends MyJFrame{
 
 		for ( Offre o : r)
 			main.add(new PanneauTrain(o));
-		
-		JScrollPane listScroller = new JScrollPane(main);
-		add(listScroller);
+
+		add(main);
 		
 		positionner();
 		afficher();
