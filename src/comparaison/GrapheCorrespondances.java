@@ -6,16 +6,14 @@ import java.util.List;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.FloydWarshallShortestPaths;
 import org.jgrapht.graph.DefaultDirectedWeightedGraph;
-import org.jgrapht.graph.DefaultWeightedEdge;
 
 import elements.GareHoraire;
 import elements.SegmentHoraire;
-import train.Place;
 import train.Train;
 
 public class GrapheCorrespondances {
-	DefaultDirectedWeightedGraph<GareHoraire, myEdge> graph;
-	FloydWarshallShortestPaths<GareHoraire, myEdge> FloydWarshallPath;
+	DefaultDirectedWeightedGraph<GareHoraire, OffreSegment> graph;
+	FloydWarshallShortestPaths<GareHoraire, OffreSegment> FloydWarshallPath;
 	
 	// Listes permettant de calculer les connections
 	
@@ -23,7 +21,7 @@ public class GrapheCorrespondances {
 	ArrayList<GareHoraire> arrivees;
 	
 	public GrapheCorrespondances(List<Train> trains){
-		graph = new DefaultDirectedWeightedGraph<GareHoraire,myEdge>(myEdge.class);
+		graph = new DefaultDirectedWeightedGraph<GareHoraire,OffreSegment>(OffreSegment.class);
 		departs = new ArrayList<GareHoraire>();
 		arrivees = new ArrayList<GareHoraire>();
 		
@@ -31,9 +29,9 @@ public class GrapheCorrespondances {
 			addTrain(t);
 		}
 		
-		FloydWarshallPath = new FloydWarshallShortestPaths<GareHoraire, myEdge>(graph);
+		FloydWarshallPath = new FloydWarshallShortestPaths<GareHoraire, OffreSegment>(graph);
 		connect();
-		FloydWarshallPath = new FloydWarshallShortestPaths<GareHoraire, myEdge>(graph);
+		FloydWarshallPath = new FloydWarshallShortestPaths<GareHoraire, OffreSegment>(graph);
 	}
 	
 	public void addTrain(Train t){
@@ -50,12 +48,12 @@ public class GrapheCorrespondances {
 			departs.add(segment.depart);
 			arrivees.add(segment.arrivee);
 			
-			myEdge edge = new myEdge(t,t.getPlace(),segment);
+			OffreSegment edge = new OffreSegment(t,t.getPlace(),segment);
 			graph.addEdge(segment.depart, segment.arrivee, edge);
 			graph.setEdgeWeight(edge, edge.getWeight());
 			
 			if(prevSegment != null){
-				graph.addEdge(prevSegment.arrivee, segment.depart, new myEdge(t,t.getPlace(),prevSegment.arrivee, segment.depart));
+				graph.addEdge(prevSegment.arrivee, segment.depart, new OffreSegment(t,t.getPlace(),prevSegment.arrivee, segment.depart));
 			}
 		}
 	}
@@ -64,13 +62,9 @@ public class GrapheCorrespondances {
 		int i = 0;		
 		for(GareHoraire A : arrivees){
 			for(GareHoraire B : departs){
-				if(!A.equals(B)){
-					if(A.isConnectableTo(B)){
-						if(FloydWarshallPath.getShortestPath(A,B) == null){
-							i++;
-							graph.addEdge(A, B, new myEdge(null,null,A,B));
-						}
-					}
+				if(!A.equals(B) && A.isConnectableTo(B) && FloydWarshallPath.getShortestPath(A,B) == null){
+					i++;
+					graph.addEdge(A, B, new OffreSegment(null,null,A,B));
 				}
 			}
 		}
@@ -86,7 +80,7 @@ public class GrapheCorrespondances {
 			if(Evaluateur.evalDepart(depart,pref) > 0){
 				for(GareHoraire arrivee : arrivees){
 					if(Evaluateur.evalArrivee(arrivee, pref) > 0){
-						resultat.addAll(trouverOffre(new SegmentHoraire(depart,arrivee)));
+						resultat.add(trouverOffre(new SegmentHoraire(depart,arrivee)));
 					}
 				}
 			}
@@ -95,26 +89,26 @@ public class GrapheCorrespondances {
 		return resultat;
 	}
 	
-	public List<Offre> trouverOffre(SegmentHoraire segment){
-		ArrayList<Offre> resultat = new ArrayList<Offre>();
-		GraphPath<GareHoraire, myEdge> path = FloydWarshallPath.getShortestPath(segment.depart,segment.arrivee);
+	public Offre trouverOffre(SegmentHoraire segment){
+		Offre resultat = null;
+		GraphPath<GareHoraire, OffreSegment> path = FloydWarshallPath.getShortestPath(segment.depart,segment.arrivee);
 		if(path != null){
-			resultat.add(fabriquerOffre(path.getEdgeList()));
+			resultat = (fabriquerOffre(path.getEdgeList()));
 		}
 		
 		return resultat;
 	}
 	
-	public Offre fabriquerOffre(List<myEdge> segments){
-		Offre o = new Offre();
+	public Offre fabriquerOffre(List<OffreSegment> segments){
+		Offre resultat = new Offre();
 		Train train = null;
 		GareHoraire depart = null;
 		GareHoraire arrivee = null;
 		
-		for(myEdge s : segments){
+		for(OffreSegment s : segments){
 			if(s.getTrain() != train){
 				if(depart != null && arrivee != null){
-					o.addOffreSimple(train,train.getPlace(),new SegmentHoraire(train,depart,arrivee));
+					resultat.addOffreSimple(train,train.getPlace(),new SegmentHoraire(train,depart,arrivee));
 					depart = null;
 					train = null;
 				}
@@ -125,37 +119,8 @@ public class GrapheCorrespondances {
 			}
 			arrivee = s.getArrivee();
 		}
-		o.addOffreSimple(train,train.getPlace(),new SegmentHoraire(train,depart,arrivee));
+		resultat.addOffreSimple(train,train.getPlace(),new SegmentHoraire(train,depart,arrivee));
 		
-		return o;
-	}
-	
-	@SuppressWarnings("serial")
-	private class myEdge extends DefaultWeightedEdge{
-		OffreSegment offre;
-		
-		public myEdge(Train train, Place place, SegmentHoraire segment) {
-			offre = new OffreSegment(train, place, segment);
-		}
-
-		public myEdge(Train t, Place place, GareHoraire arrivee, GareHoraire depart) {
-			offre = new OffreSegment(t, place, arrivee, depart);
-		}
-		
-		public GareHoraire getDepart(){
-			return offre.getDepart();
-		}
-		
-		public GareHoraire getArrivee(){
-			return offre.getArrivee();
-		}
-		
-		public Train getTrain(){
-			return offre.train;
-		}
-
-		public double getWeight(){
-			return (double) getDepart().horaire.until(getArrivee().horaire);
-		}
+		return resultat;
 	}
 }

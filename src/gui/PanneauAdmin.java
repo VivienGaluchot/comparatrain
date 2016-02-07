@@ -11,6 +11,7 @@ import javax.swing.JTabbedPane;
 import donnee.Donnees;
 import elements.Gare;
 import elements.Ville;
+import train.Train;
 import utilisateur.Client;
 
 @SuppressWarnings("serial")
@@ -19,14 +20,14 @@ public class PanneauAdmin extends JPanel{
 	AdminFrame<Client> adminCli;
 	AdminFrame<Ville> adminVille;
 	AdminFrame<Gare> adminGare;
-	AdminTrainFrame adminTrain;
+	AdminFrame<Train> adminTrain;
 	
 	public PanneauAdmin(JTabbedPane onglets){
 		
-		adminTrain = new AdminTrainFrame();
-		adminCli = new AdminFrame<Client>("Gestion des clients",Donnees.getInstance().getClients());
-		adminVille = new AdminFrame<Ville>("Gestion des villes",Donnees.getInstance().getVilles());
-		adminGare = new AdminFrame<Gare>("Gestion des gares",Donnees.getInstance().getGares());
+		adminTrain = new AdminFrame<Train>("Gestion des trains",Train.class,Donnees.getInstance().getTrains());
+		adminCli = new AdminFrame<Client>("Gestion des clients",Client.class,Donnees.getInstance().getClients());
+		adminVille = new AdminFrame<Ville>("Gestion des villes",Ville.class,Donnees.getInstance().getVilles());
+		adminGare = new AdminFrame<Gare>("Gestion des gares",Gare.class,Donnees.getInstance().getGares());
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 	

@@ -5,13 +5,13 @@ package train;
 
 import comparaison.Preference;
 import elements.Evaluable;
-import elements.Identified;
+import elements.Indexable;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
-public class Siege extends Identified implements Evaluable<Preference>{
+public class Siege extends Indexable implements Evaluable<Preference>{
 	public static final boolean AVANT = true;
 	public static final boolean ARRIERE = false;
 	public static final boolean FENETRE = true;

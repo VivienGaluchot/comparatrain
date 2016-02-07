@@ -4,7 +4,7 @@ package elements;
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
-public class Ville extends Identified{
+public class Ville extends Indexable{
 	private String nom;
 	
 	public Ville(){

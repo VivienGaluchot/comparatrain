@@ -11,6 +11,13 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import donnee.Donnees;
+import elements.Indexable;
+import elements.Ville;
+import train.Train;
+import utilisateur.Client;
+import elements.Gare;
+
 /**
  * liste des train
  * lien vers l'ajout d'un train
@@ -18,19 +25,25 @@ import javax.swing.JScrollPane;
  *
  */
 @SuppressWarnings("serial")
-public class AdminFrame<E> extends MyJFrame{
+public class AdminFrame<E extends Indexable> extends MyJFrame{
+	final Class<E> typeClass;
+
+	List<E> elements;
 	
-	public AdminFrame(String titre, List<E> list){
-		
+	DefaultListModel<E> listeM;
+	JList<E> list;
+	
+	public AdminFrame(String titre, Class<E> paramClass, List<E> elements){		
 		setTitle(titre);
+		typeClass = paramClass;
+		this.elements = elements;
 		
-		DefaultListModel<E> listeM = new DefaultListModel<E>();
+		listeM = new DefaultListModel<E>();
+		list = new JList<E>(listeM);
 		
-		for(E t : list)
-			listeM.addElement(t);
+		majList();
 		
-		JList<E> jlist = new JList<E>(listeM);
-		JScrollPane scrollPane = new JScrollPane(jlist);
+		JScrollPane scrollPane = new JScrollPane(list);
 		
 		GroupPanel main = new GroupPanel("Liste");
 		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
@@ -40,20 +53,62 @@ public class AdminFrame<E> extends MyJFrame{
 		JPanel box1 = new JPanel();
 			JButton nouveau = new JButton("Nouveau");
 			nouveau.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
+				if(typeClass == Train.class){
 	            	EditTrainFrame ajoutTrain = new EditTrainFrame(null);
 	            	ajoutTrain.setVisible(true);
+				}
+				else if(typeClass == Gare.class){
+					
+				}
+				else if(typeClass == Ville.class){
+					
+				}
+				else if(typeClass == Client.class){
+					
+				}
 	        }});
 			box1.add(nouveau);
 			
 			JButton editer = new JButton("Editer");
 			editer.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
-	            	// A FAIRE
+				if(list.getSelectedIndex() >= 0){
+					if(typeClass == Train.class){
+						Train train = (Train) listeM.getElementAt(list.getSelectedIndex());
+		            	EditTrainFrame editTrain = new EditTrainFrame(train);
+		            	editTrain.setVisible(true);
+					}
+					else if(typeClass == Gare.class){
+						
+					}
+					else if(typeClass == Ville.class){
+						
+					}
+					else if(typeClass == Client.class){
+						
+					}
+				}
 	        }});
 			box1.add(editer);
 			
 			JButton supprimer = new JButton("Supprimer");
 			supprimer.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
-	            	// A FAIRE
+				if(typeClass == Train.class){
+	            	Train train = (Train) listeM.getElementAt(list.getSelectedIndex());
+	            	Donnees.getInstance().removeTrain(train);
+				}
+				else if(typeClass == Gare.class){
+					Gare gare = (Gare) listeM.getElementAt(list.getSelectedIndex());
+	            	Donnees.getInstance().removeGare(gare);
+				}
+				else if(typeClass == Ville.class){
+					Ville ville = (Ville) listeM.getElementAt(list.getSelectedIndex());
+	            	Donnees.getInstance().removeVille(ville);
+				}
+				else if(typeClass == Client.class){
+					Client client = (Client) listeM.getElementAt(list.getSelectedIndex());
+	            	Donnees.getInstance().removeClient(client);
+				}
+				majList();
 	        }});
 			box1.add(supprimer);
 		main.add(box1);
@@ -61,5 +116,11 @@ public class AdminFrame<E> extends MyJFrame{
 		this.add(main);
 		
 		positionner();
+	}
+	
+	public void majList(){
+		listeM.clear();
+		for(E t : elements)
+			listeM.addElement(t);	
 	}
 }

@@ -1,8 +1,8 @@
 package utilisateur;
 
-import elements.Identified;
+import elements.Indexable;
 
-public class Personne extends Identified{
+public class Personne extends Indexable{
 	private String prenom;
 	private String nom;
 	

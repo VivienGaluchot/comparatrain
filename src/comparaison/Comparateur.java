@@ -9,17 +9,14 @@ import donnee.Donnees;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
- * utilise le modele pour comparer la base de donnée avec le modele
  */
 public class Comparateur {
 	// Singleton
 	private static volatile Comparateur instance = null;
 	
-	private Donnees data = null;
 	private static GrapheCorrespondances graph = null;
 	
-	private Comparateur(){
-	}
+	private Comparateur(){}
 	
 	public final static Comparateur getInstance() {
         if (Comparateur.instance == null) {
@@ -33,12 +30,10 @@ public class Comparateur {
     }
 	
 	public final static Resultat comparer(Preference pref){
-		if(graph == null) return null;
-		
-		Resultat resultat = new Resultat();
-		
+		if(graph == null) buildGraph();		
 		List<Offre> offres = graph.trouverOffre(pref);
 		
+		Resultat resultat = new Resultat();
 		for(Offre o : offres){
 			if(o.eval(pref) > 0)
 				resultat.add(o);
@@ -47,12 +42,7 @@ public class Comparateur {
 		return resultat;
 	}
 	
-	public void setData(Donnees d){
-		data = d;
-		graph = new GrapheCorrespondances(data.getTrains());
-	}
-	
-	public Donnees getData(){
-		return data;
+	public final static void buildGraph(){
+		graph = new GrapheCorrespondances(Donnees.getInstance().getTrains());
 	}
 }

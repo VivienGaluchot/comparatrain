@@ -1,13 +1,13 @@
 package elements;
 
-public abstract class Identified {
+public abstract class Indexable {
 	private Integer id;
 	
-	public Identified(){
+	public Indexable(){
 		id = null;
 	}
 	
-	public Identified(Integer id){
+	public Indexable(Integer id){
 		this.id = id;
 	}
 	
@@ -29,7 +29,7 @@ public abstract class Identified {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Identified other = (Identified) obj;
+		Indexable other = (Indexable) obj;
 		return id == other.id;
 	}
 }

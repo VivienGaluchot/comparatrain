@@ -9,14 +9,14 @@ import defaut.Erreur;
 
 import elements.Escale;
 import elements.GareHoraire;
-import elements.Identified;
+import elements.Indexable;
 import elements.SegmentHoraire;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
  * Classe de train
  */
-public class Train extends Identified{	
+public class Train extends Indexable{	
 	private GareHoraire depart;
 	private ArrayList<Escale> escales;
 	private GareHoraire arrivee;
@@ -45,7 +45,9 @@ public class Train extends Identified{
 	
 	// Utilitaire
 	public String toString(){
-		String s = getId() + " : " + depart + " --> " + arrivee + "\n";
+		String s = "Non initialise";
+		if(depart != null && arrivee != null)
+		s = getId() + " : " + depart + " --> " + arrivee + "\n";
 		return s;
 	}
 	

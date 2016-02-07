@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import comparaison.Preference;
 import elements.Evaluable;
-import elements.Identified;
+import elements.Indexable;
 
-public class Wagon extends Identified implements Evaluable<Preference>{
+public class Wagon extends Indexable implements Evaluable<Preference>{
 	public static final int PREMIERE = 1;
 	public static final int SECONDE = 2;
 	public static final int BAR = 3;

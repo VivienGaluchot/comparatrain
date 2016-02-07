@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import comparaison.Preference;
 import elements.Evaluable;
-import elements.Identified;
+import elements.Indexable;
 
-public class Rame extends Identified implements Evaluable<Preference>{
+public class Rame extends Indexable implements Evaluable<Preference>{
 	ArrayList<Wagon> wagons;
 	
 	public Rame(int i){

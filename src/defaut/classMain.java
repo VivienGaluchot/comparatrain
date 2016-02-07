@@ -12,8 +12,7 @@ public class classMain {
 		Donnees.charger();
 //		Donnees.getInstance().sauvegarder("databaseSave.yml");
 		
-		Comparateur comp = Comparateur.getInstance();
-		comp.setData(Donnees.getInstance());
+		Comparateur.buildGraph(); 
 		
 		MainFrame F = new MainFrame();
 		F.setVisible(true);

@@ -9,7 +9,7 @@ import java.time.Duration;
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
-public class Gare extends Identified implements Evaluable<Gare>, Comparable<Gare>{
+public class Gare extends Indexable implements Evaluable<Gare>, Comparable<Gare>{
 	private String nom;
 	private Ville ville;
 	

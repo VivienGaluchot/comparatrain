@@ -74,6 +74,7 @@ public class Donnees {
 	}
 	
 	public void removeClient(Client client){
+		System.out.println("Attention, des erreurs peuvent apparaitre");
 		clients.remove(client);
 	}
 	
@@ -84,6 +85,7 @@ public class Donnees {
 	}
 	
 	public void removeVille(Ville ville){
+		System.out.println("Attention, des erreurs peuvent apparaitre");
 		villes.remove(ville);
 	}
 	
@@ -94,6 +96,7 @@ public class Donnees {
 	}
 	
 	public void removeGare(Gare gare){
+		System.out.println("Attention, des erreurs peuvent apparaitre");
 		gares.remove(gare);
 	}
 	
@@ -104,6 +107,7 @@ public class Donnees {
 	}
 	
 	public void removeTrain(Train train){
+		System.out.println("Attention, des erreurs peuvent apparaitre");
 		trains.remove(train);
 	}
 	
