@@ -12,15 +12,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import defaut.Erreur;
+import donnee.Donnees;
 import elements.Escale;
-import elements.Gare;
 import elements.Horaire;
+import elements.GareHoraire;
 import train.Train;
 
 @SuppressWarnings("serial")
 public class EditTrainFrame extends MyJFrame{
 	
 	Train train;
+	AdminFrame<Train> father;
 	
 	private GareComboBox comboBoxD;
 	private GareComboBox comboBoxA;
@@ -36,14 +38,13 @@ public class EditTrainFrame extends MyJFrame{
 	
 	private ArrayList<Escale> escales = new ArrayList<Escale>();
 	
-	public EditTrainFrame(Train t){
-		
-		if(t == null){
+	public EditTrainFrame(Train t, AdminFrame<Train> f){
+		if(t == null)
 			this.train = new Train();
-		}
-		else{
+		else
 			this.train = t;
-		}
+		
+		father = f;
 		
 		setTitle("Edition");
 		
@@ -76,8 +77,8 @@ public class EditTrainFrame extends MyJFrame{
 		            	Horaire h2 = champHoraire3.getHoraire();
 		            	if(h1.estInit() && h2.estInit()){
 							try {
-								escales.add( new Escale((Gare) comboBoxE.getSelectedItem(),h1,h2));
 								Escale escale = new Escale(comboBoxE.getSelectedItem(),h1,h2);
+								escales.add(escale);
 								listeM.addElement(escale);
 							} catch (Erreur e1) {
 								champHoraire2.setWrong(true);
@@ -108,7 +109,19 @@ public class EditTrainFrame extends MyJFrame{
 			ajouter.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e)
 	            {
-	                // A FAIRE
+	            	try {
+	            		GareHoraire depart = new GareHoraire(comboBoxD.getSelectedItem(),champHoraire1.getHoraire());
+	            		train.setDepart(depart);
+	            		GareHoraire arrivee = new GareHoraire(comboBoxA.getSelectedItem(),champHoraire4.getHoraire());
+	            		train.setArrivee(arrivee);
+	            		train.setEscales(escales);
+	            		
+						Donnees.getInstance().addTrain(train);
+		            	father.majList();
+		            	setVisible(false);
+					} catch (Erreur e1) {
+						System.out.println(e1);
+					}
 	            }
 	        });
 			box.add(ajouter);

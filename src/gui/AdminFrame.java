@@ -33,10 +33,13 @@ public class AdminFrame<E extends Indexable> extends MyJFrame{
 	DefaultListModel<E> listeM;
 	JList<E> list;
 	
+	AdminFrame<E> thisElement;
+	
 	public AdminFrame(String titre, Class<E> paramClass, List<E> elements){		
 		setTitle(titre);
 		typeClass = paramClass;
 		this.elements = elements;
+		thisElement = this;
 		
 		listeM = new DefaultListModel<E>();
 		list = new JList<E>(listeM);
@@ -54,7 +57,7 @@ public class AdminFrame<E extends Indexable> extends MyJFrame{
 			JButton nouveau = new JButton("Nouveau");
 			nouveau.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
 				if(typeClass == Train.class){
-	            	EditTrainFrame ajoutTrain = new EditTrainFrame(null);
+					EditTrainFrame ajoutTrain = new EditTrainFrame(null,(AdminFrame) thisElement);
 	            	ajoutTrain.setVisible(true);
 				}
 				else if(typeClass == Gare.class){
@@ -74,7 +77,7 @@ public class AdminFrame<E extends Indexable> extends MyJFrame{
 				if(list.getSelectedIndex() >= 0){
 					if(typeClass == Train.class){
 						Train train = (Train) listeM.getElementAt(list.getSelectedIndex());
-		            	EditTrainFrame editTrain = new EditTrainFrame(train);
+		            	EditTrainFrame editTrain = new EditTrainFrame(train,(AdminFrame) thisElement);
 		            	editTrain.setVisible(true);
 					}
 					else if(typeClass == Gare.class){
