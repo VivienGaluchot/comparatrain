@@ -2,7 +2,7 @@ package gui;
 
 import javax.swing.JTextArea;
 
-import comparaison.Offre;
+import elements.Offre;
 
 @SuppressWarnings("serial")
 public class InfoTrain extends MyJFrame{

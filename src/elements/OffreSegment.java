@@ -1,16 +1,13 @@
-package comparaison;
+package elements;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 
-import elements.GareHoraire;
-import elements.SegmentHoraire;
 import train.Place;
 import train.Train;
 
 @SuppressWarnings("serial")
 public class OffreSegment extends DefaultWeightedEdge{
-	SegmentHoraire segment;
-	
+	SegmentHoraire segment;	
 	Train train;
 	Place place;
 	
@@ -43,6 +40,10 @@ public class OffreSegment extends DefaultWeightedEdge{
 	
 	public Train getTrain(){
 		return train;
+	}
+	
+	public Place getPlace(){
+		return place;
 	}
 	
 	public double getWeight(){

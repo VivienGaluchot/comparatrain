@@ -15,9 +15,9 @@ import java.awt.geom.Rectangle2D;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import comparaison.Offre;
-import comparaison.OffreSegment;
 import elements.Horaire;
+import elements.Offre;
+import elements.OffreSegment;
 
 @SuppressWarnings("serial")
 public class Ligne extends JPanel{	

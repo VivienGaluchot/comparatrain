@@ -5,11 +5,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 
+import elements.Offre;
+
 public class Resultat extends TreeSet<Offre>{
 	private static final long serialVersionUID = 1L;
 	
 	public void afficher(){
-		if(this.isEmpty() || last().eval == 0) System.out.println("Aucun résultat");
+		if(this.isEmpty() || last().getEval() == 0) System.out.println("Aucun résultat");
 		else{
 			Iterator<Offre> it = descendingIterator();
 			int i = 1;

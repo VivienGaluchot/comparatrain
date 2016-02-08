@@ -1,19 +1,17 @@
-package comparaison;
+package elements;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import elements.Evaluable;
-import elements.GareHoraire;
-import elements.SegmentHoraire;
+import comparaison.Preference;
 import train.Place;
 import train.Train;
 
 public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 	private static int compteur = 0;
 	
-	Double eval;
+	private Double eval;
 	int id;
 	
 	private ArrayList<OffreSegment> offres;
@@ -35,14 +33,18 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 		return res;
 	}
 	
+	public Double getEval() {
+		return eval;
+	}
+
 	public int compareTo(Offre o) {
-		if((eval - o.eval)>0) return 1;
-		else if(eval == o.eval) return id - o.id;
+		if((getEval() - o.getEval())>0) return 1;
+		else if(getEval() == o.getEval()) return id - o.id;
 		else return -1;
 	}	
 	
 	public boolean equals(Offre o){
-		return eval == o.eval && id == o.id;
+		return getEval() == o.getEval() && id == o.id;
 	}
 	
 	public GareHoraire getDepart(){

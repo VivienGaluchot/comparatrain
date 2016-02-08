@@ -5,8 +5,8 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import comparaison.Offre;
 import comparaison.Resultat;
+import elements.Offre;
 
 @SuppressWarnings("serial")
 public class FenetreRes extends MyJFrame{

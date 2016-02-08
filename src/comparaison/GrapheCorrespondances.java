@@ -8,6 +8,8 @@ import org.jgrapht.alg.FloydWarshallShortestPaths;
 import org.jgrapht.graph.DefaultDirectedWeightedGraph;
 
 import elements.GareHoraire;
+import elements.Offre;
+import elements.OffreSegment;
 import elements.SegmentHoraire;
 import train.Train;
 

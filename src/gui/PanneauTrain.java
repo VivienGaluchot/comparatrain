@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import comparaison.Offre;
+import elements.Offre;
 
 @SuppressWarnings("serial")
 public class PanneauTrain extends JPanel{

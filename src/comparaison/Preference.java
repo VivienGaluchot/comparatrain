@@ -1,6 +1,3 @@
-/**
- * 
- */
 package comparaison;
 
 import defaut.Erreur;

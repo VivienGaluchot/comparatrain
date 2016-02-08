@@ -10,6 +10,7 @@ import java.util.List;
 
 import comparaison.Comparateur;
 import defaut.Erreur;
+import elements.Billet;
 import elements.Gare;
 import elements.Ville;
 import train.Train;
@@ -33,12 +34,14 @@ public class Donnees {
 	private ArrayList<Ville> villes;
 	private ArrayList<Gare> gares;
 	private ArrayList<Train> trains;
+	private ArrayList<Billet> billets; 
 	
 	private Donnees(){
 		clients = new ArrayList<Client>();
 		villes = new ArrayList<Ville>();
 		gares = new ArrayList<Gare>();
 		trains = new ArrayList<Train>();
+		billets = new ArrayList<Billet>();
 	}
 	
 	public final static Donnees getInstance() {
@@ -53,20 +56,16 @@ public class Donnees {
     }
 	
 	public void afficher(){
-		for(Ville v : villes){
-			System.out.println(v);
-		}
-		System.out.println("---");
-		for(Gare g : gares){
-			System.out.println(g);
-		}
-		System.out.println("---");
-		for(Train t : getTrains()){
-			System.out.println(t);
-		}
+		System.out.print(clients.size() + " clients, ");
+		System.out.print(villes.size() + " villes, ");
+		System.out.print(gares.size() + " gares, ");
+		System.out.print(trains.size() + " trains,");
+		System.out.println(billets.size() + " billets");
 	}
 	
 	// Utilitaires
+	
+	// CLIENT
 	public void addClient(Client client) throws Erreur{
 		for(Client c : clients)
 			if(client.equals(c)) throw new Erreur(Erreur.EXISTE);
@@ -78,6 +77,7 @@ public class Donnees {
 		clients.remove(client);
 	}
 	
+	// VILLE
 	public void addVille(Ville ville) throws Erreur{
 		for(Ville v : villes)
 			if(ville.equals(v)) throw new Erreur(Erreur.EXISTE);
@@ -89,6 +89,7 @@ public class Donnees {
 		villes.remove(ville);
 	}
 	
+	// GARE
 	public void addGare(Gare gare) throws Erreur{
 		for(Gare g : gares)
 			if(gare.equals(g)) throw new Erreur(Erreur.EXISTE);
@@ -98,26 +99,6 @@ public class Donnees {
 	public void removeGare(Gare gare){
 		System.out.println("Attention, des erreurs peuvent apparaitre");
 		gares.remove(gare);
-	}
-	
-	public void addTrain(Train train) throws Erreur{
-		for(Train t : trains)
-			if(train.equals(t)) throw new Erreur(Erreur.EXISTE);
-		trains.add(train);
-	}
-	
-	public void removeTrain(Train train){
-		System.out.println("Attention, des erreurs peuvent apparaitre");
-		trains.remove(train);
-	}
-	
-	public Client findClient(String login, String motDePasse){
-		for(Client c : clients){
-			if(c.getLogin().compareTo(login) == 0)
-				if(c.getMotDePasse().compareTo(motDePasse) == 0)
-					return c;
-		}
-		return null;
 	}
 	
 	public Gare[] getGaresAlph(){
@@ -137,8 +118,29 @@ public class Donnees {
 		return res;
 	}
 	
-	// Getters
+	// TRAIN
+	public void addTrain(Train train) throws Erreur{
+		for(Train t : trains)
+			if(train.equals(t)) throw new Erreur(Erreur.EXISTE);
+		trains.add(train);
+	}
 	
+	public void removeTrain(Train train){
+		System.out.println("Attention, des erreurs peuvent apparaitre");
+		trains.remove(train);
+	}
+	
+	// CLIENT
+	public Client findClient(String login, String motDePasse){
+		for(Client c : clients){
+			if(c.getLogin().compareTo(login) == 0)
+				if(c.getMotDePasse().compareTo(motDePasse) == 0)
+					return c;
+		}
+		return null;
+	}
+	
+	// Getters	
 	public List<Gare> getGares(){
 		return Collections.unmodifiableList(gares);
 	}
@@ -174,8 +176,7 @@ public class Donnees {
 			if(t.getId() == id)
 				return t;
 		return null;
-	}
-	
+	}	
 	
 	// Sauvegarde - Chargement
 	
@@ -207,15 +208,12 @@ public class Donnees {
 			nVilles = reader.read(villes.getClass());
 			nGares = reader.read(gares.getClass());
 			nTrains = reader.read(trains.getClass());
-			System.out.println("Chargement de la base de donnée effectuée :");
-			System.out.print(nClients.size() + " clients, ");
-			System.out.print(nVilles.size() + " villes, ");
-			System.out.print(nGares.size() + " gares, ");
-			System.out.println(nTrains.size() + " trains");
 			clients = nClients;
 			villes = nVilles;
 			gares = nGares;
 			trains = nTrains;
+			System.out.println("Chargement de la base de donnée effectuée :");
+			afficher();
 		} catch (FileNotFoundException | YamlException | NullPointerException e1) {
 			e1.printStackTrace();
 		}
