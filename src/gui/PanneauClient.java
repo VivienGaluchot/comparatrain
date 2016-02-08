@@ -9,18 +9,13 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
-import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.text.NumberFormatter;
 
 import comparaison.Comparateur;
 import comparaison.Preference;
@@ -37,7 +32,7 @@ public class PanneauClient extends JPanel {
 	private ChampHoraire champHoraire;
 	
 	private JCheckBox cbDirect;
-	private JLabel lblNbPlaces;
+	private SpinnerChamp nbPlaces;
 	
 	private JLabel lblClasse;
 	private JRadioButton rbClasse1;
@@ -86,13 +81,7 @@ public class PanneauClient extends JPanel {
 				box61.add(cbDirect);
 				box61.add(Box.createHorizontalStrut(12));
 				
-				lblNbPlaces = new JLabel("Nb de places :");
-				box61.add(lblNbPlaces);
-			
-				SpinnerModel model = new SpinnerNumberModel(1,1,99,1);
-				JSpinner nbPlaces = new JSpinner(model);
-				JFormattedTextField txt = ((JSpinner.NumberEditor) nbPlaces.getEditor()).getTextField();
-				((NumberFormatter) txt.getFormatter()).setAllowsInvalid(false);
+				nbPlaces = new SpinnerChamp("Nb de places :",99);
 				box61.add(nbPlaces);
 				
 				box61.add(Box.createHorizontalStrut(12));

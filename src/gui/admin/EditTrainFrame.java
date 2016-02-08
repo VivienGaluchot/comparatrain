@@ -6,13 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.text.NumberFormatter;
 
 import defaut.Erreur;
 import donnee.Donnees;
@@ -23,6 +17,7 @@ import gui.GareComboBox;
 import gui.GroupPanel;
 import gui.ListPanel;
 import gui.MyJFrame;
+import gui.SpinnerChamp;
 import train.Train;
 
 @SuppressWarnings("serial")
@@ -60,13 +55,7 @@ public class EditTrainFrame extends MyJFrame{
 		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
 		
 		JPanel box = new JPanel();
-			JLabel lblNbPlaces = new JLabel("Id :");
-			box.add(lblNbPlaces);
-		
-			SpinnerModel model = new SpinnerNumberModel(1,1,9999,1);
-			JSpinner id = new JSpinner(model);
-			JFormattedTextField txt = ((JSpinner.NumberEditor) id.getEditor()).getTextField();
-			((NumberFormatter) txt.getFormatter()).setAllowsInvalid(false);
+			SpinnerChamp id = new SpinnerChamp("Id : ",9999);
 			box.add(id);
 		main.add(box);
 		
