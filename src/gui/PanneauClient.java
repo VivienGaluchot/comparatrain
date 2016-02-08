@@ -25,6 +25,7 @@ import javax.swing.text.NumberFormatter;
 import comparaison.Comparateur;
 import comparaison.Preference;
 import elements.Horaire;
+import gui.admin.PanneauAdmin;
 
 @SuppressWarnings("serial")
 public class PanneauClient extends JPanel {

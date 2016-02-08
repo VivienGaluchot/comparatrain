@@ -60,7 +60,7 @@ public class Train extends Indexable{
 		if(depart != null && escales != null && escales.size()>0)
 			if(depart.compareTo(escales.get(0).getArrivee())>=0) return false;
 		
-		// Si l'une des escale est après celle d'après
+		// Si l'odre des escales est non valide
 		if(escales != null)
 			for(int i=0;i<escales.size()-1;i++){
 				if(escales.get(i).compareTo(escales.get(i+1))>=0) return false;

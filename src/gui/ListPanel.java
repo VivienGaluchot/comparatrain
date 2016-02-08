@@ -12,10 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import donnee.Donnees;
-import elements.Indexable;
 import elements.Ville;
+import gui.GroupPanel;
+import gui.admin.EditTrainFrame;
 import train.Train;
 import utilisateur.Client;
+import elements.Escale;
 import elements.Gare;
 
 /**
@@ -25,39 +27,35 @@ import elements.Gare;
  *
  */
 @SuppressWarnings("serial")
-public class AdminFrame<E extends Indexable> extends MyJFrame{
+public class ListPanel<E> extends GroupPanel{
 	final Class<E> typeClass;
-
+	
 	List<E> elements;
 	
 	DefaultListModel<E> listeM;
 	JList<E> list;
 	
-	AdminFrame<E> thisElement;
-	
-	public AdminFrame(String titre, Class<E> paramClass, List<E> elements){		
-		setTitle(titre);
+	public ListPanel(String nom, Class<E> paramClass, List<E> elements){
+		super(nom);
+		setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+		
 		typeClass = paramClass;
-		this.elements = elements;
-		thisElement = this;
+		this.elements = elements;		
+		ListPanel<E> thisElement = this;
 		
 		listeM = new DefaultListModel<E>();
-		list = new JList<E>(listeM);
-		
+		list = new JList<E>(listeM);		
 		majList();
 		
-		JScrollPane scrollPane = new JScrollPane(list);
-		
-		GroupPanel main = new GroupPanel("Liste");
-		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
-		
-		main.add(scrollPane);
+		JScrollPane scrollPane = new JScrollPane(list);		
+		add(scrollPane);
 		
 		JPanel box1 = new JPanel();
 			JButton nouveau = new JButton("Nouveau");
-			nouveau.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
+			nouveau.addActionListener(new ActionListener(){@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e){
 				if(typeClass == Train.class){
-					EditTrainFrame ajoutTrain = new EditTrainFrame(null,(AdminFrame) thisElement);
+					EditTrainFrame ajoutTrain = new EditTrainFrame(null,(ListPanel<Train>) thisElement);
 	            	ajoutTrain.setVisible(true);
 				}
 				else if(typeClass == Gare.class){
@@ -73,11 +71,12 @@ public class AdminFrame<E extends Indexable> extends MyJFrame{
 			box1.add(nouveau);
 			
 			JButton editer = new JButton("Editer");
-			editer.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
+			editer.addActionListener(new ActionListener(){@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e){
 				if(list.getSelectedIndex() >= 0){
 					if(typeClass == Train.class){
 						Train train = (Train) listeM.getElementAt(list.getSelectedIndex());
-		            	EditTrainFrame editTrain = new EditTrainFrame(train,(AdminFrame) thisElement);
+		            	EditTrainFrame editTrain = new EditTrainFrame(train,(ListPanel<Train>) thisElement);
 		            	editTrain.setVisible(true);
 					}
 					else if(typeClass == Gare.class){
@@ -111,19 +110,23 @@ public class AdminFrame<E extends Indexable> extends MyJFrame{
 					Client client = (Client) listeM.getElementAt(list.getSelectedIndex());
 	            	Donnees.getInstance().removeClient(client);
 				}
+				else if(typeClass == Escale.class){
+					Escale escale = (Escale) listeM.getElementAt(list.getSelectedIndex());
+					elements.remove(escale);
+				}
 				majList();
 	        }});
 			box1.add(supprimer);
-		main.add(box1);
-		
-		this.add(main);
-		
-		positionner();
+		add(box1);
 	}
 	
 	public void majList(){
 		listeM.clear();
 		for(E t : elements)
 			listeM.addElement(t);	
+	}
+	
+	public DefaultListModel<E> getListModel(){
+		return listeM;
 	}
 }
