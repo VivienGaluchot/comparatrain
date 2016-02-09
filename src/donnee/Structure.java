@@ -7,7 +7,7 @@ import java.util.List;
 import defaut.Erreur;
 import elements.Indexable;
 
-public class Structure<E extends Indexable> {
+public class Structure<E extends Indexable>{
 	private ArrayList<E> elements;
 	
 	public void add(E element) throws Erreur{
@@ -21,11 +21,16 @@ public class Structure<E extends Indexable> {
 	}
 	
 	public int size(){
+		if(elements == null) return 0;
 		return elements.size();
 	}
 	
 	public List<E> getElements(){
 		return Collections.unmodifiableList(elements);
+	}
+	
+	public void setElements(ArrayList<E> e){
+		elements = e;
 	}
 	
 	public E get(int id){

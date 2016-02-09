@@ -80,14 +80,14 @@ public class VilleGareTextField extends Champ<JTextField>{
 	public String[] getEntry(String str){
 		ArrayList<String> list = new ArrayList<String>();
 		int i = 0;
-		for(Ville v : Donnees.getInstance().getVilles()){
+		for(Ville v : Donnees.getVilles()){
 			if(i>=5) break;
 			if(v.getNom().toLowerCase().contains(str.toLowerCase())){
 				list.add(v.getNom());
 				i++;
 			}
 		}
-		for(Gare g : Donnees.getInstance().getGares()){
+		for(Gare g : Donnees.getGares()){
 			if(i>=5) break;
 			if(g.getNom().toLowerCase().contains(str.toLowerCase())){
 				list.add(g.getNom());

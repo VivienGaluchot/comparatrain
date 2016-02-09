@@ -92,7 +92,7 @@ public class EditTrainFrame extends MyJFrame{
 	            		train.setArrivee(arrivee);
 	            		train.setEscales(escales);
 	            		if(nouveau)
-	            			Donnees.getInstance().addTrain(train);
+	            			Donnees.trains.add(train);
 		            	father.majList();
 		            	setVisible(false);
 					} catch (Erreur e1) {
