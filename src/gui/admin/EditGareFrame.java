@@ -54,8 +54,6 @@ public class EditGareFrame extends MyJFrame{
 			box.add(nom);
 		main.add(box);
 		
-
-		
 		box = new JPanel();
 			valider = new JButton("Valider");
 			valider.addActionListener(new ActionListener() {
@@ -63,6 +61,8 @@ public class EditGareFrame extends MyJFrame{
 	            {
 	            	try {
 	            		gare.setId((Integer) id.getValue());
+	            		gare.setNom(nom.getText());
+	            		gare.setVille(ville.getSelectedItem());
 	            		if(nouveau)
 	            			Donnees.gares.add(gare);
 		            	father.majList();
@@ -78,6 +78,10 @@ public class EditGareFrame extends MyJFrame{
 		// Mise a jour des champs
 		if(gare.getId() != null)
 			id.setValue(gare.getId());
+		if(gare.getNom() != null)
+			nom.setText(gare.getNom());
+		if(gare.getVille() != null)
+			ville.setSelectedVille(gare.getVille());
 		
 		add(main);
 		

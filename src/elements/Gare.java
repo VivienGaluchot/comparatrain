@@ -25,7 +25,7 @@ public class Gare extends Indexable implements Evaluable<Gare>, Comparable<Gare>
 	}
 	
 	public String toString(){
-		return getId() + " : " +getNom();
+		return getNom();
 	}
 	
 	public double eval(Gare g){

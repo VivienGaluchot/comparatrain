@@ -17,7 +17,7 @@ public class GareHoraire implements Comparable<GareHoraire>, Evaluable<GareHorai
 	}
 	
 	public String toString(){
-		return gare.getNom() + " " + horaire;
+		return gare + " " + horaire;
 	}
 	
 	public int compareTo(GareHoraire o){

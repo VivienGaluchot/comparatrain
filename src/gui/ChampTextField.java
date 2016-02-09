@@ -9,7 +9,7 @@ public class ChampTextField extends Champ<JTextField>{
 
 	public ChampTextField(String labelText) {
 		super(labelText, new JTextField());
-		champ.setPreferredSize( new Dimension( 100, 24 ) );
+		champ.setPreferredSize( new Dimension( 150, 24 ) );
 	}
 	
 	public String getText(){
