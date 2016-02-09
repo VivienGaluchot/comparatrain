@@ -96,19 +96,19 @@ public class ListPanel<E> extends GroupPanel{
 			supprimer.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
 				if(typeClass == Train.class){
 	            	Train train = (Train) listeM.getElementAt(list.getSelectedIndex());
-	            	Donnees.getInstance().removeTrain(train);
+	            	Donnees.trains.remove(train);
 				}
 				else if(typeClass == Gare.class){
 					Gare gare = (Gare) listeM.getElementAt(list.getSelectedIndex());
-	            	Donnees.getInstance().removeGare(gare);
+	            	Donnees.gares.remove(gare);
 				}
 				else if(typeClass == Ville.class){
 					Ville ville = (Ville) listeM.getElementAt(list.getSelectedIndex());
-	            	Donnees.getInstance().removeVille(ville);
+	            	Donnees.villes.remove(ville);
 				}
 				else if(typeClass == Client.class){
 					Client client = (Client) listeM.getElementAt(list.getSelectedIndex());
-	            	Donnees.getInstance().removeClient(client);
+	            	Donnees.clients.remove(client);
 				}
 				else if(typeClass == Escale.class){
 					Escale escale = (Escale) listeM.getElementAt(list.getSelectedIndex());

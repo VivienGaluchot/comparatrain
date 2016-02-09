@@ -24,10 +24,10 @@ public class PanneauAdmin extends JPanel{
 	
 	public PanneauAdmin(JTabbedPane onglets){
 		
-		adminTrain = new AdminFrame<Train>("Gestion des trains",Train.class,Donnees.getInstance().getTrains());
-		adminCli = new AdminFrame<Client>("Gestion des clients",Client.class,Donnees.getInstance().getClients());
-		adminVille = new AdminFrame<Ville>("Gestion des villes",Ville.class,Donnees.getInstance().getVilles());
-		adminGare = new AdminFrame<Gare>("Gestion des gares",Gare.class,Donnees.getInstance().getGares());
+		adminTrain = new AdminFrame<Train>("Gestion des trains",Train.class,Donnees.getTrains());
+		adminCli = new AdminFrame<Client>("Gestion des clients",Client.class,Donnees.getClients());
+		adminVille = new AdminFrame<Ville>("Gestion des villes",Ville.class,Donnees.getVilles());
+		adminGare = new AdminFrame<Gare>("Gestion des gares",Gare.class,Donnees.getGares());
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 	

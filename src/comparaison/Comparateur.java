@@ -44,6 +44,6 @@ public class Comparateur {
 	}
 	
 	public final static void buildGraph(){
-		graph = new GrapheCorrespondances(Donnees.getInstance().getTrains());
+		graph = new GrapheCorrespondances(Donnees.getTrains());
 	}
 }
