@@ -14,8 +14,10 @@ import javax.swing.JScrollPane;
 import donnee.Donnees;
 import elements.Ville;
 import gui.GroupPanel;
+import gui.admin.EditClientFrame;
 import gui.admin.EditGareFrame;
 import gui.admin.EditTrainFrame;
+import gui.admin.EditVilleFrame;
 import train.Train;
 import utilisateur.Client;
 import elements.Escale;
@@ -64,10 +66,12 @@ public class ListPanel<E> extends GroupPanel{
 					ajoutGare.setVisible(true);
 				}
 				else if(typeClass == Ville.class){
-					
+					EditVilleFrame ajoutVille = new EditVilleFrame(null,(ListPanel<Ville>) thisElement);
+					ajoutVille.setVisible(true);
 				}
 				else if(typeClass == Client.class){
-					
+					EditClientFrame ajoutClient = new EditClientFrame(null,(ListPanel<Client>) thisElement);
+					ajoutClient.setVisible(true);
 				}
 	        }});
 			box1.add(nouveau);
@@ -87,10 +91,14 @@ public class ListPanel<E> extends GroupPanel{
 		            	editGare.setVisible(true);						
 					}
 					else if(typeClass == Ville.class){
-						
+						Ville ville = (Ville) listeM.getElementAt(list.getSelectedIndex());
+						EditVilleFrame editVille = new EditVilleFrame(ville,(ListPanel<Ville>) thisElement);
+						editVille.setVisible(true);
 					}
 					else if(typeClass == Client.class){
-						
+						Client client = (Client) listeM.getElementAt(list.getSelectedIndex());
+						EditClientFrame editClient = new EditClientFrame(client,(ListPanel<Client>) thisElement);
+		            	editClient.setVisible(true);	
 					}
 				}
 	        }});

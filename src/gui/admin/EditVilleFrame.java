@@ -9,35 +9,34 @@ import javax.swing.JPanel;
 
 import defaut.Erreur;
 import donnee.Donnees;
+import elements.Ville;
 import gui.ChampTextField;
 import gui.GroupPanel;
 import gui.ListPanel;
 import gui.MyJFrame;
 import gui.SpinnerChamp;
-import utilisateur.Client;
 
 @SuppressWarnings("serial")
-public class EditClientFrame extends MyJFrame{
+public class EditVilleFrame extends MyJFrame{
 	
 
-	Client client;
-	ListPanel<Client> father;
+	Ville ville;
+	ListPanel<Ville> father;
 	boolean nouveau;
 	
-	private ChampTextField prenom;
+
 	private ChampTextField nom;
-	private ChampTextField login;
-	private ChampTextField motdepasse;
+
 	
 	private JButton valider;
 	
-	public EditClientFrame(Client c, ListPanel<Client> f){
-		if(c == null){
-			client = new Client();
+	public EditVilleFrame(Ville v, ListPanel<Ville> f){
+		if(v == null){
+			ville = new Ville();
 			nouveau = true;
 		}
 		else{
-			client = c;
+			ville = v;
 			nouveau = false;
 		}
 		
@@ -54,46 +53,28 @@ public class EditClientFrame extends MyJFrame{
 			box.add(id);
 		main.add(box);
 		
-		box = new GroupPanel("Personne");
-		prenom = new ChampTextField("Prenom");
-		prenom.setText(client.getPrenom());
+		box = new GroupPanel("Ville");
 		nom = new ChampTextField("Nom");
-		nom.setText(client.getNom());
-		box.add(prenom);
+		nom.setText(ville.getNom());
 		box.add(nom);
 		main.add(box);
-		
-		box = new GroupPanel("Client");
-		login = new ChampTextField("Login");
-		login.setText(client.getLogin());
-		motdepasse = new ChampTextField("MotDePasse");
-		motdepasse.setText(client.getMotDePasse());
-		box.add(login);
-		box.add(motdepasse);
-		main.add(box);
-
-		
+			
 		box = new JPanel();
 		valider = new JButton("Valider");
 		valider.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
             	try {
-            		client.setId((Integer) id.getValue());
-            		client.setPrenom(prenom.getText());
-            		client.setNom(nom.getText());
-            		client.setLogin(login.getText());
-            		client.setMotDePasse(motdepasse.getText());
+            		ville.setId((Integer) id.getValue());
+
+            		ville.setNom(nom.getText());
+
             		if(nouveau)
-            			Donnees.clients.add(client);
+            			Donnees.villes.add(ville);
 	            	father.majList();
 	            	setVisible(false);
 				} catch (Erreur e1) {
-					prenom.setWrong(true);
 					nom.setWrong(true);
-					login.setWrong(true);
-					motdepasse.setWrong(true);
-
 					System.out.println(e1);
 				}
             }
