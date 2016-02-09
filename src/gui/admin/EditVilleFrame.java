@@ -12,23 +12,17 @@ import donnee.Donnees;
 import elements.Ville;
 import gui.ChampTextField;
 import gui.GroupPanel;
-import gui.ListPanel;
 import gui.MyJFrame;
 import gui.SpinnerChamp;
 
 @SuppressWarnings("serial")
 public class EditVilleFrame extends MyJFrame{
+	private Ville ville;
+	private ListPanel<Ville> father;
+	private boolean nouveau;
 	
-
-	Ville ville;
-	ListPanel<Ville> father;
-	boolean nouveau;
-	
-
+	private SpinnerChamp id;
 	private ChampTextField nom;
-
-	
-	private JButton valider;
 	
 	public EditVilleFrame(Ville v, ListPanel<Ville> f){
 		if(v == null){
@@ -47,9 +41,10 @@ public class EditVilleFrame extends MyJFrame{
 		JPanel main = new JPanel();
 		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
 		
-		
 		JPanel box = new JPanel();
-			SpinnerChamp id = new SpinnerChamp("Id : ",9999);
+			id = new SpinnerChamp("Id : ",9999);
+			if(ville.getId() != null)
+				id.setValue(ville.getId());
 			box.add(id);
 		main.add(box);
 		
@@ -60,25 +55,28 @@ public class EditVilleFrame extends MyJFrame{
 		main.add(box);
 			
 		box = new JPanel();
-		valider = new JButton("Valider");
-		valider.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-            	try {
-            		ville.setId((Integer) id.getValue());
-
-            		ville.setNom(nom.getText());
-
-            		if(nouveau)
-            			Donnees.villes.add(ville);
-	            	father.majList();
-	            	setVisible(false);
-				} catch (Erreur e1) {
+		JButton annuler = new JButton("Annuler");
+		annuler.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) {
+        	setVisible(false);
+        }});
+		box.add(annuler);
+		JButton valider = new JButton("Valider");
+		valider.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) {
+        	try {
+        		Donnees.villes.changeId(ville, id.getValue());
+        		ville.setNom(nom.getText());
+        		if(nouveau)
+        			Donnees.villes.add(ville);
+            	father.majList();
+            	setVisible(false);
+			} catch (Erreur e1) {
+				if(e1.getType() == Erreur.EXISTE)
+					id.setWrong(true);
+				else
 					nom.setWrong(true);
-					System.out.println(e1);
-				}
-            }
-        });
+				System.out.println(e1);
+			}
+        }});
 		box.add(valider);
 	main.add(box);
 	

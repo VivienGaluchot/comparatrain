@@ -20,6 +20,10 @@ public class Erreur extends Exception {
 		type = t;
 	}
 	
+	public int getType(){
+		return type;
+	}
+	
 	public String toString(){
 		String s = "";
 		switch(type){

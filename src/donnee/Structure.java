@@ -29,6 +29,15 @@ public class Structure<E extends Indexable>{
 		return Collections.unmodifiableList(elements);
 	}
 	
+	public void changeId(E el, int newId) throws Erreur{
+		if(el.getId() == newId) return;
+		
+		if(get(newId) != null)
+			throw new Erreur(Erreur.EXISTE);
+		else
+			el.setId(newId);
+	}
+	
 	public void setElements(ArrayList<E> e){
 		elements = e;
 	}

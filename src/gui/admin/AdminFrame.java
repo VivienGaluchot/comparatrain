@@ -3,7 +3,6 @@ package gui.admin;
 import java.util.List;
 
 import elements.Indexable;
-import gui.ListPanel;
 import gui.MyJFrame;
 
 /**
@@ -16,7 +15,7 @@ import gui.MyJFrame;
 public class AdminFrame<E extends Indexable> extends MyJFrame{
 	public AdminFrame(String titre, Class<E> paramClass, List<E> elements){		
 		setTitle(titre);
-		add(new ListPanel<E>("Liste",paramClass, elements));
+		add(new ListPanel<E>("Base de donnée",paramClass, elements));
 		positionner();
 	}
 }

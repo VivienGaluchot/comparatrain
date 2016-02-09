@@ -1,4 +1,4 @@
-package gui;
+package gui.admin;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,10 +14,6 @@ import javax.swing.JScrollPane;
 import donnee.Donnees;
 import elements.Ville;
 import gui.GroupPanel;
-import gui.admin.EditClientFrame;
-import gui.admin.EditGareFrame;
-import gui.admin.EditTrainFrame;
-import gui.admin.EditVilleFrame;
 import train.Train;
 import utilisateur.Client;
 import elements.Escale;
@@ -73,6 +69,10 @@ public class ListPanel<E> extends GroupPanel{
 					EditClientFrame ajoutClient = new EditClientFrame(null,(ListPanel<Client>) thisElement);
 					ajoutClient.setVisible(true);
 				}
+				else if(typeClass == Escale.class){
+					EditEscaleFrame ajoutEscale = new EditEscaleFrame(null,(ListPanel<Escale>) thisElement);
+					ajoutEscale.setVisible(true);
+				}
 	        }});
 			box1.add(nouveau);
 			
@@ -99,6 +99,11 @@ public class ListPanel<E> extends GroupPanel{
 						Client client = (Client) listeM.getElementAt(list.getSelectedIndex());
 						EditClientFrame editClient = new EditClientFrame(client,(ListPanel<Client>) thisElement);
 		            	editClient.setVisible(true);	
+					}
+					else if(typeClass == Escale.class){
+						Escale escale = (Escale) listeM.getElementAt(list.getSelectedIndex());
+						EditEscaleFrame editEscale  = new EditEscaleFrame(escale,(ListPanel<Escale>) thisElement);
+						editEscale.setVisible(true);	
 					}
 				}
 	        }});
@@ -135,7 +140,11 @@ public class ListPanel<E> extends GroupPanel{
 	public void majList(){
 		listeM.clear();
 		for(E t : elements)
-			listeM.addElement(t);	
+			listeM.addElement(t);
+	}
+	
+	public void addElement(E el){
+		elements.add(el);
 	}
 	
 	public DefaultListModel<E> getListModel(){

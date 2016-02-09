@@ -11,7 +11,6 @@ import defaut.Erreur;
 import donnee.Donnees;
 import elements.Gare;
 import gui.ChampTextField;
-import gui.ListPanel;
 import gui.MyJFrame;
 import gui.SpinnerChamp;
 import gui.VilleComboBox;
@@ -22,7 +21,7 @@ public class EditGareFrame extends MyJFrame{
 	boolean nouveau;
 	ListPanel<Gare> father;
 	
-	private JButton valider;
+	private SpinnerChamp id;
 	
 	public EditGareFrame(Gare g, ListPanel<Gare> f){
 		if(g == null){
@@ -42,7 +41,7 @@ public class EditGareFrame extends MyJFrame{
 		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
 		
 		JPanel box = new JPanel();
-			SpinnerChamp id = new SpinnerChamp("Id : ",9999);
+			id = new SpinnerChamp("Id : ",9999);
 			box.add(id);
 		main.add(box);
 		box = new JPanel();
@@ -55,23 +54,31 @@ public class EditGareFrame extends MyJFrame{
 		main.add(box);
 		
 		box = new JPanel();
-			valider = new JButton("Valider");
-			valider.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e)
-	            {
-	            	try {
-	            		gare.setId((Integer) id.getValue());
-	            		gare.setNom(nom.getText());
-	            		gare.setVille(ville.getSelectedItem());
-	            		if(nouveau)
-	            			Donnees.gares.add(gare);
-		            	father.majList();
-		            	setVisible(false);
-					} catch (Erreur e1) {
-						System.out.println(e1);
+			JButton annuler = new JButton("Annuler");
+			annuler.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) {
+	        	setVisible(false);
+	        }});
+			box.add(annuler);
+			JButton valider = new JButton("Valider");
+			valider.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
+            	try {
+            		Donnees.gares.changeId(gare, id.getValue());
+            		gare.setNom(nom.getText());
+            		gare.setVille(ville.getSelectedItem());
+            		if(nouveau)
+            			Donnees.gares.add(gare);
+	            	father.majList();
+	            	setVisible(false);
+				} catch (Erreur e1) {
+					if(e1.getType() == Erreur.EXISTE)
+						id.setWrong(true);
+					else{
+						nom.setWrong(true);
+						ville.setWrong(true);
 					}
-	            }
-	        });
+					System.out.println(e1);
+				}
+	        }});
 			box.add(valider);
 		main.add(box);
 		

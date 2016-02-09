@@ -1,5 +1,8 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JFormattedTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
@@ -25,5 +28,13 @@ public class SpinnerChamp extends Champ<JSpinner>{
 	
 	public void setValue(int value){
 		champ.setValue(value);
+	}
+	
+	public void setWrong(boolean b){
+		Component c = champ.getEditor().getComponent(0);
+		if(b)
+			c.setForeground(Color.RED);
+		else
+			c.setForeground(Color.BLACK);
 	}
 }

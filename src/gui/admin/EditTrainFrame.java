@@ -15,7 +15,6 @@ import elements.GareHoraire;
 import gui.ChampHoraire;
 import gui.GareComboBox;
 import gui.GroupPanel;
-import gui.ListPanel;
 import gui.MyJFrame;
 import gui.SpinnerChamp;
 import train.Train;
@@ -26,6 +25,7 @@ public class EditTrainFrame extends MyJFrame{
 	boolean nouveau;
 	ListPanel<Train> father;
 	
+	private SpinnerChamp id;
 	private GareComboBox comboBoxD;
 	private GareComboBox comboBoxA;
 
@@ -34,8 +34,6 @@ public class EditTrainFrame extends MyJFrame{
 	
 	private ArrayList<Escale> escales;
 	ListPanel<Escale> listeEscale;
-	
-	private JButton valider;
 	
 	public EditTrainFrame(Train t, ListPanel<Train> f){
 		if(t == null){
@@ -55,7 +53,7 @@ public class EditTrainFrame extends MyJFrame{
 		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
 		
 		JPanel box = new JPanel();
-			SpinnerChamp id = new SpinnerChamp("Id : ",9999);
+			id = new SpinnerChamp("Id : ",9999);
 			box.add(id);
 		main.add(box);
 		
@@ -80,31 +78,37 @@ public class EditTrainFrame extends MyJFrame{
 		main.add(box);
 		
 		box = new JPanel();
-			valider = new JButton("Valider");
-			valider.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e)
-	            {
-	            	try {
-	            		train.setId((Integer) id.getValue());
-	            		GareHoraire depart = new GareHoraire(comboBoxD.getSelectedItem(),champHoraireD.getHoraire());
-	            		train.setDepart(depart);
-	            		GareHoraire arrivee = new GareHoraire(comboBoxA.getSelectedItem(),champHoraireA.getHoraire());
-	            		train.setArrivee(arrivee);
-	            		train.setEscales(escales);
-	            		if(nouveau)
-	            			Donnees.trains.add(train);
-		            	father.majList();
-		            	setVisible(false);
-					} catch (Erreur e1) {
+			JButton annuler = new JButton("Annuler");
+			annuler.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) {
+	        	setVisible(false);
+	        }});
+			box.add(annuler);
+			JButton valider = new JButton("Valider");
+			valider.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
+            	try {
+            		Donnees.trains.changeId(train, id.getValue());
+            		GareHoraire depart = new GareHoraire(comboBoxD.getSelectedItem(),champHoraireD.getHoraire());
+            		train.setDepart(depart);
+            		GareHoraire arrivee = new GareHoraire(comboBoxA.getSelectedItem(),champHoraireA.getHoraire());
+            		train.setArrivee(arrivee);
+            		train.setEscales(escales);
+            		if(nouveau)
+            			Donnees.trains.add(train);
+	            	father.majList();
+	            	setVisible(false);
+				} catch (Erreur e1) {
+					if(e1.getType() == Erreur.EXISTE)
+						id.setWrong(true);
+					else{
 						comboBoxD.setWrong(true);
 						comboBoxA.setWrong(true);
 
 						champHoraireD.setWrong(true);
 						champHoraireA.setWrong(true);
-						System.out.println(e1);
 					}
-	            }
-	        });
+					System.out.println(e1);
+				}
+	        }});
 			box.add(valider);
 		main.add(box);
 		
