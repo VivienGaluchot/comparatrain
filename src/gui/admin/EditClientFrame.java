@@ -91,7 +91,7 @@ public class EditClientFrame extends MyJFrame{
             		client.setLogin(login.getText());
             		client.setMotDePasse(motdepasse.getText());
             		if(nouveau)
-            			Donnees.getInstance().addClient(client);;
+            			Donnees.clients.add(client);;
 	            	father.majList();
 	            	setVisible(false);
 				} catch (Erreur e1) {
