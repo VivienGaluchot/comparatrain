@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import donnee.Donnees;
 import elements.Ville;
 import gui.GroupPanel;
+import gui.admin.EditGareFrame;
 import gui.admin.EditTrainFrame;
 import train.Train;
 import utilisateur.Client;
@@ -59,7 +60,8 @@ public class ListPanel<E> extends GroupPanel{
 	            	ajoutTrain.setVisible(true);
 				}
 				else if(typeClass == Gare.class){
-					
+					EditGareFrame ajoutGare = new EditGareFrame(null,(ListPanel<Gare>) thisElement);
+					ajoutGare.setVisible(true);
 				}
 				else if(typeClass == Ville.class){
 					
@@ -80,7 +82,9 @@ public class ListPanel<E> extends GroupPanel{
 		            	editTrain.setVisible(true);
 					}
 					else if(typeClass == Gare.class){
-						
+						Gare gare = (Gare) listeM.getElementAt(list.getSelectedIndex());
+						EditGareFrame editGare = new EditGareFrame(gare,(ListPanel<Gare>) thisElement);
+		            	editGare.setVisible(true);						
 					}
 					else if(typeClass == Ville.class){
 						
