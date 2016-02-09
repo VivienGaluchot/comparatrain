@@ -2,26 +2,18 @@ package gui.admin;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import defaut.Erreur;
 import donnee.Donnees;
-import elements.Escale;
-import elements.GareHoraire;
-import gui.ChampHoraire;
 import gui.ChampTextField;
-import gui.GareComboBox;
 import gui.GroupPanel;
 import gui.ListPanel;
 import gui.MyJFrame;
 import gui.SpinnerChamp;
-import train.Train;
 import utilisateur.Client;
 
 public class EditClientFrame extends MyJFrame{

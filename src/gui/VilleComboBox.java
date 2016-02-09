@@ -25,7 +25,7 @@ public class VilleComboBox extends Champ<JComboBox<Ville>>{
 	}
 	
 	public void update(){
-		villes = (Ville[]) Donnees.getVilles().toArray();
+		villes = Donnees.getVillesAlph();
 		champ.setModel(new DefaultComboBoxModel<Ville>(villes));
 	}
 	

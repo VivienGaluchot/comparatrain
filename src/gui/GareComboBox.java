@@ -25,7 +25,7 @@ public class GareComboBox extends Champ<JComboBox<Gare>>{
 	}
 	
 	public void update(){
-		gares = Donnees.getInstance().getGaresAlph();
+		gares = Donnees.getGaresAlph();
 		champ.setModel(new DefaultComboBoxModel<Gare>(gares));
 	}
 	

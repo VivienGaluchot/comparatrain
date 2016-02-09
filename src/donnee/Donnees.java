@@ -62,11 +62,23 @@ public class Donnees {
 	}
 	
 	// Utilitaires	
-	public Gare[] getGaresAlph(){
-		gares.getElements().sort(null);
-		Gare[] res = new Gare[gares.size()];
+	public static Gare[] getGaresAlph(){
+		ArrayList<Gare> temp = new ArrayList<Gare>();
+		temp.addAll(gares.getElements());
+		temp.sort(null);
+		Gare[] res = new Gare[temp.size()];
 		for( int i=0;i<res.length;i++){
-			res[i]=gares.get(i);
+			res[i]=temp.get(i);
+		}
+		return res;
+	}
+	
+	public static Ville[] getVillesAlph(){
+		ArrayList<Ville> temp = new ArrayList<Ville>();
+		temp.addAll(villes.getElements());
+		Ville[] res = new Ville[temp.size()];
+		for( int i=0;i<res.length;i++){
+			res[i]=temp.get(i);
 		}
 		return res;
 	}

@@ -10,9 +10,11 @@ import javax.swing.JPanel;
 import defaut.Erreur;
 import donnee.Donnees;
 import elements.Gare;
+import gui.ChampTextField;
 import gui.ListPanel;
 import gui.MyJFrame;
 import gui.SpinnerChamp;
+import gui.VilleComboBox;
 
 @SuppressWarnings("serial")
 public class EditGareFrame extends MyJFrame{	
@@ -43,6 +45,16 @@ public class EditGareFrame extends MyJFrame{
 			SpinnerChamp id = new SpinnerChamp("Id : ",9999);
 			box.add(id);
 		main.add(box);
+		box = new JPanel();
+			VilleComboBox ville = new VilleComboBox("Ville : ");
+			box.add(ville);
+		main.add(box);
+		box = new JPanel();
+			ChampTextField nom = new ChampTextField("Nom : ");
+			box.add(nom);
+		main.add(box);
+		
+
 		
 		box = new JPanel();
 			valider = new JButton("Valider");
