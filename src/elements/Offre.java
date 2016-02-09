@@ -28,7 +28,7 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 		if(pref.getDirect() && getNbCorres()>0) return 0;
 		res *= getDepart().eval(pref.getGDepart(),pref.getHDepart());
 		res *= getArrivee().eval(pref.getGArrivee(),pref.getHArrivee());
-		res *= getDepart().horaire.eval(getArrivee().horaire);
+		res *= getDepart().horaire.eval(getArrivee().horaire)/2.0 + 0.5;
 		eval = res;
 		return res;
 	}

@@ -82,7 +82,9 @@ public class GrapheCorrespondances {
 			if(Evaluateur.evalDepart(depart,pref) > 0){
 				for(GareHoraire arrivee : arrivees){
 					if(Evaluateur.evalArrivee(arrivee, pref) > 0){
-						resultat.add(trouverOffre(new SegmentHoraire(depart,arrivee)));
+						Offre o = trouverOffre(new SegmentHoraire(depart,arrivee));
+						if(o != null)
+							resultat.add(o);
 					}
 				}
 			}
@@ -97,7 +99,6 @@ public class GrapheCorrespondances {
 		if(path != null){
 			resultat = (fabriquerOffre(path.getEdgeList()));
 		}
-		
 		return resultat;
 	}
 	
