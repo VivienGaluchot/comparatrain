@@ -13,7 +13,7 @@ public class Billet extends Indexable{
 	private Wagon wagon;
 	private Siege siege;
 	
-	Billet(OffreSegment offreSegment, Client client){
+	public Billet(OffreSegment offreSegment, Client client){
 		this.setOffreSegment(offreSegment);
 		this.setClient(client);
 	}

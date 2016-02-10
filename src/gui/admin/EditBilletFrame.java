@@ -25,17 +25,11 @@ public class EditBilletFrame extends MyJFrame{
 		
 		
 			JPanel box = new GroupPanel("Client");
-			SpinnerChamp idc = new SpinnerChamp("Id : ",9999);
-				idc.setValue(billet.getClient().getId());
-				idc.setEnabled(false);
+			JLabel idc = new JLabel("Id : "+billet.getClient().getId());
 				box.add(idc);
-				ChampTextField nom = new ChampTextField("Nom : ");
-				nom.setText(billet.getClient().getNom());
-				nom.setEnabled(false);
+				JLabel nom = new JLabel("Nom : "+billet.getClient().getNom());
 				box.add(nom);
-				ChampTextField prenom = new ChampTextField("Prenom : ");
-				nom.setText(billet.getClient().getPrenom());
-				prenom.setEnabled(false);
+				JLabel prenom = new JLabel("Prenom : "+ billet.getClient().getPrenom());
 				box.add(prenom);
 			main.add(box);
 			
