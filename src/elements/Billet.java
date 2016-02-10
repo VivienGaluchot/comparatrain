@@ -1,10 +1,17 @@
 package elements;
 
+import train.Rame;
+import train.Siege;
+import train.Wagon;
 import utilisateur.Client;
 
 public class Billet extends Indexable{
 	private OffreSegment offreSegment;
 	private Client client;
+	
+	private Rame rame;
+	private Wagon wagon;
+	private Siege siege;
 	
 	Billet(OffreSegment offreSegment, Client client){
 		this.setOffreSegment(offreSegment);
@@ -27,5 +34,7 @@ public class Billet extends Indexable{
 		this.client = client;
 	}
 	
-	
+	public String toString(){
+		return "Wagon n°" + wagon.getId() + " Siege n°" + siege.getId();
+	}
 }

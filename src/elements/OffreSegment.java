@@ -1,28 +1,29 @@
 package elements;
 
+import java.util.ArrayList;
+
 import org.jgrapht.graph.DefaultWeightedEdge;
 
-import train.Place;
 import train.Train;
 
 @SuppressWarnings("serial")
 public class OffreSegment extends DefaultWeightedEdge{
 	SegmentHoraire segment;	
 	Train train;
-	Place place;
+	ArrayList<Billet> billets;
 	
 	public OffreSegment(Train train, SegmentHoraire segment){
 		super();
 		this.segment = segment;
 		this.train = train;
-		this.place = null;
+		billets = null;
 	}
 	
 	public OffreSegment(Train train, GareHoraire depart, GareHoraire arrivee){
 		super();
 		this.segment = new SegmentHoraire(depart, arrivee);
 		this.train = train;
-		this.place = null;
+		billets = null;
 	}
 	
 	public OffreSegment clone(){
@@ -42,10 +43,6 @@ public class OffreSegment extends DefaultWeightedEdge{
 		return train;
 	}
 	
-	public Place getPlace(){
-		return place;
-	}
-	
 	public double getWeight(){
 		return (double) getDepart().horaire.until(getArrivee().horaire);
 	}
@@ -60,8 +57,9 @@ public class OffreSegment extends DefaultWeightedEdge{
 		}
 		else {
 			res += segment.depart + " --Train " + train.getId() + "--> " + segment.arrivee;
-			if(place != null){
-				res += "\n" + place;
+			if(billets != null){
+				for(Billet b : billets)
+				res += "\n" + b;
 			}
 			else {
 				res += "\n" + "Aucune place attribuée";
