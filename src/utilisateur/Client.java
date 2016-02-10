@@ -19,7 +19,7 @@ public class Client extends Personne{
 	}
 	
 	public String toString(){
-		String res = getId() + " - " + getLogin() + " : " + getPrenom() + " " + getNom();
+		String res = getLogin() + " : " + getPrenom() + " " + getNom();
 		return res;
 	}
 

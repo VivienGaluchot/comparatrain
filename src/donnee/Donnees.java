@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import comparaison.Comparateur;
 import elements.Billet;
 import elements.Gare;
 import elements.Ville;
@@ -21,9 +20,9 @@ import yamlbeans.YamlWriter;
 /**
  * @author Vivien Galuchot - Vincent Hernandez
  * Gestion des données, enregistrements
+ * Design pattern : Singleton
  */
 public class Donnees {
-	// Singleton
 	private static volatile Donnees instance = null;
 	
 	private static String fichier = "database.yml";
@@ -44,7 +43,7 @@ public class Donnees {
 	
 	public final static Donnees getInstance() {
         if (Donnees.instance == null) {
-           synchronized(Comparateur.class) {
+           synchronized(Donnees.class) {
              if (Donnees.instance == null) {
             	 Donnees.instance = new Donnees();
              }

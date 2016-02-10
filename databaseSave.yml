@@ -1,3 +1,4 @@
+!java.util.Collections$UnmodifiableRandomAccessList
 - !utilisateur.Client
    id: 0
    login: Herta
@@ -20,9 +21,15 @@
    id: 3
    login: Vivien
    motDePasse: mdp
-   nom: Vivien
-   prenom: Galuchot
---- 
+   nom: Galuchot
+   prenom: Vivien
+- !utilisateur.Client
+   id: 4
+   login: Vincent
+   motDePasse: mdp
+   nom: Hernandez
+   prenom: Vincent
+--- !java.util.Collections$UnmodifiableRandomAccessList
 - &1 !elements.Ville
    id: 0
    nom: Paris
@@ -50,7 +57,7 @@
 - &9 !elements.Ville
    id: 8
    nom: Reims
---- 
+--- !java.util.Collections$UnmodifiableRandomAccessList
 - &10 !elements.Gare
    id: 0
    nom: Gare de Lyon
@@ -103,7 +110,7 @@
    id: 12
    nom: Gare de Champagne-Ardenne TGV
    ville: *9
---- 
+--- !java.util.Collections$UnmodifiableRandomAccessList
 - !train.Train
    id: 5540
    arrivee: 
@@ -165,9 +172,9 @@
    - !elements.Escale
       gare: *14
       horaireA: 
-         serialTime: 06/01/2016 08h00
+         serialTime: 06/01/2016 08h10
       horaireD: 
-         serialTime: 06/01/2016 08h02
+         serialTime: 06/01/2016 08h15
    - !elements.Escale
       gare: *15
       horaireA: 

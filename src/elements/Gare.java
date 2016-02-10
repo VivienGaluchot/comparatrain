@@ -43,35 +43,26 @@ public class Gare extends Indexable implements Evaluable<Gare>, Comparable<Gare>
 		return res;
 	}
 	
+	@Override
+	public int compareTo(Gare o) {
+		return nom.compareTo(o.nom);
+	}
+	
 	/**
-	 * Pour le moment toutes les gares sont a 15 minutes
+	 * @return le temps nécéssaire au trajet entre les gares, s'il est envisageable pour une correspondance
+	 * null sinon
 	 */
 	public Duration isConnectableTo(Gare g){
 		if(this.equals(g))
-			return Duration.ofMinutes(0);
+			return Duration.ofMinutes(3);
 		if(this.getVille().equals(g.getVille()))
 			return Duration.ofMinutes(15);
 		return null;
 	}
 
-	public String getNom() {
-		return nom;
-	}
+	public String getNom() { return nom; }
+	public void setNom(String nom) { this.nom = nom; }
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public Ville getVille() {
-		return ville;
-	}
-
-	public void setVille(Ville ville) {
-		this.ville = ville;
-	}
-
-	@Override
-	public int compareTo(Gare o) {
-		return nom.compareTo(o.nom);
-	}
+	public Ville getVille() { return ville; }
+	public void setVille(Ville ville) { this.ville = ville; }
 }

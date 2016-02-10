@@ -5,10 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import elements.Billet;
-import gui.ChampTextField;
 import gui.GroupPanel;
 import gui.MyJFrame;
-import gui.SpinnerChamp;
 
 @SuppressWarnings("serial")
 public class EditBilletFrame extends MyJFrame{

@@ -27,27 +27,6 @@ public class OffreSegment extends DefaultWeightedEdge{
 		billets = null;
 	}
 	
-	public OffreSegment clone(){
-		OffreSegment o = new OffreSegment(train,segment);
-		return o;
-	}
-	
-	public GareHoraire getDepart() {
-		return segment.depart;
-	}
-
-	public GareHoraire getArrivee() {
-		return segment.arrivee;
-	}
-	
-	public Train getTrain(){
-		return train;
-	}
-	
-	public double getWeight(){
-		return (double) getDepart().horaire.until(getArrivee().horaire);
-	}
-	
 	/**
 	 * Affichage d'une offre
 	 */
@@ -79,4 +58,18 @@ public class OffreSegment extends DefaultWeightedEdge{
 		}
 		return res;
 	}
+	
+	public OffreSegment clone(){
+		OffreSegment o = new OffreSegment(train,segment);
+		return o;
+	}
+	
+	public double getWeight(){
+		return (double) getDepart().horaire.until(getArrivee().horaire);
+	}
+	
+	public GareHoraire getDepart() { return segment.depart; }
+	public GareHoraire getArrivee() { return segment.arrivee; }
+	
+	public Train getTrain(){ return train; }
 }

@@ -16,7 +16,7 @@ public class VilleComboBox extends Champ<JComboBox<Ville>>{
 	public VilleComboBox(String labelText) {
 		super(labelText, new JComboBox<Ville>());
 		champ.setBackground(Color.white);
-		champ.setFont(new javax.swing.plaf.FontUIResource("Arial",Font.PLAIN,12));;
+		champ.setFont(new javax.swing.plaf.FontUIResource("Arial",Font.PLAIN,12));
 		update();
 	}
 	

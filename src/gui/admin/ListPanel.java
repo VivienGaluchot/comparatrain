@@ -1,13 +1,18 @@
 package gui.admin;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,6 +25,7 @@ import utilisateur.Client;
 import elements.Billet;
 import elements.Escale;
 import elements.Gare;
+import elements.Indexable;
 
 /**
  * liste des train
@@ -46,7 +52,9 @@ public class ListPanel<E> extends GroupPanel{
 		ListPanel<E> thisElement = this;
 		
 		listeM = new DefaultListModel<E>();
-		list = new JList<E>(listeM);		
+		list = new JList<E>(listeM);
+		if(typeClass == Train.class || typeClass == Gare.class || typeClass == Ville.class || typeClass == Client.class)
+		list.setCellRenderer(new MyListCellRenderer());
 		majList();
 		
 		JScrollPane scrollPane = new JScrollPane(list);		
@@ -165,5 +173,21 @@ public class ListPanel<E> extends GroupPanel{
 	
 	public DefaultListModel<E> getListModel(){
 		return listeM;
+	}
+	
+	// Extend DefaultListCellRenderer, takes care of most of the work for you
+	public class MyListCellRenderer extends DefaultListCellRenderer	{
+		public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus)
+		{
+			JLabel id = new JLabel(((Indexable) value).getId() + " ");
+			JLabel label = (JLabel)super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+			label.setFont(new javax.swing.plaf.FontUIResource("Arial",Font.PLAIN,12));
+			JPanel main = new JPanel();
+			main.setBackground(Color.WHITE);
+			main.setLayout(new BoxLayout(main,BoxLayout.LINE_AXIS));
+			main.add(id);
+			main.add(label);
+			return main;
+		}
 	}
 }

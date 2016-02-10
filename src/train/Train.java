@@ -21,11 +21,14 @@ public class Train extends Indexable{
 	private ArrayList<Escale> escales;
 	private GareHoraire arrivee;
 	
+	private Rame rame;
+	
 	// Constructeurs	
 	public Train(){
 		depart = null;
-		escales = null;	
+		escales = null;
 		arrivee = null;
+		rame = null;
 	}
 	
 	public Train(Integer i){
@@ -33,13 +36,15 @@ public class Train extends Indexable{
 		depart = null;
 		escales = null;	
 		arrivee = null;
+		rame = null;
 	}
 	
-	public Train (Integer i, GareHoraire d, ArrayList<Escale> e, GareHoraire a) throws Erreur{
+	public Train (Integer i, GareHoraire d, ArrayList<Escale> e, GareHoraire a, Rame r) throws Erreur{
 		setId(i);
 		depart = d;
-		escales = e;	
+		escales = e;
 		arrivee = a;
+		rame = r;
 		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
 	}
 	
@@ -47,7 +52,7 @@ public class Train extends Indexable{
 	public String toString(){
 		String s = "Non initialise";
 		if(depart != null && arrivee != null)
-		s = getId() + " : " + depart + " --> " + arrivee + "\n";
+		s = depart + " --> " + arrivee + "\n";
 		return s;
 	}
 	
@@ -56,22 +61,22 @@ public class Train extends Indexable{
 	 * et si l'odre chronologique depart - escales - arrivee est respecté
 	 */
 	public boolean estCoherent(){
-		// Si le départ est après l'arrivee de la premiere escale
+		// Si le départ est après l'arrivee de la premiere escale -> FALSE
 		if(depart != null && escales != null && escales.size()>0)
 			if(depart.compareTo(escales.get(0).getArrivee())>=0) return false;
 		
-		// Si l'odre des escales est non valide
+		// Si l'odre des escales est non valide -> FALSE
 		if(escales != null)
 			for(int i=0;i<escales.size()-1;i++){
-				if(escales.get(i).compareTo(escales.get(i+1))>=0) return false;
 				if(!escales.get(i).estCoherent()) return false;
+				if(escales.get(i).compareTo(escales.get(i+1))>=0) return false;
 			}
 		
-		// Si l'arrivee est avant le départ de la derniere escale
+		// Si l'arrivee est avant le départ de la derniere escale -> FALSE
 		if(arrivee != null && escales != null && escales.size()>0)			
 			if(arrivee.compareTo(escales.get(escales.size()-1).getDepart())<=0) return false;
 		
-		// Si le depart est après l'arrivee
+		// Si le depart est après l'arrivee -> FALSE
 		if(depart != null && arrivee != null)
 			if(depart.compareTo(arrivee) >= 0) return false;
 		
@@ -103,38 +108,33 @@ public class Train extends Indexable{
 		if(escales == null) return 2;
 		return 2 + escales.size();
 	}
-		
+	
 	// Depart
-	public GareHoraire getDepart() {
-		return depart;
-	}
+	public GareHoraire getDepart() { return depart; }
 
 	public void setDepart(GareHoraire depart) throws Erreur{
+		new Train(null,depart,escales,arrivee,null);
 		this.depart = depart;
-		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
 	}
 	
 	// Escales
-	public ArrayList<Escale> getEscales() {
-		return escales;
-	}
-	
-	public Escale getEscale(int i){
-		return escales.get(i);
-	}
+	public ArrayList<Escale> getEscales() { return escales; }
 
 	public void setEscales(ArrayList<Escale> escales) throws Erreur{
+		new Train(null,depart,escales,arrivee,null);
 		this.escales = escales;
-		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
 	}
 	
 	// Arrivee
-	public GareHoraire getArrivee() {
-		return arrivee;
-	}
+	public GareHoraire getArrivee() { return arrivee; }
 
 	public void setArrivee(GareHoraire arrivee) throws Erreur{
+		new Train(null,depart,escales,arrivee,null);
 		this.arrivee = arrivee;
-		if(!estCoherent()) throw new Erreur(Erreur.INCOHERENCE);
 	}
+	
+	// Rame
+	public Rame getRame() { return rame; }
+	
+	public void setRame(Rame rame) { this.rame = rame; }
 }

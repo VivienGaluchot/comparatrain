@@ -17,48 +17,23 @@ public class Billet extends Indexable{
 		this.setOffreSegment(offreSegment);
 		this.setClient(client);
 	}
-
-	public OffreSegment getOffreSegment() {
-		return offreSegment;
-	}
-
-	public void setOffreSegment(OffreSegment offreSegment) {
-		this.offreSegment = offreSegment;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
 	
 	public String toString(){
 		return "offre";//Wagon n°" + wagon.getId() + " Siege n°" + siege.getId();
 	}
 
-	public Rame getRame() {
-		return rame;
-	}
+	public OffreSegment getOffreSegment() { return offreSegment; }
+	public void setOffreSegment(OffreSegment offreSegment) { this.offreSegment = offreSegment; }
 
-	public void setRame(Rame rame) {
-		this.rame = rame;
-	}
+	public Client getClient() { return client; }
+	public void setClient(Client client) { this.client = client; }
 
-	public Wagon getWagon() {
-		return wagon;
-	}
+	public Rame getRame() { return rame; }
+	public void setRame(Rame rame) { this.rame = rame; }
 
-	public void setWagon(Wagon wagon) {
-		this.wagon = wagon;
-	}
+	public Wagon getWagon() { return wagon; }
+	public void setWagon(Wagon wagon) { this.wagon = wagon; }
 
-	public Siege getSiege() {
-		return siege;
-	}
-
-	public void setSiege(Siege siege) {
-		this.siege = siege;
-	}
+	public Siege getSiege() { return siege; }
+	public void setSiege(Siege siege) { this.siege = siege; }
 }
