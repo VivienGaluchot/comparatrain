@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import donnee.Donnees;
+import elements.Billet;
 import elements.Gare;
 import elements.Ville;
 import train.Train;
@@ -24,6 +25,7 @@ public class PanneauAdmin extends JPanel{
 	AdminFrame<Ville> adminVille;
 	AdminFrame<Gare> adminGare;
 	AdminFrame<Train> adminTrain;
+	AdminFrame<Billet> adminBillet;
 	
 	public PanneauAdmin(JTabbedPane onglets){
 		
@@ -31,6 +33,7 @@ public class PanneauAdmin extends JPanel{
 		adminCli = new AdminFrame<Client>("Gestion des clients",Client.class,Donnees.getClients());
 		adminVille = new AdminFrame<Ville>("Gestion des villes",Ville.class,Donnees.getVilles());
 		adminGare = new AdminFrame<Gare>("Gestion des gares",Gare.class,Donnees.getGares());
+		adminBillet = new AdminFrame<Billet>("Gestion des billets",Billet.class,Donnees.getBillets());
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 	
@@ -83,14 +86,14 @@ public class PanneauAdmin extends JPanel{
 		this.add(box4);
 		
 		JPanel box6 = new JPanel();	
-			JLabel adminBillettLbl = new JLabel("Billet : ");
+			JLabel adminBilletLbl = new JLabel("Billet : ");
 			JButton adminBilletButton = new JButton("Editer");
-			adminClientButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
-	            	//adminBil.afficher();
+			adminBilletButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+	            	adminBillet.afficher();
 	        }});
 			box6.add(Box.createHorizontalGlue());
-			box6.add(adminClientLbl);
-			box6.add(adminClientButton);
+			box6.add(adminBilletLbl);
+			box6.add(adminBilletButton);
 			box6.add(Box.createRigidArea(new Dimension(20,0)));
 		this.add(box6);
 		
