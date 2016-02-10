@@ -1,6 +1,5 @@
 package comparaison;
 
-import defaut.Erreur;
 import elements.Horaire;
 
 /**
@@ -8,95 +7,48 @@ import elements.Horaire;
  *
  */
 public class Preference {
-	private String gDepart;
-	private String gArrivee;
-	
+	// Non optionnels
+	private String lieuxDepart;
+	private String lieuxArrivee;
 	private Horaire hDepart;
 	private Horaire hArrivee;
-	
-	// Optionel
-	private Boolean direct = null;
-	Integer nombre = null;
-	Integer classe = null;
+	// Optionnel
+	private Boolean direct;
+	private Integer nbPlace;
+	private Integer classe;
 	
 	public Preference(){
-		gDepart = null;
-		gArrivee = null;
+		lieuxDepart = null;
+		lieuxArrivee = null;
 		hDepart = null;
 		hArrivee = null;
+		direct = null;
+		nbPlace = null;
+		classe = null;
 	}
 	
-	public Preference(String d, String hD, String a, String hA){
-		setGDepart(d);
-		setGArrivee(a);
-		try {
-			setHDepart(new Horaire(hD));
-			setHArrivee(new Horaire(hA));
-		} catch (Erreur e) {
-			System.out.println(e);
-		}
-	}
-	
-	// Gares
-	public void setGares(String d, String a){
-		setGDepart(d);
-		setGArrivee(a);
-	}
-	
-	public String getGDepart() {
-		return gDepart;
-	}
-
-	public void setGDepart(String gDepart) {
-		this.gDepart = gDepart;
-	}
-
-	public String getGArrivee() {
-		return gArrivee;
-	}
-
-	public void setGArrivee(String gArrivee) {
-		this.gArrivee = gArrivee;
-	}
-	
-	// Horaires
-	public void setHArrivee(String hA){
-		try {
-			setHArrivee(new Horaire(hA));
-		} catch (Erreur e) {
-			System.out.println(e);
-		}
-	}
-	
-	public void setHDepart(String hD){
-		try {
-			setHDepart(new Horaire(hD));
-		} catch (Erreur e) {
-			System.out.println(e);
-		}
-	}
-	
-	public Horaire getHDepart() {
-		return hDepart;
-	}
-
-	public void setHDepart(Horaire hDepart) {
-		this.hDepart = hDepart;
-	}
-
-	public Horaire getHArrivee() {
-		return hArrivee;
-	}
-
-	public void setHArrivee(Horaire hArrivee) {
-		this.hArrivee = hArrivee;
-	}
-
-	public Boolean getDirect() {
-		return direct;
-	}
-
-	public void setDirect(Boolean direct) {
+	public Preference(String gD, Horaire hD, String gA, Horaire hA, Boolean direct, Integer nbPlace, Integer classe){
+		lieuxDepart = gD;
+		lieuxArrivee = gA;
+		hDepart = hD;
+		hArrivee = hA;
 		this.direct = direct;
+		this.nbPlace = nbPlace;
+		this.classe = classe;
 	}
+	
+	// Getters
+	public String getLieuxDepart() { return lieuxDepart; }
+
+	public String getLieuxArrivee() { return lieuxArrivee; }
+	
+	public Horaire getHDepart() { return hDepart; }
+
+	public Horaire getHArrivee() { return hArrivee; }
+
+	public Boolean getDirect() { return direct; }
+
+	public Integer getNbPlace() { return nbPlace; }
+
+	public Integer getClasse() { return classe; }
 }

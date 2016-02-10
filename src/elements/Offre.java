@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import comparaison.Preference;
-import train.Place;
 import train.Train;
 
 public class Offre implements Evaluable<Preference>, Comparable<Offre>{
@@ -26,8 +25,8 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 	public double eval(Preference pref) {
 		double res = 1;
 		if(pref.getDirect() && getNbCorres()>0) return 0;
-		res *= getDepart().eval(pref.getGDepart(),pref.getHDepart());
-		res *= getArrivee().eval(pref.getGArrivee(),pref.getHArrivee());
+		res *= getDepart().eval(pref.getLieuxDepart(),pref.getHDepart());
+		res *= getArrivee().eval(pref.getLieuxArrivee(),pref.getHArrivee());
 		res *= getDepart().horaire.eval(getArrivee().horaire)/2.0 + 0.5;
 		eval = res;
 		return res;
@@ -69,8 +68,8 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 		return Collections.unmodifiableList(offres);
 	}
 	
-	public void addOffreSimple(Train train, Place place, SegmentHoraire segment){
-		OffreSegment o = new OffreSegment(train,place,segment);
+	public void addOffreSimple(Train train, SegmentHoraire segment){
+		OffreSegment o = new OffreSegment(train,segment);
 		offres.add(o);
 	}
 	
