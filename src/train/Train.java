@@ -99,11 +99,6 @@ public class Train extends Indexable{
 		return new SegmentHoraire(this,depart,arrivee);
 	}
 	
-	public Place getPlace(){
-		// A FAIRE
-		return null;
-	}
-	
 	public int nbStop(){
 		if(escales == null) return 2;
 		return 2 + escales.size();

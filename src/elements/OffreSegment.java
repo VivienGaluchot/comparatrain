@@ -11,22 +11,22 @@ public class OffreSegment extends DefaultWeightedEdge{
 	Train train;
 	Place place;
 	
-	public OffreSegment(Train train, Place place, SegmentHoraire segment){
+	public OffreSegment(Train train, SegmentHoraire segment){
 		super();
 		this.segment = segment;
 		this.train = train;
-		this.place = place;
+		this.place = null;
 	}
 	
-	public OffreSegment(Train train, Place place, GareHoraire depart, GareHoraire arrivee){
+	public OffreSegment(Train train, GareHoraire depart, GareHoraire arrivee){
 		super();
 		this.segment = new SegmentHoraire(depart, arrivee);
 		this.train = train;
-		this.place = place;
+		this.place = null;
 	}
 	
 	public OffreSegment clone(){
-		OffreSegment o = new OffreSegment(train,place,segment);
+		OffreSegment o = new OffreSegment(train,segment);
 		return o;
 	}
 	

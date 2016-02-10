@@ -14,7 +14,6 @@ import javax.swing.JScrollPane;
 import donnee.Donnees;
 import elements.Ville;
 import gui.GroupPanel;
-import gui.MainFrame;
 import train.Train;
 import utilisateur.Client;
 import elements.Billet;

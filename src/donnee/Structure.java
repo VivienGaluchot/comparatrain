@@ -10,6 +10,10 @@ import elements.Indexable;
 public class Structure<E extends Indexable>{
 	private ArrayList<E> elements;
 	
+	Structure(){
+		elements = new ArrayList<E>();
+	}
+	
 	public void add(E element) throws Erreur{
 		for(E e : elements)
 			if(element.equals(e)) throw new Erreur(Erreur.EXISTE);

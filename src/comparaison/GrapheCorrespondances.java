@@ -50,12 +50,12 @@ public class GrapheCorrespondances {
 			departs.add(segment.depart);
 			arrivees.add(segment.arrivee);
 			
-			OffreSegment edge = new OffreSegment(t,t.getPlace(),segment);
+			OffreSegment edge = new OffreSegment(t,segment);
 			graph.addEdge(segment.depart, segment.arrivee, edge);
 			graph.setEdgeWeight(edge, edge.getWeight());
 			
 			if(prevSegment != null){
-				graph.addEdge(prevSegment.arrivee, segment.depart, new OffreSegment(t,t.getPlace(),prevSegment.arrivee, segment.depart));
+				graph.addEdge(prevSegment.arrivee, segment.depart, new OffreSegment(t,prevSegment.arrivee, segment.depart));
 			}
 		}
 	}
@@ -66,7 +66,7 @@ public class GrapheCorrespondances {
 			for(GareHoraire B : departs){
 				if(!A.equals(B) && A.isConnectableTo(B) && FloydWarshallPath.getShortestPath(A,B) == null){
 					i++;
-					graph.addEdge(A, B, new OffreSegment(null,null,A,B));
+					graph.addEdge(A, B, new OffreSegment(null,A,B));
 				}
 			}
 		}
@@ -111,7 +111,7 @@ public class GrapheCorrespondances {
 		for(OffreSegment s : segments){
 			if(s.getTrain() != train){
 				if(depart != null && arrivee != null){
-					resultat.addOffreSimple(train,train.getPlace(),new SegmentHoraire(train,depart,arrivee));
+					resultat.addOffreSimple(train,new SegmentHoraire(train,depart,arrivee));
 					depart = null;
 					train = null;
 				}
@@ -122,7 +122,7 @@ public class GrapheCorrespondances {
 			}
 			arrivee = s.getArrivee();
 		}
-		resultat.addOffreSimple(train,train.getPlace(),new SegmentHoraire(train,depart,arrivee));
+		resultat.addOffreSimple(train,new SegmentHoraire(train,depart,arrivee));
 		
 		return resultat;
 	}

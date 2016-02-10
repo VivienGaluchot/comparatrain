@@ -34,7 +34,6 @@ public class PanneauClient extends JPanel {
 	private JCheckBox cbDirect;
 	private SpinnerChamp nbPlaces;
 	
-	private JLabel lblClasse;
 	private JRadioButton rbClasse1;
 	private JRadioButton rbClasse2;
 	
@@ -64,7 +63,6 @@ public class PanneauClient extends JPanel {
 		this.add(box0);
 		
 		JPanel box3 = new JPanel();
-		
 			champHoraire = new ChampHoraire("Départ","Arrivée");
 			box3.add(champHoraire);
 		
@@ -86,7 +84,7 @@ public class PanneauClient extends JPanel {
 				
 				box61.add(Box.createHorizontalStrut(12));
 				
-				lblClasse = new JLabel("Classe : ");
+				JLabel lblClasse = new JLabel("Classe : ");
 				box61.add(lblClasse);
 				rbClasse1 = new JRadioButton("1");
 				rbClasse2 = new JRadioButton("2");
@@ -107,16 +105,18 @@ public class PanneauClient extends JPanel {
 		rechercher = new JButton("Rechercher");
 		rechercher.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
         	Horaire h = champHoraire.getHoraire();
-        	Preference pref = new Preference();
         	if(h.estInit()){
-            	pref.setGares(texteD.getText(), texteA.getText());
+        		int classe;
+				if(rbClasse1.isSelected())
+					classe = 1;
+				else 
+					classe = 2;
+        		Preference pref;
 				if(champHoraire.getComboBox().getSelectedItem().equals("Départ")){
-					pref.setHDepart(h.toStringLong());	
-				}else if(champHoraire.getComboBox().getSelectedItem().equals("Arrivée")){
-					pref.setHArrivee(h.toStringLong());
+					pref = new Preference(texteD.getText(),h,texteA.getText(),null,cbDirect.isSelected(),nbPlaces.getValue(),classe);
+				}else{
+					pref = new Preference(texteD.getText(),null,texteA.getText(),h,cbDirect.isSelected(),nbPlaces.getValue(),classe);
 				}
-				pref.setDirect(cbDirect.isSelected());
-                // Comparateur.comparer(pref).afficher();
                 frameRes = new FenetreRes(Comparateur.comparer(pref));
                 frameRes.setVisible(true);
         	}
