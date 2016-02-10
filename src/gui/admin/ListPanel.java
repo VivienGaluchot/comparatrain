@@ -14,8 +14,10 @@ import javax.swing.JScrollPane;
 import donnee.Donnees;
 import elements.Ville;
 import gui.GroupPanel;
+import gui.MainFrame;
 import train.Train;
 import utilisateur.Client;
+import elements.Billet;
 import elements.Escale;
 import elements.Gare;
 
@@ -105,6 +107,11 @@ public class ListPanel<E> extends GroupPanel{
 						EditEscaleFrame editEscale  = new EditEscaleFrame(escale,(ListPanel<Escale>) thisElement);
 						editEscale.setVisible(true);	
 					}
+					else if(typeClass == Billet.class){
+						Billet billet = (Billet) listeM.getElementAt(list.getSelectedIndex());
+						EditBilletFrame editBillet  = new EditBilletFrame(billet,(ListPanel<Billet>) thisElement);
+						editBillet.setVisible(true);
+					}
 				}
 	        }});
 			box1.add(editer);
@@ -130,6 +137,10 @@ public class ListPanel<E> extends GroupPanel{
 				else if(typeClass == Escale.class){
 					Escale escale = (Escale) listeM.getElementAt(list.getSelectedIndex());
 					elements.remove(escale);
+				}
+				else if(typeClass == Billet.class){
+					Billet billet = (Billet) listeM.getElementAt(list.getSelectedIndex());
+					elements.remove(billet);
 				}
 				majList();
 	        }});

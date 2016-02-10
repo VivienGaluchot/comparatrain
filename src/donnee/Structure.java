@@ -30,7 +30,7 @@ public class Structure<E extends Indexable>{
 	}
 	
 	public void changeId(E el, int newId) throws Erreur{
-		if(el.getId() == newId) return;
+		if(el.getId() != null && el.getId() == newId) return;
 		
 		if(get(newId) != null)
 			throw new Erreur(Erreur.EXISTE);

@@ -1,10 +1,13 @@
 package gui.admin;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -31,45 +34,81 @@ public class PanneauAdmin extends JPanel{
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 	
-		JPanel box2 = new JPanel();
-			JButton adminVilleButton = new JButton("Ville");
+		JPanel box1 = new JPanel();
+			JLabel adminVilleLbl = new JLabel("Villes : " );
+			JButton adminVilleButton = new JButton("Editer");
 			adminVilleButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
 	            	adminVille.afficher();
 	        }});
-			box2.add(adminVilleButton);
+			box1.add(Box.createHorizontalGlue());
+			box1.add(adminVilleLbl);
+			box1.add(adminVilleButton);
+			box1.add(Box.createRigidArea(new Dimension(20,0)));
+		this.add(box1);
 			
-			JButton adminGaresButton = new JButton("Gares");
+		JPanel box2 = new JPanel();
+			JLabel adminGaresLbl = new JLabel("Gares : ");
+			JButton adminGaresButton = new JButton("Editer");
 			adminGaresButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
 	            	adminGare.afficher();
 	        }});
+			box2.add(Box.createHorizontalGlue());
+			box2.add(adminGaresLbl);
 			box2.add(adminGaresButton);
+			box2.add(Box.createRigidArea(new Dimension(20,0)));
 		this.add(box2);
 		
-		JPanel box0 = new JPanel();
-			JButton adminTrainButton = new JButton("Trains");
+		JPanel box3 = new JPanel();
+			JLabel adminTrainLbl = new JLabel("Trains : ");
+			JButton adminTrainButton = new JButton("Editer");
 			adminTrainButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
 	            	adminTrain.afficher();
 	        }});
-			box0.add(adminTrainButton);
+			box3.add(Box.createHorizontalGlue());
+			box3.add(adminTrainLbl);
+			box3.add(adminTrainButton);
+			box3.add(Box.createRigidArea(new Dimension(20,0)));
+		this.add(box3);	
 			
-			JButton adminClientButton = new JButton("Clients");
+		JPanel box4 = new JPanel();	
+			JLabel adminClientLbl = new JLabel("Clients : ");
+			JButton adminClientButton = new JButton("Editer");
 			adminClientButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
 	            	adminCli.afficher();
 	        }});
-			box0.add(adminClientButton);
-		this.add(box0);
+			box4.add(Box.createHorizontalGlue());
+			box4.add(adminClientLbl);
+			box4.add(adminClientButton);
+			box4.add(Box.createRigidArea(new Dimension(20,0)));
+		this.add(box4);
 		
-		JPanel box4 = new JPanel();
+		JPanel box6 = new JPanel();	
+			JLabel adminBillettLbl = new JLabel("Billet : ");
+			JButton adminBilletButton = new JButton("Editer");
+			adminClientButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+	            	//adminBil.afficher();
+	        }});
+			box6.add(Box.createHorizontalGlue());
+			box6.add(adminClientLbl);
+			box6.add(adminClientButton);
+			box6.add(Box.createRigidArea(new Dimension(20,0)));
+		this.add(box6);
+		
+		JPanel box5 = new JPanel();
+		
 			JButton deco = new JButton("Déconnexion");
 			deco.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
 	            	onglets.remove(1);
 	        }});
-			box4.add(deco);
+			box5.add(deco);
+
 			JButton save = new JButton("Sauvegarder");
 			save.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
 	            	// A FAIRE
 	        }});
-			box4.add(save);
-		this.add(box4);
+			box5.add(save);
+		this.add(box5);
+		
+
 	}
 }
