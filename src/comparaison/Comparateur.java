@@ -7,6 +7,7 @@ import java.util.List;
 
 import donnee.Donnees;
 import elements.Offre;
+import elements.OffreSegment;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
@@ -41,6 +42,12 @@ public class Comparateur {
 		}
 		
 		return resultat;
+	}
+	
+	public void trouverPlace(Offre offre, Preference pref){
+		for(OffreSegment o : offre.getOffres()){
+			//
+		}
 	}
 	
 	public final static void buildGraph(){

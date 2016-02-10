@@ -37,4 +37,28 @@ public class Billet extends Indexable{
 	public String toString(){
 		return "Wagon n°" + wagon.getId() + " Siege n°" + siege.getId();
 	}
+
+	public Rame getRame() {
+		return rame;
+	}
+
+	public void setRame(Rame rame) {
+		this.rame = rame;
+	}
+
+	public Wagon getWagon() {
+		return wagon;
+	}
+
+	public void setWagon(Wagon wagon) {
+		this.wagon = wagon;
+	}
+
+	public Siege getSiege() {
+		return siege;
+	}
+
+	public void setSiege(Siege siege) {
+		this.siege = siege;
+	}
 }

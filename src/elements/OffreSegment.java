@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 
+import comparaison.Preference;
 import train.Train;
 
 @SuppressWarnings("serial")
@@ -64,6 +65,17 @@ public class OffreSegment extends DefaultWeightedEdge{
 			else {
 				res += "\n" + "Aucune place attribuée";
 			}
+		}
+		return res;
+	}
+
+	public double eval(Preference pref) {
+		if(billets.size() > pref.getNbPlace()) return 0;
+		Double res = 1.;
+		for(Billet b : billets){
+			res *= b.getRame().eval(pref);
+			res *= b.getWagon().eval(pref);
+			res *= b.getSiege().eval(pref);
 		}
 		return res;
 	}

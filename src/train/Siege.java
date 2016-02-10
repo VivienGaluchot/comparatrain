@@ -45,7 +45,7 @@ public class Siege extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public double eval(Preference pref){
-		return 0;
+		return 1;
 	}
 	
 	public String toString(){
