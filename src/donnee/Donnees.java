@@ -10,6 +10,7 @@ import java.util.List;
 import elements.Billet;
 import elements.Gare;
 import elements.Ville;
+import train.Rame;
 import train.Train;
 import utilisateur.Client;
 
@@ -30,13 +31,15 @@ public class Donnees {
 	public static Structure<Client> clients;
 	public static Structure<Ville> villes;
 	public static Structure<Gare> gares;
+	public static Structure<Rame> rames;
 	public static Structure<Train> trains;
-	public static Structure<Billet> billets; 
+	public static Structure<Billet> billets;
 	
 	private Donnees(){
 		clients = new Structure<Client>();
 		villes = new Structure<Ville>();
 		gares = new Structure<Gare>();
+		rames = new Structure<Rame>();
 		trains = new Structure<Train>();
 		billets = new Structure<Billet>();
 	}
@@ -53,10 +56,11 @@ public class Donnees {
     }
 	
 	public void afficher(){
-		System.out.print(clients.size() + " clients, ");
-		System.out.print(villes.size() + " villes, ");
-		System.out.print(gares.size() + " gares, ");
-		System.out.print(trains.size() + " trains,");
+		System.out.println(clients.size() + " clients");
+		System.out.println(villes.size() + " villes");
+		System.out.println(gares.size() + " gares");
+		System.out.println(rames.size() + " rames");
+		System.out.println(trains.size() + " trains");
 		System.out.println(billets.size() + " billets");
 	}
 	
@@ -108,6 +112,9 @@ public class Donnees {
 	public static List<Gare> getGares(){
 		return gares.getElements();
 	}
+	public static List<Rame> getRames(){
+		return rames.getElements();
+	}
 	public static List<Train> getTrains(){
 		return trains.getElements();
 	}
@@ -135,19 +142,22 @@ public class Donnees {
 	@SuppressWarnings("unchecked")
 	public void charger(String fichier){
 	    YamlReader reader;
-	    ArrayList<Client> nClients = null;
-	    ArrayList<Ville> nVilles = null;
+	    ArrayList<Client> nClients;
+	    ArrayList<Ville> nVilles;
 	    ArrayList<Gare> nGares;
+	    ArrayList<Rame> nRames;
 	    ArrayList<Train> nTrains;
 		try {
 			reader = new YamlReader(new FileReader(fichier));
 			nClients = reader.read(ArrayList.class);
 			nVilles = reader.read(ArrayList.class);
 			nGares = reader.read(ArrayList.class);
+			nRames = reader.read(ArrayList.class);
 			nTrains = reader.read(ArrayList.class);
 			clients.setElements(nClients);
 			villes.setElements(nVilles);
 			gares.setElements(nGares);
+			rames.setElements(nRames);
 			trains.setElements(nTrains);
 			System.out.println("Chargement de la base de donnée effectuée :");
 			afficher();
@@ -163,6 +173,7 @@ public class Donnees {
 			test.write(clients.getElements());
 			test.write(villes.getElements());
 			test.write(gares.getElements());
+			test.write(rames.getElements());
 			test.write(trains.getElements());
 			test.close();
 			System.out.println("Sauvegarde de la base de donnée effectuée");

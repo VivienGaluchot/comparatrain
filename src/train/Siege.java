@@ -9,39 +9,31 @@ import elements.Indexable;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez
- *
  */
 public class Siege extends Indexable implements Evaluable<Preference>{
-	public static final boolean AVANT = true;
-	public static final boolean ARRIERE = false;
-	public static final boolean FENETRE = true;
-	public static final boolean COULOIR = false;
+	public static final Integer AVANT = 1;
+	public static final Integer ARRIERE = 2;
+	public static final Integer FENETRE = 3;
+	public static final Integer COULOIR = 4;
 	
-	boolean sens;
-	boolean cote;
+	private Integer sens;
+	private Integer cote;
 	
-	protected boolean occupe;
+	public Siege(){
+		sens = null;
+		setCote(null);
+	}
 	
-	public Siege(Integer i,boolean sens, boolean cote){
+	public Siege(Integer i,Integer sens, Integer cote){
 		setId(i);
 		this.sens = sens;
-		this.cote = cote;
-		occupe = false;
+		this.setCote(cote);
 	}
 	
-	public Siege(Integer i,boolean sens, boolean cote, boolean occupe){
+	public Siege(Integer i,Integer sens, Integer cote, boolean occupe){
 		setId(i);
 		this.sens = sens;
-		this.cote = cote;
-		this.occupe = occupe;
-	}
-	
-	public void setOccupe(boolean occupe){
-		this.occupe = occupe;
-	}
-	
-	public boolean getOccupe(){
-		return occupe;
+		this.setCote(cote);
 	}
 	
 	public double eval(Preference pref){
@@ -50,13 +42,16 @@ public class Siege extends Indexable implements Evaluable<Preference>{
 	
 	public String toString(){
 		String res;
-		if(occupe){
-			res = "X";
-		}
-		else if(sens==AVANT)
+		if(sens==AVANT)
 			res = "u";
 		else
 			res = "n";
 		return res;
 	}
+
+	public Integer getSens() { return sens; }
+	public void setSens(Integer sens) { this.sens = sens; }
+	
+	public Integer getCote() { return cote; }
+	public void setCote(Integer cote) { this.cote = cote; }
 }

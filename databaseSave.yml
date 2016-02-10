@@ -111,6 +111,321 @@
    nom: Gare de Champagne-Ardenne TGV
    ville: *9
 --- !java.util.Collections$UnmodifiableRandomAccessList
+- &20 !train.Rame
+   id: 10
+   wagons: 
+   - !train.WagonPremiere
+      id: 0
+      bancs: 
+      - !train.BancSeul
+         id: 0
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+      - !train.BancDouble
+         id: 1
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+      - !train.BancSeul
+         id: 2
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+      - !train.BancDouble
+         id: 3
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+      - !train.BancSeul
+         id: 4
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+      - !train.BancDouble
+         id: 5
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+   - !train.WagonPremiere
+      id: 1
+      bancs: 
+      - !train.BancSeul
+         id: 0
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+      - !train.BancDouble
+         id: 1
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+      - !train.BancSeul
+         id: 2
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+      - !train.BancDouble
+         id: 3
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+      - !train.BancSeul
+         id: 4
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+      - !train.BancDouble
+         id: 5
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+   - !train.WagonBar
+      id: 2
+      bancs: []
+   - !train.WagonSeconde
+      id: 3
+      bancs: 
+      - !train.BancDouble
+         id: 0
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+      - !train.BancDouble
+         id: 1
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+      - !train.BancCarre
+         id: 2
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 2
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 2
+         - !train.Siege
+            id: 2
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 3
+            cote: 4
+            sens: 1
+      - !train.BancCarre
+         id: 3
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 2
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 2
+         - !train.Siege
+            id: 2
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 3
+            cote: 4
+            sens: 1
+      - !train.BancDouble
+         id: 4
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+      - !train.BancDouble
+         id: 5
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+   - !train.WagonSeconde
+      id: 4
+      bancs: 
+      - !train.BancDouble
+         id: 0
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+      - !train.BancDouble
+         id: 1
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+      - !train.BancCarre
+         id: 2
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 2
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 2
+         - !train.Siege
+            id: 2
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 3
+            cote: 4
+            sens: 1
+      - !train.BancCarre
+         id: 3
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 2
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 2
+         - !train.Siege
+            id: 2
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 3
+            cote: 4
+            sens: 1
+      - !train.BancDouble
+         id: 4
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+      - !train.BancDouble
+         id: 5
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+--- !java.util.Collections$UnmodifiableRandomAccessList
 - !train.Train
    id: 5540
    arrivee: 
@@ -273,3 +588,4 @@
          serialTime: 06/01/2016 15h45
       horaireD: 
          serialTime: 06/01/2016 15h50
+   rame: *20

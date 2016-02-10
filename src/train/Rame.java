@@ -7,7 +7,11 @@ import elements.Evaluable;
 import elements.Indexable;
 
 public class Rame extends Indexable implements Evaluable<Preference>{
-	ArrayList<Wagon> wagons;
+	private ArrayList<Wagon> wagons;
+	
+	public Rame(){
+		wagons = null;
+	}
 	
 	public Rame(int i){
 		setId(i);
@@ -34,4 +38,7 @@ public class Rame extends Indexable implements Evaluable<Preference>{
 		}
 		return res;
 	}
+	
+	public ArrayList<Wagon> getWagons(){ return wagons; }
+	public void setWagons(ArrayList<Wagon> wagons) { this.wagons = wagons; }
 }

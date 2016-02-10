@@ -11,16 +11,22 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 	public static final int SECONDE = 2;
 	public static final int BAR = 3;
 	
-	int type;
+	protected Integer type;
 	
-	ArrayList<Banc> bancs;
-	ArrayList<Banc> bancsGauches;
-	ArrayList<Banc> bancsDroits;
+	protected ArrayList<Banc> bancs;
+	protected ArrayList<Banc> bancsGauches;
+	protected ArrayList<Banc> bancsDroits;
+	
+	public Wagon(){
+		type = null;
+		bancs = null;
+		bancsGauches = null;
+		bancsDroits = null;
+	}
 	
 	public Wagon(int i){
-		setId(i);
-		
-		bancs = new ArrayList<Banc>();
+		setId(i);		
+		setBancs(new ArrayList<Banc>());
 		bancsGauches = new ArrayList<Banc>();
 		bancsDroits = new ArrayList<Banc>();
 	}
@@ -75,73 +81,7 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 		
 		return res;
 	}
-}
 
-class WagonPremiere extends Wagon{
-	public WagonPremiere(int i) {
-		super(i);
-		type = PREMIERE;
-		for(int j=0;j<12;j++){
-			bancs.add(new BancSeul(bancs.size(),Banc.GAUCHE));
-			bancsGauches.add(bancs.get(bancs.size()-1));
-			
-			bancs.add(new BancDouble(bancs.size(),Banc.DROIT));
-			bancsDroits.add(bancs.get(bancs.size()-1));
-		}
-	}
-	public String toString(){
-		String res ="-- -- Wagon " + getId() + " (I)\n";
-		res += super.toString();
-		res += "-- --\n";
-		return res;
-	}
-}
-
-class WagonSeconde extends Wagon{
-	public WagonSeconde(int i) {
-		super(i);
-		type = SECONDE;
-		for(int j=0;j<3;j++){
-			bancs.add(new BancDouble(bancs.size(),Banc.GAUCHE));
-			bancsGauches.add(bancs.get(bancs.size()-1));
-			
-			bancs.add(new BancDouble(bancs.size(),Banc.DROIT));
-			bancsDroits.add(bancs.get(bancs.size()-1));
-			
-			bancs.add(new BancCarre(bancs.size(),Banc.GAUCHE));
-			bancsGauches.add(bancs.get(bancs.size()-1));
-			
-			bancs.add(new BancCarre(bancs.size(),Banc.DROIT));
-			bancsDroits.add(bancs.get(bancs.size()-1));
-			
-			bancs.add(new BancDouble(bancs.size(),Banc.GAUCHE));
-			bancsGauches.add(bancs.get(bancs.size()-1));
-			
-			bancs.add(new BancDouble(bancs.size(),Banc.DROIT));
-			bancsDroits.add(bancs.get(bancs.size()-1));
-		}
-	}
-	public String toString(){
-		String res ="-- -- Wagon " + getId() + " (II)\n";
-		res += super.toString();
-		res += "-- --\n";
-		return res;
-	}
-}
-
-class WagonBar extends Wagon{
-	public WagonBar(int i) {
-		super(i);
-		type = BAR;
-	}
-	public String toString(){
-		String res = "-- --\n";
-		for(int i=0;i<5;i++)
-			res += "     \n";
-		res+="Wagon\n bar \n";
-		for(int i=0;i<5;i++)
-			res += "     \n";
-		res += "-- --\n";
-		return res;
-	}
+	public ArrayList<Banc> getBancs() { return bancs; }
+	public void setBancs(ArrayList<Banc> bancs) { this.bancs = bancs; }
 }

@@ -135,6 +135,5 @@ public class Train extends Indexable{
 	
 	// Rame
 	public Rame getRame() { return rame; }
-	
 	public void setRame(Rame rame) { this.rame = rame; }
 }
