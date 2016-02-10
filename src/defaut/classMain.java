@@ -12,12 +12,12 @@ public class classMain {
 		Donnees.setFichier("database.yml");
 
 		Donnees.charger();
-		try {
-			Donnees.billets.add(new Billet(null, Donnees.clients.get(0)));
-		} catch (Erreur e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Donnees.billets.add(new Billet(null, Donnees.clients.get(0)));
+//		} catch (Erreur e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 //		Donnees.getInstance().sauvegarder("databaseSave.yml");
 		
 		Comparateur.buildGraph(); 
