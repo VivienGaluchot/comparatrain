@@ -2,6 +2,7 @@ package gui.admin;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -40,7 +41,8 @@ public class ListPanel<E> extends GroupPanel{
 		setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		
 		typeClass = paramClass;
-		this.elements = elements;		
+		if(elements == null) this.elements = new ArrayList<E>();
+		else  this.elements = elements;		
 		ListPanel<E> thisElement = this;
 		
 		listeM = new DefaultListModel<E>();

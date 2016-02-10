@@ -41,7 +41,7 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public double eval(Preference pref){
-		return 0;
+		return 1;
 	}
 	
 	public String mix(String[] str1, String[] str2){

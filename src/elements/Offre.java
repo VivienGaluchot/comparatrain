@@ -28,6 +28,9 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 		res *= getDepart().eval(pref.getLieuxDepart(),pref.getHDepart());
 		res *= getArrivee().eval(pref.getLieuxArrivee(),pref.getHArrivee());
 		res *= getDepart().horaire.eval(getArrivee().horaire)/2.0 + 0.5;
+		for(OffreSegment o : offres){
+			res *= o.eval(pref);
+		}
 		eval = res;
 		return res;
 	}

@@ -24,12 +24,7 @@ public class Rame extends Indexable implements Evaluable<Preference>{
 	 * Renvoie la valeur d'évaluation du meilleur wagon
 	 */
 	public double eval(Preference pref){
-		double res = 0;
-		for(Wagon w : wagons){
-			double t = w.eval(pref);
-			if(t>res) res = t;
-		}
-		return res;
+		return 1;
 	}
 	
 	public String toString(){
