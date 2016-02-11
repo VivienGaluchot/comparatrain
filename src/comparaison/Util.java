@@ -59,7 +59,7 @@ public abstract class Util {
 				// si le siege du billet est le bon
 				if(b.getSiege() == s)
 					// si le billet est pas disjoint a l'offre
-					if(! b.getOffreSegment().getSegment().estDisjoint(offre.getSegment())){
+					if(! b.getSegment().estDisjoint(offre.getSegment())){
 						return false;
 					}
 		}

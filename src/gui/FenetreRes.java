@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import comparaison.Resultat;
@@ -27,7 +28,7 @@ public class FenetreRes extends MyJFrame{
 		for(Offre o : r){
 			Double score = o.getEval()*100;
 			GroupPanel g = new GroupPanel("Billet " + i++ + " (" + score.intValue() + "%)");
-			g.add(new PanneauTrain(o));
+			g.add(new PanneauTrain(o,this));
 			main.add(g);
 		}
 
@@ -35,5 +36,10 @@ public class FenetreRes extends MyJFrame{
 		
 		positionner();
 		afficher();
+	}
+	
+	public void reservationEffectuee(){
+		this.setVisible(false);
+		JOptionPane.showMessageDialog(this, "Votre réservation a bien été effectuée");
 	}
 }

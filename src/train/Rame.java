@@ -22,6 +22,8 @@ public class Rame extends Indexable implements Evaluable<Preference>{
 		wagons.add(new Wagon(2,Wagon.BAR));
 		wagons.add(new Wagon(3,Wagon.SECONDE));
 		wagons.add(new Wagon(4,Wagon.SECONDE));
+		
+		link();
 	}
 	
 	/**
@@ -36,7 +38,10 @@ public class Rame extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public ArrayList<Wagon> getWagons(){ return wagons; }
-	public void setWagons(ArrayList<Wagon> wagons) { this.wagons = wagons; }
+	public void setWagons(ArrayList<Wagon> wagons) {
+		this.wagons = wagons;
+		link();
+	}
 	
 	public void link(){
 		for(Wagon w : wagons)

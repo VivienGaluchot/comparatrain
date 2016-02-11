@@ -14,6 +14,12 @@ public class OffreSegment extends DefaultWeightedEdge{
 	private Train train;
 	private ArrayList<Billet> billets;
 	
+	public OffreSegment(){
+		segment = null;
+		train = null;
+		billets = null;
+	}
+	
 	public OffreSegment(Train train, SegmentHoraire segment){
 		super();
 		this.segment = segment;
@@ -40,7 +46,7 @@ public class OffreSegment extends DefaultWeightedEdge{
 			res += segment.depart + " --Train " + train.getId() + "--> " + segment.arrivee;
 			if(billets != null){
 				for(Billet b : billets)
-				res += "\n" + b;
+				res += "\n" + b.place();
 			}
 			else {
 				res += "\n" + "Aucune place attribuée";
@@ -73,6 +79,7 @@ public class OffreSegment extends DefaultWeightedEdge{
 	public GareHoraire getArrivee() { return segment.arrivee; }
 	
 	public SegmentHoraire getSegment() { return segment; }
+	public void setSegment(SegmentHoraire segment) { this.segment = segment; }
 	
 	public Train getTrain(){ return train; }
 

@@ -158,6 +158,7 @@ public class Donnees {
 	    ArrayList<Gare> nGares;
 	    ArrayList<Rame> nRames;
 	    ArrayList<Train> nTrains;
+	    ArrayList<Billet> nBillets;
 		try {
 			reader = new YamlReader(new FileReader(fichier));
 			nClients = reader.read(ArrayList.class);
@@ -165,14 +166,13 @@ public class Donnees {
 			nGares = reader.read(ArrayList.class);
 			nRames = reader.read(ArrayList.class);
 			nTrains = reader.read(ArrayList.class);
-			// Liaison des rames
-			for(Rame r : nRames)
-				r.link();
+			nBillets = reader.read(ArrayList.class);
 			clients.setElements(nClients);
 			villes.setElements(nVilles);
 			gares.setElements(nGares);
 			rames.setElements(nRames);
 			trains.setElements(nTrains);
+			billets.setElements(nBillets);
 			System.out.println("Chargement de la base de donnée effectuée :");
 			afficher();
 		} catch (FileNotFoundException | YamlException | NullPointerException e1) {
@@ -189,6 +189,7 @@ public class Donnees {
 			test.write(gares.getElements());
 			test.write(rames.getElements());
 			test.write(trains.getElements());
+			test.write(billets.getElements());
 			test.close();
 			System.out.println("Sauvegarde de la base de donnée effectuée");
 		} catch (IOException e1) {

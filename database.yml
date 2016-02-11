@@ -17,7 +17,7 @@
    motDePasse: '123456'
    nom: Moulu
    prenom: Patrice
-- !utilisateur.Client
+- &1 !utilisateur.Client
    id: 3
    login: Vivien
    motDePasse: mdp
@@ -30,91 +30,91 @@
    nom: Hernandez
    prenom: Vincent
 --- !java.util.Collections$UnmodifiableRandomAccessList
-- &1 !elements.Ville
+- &2 !elements.Ville
    id: 0
    nom: Paris
-- &2 !elements.Ville
+- &3 !elements.Ville
    id: 1
    nom: Marseille
-- &3 !elements.Ville
+- &4 !elements.Ville
    id: 2
    nom: Nantes
-- &4 !elements.Ville
+- &5 !elements.Ville
    id: 3
    nom: Avignon
-- &5 !elements.Ville
+- &6 !elements.Ville
    id: 4
    nom: Lyon
-- &6 !elements.Ville
+- &7 !elements.Ville
    id: 5
    nom: Aix-en-Provence
-- &7 !elements.Ville
+- &8 !elements.Ville
    id: 6
    nom: Angers
-- &8 !elements.Ville
+- &9 !elements.Ville
    id: 7
    nom: Strasbourg
-- &9 !elements.Ville
+- &10 !elements.Ville
    id: 8
    nom: Reims
 - !elements.Ville
    id: 9
    nom: Lille
 --- !java.util.Collections$UnmodifiableRandomAccessList
-- &10 !elements.Gare
+- &11 !elements.Gare
    id: 0
    nom: Gare de Lyon
-   ville: *1
+   ville: *2
 - !elements.Gare
    id: 1
    nom: Gare du Nord
-   ville: *1
+   ville: *2
 - !elements.Gare
    id: 2
    nom: Gare Montparnasse
-   ville: *1
-- &11 !elements.Gare
+   ville: *2
+- &12 !elements.Gare
    id: 3
    nom: Massy TGV
-   ville: *1
-- &12 !elements.Gare
-   id: 4
-   nom: Gare Saint Charles
    ville: *2
 - &13 !elements.Gare
-   id: 5
-   nom: Gare de Nantes
+   id: 4
+   nom: Gare Saint Charles
    ville: *3
 - &14 !elements.Gare
+   id: 5
+   nom: Gare de Nantes
+   ville: *4
+- &15 !elements.Gare
    id: 6
    nom: Avignon TGV
-   ville: *4
+   ville: *5
 - !elements.Gare
    id: 7
    nom: Avignon centre
-   ville: *4
-- &15 !elements.Gare
-   id: 8
-   nom: Lyon Pardieu
    ville: *5
 - &16 !elements.Gare
-   id: 9
-   nom: Aix-en-Provence TVG
+   id: 8
+   nom: Lyon Pardieu
    ville: *6
 - &17 !elements.Gare
-   id: 10
-   nom: Angers Saint-Laud
+   id: 9
+   nom: Aix-en-Provence TVG
    ville: *7
 - &18 !elements.Gare
-   id: 11
-   nom: Gare de Strasbourg
+   id: 10
+   nom: Angers Saint-Laud
    ville: *8
 - &19 !elements.Gare
+   id: 11
+   nom: Gare de Strasbourg
+   ville: *9
+- &20 !elements.Gare
    id: 12
    nom: Gare de Champagne-Ardenne TGV
-   ville: *9
+   ville: *10
 --- !java.util.Collections$UnmodifiableRandomAccessList
-- !train.Rame
+- &21 !train.Rame
    id: 10
    wagons: 
    - !train.Wagon
@@ -124,7 +124,7 @@
          id: 0
          cote: 0
          sieges: 
-         - !train.Siege
+         - &22 !train.Siege
             id: 0
             cote: 3
             sens: 1
@@ -433,7 +433,7 @@
             cote: 4
             sens: 1
       type: 2
-- !train.Rame
+- &23 !train.Rame
    id: 1
    wagons: 
    - !train.Wagon
@@ -756,794 +756,179 @@
 - !train.Train
    id: 5540
    arrivee: 
-      gare: *13
+      gare: *14
       horaire: 
          serialTime: 06/01/2016 12h59
    depart: 
-      gare: *12
+      gare: *13
       horaire: 
          serialTime: 06/01/2016 07h40
    escales: 
    - !elements.Escale
-      gare: *16
+      gare: *17
       horaireA: 
          serialTime: 06/01/2016 07h45
       horaireD: 
          serialTime: 06/01/2016 07h50
    - !elements.Escale
-      gare: *14
+      gare: *15
       horaireA: 
          serialTime: 06/01/2016 08h00
       horaireD: 
          serialTime: 06/01/2016 08h02
    - !elements.Escale
-      gare: *15
+      gare: *16
       horaireA: 
          serialTime: 06/01/2016 10h15
       horaireD: 
          serialTime: 06/01/2016 10h20
    - !elements.Escale
-      gare: *11
+      gare: *12
       horaireA: 
          serialTime: 06/01/2016 11h02
       horaireD: 
          serialTime: 06/01/2016 11h05
    - !elements.Escale
-      gare: *17
+      gare: *18
       horaireA: 
          serialTime: 06/01/2016 12h20
       horaireD: 
          serialTime: 06/01/2016 12h22
-   rame: &20
-      id: 10
-      wagons: 
-      - !train.Wagon
-         id: 0
-         bancs: 
-         - !train.Banc
-            id: 0
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-         - !train.Banc
-            id: 1
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 2
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-         - !train.Banc
-            id: 3
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 4
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-         - !train.Banc
-            id: 5
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-      - !train.Wagon
-         id: 1
-         bancs: 
-         - !train.Banc
-            id: 0
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-         - !train.Banc
-            id: 1
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 2
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-         - !train.Banc
-            id: 3
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 4
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-         - !train.Banc
-            id: 5
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-      - !train.Wagon
-         id: 2
-         bancs: []
-      - !train.Wagon
-         id: 3
-         bancs: 
-         - !train.Banc
-            id: 0
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 1
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 2
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 2
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 2
-            - !train.Siege
-               id: 2
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 3
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 3
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 2
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 2
-            - !train.Siege
-               id: 2
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 3
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 4
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 5
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-      - !train.Wagon
-         id: 4
-         bancs: 
-         - !train.Banc
-            id: 0
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 1
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 2
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 2
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 2
-            - !train.Siege
-               id: 2
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 3
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 3
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 2
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 2
-            - !train.Siege
-               id: 2
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 3
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 4
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 5
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
+   rame: *21
 - !train.Train
    id: 5640
    arrivee: 
-      gare: *10
+      gare: *11
       horaire: 
          serialTime: 06/01/2016 11h00
    depart: 
-      gare: *12
+      gare: *13
       horaire: 
          serialTime: 06/01/2016 07h30
    escales: 
    - !elements.Escale
-      gare: *16
+      gare: *17
       horaireA: 
          serialTime: 06/01/2016 07h45
       horaireD: 
          serialTime: 06/01/2016 07h50
    - !elements.Escale
-      gare: *14
+      gare: *15
       horaireA: 
          serialTime: 06/01/2016 08h10
       horaireD: 
          serialTime: 06/01/2016 08h15
    - !elements.Escale
-      gare: *15
+      gare: *16
       horaireA: 
          serialTime: 06/01/2016 10h12
       horaireD: 
          serialTime: 06/01/2016 10h20
-   rame: &21
-      id: 1
-      wagons: 
-      - !train.Wagon
-         id: 0
-         bancs: 
-         - !train.Banc
-            id: 0
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-         - !train.Banc
-            id: 1
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 2
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-         - !train.Banc
-            id: 3
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 4
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-         - !train.Banc
-            id: 5
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-      - !train.Wagon
-         id: 1
-         bancs: 
-         - !train.Banc
-            id: 0
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-         - !train.Banc
-            id: 1
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 2
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-         - !train.Banc
-            id: 3
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 4
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-         - !train.Banc
-            id: 5
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-      - !train.Wagon
-         id: 2
-         bancs: []
-      - !train.Wagon
-         id: 3
-         bancs: 
-         - !train.Banc
-            id: 0
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 1
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 2
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 2
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 2
-            - !train.Siege
-               id: 2
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 3
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 3
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 2
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 2
-            - !train.Siege
-               id: 2
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 3
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 4
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 5
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-      - !train.Wagon
-         id: 4
-         bancs: 
-         - !train.Banc
-            id: 0
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 1
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 2
-            cote: 0
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 2
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 2
-            - !train.Siege
-               id: 2
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 3
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 3
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 2
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 2
-            - !train.Siege
-               id: 2
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 3
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 4
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-         - !train.Banc
-            id: 5
-            cote: 1
-            sieges: 
-            - !train.Siege
-               id: 0
-               cote: 3
-               sens: 1
-            - !train.Siege
-               id: 1
-               cote: 4
-               sens: 1
-- !train.Train
+   rame: *23
+- &24 !train.Train
    id: 5650
-   arrivee: 
-      gare: *10
+   arrivee: &25
+      gare: *11
       horaire: 
          serialTime: 06/01/2016 18h01
    depart: 
-      gare: *12
+      gare: *13
       horaire: 
          serialTime: 06/01/2016 14h32
    escales: 
    - !elements.Escale
-      gare: *16
+      gare: *17
       horaireA: 
          serialTime: 06/01/2016 14h45
       horaireD: 
          serialTime: 06/01/2016 14h57
    - !elements.Escale
-      gare: *14
+      gare: *15
       horaireA: 
          serialTime: 06/01/2016 15h00
-      horaireD: 
+      horaireD: &26
          serialTime: 06/01/2016 15h02
    - !elements.Escale
-      gare: *15
+      gare: *16
       horaireA: 
          serialTime: 06/01/2016 17h12
       horaireD: 
          serialTime: 06/01/2016 17h17
-   rame: *20
+   rame: *21
 - !train.Train
    id: 5642
    arrivee: 
-      gare: *10
+      gare: *11
       horaire: 
          serialTime: 06/01/2016 13h00
    depart: 
-      gare: *12
+      gare: *13
       horaire: 
          serialTime: 06/01/2016 08h30
    escales: 
    - !elements.Escale
-      gare: *16
+      gare: *17
       horaireA: 
          serialTime: 06/01/2016 08h45
       horaireD: 
          serialTime: 06/01/2016 08h50
    - !elements.Escale
-      gare: *14
+      gare: *15
       horaireA: 
          serialTime: 06/01/2016 09h10
       horaireD: 
          serialTime: 06/01/2016 09h13
    - !elements.Escale
-      gare: *15
+      gare: *16
       horaireA: 
          serialTime: 06/01/2016 12h12
       horaireD: 
          serialTime: 06/01/2016 12h20
-   rame: *21
+   rame: *23
 - !train.Train
    id: 7010
    arrivee: 
-      gare: *18
+      gare: *19
       horaire: 
          serialTime: 06/01/2016 13h00
    depart: 
-      gare: *11
+      gare: *12
       horaire: 
          serialTime: 06/01/2016 10h30
    escales: 
    - !elements.Escale
-      gare: *19
+      gare: *20
       horaireA: 
          serialTime: 06/01/2016 11h45
       horaireD: 
          serialTime: 06/01/2016 11h50
-   rame: *21
+   rame: *23
 - !train.Train
    id: 7011
    arrivee: 
-      gare: *18
+      gare: *19
       horaire: 
          serialTime: 06/01/2016 17h00
    depart: 
-      gare: *11
+      gare: *12
       horaire: 
          serialTime: 06/01/2016 13h30
    escales: 
    - !elements.Escale
-      gare: *19
+      gare: *20
       horaireA: 
          serialTime: 06/01/2016 15h45
       horaireD: 
          serialTime: 06/01/2016 15h50
-   rame: *20
+   rame: *21
+--- !java.util.Collections$UnmodifiableRandomAccessList
+- !elements.Billet
+   id: 0
+   client: *1
+   segment: 
+      arrivee: *25
+      depart: 
+         gare: *15
+         horaire: *26
+   siege: *22
+   train: *24

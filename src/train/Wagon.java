@@ -43,6 +43,7 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 		}else if(type == BAR){
 			// pas de bancs
 		}
+		link();
 	}
 	
 	public String toString(){	
@@ -65,11 +66,15 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 	}
 
 	public ArrayList<Banc> getBancs() { return bancs; }
-	public void setBancs(ArrayList<Banc> bancs) { this.bancs = bancs; }
+	public void setBancs(ArrayList<Banc> bancs) {
+		this.bancs = bancs;
+		link();
+	}
 	
 	public Rame getFather() { return father; }
-	public void link(Rame father){
-		this.father = father;
+	public void link(Rame father){ this.father = father;	}
+	
+	public void link(){
 		for(Banc b : bancs)
 			b.link(this);
 	}	

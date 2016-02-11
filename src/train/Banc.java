@@ -38,10 +38,10 @@ public class Banc extends Indexable implements Evaluable<Preference>{
 		}else if(type == SEUL){
 			getSieges().add(new Siege(getSieges().size(),Siege.AVANT,Siege.FENETRE));
 		}
+		link();
 	}
 	
 	public double eval(Preference pref){
-		// A FAIRE
 		return 1;
 	}
 
@@ -50,14 +50,18 @@ public class Banc extends Indexable implements Evaluable<Preference>{
 	}
 
 	public ArrayList<Siege> getSieges() { return sieges; }
-	public void setSieges(ArrayList<Siege> sieges) { this.sieges = sieges; }
+	public void setSieges(ArrayList<Siege> sieges){
+		this.sieges = sieges;
+		link();
+	}
 
 	public Integer getCote() { return cote; }
 	public void setCote(Integer cote) { this.cote = cote; }
 	
 	public Wagon getFather() { return father; }
-	public void link(Wagon father){
-		this.father = father;
+	public void link(Wagon father){	this.father = father; }
+	
+	public void link(){
 		for(Siege s : sieges)
 			s.link(this);
 	}

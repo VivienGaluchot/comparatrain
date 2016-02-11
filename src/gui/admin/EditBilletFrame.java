@@ -32,7 +32,11 @@ public class EditBilletFrame extends MyJFrame{
 			main.add(box);
 			
 			box = new GroupPanel("Offre");
-				JLabel offre = new JLabel( billet.getOffreSegment().toString());
+				JLabel offre = new JLabel( billet.getSegment().toString());
+				box.add(offre);
+				offre = new JLabel("Train : " + billet.getTrain().getId());
+				box.add(offre);
+				offre = new JLabel("Place : " + billet.getSiege());
 				box.add(offre);
 			main.add(box);
 		

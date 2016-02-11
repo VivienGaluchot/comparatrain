@@ -6,6 +6,11 @@ public class SegmentHoraire {
 	public GareHoraire depart;
 	public GareHoraire arrivee;
 	
+	public SegmentHoraire(){
+		depart = null;
+		arrivee = null;
+	}
+	
 	public SegmentHoraire(GareHoraire depart, GareHoraire arrivee){
 		this.depart = depart;
 		this.arrivee = arrivee;

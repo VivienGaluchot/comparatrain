@@ -22,7 +22,7 @@ public class PanneauTrain extends JPanel{
 	
 	PanneauTrain luiMeme = this;
 	
-	public PanneauTrain (Offre o){
+	public PanneauTrain (Offre o, FenetreRes fenetreRes){
 		JLabel hd = new JLabel(o.getDepart().horaire.toString());
 		l = new Ligne(o);
 		JLabel ha = new JLabel(o.getArrivee().horaire.getHeure()+" ");
@@ -38,6 +38,8 @@ public class PanneauTrain extends JPanel{
 						System.out.println(e1);
 					}
 				}
+				Donnees.sauvegarder();
+				fenetreRes.reservationEffectuee();
 			}
 			else 
 				JOptionPane.showMessageDialog(luiMeme, "Veuillez vous connecter");
