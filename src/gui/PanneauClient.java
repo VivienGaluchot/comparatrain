@@ -174,9 +174,9 @@ public class PanneauClient extends JPanel {
     			parent.positionner();
     	    	setSize(550, 600);
     	        System.out.println("Already Loged In as admin");
-    	    } else if(Donnees.getInstance().findClient(username.getText(), password.getText()) != null){
+    	    } else if(Client.connect(username.getText(),password.getText()) != null){
     	    	onglets.setSelectedIndex(0);
-    	    	Client.connect(password.getText(),username.getText());
+    	    	
     	    	infoClient.setText("Bienvenue "+username.getText());
     	    	infoClient.setVisible(true);
     			connexion.setVisible(false);

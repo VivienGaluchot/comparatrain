@@ -4,8 +4,9 @@ import donnee.Donnees;
 
 public class Client extends Personne{
 	public static Client current = null;
-	public static void connect(String login, String motDePasse){
+	public static Client connect(String login, String motDePasse){
 		current = Donnees.getInstance().findClient(login, motDePasse);
+		return current;
 	}
 	public static void disconnect(){
 		current = null;
