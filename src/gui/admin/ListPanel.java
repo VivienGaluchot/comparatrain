@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import donnee.Donnees;
 import elements.Ville;
 import gui.GroupPanel;
+import train.Rame;
 import train.Train;
 import utilisateur.Client;
 import elements.Billet;
@@ -88,6 +89,10 @@ public class ListPanel<E> extends GroupPanel{
 					EditBilletFrame ajoutBillet  = new EditBilletFrame(null,(ListPanel<Billet>) thisElement);
 					ajoutBillet.setVisible(true);
 				}
+				else if(typeClass == Rame.class){
+					EditRameFrame ajoutRame  = new EditRameFrame(null,(ListPanel<Rame>) thisElement);
+					ajoutRame.setVisible(true);
+				}
 	        }});
 			box1.add(nouveau);
 			
@@ -125,6 +130,11 @@ public class ListPanel<E> extends GroupPanel{
 						EditBilletFrame editBillet  = new EditBilletFrame(billet,(ListPanel<Billet>) thisElement);
 						editBillet.setVisible(true);
 					}
+					else if(typeClass == Rame.class){
+						Rame rame = (Rame) listeM.getElementAt(list.getSelectedIndex());
+						EditRameFrame editRame  = new EditRameFrame(rame,(ListPanel<Rame>) thisElement);
+						editRame.setVisible(true);
+					}
 				}
 	        }});
 			box1.add(editer);
@@ -154,6 +164,10 @@ public class ListPanel<E> extends GroupPanel{
 				else if(typeClass == Billet.class){
 					Billet billet = (Billet) listeM.getElementAt(list.getSelectedIndex());
 					elements.remove(billet);
+				}
+				else if(typeClass == Rame.class){
+					Rame rame = (Rame) listeM.getElementAt(list.getSelectedIndex());
+					elements.remove(rame);
 				}
 				majList();
 	        }});

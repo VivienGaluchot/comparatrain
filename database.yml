@@ -57,6 +57,9 @@
 - &9 !elements.Ville
    id: 8
    nom: Reims
+- !elements.Ville
+   id: 9
+   nom: Lille
 --- !java.util.Collections$UnmodifiableRandomAccessList
 - &10 !elements.Gare
    id: 0
