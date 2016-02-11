@@ -114,10 +114,10 @@
 - &20 !train.Rame
    id: 10
    wagons: 
-   - !train.WagonPremiere
+   - !train.Wagon
       id: 0
       bancs: 
-      - !train.BancSeul
+      - !train.Banc
          id: 0
          cote: 0
          sieges: 
@@ -125,7 +125,7 @@
             id: 0
             cote: 3
             sens: 1
-      - !train.BancDouble
+      - !train.Banc
          id: 1
          cote: 1
          sieges: 
@@ -137,7 +137,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.BancSeul
+      - !train.Banc
          id: 2
          cote: 0
          sieges: 
@@ -145,7 +145,7 @@
             id: 0
             cote: 3
             sens: 1
-      - !train.BancDouble
+      - !train.Banc
          id: 3
          cote: 1
          sieges: 
@@ -157,7 +157,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.BancSeul
+      - !train.Banc
          id: 4
          cote: 0
          sieges: 
@@ -165,7 +165,7 @@
             id: 0
             cote: 3
             sens: 1
-      - !train.BancDouble
+      - !train.Banc
          id: 5
          cote: 1
          sieges: 
@@ -177,10 +177,10 @@
             id: 1
             cote: 4
             sens: 1
-   - !train.WagonPremiere
+   - !train.Wagon
       id: 1
       bancs: 
-      - !train.BancSeul
+      - !train.Banc
          id: 0
          cote: 0
          sieges: 
@@ -188,7 +188,7 @@
             id: 0
             cote: 3
             sens: 1
-      - !train.BancDouble
+      - !train.Banc
          id: 1
          cote: 1
          sieges: 
@@ -200,7 +200,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.BancSeul
+      - !train.Banc
          id: 2
          cote: 0
          sieges: 
@@ -208,7 +208,7 @@
             id: 0
             cote: 3
             sens: 1
-      - !train.BancDouble
+      - !train.Banc
          id: 3
          cote: 1
          sieges: 
@@ -220,7 +220,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.BancSeul
+      - !train.Banc
          id: 4
          cote: 0
          sieges: 
@@ -228,7 +228,7 @@
             id: 0
             cote: 3
             sens: 1
-      - !train.BancDouble
+      - !train.Banc
          id: 5
          cote: 1
          sieges: 
@@ -240,13 +240,13 @@
             id: 1
             cote: 4
             sens: 1
-   - !train.WagonBar
+   - !train.Wagon
       id: 2
       bancs: []
-   - !train.WagonSeconde
+   - !train.Wagon
       id: 3
       bancs: 
-      - !train.BancDouble
+      - !train.Banc
          id: 0
          cote: 0
          sieges: 
@@ -258,7 +258,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.BancDouble
+      - !train.Banc
          id: 1
          cote: 1
          sieges: 
@@ -270,7 +270,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.BancCarre
+      - !train.Banc
          id: 2
          cote: 0
          sieges: 
@@ -290,7 +290,7 @@
             id: 3
             cote: 4
             sens: 1
-      - !train.BancCarre
+      - !train.Banc
          id: 3
          cote: 1
          sieges: 
@@ -310,7 +310,7 @@
             id: 3
             cote: 4
             sens: 1
-      - !train.BancDouble
+      - !train.Banc
          id: 4
          cote: 0
          sieges: 
@@ -322,7 +322,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.BancDouble
+      - !train.Banc
          id: 5
          cote: 1
          sieges: 
@@ -334,10 +334,10 @@
             id: 1
             cote: 4
             sens: 1
-   - !train.WagonSeconde
+   - !train.Wagon
       id: 4
       bancs: 
-      - !train.BancDouble
+      - !train.Banc
          id: 0
          cote: 0
          sieges: 
@@ -349,7 +349,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.BancDouble
+      - !train.Banc
          id: 1
          cote: 1
          sieges: 
@@ -361,7 +361,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.BancCarre
+      - !train.Banc
          id: 2
          cote: 0
          sieges: 
@@ -381,7 +381,7 @@
             id: 3
             cote: 4
             sens: 1
-      - !train.BancCarre
+      - !train.Banc
          id: 3
          cote: 1
          sieges: 
@@ -401,7 +401,7 @@
             id: 3
             cote: 4
             sens: 1
-      - !train.BancDouble
+      - !train.Banc
          id: 4
          cote: 0
          sieges: 
@@ -413,7 +413,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.BancDouble
+      - !train.Banc
          id: 5
          cote: 1
          sieges: 

@@ -13,13 +13,19 @@ public class Billet extends Indexable{
 	private Wagon wagon;
 	private Siege siege;
 	
+	public Billet(){
+		rame = null;
+		wagon = null;
+		siege = null;
+	}
+	
 	public Billet(OffreSegment offreSegment, Client client){
 		this.setOffreSegment(offreSegment);
 		this.setClient(client);
 	}
 	
 	public String toString(){
-		return "offre";//Wagon n°" + wagon.getId() + " Siege n°" + siege.getId();
+		return "Wagon n°" + wagon.getId() + " Siege n°" + siege.getId();
 	}
 
 	public OffreSegment getOffreSegment() { return offreSegment; }

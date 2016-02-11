@@ -19,20 +19,25 @@ public class Siege extends Indexable implements Evaluable<Preference>{
 	private Integer sens;
 	private Integer cote;
 	
+	private Banc father;
+	
 	public Siege(){
 		sens = null;
+		father = null;
 		setCote(null);
 	}
 	
-	public Siege(Integer i,Integer sens, Integer cote){
+	public Siege(Integer i, Banc father, Integer sens, Integer cote){
 		setId(i);
 		this.sens = sens;
+		this.father = father;
 		this.setCote(cote);
 	}
 	
-	public Siege(Integer i,Integer sens, Integer cote, boolean occupe){
+	public Siege(Integer i, Banc father,Integer sens, Integer cote, boolean occupe){
 		setId(i);
 		this.sens = sens;
+		this.father = father;
 		this.setCote(cote);
 	}
 	
@@ -41,12 +46,7 @@ public class Siege extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public String toString(){
-		String res;
-		if(sens==AVANT)
-			res = "u";
-		else
-			res = "n";
-		return res;
+		return "Siege " + getId();
 	}
 
 	public Integer getSens() { return sens; }
@@ -54,4 +54,6 @@ public class Siege extends Indexable implements Evaluable<Preference>{
 	
 	public Integer getCote() { return cote; }
 	public void setCote(Integer cote) { this.cote = cote; }
+	
+	public Banc getFather() { return father; }
 }

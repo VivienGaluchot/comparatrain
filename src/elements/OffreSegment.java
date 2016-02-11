@@ -70,7 +70,7 @@ public class OffreSegment extends DefaultWeightedEdge{
 	
 	public void chercherBillets(Preference pref){
 		billets = new ArrayList<Billet>();
-		
+		// A FAIRE
 	}
 	
 	public GareHoraire getDepart() { return segment.depart; }
