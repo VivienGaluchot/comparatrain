@@ -13,16 +13,19 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 	
 	private ArrayList<Banc> bancs;
 	private Rame father;
+	private Integer type;
 	
 	public Wagon(){
 		bancs = null;
 		father = null;
+		type = null;
 	}
 	
 	public Wagon(int i, Integer type){
 		setId(i);		
 		bancs = new ArrayList<Banc>();
 		father = null;
+		this.type = type;
 		if(type == PREMIERE){
 			for(int j=0;j<3;j++){
 				bancs.add(new Banc(bancs.size(),Banc.GAUCHE,Banc.SEUL));
@@ -42,8 +45,18 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 		}
 	}
 	
-	public String toString(){		
-		return "Wagon " + getId();
+	public String toString(){	
+		String sType = new String();
+		if(type == PREMIERE){
+			sType=" 1er classe";
+			
+		}else if(type == SECONDE){
+			sType=" 2ieme classe";
+			
+		}else if(type == BAR){
+			sType=" Bar";
+		}
+		return "Wagon " + getId() + sType;
 	}
 	
 	public double eval(Preference pref){
@@ -59,4 +72,12 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 		for(Banc b : bancs)
 			b.link(this);
 	}	
+	
+	public Integer getType(){
+		return type;
+	}
+	
+	public void setType(Integer i){
+		type = i;
+	}
 }

@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,12 +20,16 @@ import javax.swing.JTextField;
 
 import comparaison.Comparateur;
 import comparaison.Preference;
+import donnee.Donnees;
 import elements.Horaire;
 import gui.admin.PanneauAdmin;
+import utilisateur.Client;
 
 @SuppressWarnings("serial")
 public class PanneauClient extends JPanel {
 	private JButton connexion;
+	private JButton deconnexion;
+	private JLabel infoClient;
 	
 	private VilleGareTextField texteD;
 	private VilleGareTextField texteA;
@@ -39,18 +44,37 @@ public class PanneauClient extends JPanel {
 	
 	private JButton rechercher;
 	private FenetreRes frameRes = null;	
+	private MyJFrame parent;
 	
-	public PanneauClient(JTabbedPane onglets){
+	
+	public PanneauClient(JTabbedPane onglets,MyJFrame p){
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
-		
+		parent = p;
 		JPanel box5 = new JPanel();
+		
+		infoClient = new JLabel();
+		infoClient.setVisible(true);
+		box5.add(infoClient);
 		
 		connexion = new JButton("Se connecter");
 		connexion.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
         	connexionCompte(onglets);
         }});
 		box5.add(connexion);
+		this.add(box5);
+		deconnexion = new JButton("Se deconnecter");
+		deconnexion.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+	    	Client.disconnect();
+        	infoClient.setText(null);
+        	infoClient.setVisible(false);
+        	connexion.setVisible(true);
+        	deconnexion.setVisible(false);
+        	if(onglets.getTabCount()==2)onglets.remove(1);
+			parent.positionner();
+        }});
+		deconnexion.setVisible(false);
+		box5.add(deconnexion);
 		this.add(box5);
 	
 		JPanel box0 = new JPanel();		
@@ -139,12 +163,27 @@ public class PanneauClient extends JPanel {
     	    	setSize(550, 600);
     	    	onglets.addTab("Admin", null, PAdmin, null);
     	    	onglets.setSelectedIndex(1);
-    	        System.out.println("Login successful");
+    			connexion.setVisible(false);
+    			deconnexion.setVisible(true);
+    			parent.positionner();
+    	        System.out.println("Login admin successful");
     	    } else if(username.getText().equals("") && password.getText().equals("")){
     	    	onglets.setSelectedIndex(1);
+    			connexion.setVisible(false);
+    			deconnexion.setVisible(true);
+    			parent.positionner();
     	    	setSize(550, 600);
-    	        System.out.println("Already Loged In");
-    	    } else {
+    	        System.out.println("Already Loged In as admin");
+    	    } else if(Donnees.getInstance().findClient(username.getText(), password.getText()) != null){
+    	    	onglets.setSelectedIndex(0);
+    	    	Client.connect(password.getText(),username.getText());
+    	    	infoClient.setText("Bienvenue "+username.getText());
+    	    	infoClient.setVisible(true);
+    			connexion.setVisible(false);
+    			deconnexion.setVisible(true);
+    			parent.positionner();
+    	        System.out.println("login client succes");
+    	    }else{
     	    	onglets.setSelectedIndex(0);
     	        System.out.println("login failed");
     	    }

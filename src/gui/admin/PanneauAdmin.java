@@ -29,6 +29,7 @@ public class PanneauAdmin extends JPanel{
 	AdminFrame<Billet> adminBillet;
 	AdminFrame<Rame> adminRame;
 	
+	
 	public PanneauAdmin(JTabbedPane onglets){
 		
 		adminTrain = new AdminFrame<Train>("Gestion des trains",Train.class,Donnees.getTrains());
@@ -120,12 +121,6 @@ public class PanneauAdmin extends JPanel{
 		
 		JPanel box5 = new JPanel();
 		
-			JButton deco = new JButton("Déconnexion");
-			deco.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
-	            	onglets.remove(1);
-	        }});
-			box5.add(deco);
-
 			JButton save = new JButton("Sauvegarder");
 			save.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
 	            	Donnees.sauvegarder();

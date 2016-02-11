@@ -22,6 +22,7 @@ import elements.Ville;
 import gui.GroupPanel;
 import train.Rame;
 import train.Train;
+import train.Wagon;
 import utilisateur.Client;
 import elements.Billet;
 import elements.Escale;
@@ -93,6 +94,10 @@ public class ListPanel<E> extends GroupPanel{
 					EditRameFrame ajoutRame  = new EditRameFrame(null,(ListPanel<Rame>) thisElement);
 					ajoutRame.setVisible(true);
 				}
+				else if(typeClass == Wagon.class){
+					EditWagonFrame ajoutWagon  = new EditWagonFrame(null,(ListPanel<Wagon>) thisElement);
+					ajoutWagon.setVisible(true);
+				}
 	        }});
 			box1.add(nouveau);
 			
@@ -135,6 +140,11 @@ public class ListPanel<E> extends GroupPanel{
 						EditRameFrame editRame  = new EditRameFrame(rame,(ListPanel<Rame>) thisElement);
 						editRame.setVisible(true);
 					}
+					else if(typeClass == Wagon.class){
+						Wagon wagon = (Wagon) listeM.getElementAt(list.getSelectedIndex());
+						EditWagonFrame editWagon  = new EditWagonFrame(wagon,(ListPanel<Wagon>) thisElement);
+						editWagon.setVisible(true);
+					}
 				}
 	        }});
 			box1.add(editer);
@@ -168,6 +178,10 @@ public class ListPanel<E> extends GroupPanel{
 				else if(typeClass == Rame.class){
 					Rame rame = (Rame) listeM.getElementAt(list.getSelectedIndex());
 					elements.remove(rame);
+				}
+				else if(typeClass == Wagon.class){
+					Wagon wagon = (Wagon) listeM.getElementAt(list.getSelectedIndex());
+					elements.remove(wagon);
 				}
 				majList();
 	        }});

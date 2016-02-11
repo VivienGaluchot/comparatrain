@@ -62,12 +62,18 @@ public class EditWagonFrame extends MyJFrame{
 			box.add(annuler);
 			JButton valider = new JButton("Valider");
 			valider.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
-            	wagon.setId(id.getValue());
-				if(nouveau)
-					father.addElement(wagon);
-					
-				father.majList();
-				setVisible(false);
+            	try {
+            		wagon.setId(id.getValue());
+            		if(nouveau)
+        				father.addElement(wagon);
+            			
+                	father.majList();
+                	setVisible(false);
+				} catch (Erreur e1) {
+					if(e1.getType() == Erreur.EXISTE)
+						id.setWrong(true);
+					System.out.println(e1);
+				}
 	        }});
 			box.add(valider);
 		main.add(box);

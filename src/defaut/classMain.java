@@ -6,7 +6,7 @@ import donnee.Donnees;
 import gui.MainFrame;
 
 public class classMain {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Erreur {
 		Donnees.setFichier("database.yml");
 		Donnees.charger();
 		

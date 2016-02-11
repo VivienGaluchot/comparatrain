@@ -36,6 +36,7 @@ public class EditRameFrame extends MyJFrame{
 	public EditRameFrame(Rame r, ListPanel<Rame> f){
 		if(r == null){
 			rame = new Rame();
+			rame.link();
 			nouveau = true;
 		}
 		else{
@@ -74,7 +75,7 @@ public class EditRameFrame extends MyJFrame{
             		
             		if(nouveau)
             			Donnees.rames.add(rame);
-            		
+        				rame.link();	
 	            	father.majList();
 	            	setVisible(false);
 				} catch (Erreur e1) {

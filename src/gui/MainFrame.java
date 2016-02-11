@@ -11,7 +11,7 @@ public class MainFrame extends MyJFrame{
 		setTitle("ComparaTrain");
 		
 		JTabbedPane onglets = new JTabbedPane();
-		JPanel panneauClient = new PanneauClient(onglets);
+		JPanel panneauClient = new PanneauClient(onglets,this);
         onglets.addTab("Accueil", null, panneauClient, null);
         
         add(onglets);
