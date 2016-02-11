@@ -79,9 +79,9 @@ public class GrapheCorrespondances {
 		ArrayList<Offre> resultat = new ArrayList<Offre>();
 		
 		for(GareHoraire depart : departs){
-			if(Evaluateur.evalDepart(depart,pref) > 0){
+			if(Util.evalDepart(depart,pref) > 0){
 				for(GareHoraire arrivee : arrivees){
-					if(Evaluateur.evalArrivee(arrivee, pref) > 0){
+					if(Util.evalArrivee(arrivee, pref) > 0){
 						Offre o = trouverOffre(new SegmentHoraire(depart,arrivee));
 						if(o != null)
 							resultat.add(o);

@@ -165,6 +165,9 @@ public class Donnees {
 			nGares = reader.read(ArrayList.class);
 			nRames = reader.read(ArrayList.class);
 			nTrains = reader.read(ArrayList.class);
+			// Liaison des rames
+			for(Rame r : nRames)
+				r.link();
 			clients.setElements(nClients);
 			villes.setElements(nVilles);
 			gares.setElements(nGares);

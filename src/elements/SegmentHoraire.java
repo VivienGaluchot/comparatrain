@@ -19,4 +19,10 @@ public class SegmentHoraire {
 	public String toString(){
 		return depart + " --> " + arrivee;
 	}
+	
+	public boolean estDisjoint(SegmentHoraire s){
+		if(s.depart.compareTo(arrivee) > 0 || s.arrivee.compareTo(depart) < 0)
+			return true;
+		return false;
+	}
 }
