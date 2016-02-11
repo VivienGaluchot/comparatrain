@@ -7,7 +7,6 @@ import java.util.List;
 
 import donnee.Donnees;
 import elements.Offre;
-import elements.OffreSegment;
 
 /**
  * @author Vivien Galuchot - Vincent Hernandez

@@ -37,4 +37,9 @@ public class Rame extends Indexable implements Evaluable<Preference>{
 	
 	public ArrayList<Wagon> getWagons(){ return wagons; }
 	public void setWagons(ArrayList<Wagon> wagons) { this.wagons = wagons; }
+	
+	public void link(){
+		for(Wagon w : wagons)
+			w.link(this);
+	}
 }

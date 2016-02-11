@@ -11,15 +11,18 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 	public static final int SECONDE = 2;
 	public static final int BAR = 3;
 	
-	protected ArrayList<Banc> bancs;
+	private ArrayList<Banc> bancs;
+	private Rame father;
 	
 	public Wagon(){
 		bancs = null;
+		father = null;
 	}
 	
 	public Wagon(int i, Integer type){
 		setId(i);		
 		bancs = new ArrayList<Banc>();
+		father = null;
 		if(type == PREMIERE){
 			for(int j=0;j<3;j++){
 				bancs.add(new Banc(bancs.size(),Banc.GAUCHE,Banc.SEUL));
@@ -49,4 +52,11 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 
 	public ArrayList<Banc> getBancs() { return bancs; }
 	public void setBancs(ArrayList<Banc> bancs) { this.bancs = bancs; }
+	
+	public Rame getFather() { return father; }
+	public void link(Rame father){
+		this.father = father;
+		for(Banc b : bancs)
+			b.link(this);
+	}	
 }
