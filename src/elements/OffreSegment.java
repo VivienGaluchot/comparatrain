@@ -9,9 +9,9 @@ import train.Train;
 
 @SuppressWarnings("serial")
 public class OffreSegment extends DefaultWeightedEdge{
-	SegmentHoraire segment;	
-	Train train;
-	ArrayList<Billet> billets;
+	private SegmentHoraire segment;	
+	private Train train;
+	private ArrayList<Billet> billets;
 	
 	public OffreSegment(Train train, SegmentHoraire segment){
 		super();
@@ -49,7 +49,7 @@ public class OffreSegment extends DefaultWeightedEdge{
 	}
 
 	public double eval(Preference pref) {
-		if(billets.size() > pref.getNbPlace()) return 0;
+		if(billets == null || billets.size() > pref.getNbPlace()) return 0;
 		Double res = 1.;
 		for(Billet b : billets){
 			res *= b.getRame().eval(pref);
@@ -66,6 +66,11 @@ public class OffreSegment extends DefaultWeightedEdge{
 	
 	public double getWeight(){
 		return (double) getDepart().horaire.until(getArrivee().horaire);
+	}
+	
+	public void chercherBillets(Preference pref){
+		billets = new ArrayList<Billet>();
+		
 	}
 	
 	public GareHoraire getDepart() { return segment.depart; }

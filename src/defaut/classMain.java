@@ -4,7 +4,6 @@ import comparaison.Comparateur;
 import donnee.Donnees;
 
 import gui.MainFrame;
-import train.Rame;
 
 public class classMain {
 	public static void main(String[] args) {
@@ -15,12 +14,5 @@ public class classMain {
 		
 		MainFrame F = new MainFrame();
 		F.setVisible(true);
-		
-		// MARCHE PAS :(
-		Rame r = Donnees.rames.get(20);
-		Donnees.trains.get(5650).setRame(r);
-
-		Donnees.setFichier("databaseSave.yml");
-		Donnees.sauvegarder();
 	}
 }

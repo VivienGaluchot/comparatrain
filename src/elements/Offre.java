@@ -81,6 +81,11 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 		return offres.size()-1;
 	}
 	
+	public void chercherBillets(Preference pref){
+		for(OffreSegment o : offres)
+			o.chercherBillets(pref);
+	}
+	
 	/**
 	 * Affichage d'une offre
 	 */
