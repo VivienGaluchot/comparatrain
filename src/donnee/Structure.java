@@ -52,4 +52,11 @@ public class Structure<E extends Indexable>{
 				return e;
 		return null;
 	}
+	
+	public int getFreeId(){
+		for(int i = 0; i<100000 ;i++){
+			if(get(i) == null) return i;
+		}
+		return -1;
+	}
 }

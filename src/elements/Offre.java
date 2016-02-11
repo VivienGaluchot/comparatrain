@@ -80,6 +80,14 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 		if(offres.size()==0) return 0;
 		return offres.size()-1;
 	}
+	
+	public List<Billet> getBillets(){
+		ArrayList<Billet> result = new ArrayList<Billet>();
+		for(OffreSegment o : offres){
+			result.addAll(o.getBillets());
+		}
+		return result;
+	}
 
 	/**
 	 * Affichage d'une offre

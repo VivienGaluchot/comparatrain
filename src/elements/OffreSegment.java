@@ -1,6 +1,7 @@
 package elements;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 
@@ -76,4 +77,5 @@ public class OffreSegment extends DefaultWeightedEdge{
 	public Train getTrain(){ return train; }
 
 	public void setBillets(ArrayList<Billet> billets) { this.billets = billets; }
+	public List<Billet> getBillets() { return billets; }
 }
