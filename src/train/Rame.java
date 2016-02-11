@@ -17,11 +17,11 @@ public class Rame extends Indexable implements Evaluable<Preference>{
 		setId(i);
 		wagons = new ArrayList<Wagon>();
 		
-		wagons.add(new WagonPremiere(0));
-		wagons.add(new WagonPremiere(1));
-		wagons.add(new WagonBar(2));
-		wagons.add(new WagonSeconde(3));
-		wagons.add(new WagonSeconde(4));
+		wagons.add(new Wagon(0,Wagon.PREMIERE));
+		wagons.add(new Wagon(1,Wagon.PREMIERE));
+		wagons.add(new Wagon(2,Wagon.BAR));
+		wagons.add(new Wagon(3,Wagon.SECONDE));
+		wagons.add(new Wagon(4,Wagon.SECONDE));
 	}
 	
 	/**
@@ -32,8 +32,7 @@ public class Rame extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public String toString(){
-		return "Rame "+getId();
-
+		return "Rame " + getId();
 	}
 	
 	public ArrayList<Wagon> getWagons(){ return wagons; }
