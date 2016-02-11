@@ -10,16 +10,9 @@ import javax.swing.JPanel;
 
 import defaut.Erreur;
 import donnee.Donnees;
-import elements.Escale;
-import elements.GareHoraire;
-import gui.ChampHoraire;
-import gui.GareComboBox;
-import gui.GroupPanel;
 import gui.MyJFrame;
-import gui.RameComboBox;
 import gui.SpinnerChamp;
 import train.Rame;
-import train.Train;
 import train.Wagon;
 
 @SuppressWarnings("serial")

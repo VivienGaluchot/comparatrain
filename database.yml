@@ -428,7 +428,7 @@
             id: 1
             cote: 4
             sens: 1
-- !train.Rame
+- &21 !train.Rame
    id: 1
    wagons: 
    - !train.Wagon
@@ -784,6 +784,7 @@
          serialTime: 06/01/2016 12h20
       horaireD: 
          serialTime: 06/01/2016 12h22
+   rame: *20
 - !train.Train
    id: 5640
    arrivee: 
@@ -813,6 +814,7 @@
          serialTime: 06/01/2016 10h12
       horaireD: 
          serialTime: 06/01/2016 10h20
+   rame: *21
 - !train.Train
    id: 5650
    arrivee: 
@@ -872,6 +874,7 @@
          serialTime: 06/01/2016 12h12
       horaireD: 
          serialTime: 06/01/2016 12h20
+   rame: *21
 - !train.Train
    id: 7010
    arrivee: 
@@ -889,6 +892,7 @@
          serialTime: 06/01/2016 11h45
       horaireD: 
          serialTime: 06/01/2016 11h50
+   rame: *21
 - !train.Train
    id: 7011
    arrivee: 

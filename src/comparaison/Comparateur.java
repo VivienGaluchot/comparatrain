@@ -36,7 +36,7 @@ public class Comparateur {
 		
 		Resultat resultat = new Resultat();		
 		for(Offre o : offres){
-			o.chercherBillets(pref);
+			Util.chercherBillets(o, pref);
 			if(o.eval(pref) > 0)
 				resultat.add(o);
 		}

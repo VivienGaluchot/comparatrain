@@ -92,6 +92,7 @@ public class EditTrainFrame extends MyJFrame{
 			valider.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
             	try {
             		Donnees.trains.changeId(train, id.getValue());
+            		train.setRame(comboBoxR.getSelectedItem());
             		GareHoraire depart = new GareHoraire(comboBoxD.getSelectedItem(),champHoraireD.getHoraire());
             		train.setDepart(depart);
             		GareHoraire arrivee = new GareHoraire(comboBoxA.getSelectedItem(),champHoraireA.getHoraire());
@@ -120,6 +121,8 @@ public class EditTrainFrame extends MyJFrame{
 		// Mise a jour des champs
 		if(train.getId() != null)
 			id.setValue(train.getId());
+		if(train.getRame() != null)
+			comboBoxR.setSelectedRame(train.getRame());
 		if(train.getDepart() != null){
 			champHoraireD.setHoraire(train.getDepart().horaire);
 			comboBoxD.setSelectedGare(train.getDepart().gare);

@@ -68,15 +68,12 @@ public class OffreSegment extends DefaultWeightedEdge{
 		return (double) getDepart().horaire.until(getArrivee().horaire);
 	}
 	
-	public void chercherBillets(Preference pref){
-		billets = new ArrayList<Billet>();
-		
-		
-		// A FAIRE
-	}
-	
 	public GareHoraire getDepart() { return segment.depart; }
 	public GareHoraire getArrivee() { return segment.arrivee; }
 	
+	public SegmentHoraire getSegment() { return segment; }
+	
 	public Train getTrain(){ return train; }
+
+	public void setBillets(ArrayList<Billet> billets) { this.billets = billets; }
 }
