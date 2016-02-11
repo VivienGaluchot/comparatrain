@@ -46,6 +46,7 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public String toString(){	
+		
 		String sType = new String();
 		if(type == PREMIERE){
 			sType=" 1er classe";

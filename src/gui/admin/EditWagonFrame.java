@@ -41,7 +41,7 @@ public class EditWagonFrame extends MyJFrame{
 		main.add(box);
 		box = new JPanel();
 			String[] st = {"1er Classe","2ieme Classe","Wagon Bar"};
-			JComboBox ComboBoxWagon = new JComboBox(st);
+			JComboBox<String> ComboBoxWagon = new JComboBox<String>(st);
 			box.add(ComboBoxWagon);
 		main.add(box);
 		
@@ -62,18 +62,12 @@ public class EditWagonFrame extends MyJFrame{
 			box.add(annuler);
 			JButton valider = new JButton("Valider");
 			valider.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
-            	try {
-            		wagon.setId(id.getValue());
-            		if(nouveau)
-        				father.addElement(wagon);
-            			
-                	father.majList();
-                	setVisible(false);
-				} catch (Erreur e1) {
-					if(e1.getType() == Erreur.EXISTE)
-						id.setWrong(true);
-					System.out.println(e1);
-				}
+        		wagon.setId(id.getValue());
+        		if(nouveau)
+    				father.addElement(wagon);
+        			
+            	father.majList();
+            	setVisible(false);
 	        }});
 			box.add(valider);
 		main.add(box);

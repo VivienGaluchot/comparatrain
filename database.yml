@@ -114,7 +114,7 @@
    nom: Gare de Champagne-Ardenne TGV
    ville: *9
 --- !java.util.Collections$UnmodifiableRandomAccessList
-- &20 !train.Rame
+- !train.Rame
    id: 10
    wagons: 
    - !train.Wagon
@@ -180,6 +180,7 @@
             id: 1
             cote: 4
             sens: 1
+      type: 1
    - !train.Wagon
       id: 1
       bancs: 
@@ -243,9 +244,11 @@
             id: 1
             cote: 4
             sens: 1
+      type: 1
    - !train.Wagon
       id: 2
       bancs: []
+      type: 3
    - !train.Wagon
       id: 3
       bancs: 
@@ -315,7 +318,7 @@
             sens: 1
       - !train.Banc
          id: 4
-         cote: 0
+         cote: 1
          sieges: 
          - !train.Siege
             id: 0
@@ -337,6 +340,7 @@
             id: 1
             cote: 4
             sens: 1
+      type: 2
    - !train.Wagon
       id: 4
       bancs: 
@@ -406,7 +410,7 @@
             sens: 1
       - !train.Banc
          id: 4
-         cote: 0
+         cote: 1
          sieges: 
          - !train.Siege
             id: 0
@@ -428,7 +432,8 @@
             id: 1
             cote: 4
             sens: 1
-- &21 !train.Rame
+      type: 2
+- !train.Rame
    id: 1
    wagons: 
    - !train.Wagon
@@ -494,6 +499,7 @@
             id: 1
             cote: 4
             sens: 1
+      type: 1
    - !train.Wagon
       id: 1
       bancs: 
@@ -557,9 +563,11 @@
             id: 1
             cote: 4
             sens: 1
+      type: 1
    - !train.Wagon
       id: 2
       bancs: []
+      type: 3
    - !train.Wagon
       id: 3
       bancs: 
@@ -651,6 +659,7 @@
             id: 1
             cote: 4
             sens: 1
+      type: 2
    - !train.Wagon
       id: 4
       bancs: 
@@ -742,6 +751,7 @@
             id: 1
             cote: 4
             sens: 1
+      type: 2
 --- !java.util.Collections$UnmodifiableRandomAccessList
 - !train.Train
    id: 5540
@@ -784,7 +794,320 @@
          serialTime: 06/01/2016 12h20
       horaireD: 
          serialTime: 06/01/2016 12h22
-   rame: *20
+   rame: &20
+      id: 10
+      wagons: 
+      - !train.Wagon
+         id: 0
+         bancs: 
+         - !train.Banc
+            id: 0
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+         - !train.Banc
+            id: 1
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 2
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+         - !train.Banc
+            id: 3
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 4
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+         - !train.Banc
+            id: 5
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+      - !train.Wagon
+         id: 1
+         bancs: 
+         - !train.Banc
+            id: 0
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+         - !train.Banc
+            id: 1
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 2
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+         - !train.Banc
+            id: 3
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 4
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+         - !train.Banc
+            id: 5
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+      - !train.Wagon
+         id: 2
+         bancs: []
+      - !train.Wagon
+         id: 3
+         bancs: 
+         - !train.Banc
+            id: 0
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 1
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 2
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 2
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 2
+            - !train.Siege
+               id: 2
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 3
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 3
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 2
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 2
+            - !train.Siege
+               id: 2
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 3
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 4
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 5
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+      - !train.Wagon
+         id: 4
+         bancs: 
+         - !train.Banc
+            id: 0
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 1
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 2
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 2
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 2
+            - !train.Siege
+               id: 2
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 3
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 3
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 2
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 2
+            - !train.Siege
+               id: 2
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 3
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 4
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 5
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
 - !train.Train
    id: 5640
    arrivee: 
@@ -814,7 +1137,320 @@
          serialTime: 06/01/2016 10h12
       horaireD: 
          serialTime: 06/01/2016 10h20
-   rame: *21
+   rame: &21
+      id: 1
+      wagons: 
+      - !train.Wagon
+         id: 0
+         bancs: 
+         - !train.Banc
+            id: 0
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+         - !train.Banc
+            id: 1
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 2
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+         - !train.Banc
+            id: 3
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 4
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+         - !train.Banc
+            id: 5
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+      - !train.Wagon
+         id: 1
+         bancs: 
+         - !train.Banc
+            id: 0
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+         - !train.Banc
+            id: 1
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 2
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+         - !train.Banc
+            id: 3
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 4
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+         - !train.Banc
+            id: 5
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+      - !train.Wagon
+         id: 2
+         bancs: []
+      - !train.Wagon
+         id: 3
+         bancs: 
+         - !train.Banc
+            id: 0
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 1
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 2
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 2
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 2
+            - !train.Siege
+               id: 2
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 3
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 3
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 2
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 2
+            - !train.Siege
+               id: 2
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 3
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 4
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 5
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+      - !train.Wagon
+         id: 4
+         bancs: 
+         - !train.Banc
+            id: 0
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 1
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 2
+            cote: 0
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 2
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 2
+            - !train.Siege
+               id: 2
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 3
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 3
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 2
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 2
+            - !train.Siege
+               id: 2
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 3
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 4
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
+         - !train.Banc
+            id: 5
+            cote: 1
+            sieges: 
+            - !train.Siege
+               id: 0
+               cote: 3
+               sens: 1
+            - !train.Siege
+               id: 1
+               cote: 4
+               sens: 1
 - !train.Train
    id: 5650
    arrivee: 
