@@ -24,7 +24,7 @@ public class Banc extends Indexable implements Evaluable<Preference>{
 	
 	public double eval(Preference pref){
 		// A FAIRE
-		return 0;
+		return 1;
 	}
 
 	public String toString(){

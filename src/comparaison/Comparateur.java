@@ -35,19 +35,14 @@ public class Comparateur {
 		if(graph == null) buildGraph();		
 		List<Offre> offres = graph.trouverOffre(pref);
 		
-		Resultat resultat = new Resultat();
+		Resultat resultat = new Resultat();		
 		for(Offre o : offres){
+			o.chercherBillets(pref);
 			if(o.eval(pref) > 0)
 				resultat.add(o);
 		}
 		
 		return resultat;
-	}
-	
-	public void trouverPlace(Offre offre, Preference pref){
-		for(OffreSegment o : offre.getOffres()){
-			//
-		}
 	}
 	
 	public final static void buildGraph(){

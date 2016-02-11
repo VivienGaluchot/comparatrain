@@ -525,6 +525,7 @@
          serialTime: 06/01/2016 17h12
       horaireD: 
          serialTime: 06/01/2016 17h17
+   rame: *20
 - !train.Train
    id: 5642
    arrivee: 
