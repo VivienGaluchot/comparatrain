@@ -15,6 +15,7 @@ import donnee.Donnees;
 import elements.Billet;
 import elements.Gare;
 import elements.Ville;
+import train.Rame;
 import train.Train;
 import utilisateur.Client;
 
@@ -26,6 +27,7 @@ public class PanneauAdmin extends JPanel{
 	AdminFrame<Gare> adminGare;
 	AdminFrame<Train> adminTrain;
 	AdminFrame<Billet> adminBillet;
+	AdminFrame<Rame> adminRame;
 	
 	public PanneauAdmin(JTabbedPane onglets){
 		
@@ -34,11 +36,13 @@ public class PanneauAdmin extends JPanel{
 		adminVille = new AdminFrame<Ville>("Gestion des villes",Ville.class,Donnees.getVilles());
 		adminGare = new AdminFrame<Gare>("Gestion des gares",Gare.class,Donnees.getGares());
 		adminBillet = new AdminFrame<Billet>("Gestion des billets",Billet.class,Donnees.getBillets());
+		adminRame = new AdminFrame<Rame>("Gestion des rames",Rame.class,Donnees.getRames());
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
-	
+		Dimension d = new Dimension(80,20);
 		JPanel box1 = new JPanel();
 			JLabel adminVilleLbl = new JLabel("Villes : " );
+			adminVilleLbl.setPreferredSize(d);
 			JButton adminVilleButton = new JButton("Editer");
 			adminVilleButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
 	            	adminVille.afficher();
@@ -51,6 +55,7 @@ public class PanneauAdmin extends JPanel{
 			
 		JPanel box2 = new JPanel();
 			JLabel adminGaresLbl = new JLabel("Gares : ");
+			adminGaresLbl.setPreferredSize(d);
 			JButton adminGaresButton = new JButton("Editer");
 			adminGaresButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
 	            	adminGare.afficher();
@@ -63,6 +68,7 @@ public class PanneauAdmin extends JPanel{
 		
 		JPanel box3 = new JPanel();
 			JLabel adminTrainLbl = new JLabel("Trains : ");
+			adminTrainLbl.setPreferredSize(d);
 			JButton adminTrainButton = new JButton("Editer");
 			adminTrainButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
 	            	adminTrain.afficher();
@@ -72,9 +78,23 @@ public class PanneauAdmin extends JPanel{
 			box3.add(adminTrainButton);
 			box3.add(Box.createRigidArea(new Dimension(20,0)));
 		this.add(box3);	
+		
+		JPanel box7 = new JPanel();
+			JLabel adminRameLbl = new JLabel("Rames : ");
+			adminRameLbl.setPreferredSize(d);
+			JButton adminRameButton = new JButton("Editer");
+			adminRameButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
+	            	adminRame.afficher();
+	        }});
+			box7.add(Box.createHorizontalGlue());
+			box7.add(adminRameLbl);
+			box7.add(adminRameButton);
+			box7.add(Box.createRigidArea(new Dimension(20,0)));
+		this.add(box7);	
 			
 		JPanel box4 = new JPanel();	
 			JLabel adminClientLbl = new JLabel("Clients : ");
+			adminClientLbl.setPreferredSize(d);
 			JButton adminClientButton = new JButton("Editer");
 			adminClientButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
 	            	adminCli.afficher();
@@ -87,6 +107,7 @@ public class PanneauAdmin extends JPanel{
 		
 		JPanel box6 = new JPanel();	
 			JLabel adminBilletLbl = new JLabel("Billet : ");
+			adminBilletLbl.setPreferredSize(d);
 			JButton adminBilletButton = new JButton("Editer");
 			adminBilletButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
 	            	adminBillet.afficher();
@@ -107,7 +128,7 @@ public class PanneauAdmin extends JPanel{
 
 			JButton save = new JButton("Sauvegarder");
 			save.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
-	            	// A FAIRE
+	            	Donnees.sauvegarder();
 	        }});
 			box5.add(save);
 		this.add(box5);

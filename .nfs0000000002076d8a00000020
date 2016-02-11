@@ -117,10 +117,10 @@
 - &20 !train.Rame
    id: 10
    wagons: 
-   - !train.Wagon
+   - !train.WagonPremiere
       id: 0
       bancs: 
-      - !train.Banc
+      - !train.BancSeul
          id: 0
          cote: 0
          sieges: 
@@ -128,7 +128,7 @@
             id: 0
             cote: 3
             sens: 1
-      - !train.Banc
+      - !train.BancDouble
          id: 1
          cote: 1
          sieges: 
@@ -140,7 +140,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancSeul
          id: 2
          cote: 0
          sieges: 
@@ -148,7 +148,7 @@
             id: 0
             cote: 3
             sens: 1
-      - !train.Banc
+      - !train.BancDouble
          id: 3
          cote: 1
          sieges: 
@@ -160,7 +160,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancSeul
          id: 4
          cote: 0
          sieges: 
@@ -168,7 +168,7 @@
             id: 0
             cote: 3
             sens: 1
-      - !train.Banc
+      - !train.BancDouble
          id: 5
          cote: 1
          sieges: 
@@ -180,10 +180,10 @@
             id: 1
             cote: 4
             sens: 1
-   - !train.Wagon
+   - !train.WagonPremiere
       id: 1
       bancs: 
-      - !train.Banc
+      - !train.BancSeul
          id: 0
          cote: 0
          sieges: 
@@ -191,7 +191,7 @@
             id: 0
             cote: 3
             sens: 1
-      - !train.Banc
+      - !train.BancDouble
          id: 1
          cote: 1
          sieges: 
@@ -203,7 +203,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancSeul
          id: 2
          cote: 0
          sieges: 
@@ -211,7 +211,7 @@
             id: 0
             cote: 3
             sens: 1
-      - !train.Banc
+      - !train.BancDouble
          id: 3
          cote: 1
          sieges: 
@@ -223,7 +223,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancSeul
          id: 4
          cote: 0
          sieges: 
@@ -231,7 +231,7 @@
             id: 0
             cote: 3
             sens: 1
-      - !train.Banc
+      - !train.BancDouble
          id: 5
          cote: 1
          sieges: 
@@ -243,13 +243,13 @@
             id: 1
             cote: 4
             sens: 1
-   - !train.Wagon
+   - !train.WagonBar
       id: 2
       bancs: []
-   - !train.Wagon
+   - !train.WagonSeconde
       id: 3
       bancs: 
-      - !train.Banc
+      - !train.BancDouble
          id: 0
          cote: 0
          sieges: 
@@ -261,7 +261,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancDouble
          id: 1
          cote: 1
          sieges: 
@@ -273,7 +273,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancCarre
          id: 2
          cote: 0
          sieges: 
@@ -293,7 +293,7 @@
             id: 3
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancCarre
          id: 3
          cote: 1
          sieges: 
@@ -313,7 +313,7 @@
             id: 3
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancDouble
          id: 4
          cote: 0
          sieges: 
@@ -325,7 +325,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancDouble
          id: 5
          cote: 1
          sieges: 
@@ -337,10 +337,10 @@
             id: 1
             cote: 4
             sens: 1
-   - !train.Wagon
+   - !train.WagonSeconde
       id: 4
       bancs: 
-      - !train.Banc
+      - !train.BancDouble
          id: 0
          cote: 0
          sieges: 
@@ -352,7 +352,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancDouble
          id: 1
          cote: 1
          sieges: 
@@ -364,7 +364,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancCarre
          id: 2
          cote: 0
          sieges: 
@@ -384,7 +384,7 @@
             id: 3
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancCarre
          id: 3
          cote: 1
          sieges: 
@@ -404,7 +404,7 @@
             id: 3
             cote: 4
             sens: 1
-      - !train.Banc
+      - !train.BancDouble
          id: 4
          cote: 0
          sieges: 
@@ -416,321 +416,7 @@
             id: 1
             cote: 4
             sens: 1
-      - !train.Banc
-         id: 5
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-- !train.Rame
-   id: 1
-   wagons: 
-   - !train.Wagon
-      id: 0
-      bancs: 
-      - !train.Banc
-         id: 0
-         cote: 0
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-      - !train.Banc
-         id: 1
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 2
-         cote: 0
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-      - !train.Banc
-         id: 3
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 4
-         cote: 0
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-      - !train.Banc
-         id: 5
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-   - !train.Wagon
-      id: 1
-      bancs: 
-      - !train.Banc
-         id: 0
-         cote: 0
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-      - !train.Banc
-         id: 1
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 2
-         cote: 0
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-      - !train.Banc
-         id: 3
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 4
-         cote: 0
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-      - !train.Banc
-         id: 5
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-   - !train.Wagon
-      id: 2
-      bancs: []
-   - !train.Wagon
-      id: 3
-      bancs: 
-      - !train.Banc
-         id: 0
-         cote: 0
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 1
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 2
-         cote: 0
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 2
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 2
-         - !train.Siege
-            id: 2
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 3
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 3
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 2
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 2
-         - !train.Siege
-            id: 2
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 3
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 4
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 5
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-   - !train.Wagon
-      id: 4
-      bancs: 
-      - !train.Banc
-         id: 0
-         cote: 0
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 1
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 2
-         cote: 0
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 2
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 2
-         - !train.Siege
-            id: 2
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 3
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 3
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 2
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 2
-         - !train.Siege
-            id: 2
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 3
-            cote: 4
-            sens: 1
-      - !train.Banc
-         id: 4
-         cote: 1
-         sieges: 
-         - !train.Siege
-            id: 0
-            cote: 3
-            sens: 1
-         - !train.Siege
-            id: 1
-            cote: 4
-            sens: 1
-      - !train.Banc
+      - !train.BancDouble
          id: 5
          cote: 1
          sieges: 

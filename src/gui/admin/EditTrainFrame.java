@@ -16,6 +16,7 @@ import gui.ChampHoraire;
 import gui.GareComboBox;
 import gui.GroupPanel;
 import gui.MyJFrame;
+import gui.RameComboBox;
 import gui.SpinnerChamp;
 import train.Train;
 
@@ -28,6 +29,7 @@ public class EditTrainFrame extends MyJFrame{
 	private SpinnerChamp id;
 	private GareComboBox comboBoxD;
 	private GareComboBox comboBoxA;
+	private RameComboBox comboBoxR;
 
 	private ChampHoraire champHoraireD;
 	private ChampHoraire champHoraireA;
@@ -53,8 +55,11 @@ public class EditTrainFrame extends MyJFrame{
 		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
 		
 		JPanel box = new JPanel();
+		box.setLayout(new BoxLayout(box,BoxLayout.LINE_AXIS));
 			id = new SpinnerChamp("Id : ",9999);
 			box.add(id);
+			comboBoxR = new RameComboBox("Rame : ");
+			box.add(comboBoxR);
 		main.add(box);
 		
 		box = new GroupPanel("Départ");
