@@ -9,7 +9,7 @@ import java.time.Duration;
  * @author Vivien Galuchot - Vincent Hernandez
  *
  */
-public class Gare extends Indexable implements Evaluable<Gare>, Comparable<Gare>{
+public class Gare extends Indexable implements Evaluable<Gare>{
 	private String nom;
 	private Ville ville;
 	
@@ -44,8 +44,8 @@ public class Gare extends Indexable implements Evaluable<Gare>, Comparable<Gare>
 	}
 	
 	@Override
-	public int compareTo(Gare o) {
-		return nom.compareTo(o.nom);
+	public int compareTo(Indexable o) {
+		return nom.compareTo(((Gare) o).nom);
 	}
 	
 	/**

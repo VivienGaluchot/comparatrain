@@ -1,6 +1,6 @@
 package elements;
 
-public abstract class Indexable {
+public abstract class Indexable implements Comparable<Indexable>{
 	private Integer id;
 	
 	public Indexable(){
@@ -31,5 +31,9 @@ public abstract class Indexable {
 		}
 		Indexable other = (Indexable) obj;
 		return id == other.id;
+	}
+	
+	public int compareTo(Indexable o){
+		return getId() - o.getId();
 	}
 }

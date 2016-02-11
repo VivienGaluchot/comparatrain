@@ -70,6 +70,8 @@ public class OffreSegment extends DefaultWeightedEdge{
 	
 	public void chercherBillets(Preference pref){
 		billets = new ArrayList<Billet>();
+		
+		
 		// A FAIRE
 	}
 	
