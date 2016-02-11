@@ -107,7 +107,7 @@ public class PanneauAdmin extends JPanel{
 
 			JButton save = new JButton("Sauvegarder");
 			save.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
-	            	// A FAIRE
+	            	Donnees.sauvegarder();
 	        }});
 			box5.add(save);
 		this.add(box5);

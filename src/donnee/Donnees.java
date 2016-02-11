@@ -76,6 +76,17 @@ public class Donnees {
 		return res;
 	}
 	
+	public static Rame[] getRamesT(){
+		ArrayList<Rame> temp = new ArrayList<Rame>();
+		temp.addAll(rames.getElements());
+		temp.sort(null);
+		Rame[] res = new Rame[temp.size()];
+		for( int i=0;i<res.length;i++){
+			res[i]=temp.get(i);
+		}
+		return res;
+	}
+	
 	public static Ville[] getVillesAlph(){
 		ArrayList<Ville> temp = new ArrayList<Ville>();
 		temp.addAll(villes.getElements());

@@ -32,11 +32,8 @@ public class Rame extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public String toString(){
-		String res = "";
-		for(Wagon w : wagons){
-			res += w.toString() + "\n";
-		}
-		return res;
+		return "Rame "+getId();
+
 	}
 	
 	public ArrayList<Wagon> getWagons(){ return wagons; }
