@@ -51,6 +51,8 @@ public class EditClientFrame extends MyJFrame{
 			id = new SpinnerChamp("Id : ",9999);
 			if(client.getId() != null)
 				id.setValue(client.getId());
+			else
+				id.setValue(Donnees.clients.getFreeId());
 			box.add(id);
 		main.add(box);
 		

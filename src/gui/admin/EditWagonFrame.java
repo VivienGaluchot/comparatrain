@@ -8,13 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import defaut.Erreur;
-import donnee.Donnees;
-import elements.Gare;
-import gui.ChampTextField;
 import gui.MyJFrame;
 import gui.SpinnerChamp;
-import gui.VilleComboBox;
+
 import train.Wagon;
 
 @SuppressWarnings("serial")

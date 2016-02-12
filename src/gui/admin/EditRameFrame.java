@@ -86,7 +86,8 @@ public class EditRameFrame extends MyJFrame{
 		// Mise a jour des champs
 		if(rame.getId() != null)
 			id.setValue(rame.getId());
-		
+		else
+			id.setValue(Donnees.rames.getFreeId());		
 		
 		add(main);
 		

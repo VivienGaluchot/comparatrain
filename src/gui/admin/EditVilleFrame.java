@@ -45,6 +45,8 @@ public class EditVilleFrame extends MyJFrame{
 			id = new SpinnerChamp("Id : ",9999);
 			if(ville.getId() != null)
 				id.setValue(ville.getId());
+			else
+				id.setValue(Donnees.villes.getFreeId());
 			box.add(id);
 		main.add(box);
 		

@@ -85,6 +85,8 @@ public class EditGareFrame extends MyJFrame{
 		// Mise a jour des champs
 		if(gare.getId() != null)
 			id.setValue(gare.getId());
+		else
+			id.setValue(Donnees.gares.getFreeId());
 		if(gare.getNom() != null)
 			nom.setText(gare.getNom());
 		if(gare.getVille() != null)

@@ -121,6 +121,8 @@ public class EditTrainFrame extends MyJFrame{
 		// Mise a jour des champs
 		if(train.getId() != null)
 			id.setValue(train.getId());
+		else
+			id.setValue(Donnees.trains.getFreeId());
 		if(train.getRame() != null)
 			comboBoxR.setSelectedRame(train.getRame());
 		if(train.getDepart() != null){
