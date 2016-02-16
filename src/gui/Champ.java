@@ -11,9 +11,9 @@ public abstract class Champ<E extends Component> extends JPanel{
 	public JLabel label;
 	public E champ;
 	
-	public Champ(String labelText, E champ){		
+	public Champ(String labelText, E champ){
 		if(labelText.length() > 0){
-			label = new JLabel(labelText);		
+			label = new JLabel(labelText);
 			add(label);
 		}
 		

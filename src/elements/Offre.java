@@ -24,7 +24,7 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 	
 	public double eval(Preference pref) {
 		double res = 1;
-		if(pref.getDirect() && getNbCorres()>0) return 0;
+		if(pref.getDirect() && getNbTrains()>1) res *= 1./getNbTrains();
 		res *= getDepart().eval(pref.getLieuxDepart(),pref.getHDepart());
 		res *= getArrivee().eval(pref.getLieuxArrivee(),pref.getHArrivee());
 		res *= getDepart().horaire.eval(getArrivee().horaire)/2.0 + 0.5;
@@ -76,9 +76,8 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 		offres.add(o);
 	}
 	
-	public int getNbCorres(){
-		if(offres.size()==0) return 0;
-		return offres.size()-1;
+	public int getNbTrains(){
+		return offres.size();
 	}
 	
 	public List<Billet> getBillets(){

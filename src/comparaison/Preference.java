@@ -16,6 +16,8 @@ public class Preference {
 	private Boolean direct;
 	private Integer nbPlace;
 	private Integer classe;
+	private Integer sens;
+	private Integer cote;
 	
 	public Preference(){
 		lieuxDepart = null;
@@ -27,7 +29,7 @@ public class Preference {
 		classe = null;
 	}
 	
-	public Preference(String gD, Horaire hD, String gA, Horaire hA, Boolean direct, Integer nbPlace, Integer classe){
+	public Preference(String gD, Horaire hD, String gA, Horaire hA, Boolean direct, Integer nbPlace, Integer classe, Integer cote, Integer sens){
 		lieuxDepart = gD;
 		lieuxArrivee = gA;
 		hDepart = hD;
@@ -51,4 +53,8 @@ public class Preference {
 	public Integer getNbPlace() { return nbPlace; }
 
 	public Integer getClasse() { return classe; }
+
+	public Integer getSens() { return sens; }
+
+	public Integer getCote() { return cote; }
 }
