@@ -18,6 +18,7 @@ public class Preference {
 	private Integer classe;
 	private Integer sens;
 	private Integer cote;
+	private Boolean bar;
 	
 	public Preference(){
 		lieuxDepart = null;
@@ -27,16 +28,23 @@ public class Preference {
 		direct = null;
 		nbPlace = null;
 		classe = null;
+		sens = null;
+		cote = null;
+		bar = null;
 	}
 	
-	public Preference(String gD, Horaire hD, String gA, Horaire hA, Boolean direct, Integer nbPlace, Integer classe, Integer cote, Integer sens){
+	public Preference(String gD, Horaire hD, String gA, Horaire hA){
 		lieuxDepart = gD;
 		lieuxArrivee = gA;
 		hDepart = hD;
 		hArrivee = hA;
-		this.direct = direct;
-		this.nbPlace = nbPlace;
-		this.classe = classe;
+		// Optionnel
+		direct = null;
+		nbPlace = null;
+		classe = null;
+		sens = null;
+		cote = null;
+		bar = null;
 	}
 	
 	// Getters
@@ -49,12 +57,21 @@ public class Preference {
 	public Horaire getHArrivee() { return hArrivee; }
 
 	public Boolean getDirect() { return direct; }
+	public void setDirect(Boolean direct) { this.direct = direct; }
 
 	public Integer getNbPlace() { return nbPlace; }
 
+	public void setNbPlace(Integer nbPlace) { this.nbPlace = nbPlace; }
+
 	public Integer getClasse() { return classe; }
+	public void setClasse(Integer classe) { this.classe = classe; }
 
-	public Integer getSens() { return sens; }
+	public Integer getSens() { return sens;	}
+	public void setSens(Integer sens) {	this.sens = sens; }
 
-	public Integer getCote() { return cote; }
+	public Integer getCote() { return cote;	}
+	public void setCote(Integer cote) {	this.cote = cote; }
+
+	public Boolean getBar() { return bar; }
+	public void setBar(Boolean bar) { this.bar = bar; }
 }

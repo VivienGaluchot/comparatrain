@@ -21,9 +21,11 @@ import javax.swing.SwingConstants;
 
 import comparaison.Comparateur;
 import comparaison.Preference;
+import comparaison.Resultat;
 import elements.Horaire;
 import gui.admin.PanneauAdmin;
 import train.Siege;
+import train.Wagon;
 import utilisateur.Client;
 
 @SuppressWarnings("serial")
@@ -33,26 +35,21 @@ public class PanneauClient extends JPanel {
 	private JLabel infoClient;
 	
 	private VilleGareTextField texteD;
-	private VilleGareTextField texteA;
-	
-	private ChampHoraire champHoraire;
-	
+	private VilleGareTextField texteA;	
+	private ChampHoraire champHoraire;	
 	private JCheckBox cbDirect;
-	private SpinnerChamp nbPlaces;
-	
+	private SpinnerChamp nbPlaces;	
 	private JCheckBox cbWBar;
 	private JRadioButton rbClasse1;
-	private JRadioButton rbClasse2;
-	
-	private JButton rechercher;
-	private FenetreRes frameRes = null;	
-	private MyJFrame parent;
-	
+	private JRadioButton rbClasse2;	
 	private JRadioButton rbSensAvant;
 	private JRadioButton rbSensArriere;
 	private JRadioButton rbCouloir;
 	private JRadioButton rbFenetre;
 	
+	private JButton rechercher;
+	private FenetreRes frameRes = null;	
+	private MyJFrame parent;
 	
 	public PanneauClient(JTabbedPane onglets,MyJFrame p){
 		
@@ -113,12 +110,16 @@ public class PanneauClient extends JPanel {
 			JPanel box62 = new JPanel();
 			box62.setLayout(new BoxLayout(box62,BoxLayout.LINE_AXIS));
 				GroupPanel gp = new GroupPanel("Wagon");
-					rbClasse1 = new JRadioButton("Première cl.");
-					rbClasse2 = new JRadioButton("Seconde cl.");
-					cbWBar = new JCheckBox("Voiture bar disponible");
+					rbClasse1 = new JRadioButton("Première classe");
+					rbClasse2 = new JRadioButton("Seconde classe");
+					JRadioButton indif = new JRadioButton("Indifférent");
+					indif.setSelected(true);
+					cbWBar = new JCheckBox("Voiture bar recquise");
 					ButtonGroup group = new ButtonGroup();
+					group.add(indif);
 					group.add(rbClasse1);
 					group.add(rbClasse2);
+					gp.add(indif);
 					gp.add(rbClasse1);
 					gp.add(rbClasse2);
 					gp.add(new JSeparator(SwingConstants.HORIZONTAL));
@@ -129,16 +130,24 @@ public class PanneauClient extends JPanel {
 					group = new ButtonGroup();
 					rbSensAvant = new JRadioButton("Sens de la marche");
 					rbSensArriere = new JRadioButton("Marche arrière");
+					indif = new JRadioButton("Indifférent");
+					indif.setSelected(true);
+					group.add(indif);
 					group.add(rbSensAvant);
 					group.add(rbSensArriere);
+					gp.add(indif);
 					gp.add(rbSensAvant);
 					gp.add(rbSensArriere);
 					gp.add(new JSeparator(SwingConstants.HORIZONTAL));
 					group = new ButtonGroup();
 					rbCouloir = new JRadioButton("Côté couloir");
-					rbFenetre = new JRadioButton("Côté fenètre");
+					rbFenetre = new JRadioButton("Côté fenêtre");
+					indif = new JRadioButton("Indifférent");
+					indif.setSelected(true);
+					group.add(indif);
 					group.add(rbCouloir);
 					group.add(rbFenetre);
+					gp.add(indif);
 					gp.add(rbCouloir);
 					gp.add(rbFenetre);
 				box62.add(gp);
@@ -150,25 +159,7 @@ public class PanneauClient extends JPanel {
 		rechercher = new JButton("Rechercher");
 		rechercher.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){
         	Horaire h = champHoraire.getHoraire();
-        	if(h.estInit()){
-        		Integer classe = null;
-				if(rbClasse1.isSelected())
-					classe = 1;
-				else if(rbClasse2.isSelected())
-					classe = 2;
-				
-        		Integer cote = null;
-				if(rbCouloir.isSelected())
-					cote = Siege.COULOIR;
-				else if(rbFenetre.isSelected())
-					cote = Siege.FENETRE;
-				
-        		Integer sens = null;
-        		if(rbSensAvant.isSelected())
-        			sens = Siege.AVANT;
-				else if(rbSensArriere.isSelected())
-					sens = Siege.ARRIERE;
-        		
+        	if(h.estInit()){       		
         		Horaire hDep = null;
         		Horaire hArr = null;
 				if(champHoraire.getComboBox().getSelectedItem().equals("Départ")){
@@ -177,9 +168,34 @@ public class PanneauClient extends JPanel {
 					hArr = h;
 				}
 				
-				Preference pref = new Preference(texteD.getText(),hDep,texteA.getText(),hArr,cbDirect.isSelected(),nbPlaces.getValue(),classe,cote,sens);
+				Preference pref = new Preference(texteD.getText(),hDep,texteA.getText(),hArr);
+				
+				// Options
+				// Direct
+				pref.setDirect(cbDirect.isSelected());
+				// NbPlaces
+				pref.setNbPlace(nbPlaces.getValue());
+				// Classe
+				if(rbClasse1.isSelected())
+					pref.setClasse(Wagon.PREMIERE);
+				else if(rbClasse2.isSelected())
+					pref.setClasse(Wagon.SECONDE);
+				// Cote
+				if(rbCouloir.isSelected())
+					pref.setCote(Siege.COULOIR);
+				else if(rbFenetre.isSelected())
+					pref.setCote(Siege.FENETRE);
+				// Sens
+        		if(rbSensAvant.isSelected())
+        			pref.setSens(Siege.AVANT);
+				else if(rbSensArriere.isSelected())
+        			pref.setSens(Siege.ARRIERE);
+        		// Bar
+				pref.setBar(cbWBar.isSelected());
+				
+				Resultat resultats = Comparateur.comparer(pref);
 
-                frameRes = new FenetreRes(Comparateur.comparer(pref));
+                frameRes = new FenetreRes(resultats);
                 frameRes.setVisible(true);
         	}
         }});
