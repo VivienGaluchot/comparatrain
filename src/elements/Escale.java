@@ -1,7 +1,12 @@
 package elements;
 
-import defaut.Erreur;
-
+/**
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Lorsqu'un train arrive dans une gare a une certaine horaire et y repart plus tard,
+ * il y fait une Escale
+ */
 public class Escale implements Comparable<Escale>{
 	public Gare gare;
 	public Horaire horaireA;

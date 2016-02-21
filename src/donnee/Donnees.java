@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import elements.Billet;
 import elements.Gare;
 import elements.Ville;
+import offre.Billet;
 import train.Rame;
 import train.Train;
 import utilisateur.Client;
@@ -19,9 +19,10 @@ import yamlbeans.YamlReader;
 import yamlbeans.YamlWriter;
 
 /**
- * @author Vivien Galuchot - Vincent Hernandez
- * Gestion des données, enregistrements
- * Design pattern : Singleton
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Gestion des données, chargements et enregistrements
  */
 public class Donnees {
 	private static volatile Donnees instance = null;
@@ -64,7 +65,17 @@ public class Donnees {
 		System.out.println(billets.size() + " billets");
 	}
 	
-	// Utilitaires	
+	// Utilitaires
+	public static Ville[] getVillesAlph(){
+		ArrayList<Ville> temp = new ArrayList<Ville>();
+		temp.addAll(villes.getElements());
+		Ville[] res = new Ville[temp.size()];
+		for( int i=0;i<res.length;i++){
+			res[i]=temp.get(i);
+		}
+		return res;
+	}
+	
 	public static Gare[] getGaresAlph(){
 		ArrayList<Gare> temp = new ArrayList<Gare>();
 		temp.addAll(gares.getElements());
@@ -87,12 +98,13 @@ public class Donnees {
 		return res;
 	}
 	
-	public static Ville[] getVillesAlph(){
-		ArrayList<Ville> temp = new ArrayList<Ville>();
-		temp.addAll(villes.getElements());
-		Ville[] res = new Ville[temp.size()];
-		for( int i=0;i<res.length;i++){
-			res[i]=temp.get(i);
+	public static List<String> getStrLieux(){
+		ArrayList<String> res= new ArrayList<String>();
+		for(Gare g : getGares()){
+			res.add(g.getNom());
+		}
+		for(Ville v : getVilles()){
+			res.add(v.getNom());
 		}
 		return res;
 	}

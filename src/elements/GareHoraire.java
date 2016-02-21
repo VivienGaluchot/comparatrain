@@ -2,6 +2,12 @@ package elements;
 
 import java.time.Duration;
 
+/**
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Est composé d'une gare et d'une horaire
+ */
 public class GareHoraire implements Comparable<GareHoraire>, Evaluable<GareHoraire> {
 	public Gare gare;
 	public Horaire horaire;

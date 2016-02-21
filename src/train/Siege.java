@@ -3,12 +3,17 @@
  */
 package train;
 
-import comparaison.Preference;
 import elements.Evaluable;
 import elements.Indexable;
+import elements.Preference;
 
 /**
- * @author Vivien Galuchot - Vincent Hernandez
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Représente une Siege.
+ * Un siege a un sens (marche avant, marche arrière)
+ * et un coté (couloir, fenetre)
  */
 public class Siege extends Indexable implements Evaluable<Preference>{
 	public static final Integer AVANT = 1;

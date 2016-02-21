@@ -2,10 +2,17 @@ package train;
 
 import java.util.ArrayList;
 
-import comparaison.Preference;
 import elements.Evaluable;
 import elements.Indexable;
+import elements.Preference;
 
+/**
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Représente un Wagon, soit une collection de bancs
+ * Le type du Wagon représente sa classe, ou alors s'il est un wagon Bar
+ */
 public class Wagon extends Indexable implements Evaluable<Preference>{
 	public static final int PREMIERE = 1;
 	public static final int SECONDE = 2;

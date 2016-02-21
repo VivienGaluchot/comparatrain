@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import gui.elements.MyJFrame;
+
 public class MainFrame extends MyJFrame{
 	private static final long serialVersionUID = 1L;
 	

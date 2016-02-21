@@ -2,6 +2,12 @@ package utilisateur;
 
 import elements.Indexable;
 
+/**
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Représente une personne physique
+ */
 public class Personne extends Indexable{
 	private String prenom;
 	private String nom;

@@ -19,14 +19,19 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import comparaison.Comparateur;
-import comparaison.Preference;
-import comparaison.Resultat;
+import defaut.MainActivity;
+import donnee.Donnees;
 import elements.Horaire;
-import gui.admin.PanneauAdmin;
+import elements.Preference;
+import gui.elements.ChampHoraire;
+import gui.elements.PanneauGroupe;
+import gui.elements.MyJFrame;
+import gui.elements.SpinnerChamp;
+import offre.Comparateur;
+import offre.Resultat;
+import gui.elements.PropTextField;
 import train.Siege;
 import train.Wagon;
-import utilisateur.Client;
 
 @SuppressWarnings("serial")
 public class PanneauClient extends JPanel {
@@ -34,8 +39,8 @@ public class PanneauClient extends JPanel {
 	private JButton deconnexion;
 	private JLabel infoClient;
 	
-	private VilleGareTextField texteD;
-	private VilleGareTextField texteA;	
+	private PropTextField texteD;
+	private PropTextField texteA;	
 	private ChampHoraire champHoraire;	
 	private JCheckBox cbDirect;
 	private SpinnerChamp nbPlaces;	
@@ -72,7 +77,7 @@ public class PanneauClient extends JPanel {
 		this.add(box5);
 		deconnexion = new JButton("Se deconnecter");
 		deconnexion.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
-	    	Client.disconnect();
+	    	MainActivity.disconnect();
         	infoClient.setText(null);
         	infoClient.setVisible(false);
         	connexion.setVisible(true);
@@ -86,9 +91,9 @@ public class PanneauClient extends JPanel {
 	
 		JPanel box0 = new JPanel();
 			box0.setLayout(new BoxLayout(box0,BoxLayout.PAGE_AXIS));
-			texteD = new VilleGareTextField("Départ : ", "Nom de ville ou gare", 25);
+			texteD = new PropTextField("Départ : ", "Nom de ville ou gare", 25, Donnees.getStrLieux());
 			box0.add(texteD);
-			texteA = new VilleGareTextField("Arrivée : ", "Nom de ville ou gare", 25);
+			texteA = new PropTextField("Arrivée : ", "Nom de ville ou gare", 25, Donnees.getStrLieux());
 			box0.add(texteA);
 		box0.setBorder(BorderFactory.createTitledBorder("Trajet"));
 		this.add(box0);
@@ -100,7 +105,7 @@ public class PanneauClient extends JPanel {
 		box3.setBorder(BorderFactory.createTitledBorder("Horaires"));
 		this.add(box3);
 		
-		JPanel box6 = new GroupPanel("Options");			
+		JPanel box6 = new PanneauGroupe("Options");			
 			JPanel box61 = new JPanel();
 				cbDirect = new JCheckBox("Train direct");
 				box61.add(cbDirect);
@@ -112,7 +117,7 @@ public class PanneauClient extends JPanel {
 			
 			JPanel box62 = new JPanel();
 			box62.setLayout(new BoxLayout(box62,BoxLayout.LINE_AXIS));
-				GroupPanel gp = new GroupPanel("Wagon");
+				PanneauGroupe gp = new PanneauGroupe("Wagon");
 					rbClasse1 = new JRadioButton("Première classe");
 					rbClasse2 = new JRadioButton("Seconde classe");
 					JRadioButton indif = new JRadioButton("Indifférent");
@@ -129,7 +134,7 @@ public class PanneauClient extends JPanel {
 					gp.add(cbWBar);
 				box62.add(gp);
 				
-				gp = new GroupPanel("Place");
+				gp = new PanneauGroupe("Place");
 					group = new ButtonGroup();
 					rbSensAvant = new JRadioButton("Sens de la marche");
 					rbSensArriere = new JRadioButton("Marche arrière");
@@ -196,7 +201,7 @@ public class PanneauClient extends JPanel {
         		// Bar
 				pref.setBar(cbWBar.isSelected());
 				
-				Resultat resultats = Comparateur.comparer(pref);
+				Resultat resultats = Comparateur.comparer(pref,Donnees.getBillets());
 
                 frameRes = new FenetreRes(resultats);
                 frameRes.setVisible(true);
@@ -231,7 +236,7 @@ public class PanneauClient extends JPanel {
     			parent.positionner();
     	    	setSize(550, 600);
     	        System.out.println("Already Loged In as admin");
-    	    } else if(Client.connect(username.getText(),password.getText()) != null){
+    	    } else if(MainActivity.connect(username.getText(),password.getText()) != null){
     	    	onglets.setSelectedIndex(0);
     	    	
     	    	infoClient.setText("Bienvenue "+username.getText());

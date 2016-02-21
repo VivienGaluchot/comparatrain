@@ -922,7 +922,7 @@
          serialTime: 06/01/2016 15h50
    rame: *22
 --- !java.util.Collections$UnmodifiableRandomAccessList
-- !elements.Billet
+- !offre.Billet
    id: 0
    client: *1
    segment: 
@@ -932,7 +932,7 @@
          horaire: *28
    siege: *23
    train: *26
-- !elements.Billet
+- !offre.Billet
    id: 1
    client: *2
    segment: 

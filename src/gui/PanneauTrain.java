@@ -8,15 +8,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import defaut.Erreur;
+import defaut.MainActivity;
 import donnee.Donnees;
-import elements.Billet;
-import elements.Offre;
-import utilisateur.Client;
+import elements.Erreur;
+import offre.Billet;
+import offre.Offre;
 
 @SuppressWarnings("serial")
 public class PanneauTrain extends JPanel{
-	Ligne l;
+	PanneauOffre l;
 	
 	InfoTrain fen = null;
 	
@@ -24,14 +24,14 @@ public class PanneauTrain extends JPanel{
 	
 	public PanneauTrain (final Offre o, final FenetreRes fenetreRes){
 		JLabel hd = new JLabel(o.getDepart().horaire.toString());
-		l = new Ligne(o);
+		l = new PanneauOffre(o);
 		JLabel ha = new JLabel(o.getArrivee().horaire.getHeure()+" ");
 		JButton reserver = new JButton("Réserver");
 		reserver.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e) {
-			if(Client.current != null){
+			if(MainActivity.current != null){
 				for(Billet b : o.getBillets()){
 					b.setId(Donnees.billets.getFreeId());
-					b.setClient(Client.current);
+					b.setClient(MainActivity.current);
 					try {
 						Donnees.billets.add(b);
 					} catch (Erreur e1) {

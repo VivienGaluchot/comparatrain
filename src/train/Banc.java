@@ -2,10 +2,16 @@ package train;
 
 import java.util.ArrayList;
 
-import comparaison.Preference;
 import elements.Evaluable;
 import elements.Indexable;
+import elements.Preference;
 
+/**
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Représente un Banc de wagon, soit un groupement de sieges
+ */
 public class Banc extends Indexable implements Evaluable<Preference>{	
 	public static final Integer GAUCHE = 0;
 	public static final Integer DROIT = 1;

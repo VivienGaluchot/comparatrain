@@ -1,17 +1,12 @@
 package utilisateur;
 
-import donnee.Donnees;
-
-public class Client extends Personne{
-	public static Client current = null;
-	public static Client connect(String login, String motDePasse){
-		current = Donnees.getInstance().findClient(login, motDePasse);
-		return current;
-	}
-	public static void disconnect(){
-		current = null;
-	}
-	
+/**
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Représente un client, soit une personne avec un login et un mot de passe
+ */
+public class Client extends Personne{	
 	private String login;
 	private String motDePasse;
 	

@@ -7,8 +7,12 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAmount;
 
-import defaut.Erreur;
-
+/**
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Représente un moment dans le temps
+ */
 public class Horaire implements Evaluable<Horaire>, Comparable<Horaire>{
 	
 	private LocalDateTime time;	

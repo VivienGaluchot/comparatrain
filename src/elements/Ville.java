@@ -1,8 +1,10 @@
 package elements;
 
 /**
- * @author Vivien Galuchot - Vincent Hernandez
- *
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Représentation d'une Ville
  */
 public class Ville extends Indexable{
 	private String nom;

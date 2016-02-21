@@ -5,16 +5,18 @@ package train;
 
 import java.util.ArrayList;
 
-import defaut.Erreur;
-
+import elements.Erreur;
 import elements.Escale;
 import elements.GareHoraire;
 import elements.Indexable;
 import elements.SegmentHoraire;
 
 /**
- * @author Vivien Galuchot - Vincent Hernandez
- * Classe de train
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Représente un train, composé d'un départ, une suite d'escales, une arrivée
+ * et une rame
  */
 public class Train extends Indexable{	
 	private GareHoraire depart;
@@ -101,7 +103,7 @@ public class Train extends Indexable{
 		else
 			arrivee = this.escales.get(j-1).getArrivee();
 		
-		return new SegmentHoraire(this,depart,arrivee);
+		return new SegmentHoraire(depart,arrivee);
 	}
 	
 	public int nbStop(){

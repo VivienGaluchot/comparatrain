@@ -1,5 +1,11 @@
 package elements;
 
+/**
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Un objet de type Indexable est composé d'un identifiant entier
+ */
 public abstract class Indexable implements Comparable<Indexable>{
 	private Integer id;
 	

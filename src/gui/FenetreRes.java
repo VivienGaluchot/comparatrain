@@ -7,8 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import comparaison.Resultat;
-import elements.Offre;
+import gui.elements.PanneauGroupe;
+import offre.Offre;
+import offre.Resultat;
+import gui.elements.MyJFrame;
 
 @SuppressWarnings("serial")
 public class FenetreRes extends MyJFrame{
@@ -27,7 +29,7 @@ public class FenetreRes extends MyJFrame{
 		int i = 1;
 		for(Offre o : r){
 			Double score = o.getEval()*100;
-			GroupPanel g = new GroupPanel("Billet " + i++ + " (" + score.intValue() + "%)");
+			PanneauGroupe g = new PanneauGroupe("Billet " + i++ + " (" + score.intValue() + "%)");
 			g.add(new PanneauTrain(o,this));
 			main.add(g);
 		}

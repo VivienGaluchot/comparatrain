@@ -4,9 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import defaut.Erreur;
+import elements.Erreur;
 import elements.Indexable;
 
+/**
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Gestion des données, enregistrements
+ */
 public class Structure<E extends Indexable>{
 	private ArrayList<E> elements;
 	

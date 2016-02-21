@@ -2,10 +2,16 @@ package train;
 
 import java.util.ArrayList;
 
-import comparaison.Preference;
 import elements.Evaluable;
 import elements.Indexable;
+import elements.Preference;
 
+/**
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Représente une Rame, soit une suite de Wagons
+ */
 public class Rame extends Indexable implements Evaluable<Preference>{
 	private ArrayList<Wagon> wagons;
 	

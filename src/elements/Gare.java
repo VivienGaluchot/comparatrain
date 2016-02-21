@@ -1,13 +1,12 @@
-/**
- * 
- */
 package elements;
 
 import java.time.Duration;
 
 /**
- * @author Vivien Galuchot - Vincent Hernandez
- *
+ * @author Vivien Galuchot - Vincent Hernandez Info 4
+ * Février 2016, Projet POO
+ * 
+ * Représentation d'une Gare
  */
 public class Gare extends Indexable implements Evaluable<Gare>{
 	private String nom;
@@ -49,6 +48,7 @@ public class Gare extends Indexable implements Evaluable<Gare>{
 	}
 	
 	/**
+	 * Utilisé pour faire le test de correspondance.
 	 * @return le temps nécéssaire au trajet entre les gares, s'il est envisageable pour une correspondance
 	 * null sinon
 	 */
