@@ -60,7 +60,7 @@ public class VilleGareTextField extends Champ<JTextField>{
 	public void pop(String[] list){
 		popup.setVisible(false);
 		popup.removeAll();
-		for(String s : list){
+		for(final String s : list){
 			menuItem = new JMenuItem(s);
 			menuItem.setPreferredSize(new Dimension(champ.getWidth(),18));
 			menuItem.setFont(champ.getFont());
@@ -100,7 +100,7 @@ public class VilleGareTextField extends Champ<JTextField>{
 		return res;
 	}
 	
-	public void ClearOnClick(JTextField textField){
+	public void ClearOnClick(final JTextField textField){
 		textField.addFocusListener(new FocusListener(){
 	        public void focusGained(FocusEvent e){
 	        	if(init){

@@ -37,11 +37,11 @@ public class EditEscaleFrame extends MyJFrame{
 		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
 		
 		JPanel box = new GroupPanel("Informations");
-			GareComboBox gare = new GareComboBox("Gare : ");
+			final GareComboBox gare = new GareComboBox("Gare : ");
 			box.add(gare);
-			ChampHoraire champHoraireA = new ChampHoraire("Arrivée : ");
+			final ChampHoraire champHoraireA = new ChampHoraire("Arrivée : ");
 			box.add(champHoraireA);
-			ChampHoraire champHoraireD = new ChampHoraire("Départ : ");
+			final ChampHoraire champHoraireD = new ChampHoraire("Départ : ");
 			box.add(champHoraireD);
 		main.add(box);
 		

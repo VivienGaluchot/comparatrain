@@ -45,11 +45,11 @@ public class EditGareFrame extends MyJFrame{
 			box.add(id);
 		main.add(box);
 		box = new JPanel();
-			VilleComboBox ville = new VilleComboBox("Ville : ");
+			final VilleComboBox ville = new VilleComboBox("Ville : ");
 			box.add(ville);
 		main.add(box);
 		box = new JPanel();
-			ChampTextField nom = new ChampTextField("Nom : ");
+			final ChampTextField nom = new ChampTextField("Nom : ");
 			box.add(nom);
 		main.add(box);
 		

@@ -45,7 +45,7 @@ public class PanneauClient extends JPanel {
 	private MyJFrame parent;
 	
 	
-	public PanneauClient(JTabbedPane onglets,MyJFrame p){
+	public PanneauClient(final JTabbedPane onglets,MyJFrame p){
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		parent = p;

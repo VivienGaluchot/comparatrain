@@ -44,14 +44,14 @@ public class ListPanel<E> extends GroupPanel{
 	DefaultListModel<E> listeM;
 	JList<E> list;
 	
-	public ListPanel(String nom, Class<E> paramClass, List<E> elements){
+	public ListPanel(String nom, Class<E> paramClass, final List<E> elements){
 		super(nom);
 		setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		
 		typeClass = paramClass;
 		if(elements == null) this.elements = new ArrayList<E>();
 		else  this.elements = elements;		
-		ListPanel<E> thisElement = this;
+		final ListPanel<E> thisElement = this;
 		
 		listeM = new DefaultListModel<E>();
 		list = new JList<E>(listeM);

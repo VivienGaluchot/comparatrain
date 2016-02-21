@@ -22,7 +22,7 @@ public class PanneauTrain extends JPanel{
 	
 	PanneauTrain luiMeme = this;
 	
-	public PanneauTrain (Offre o, FenetreRes fenetreRes){
+	public PanneauTrain (final Offre o, final FenetreRes fenetreRes){
 		JLabel hd = new JLabel(o.getDepart().horaire.toString());
 		l = new Ligne(o);
 		JLabel ha = new JLabel(o.getArrivee().horaire.getHeure()+" ");
