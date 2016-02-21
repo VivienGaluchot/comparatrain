@@ -179,12 +179,18 @@ public class Donnees {
 			nRames = reader.read(ArrayList.class);
 			nTrains = reader.read(ArrayList.class);
 			nBillets = reader.read(ArrayList.class);
-			clients.setElements(nClients);
-			villes.setElements(nVilles);
-			gares.setElements(nGares);
-			rames.setElements(nRames);
-			trains.setElements(nTrains);
-			billets.setElements(nBillets);
+			if(nClients != null)
+				clients.setElements(nClients);
+			if(nVilles != null)
+				villes.setElements(nVilles);
+			if(nGares != null)
+				gares.setElements(nGares);
+			if(nRames != null)
+				rames.setElements(nRames);
+			if(nTrains != null)
+				trains.setElements(nTrains);
+			if(nBillets != null)
+				billets.setElements(nBillets);
 			System.out.println("Chargement de la base de donnée effectuée :");
 			afficher();
 		} catch (FileNotFoundException | YamlException | NullPointerException e1) {

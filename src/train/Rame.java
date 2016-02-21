@@ -16,7 +16,7 @@ public class Rame extends Indexable implements Evaluable<Preference>{
 	private ArrayList<Wagon> wagons;
 	
 	public Rame(){
-		wagons = null;
+		wagons = new ArrayList<Wagon>();
 	}
 	
 	public Rame(int i){
@@ -32,9 +32,6 @@ public class Rame extends Indexable implements Evaluable<Preference>{
 		link();
 	}
 	
-	/**
-	 * Renvoie la valeur d'évaluation du meilleur wagon
-	 */
 	public double eval(Preference pref){
 		if(pref.getBar() != null && pref.getBar())
 			for(Wagon w : wagons)

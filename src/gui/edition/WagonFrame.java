@@ -58,10 +58,23 @@ public class WagonFrame extends MyJFrame{
 			box.add(annuler);
 			JButton valider = new JButton("Valider");
 			valider.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
-        		wagon.setId(id.getValue());
-        		if(nouveau)
+        		
+        		Integer type;
+        		if(((String)ComboBoxWagon.getSelectedItem()).compareTo("1er Classe") == 0)
+        			type = Wagon.PREMIERE;
+        		else if(((String)ComboBoxWagon.getSelectedItem()).compareTo("2ieme Classe") == 0)
+        			type = Wagon.SECONDE;
+        		else
+        			type = Wagon.BAR;
+        		if(nouveau){
+        			wagon = new Wagon(id.getValue(),type);
     				father.addElement(wagon);
-        			
+        		}
+        		else{
+        			wagon.setId(id.getValue());
+        			wagon.setType(type);
+        		}
+        		
             	father.majList();
             	setVisible(false);
 	        }});
