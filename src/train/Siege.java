@@ -42,7 +42,10 @@ public class Siege extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public double eval(Preference pref){
-		return 1;
+		Double res = 1.;
+		if(pref.getSens() != null && sens != pref.getSens()) res *= 0.9;
+		if(pref.getCote() != null && cote != pref.getCote()) res *= 0.9;
+		return res;
 	}
 	
 	public String toString(){

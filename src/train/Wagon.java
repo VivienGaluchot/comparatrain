@@ -62,6 +62,7 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public double eval(Preference pref){
+		if(pref.getClasse() != null && type != pref.getClasse()) return 0.9;
 		return 1;
 	}
 
