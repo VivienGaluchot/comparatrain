@@ -42,11 +42,6 @@ public class Gare extends Indexable implements Evaluable<Gare>{
 		return res;
 	}
 	
-	@Override
-	public int compareTo(Indexable o) {
-		return nom.compareTo(((Gare) o).nom);
-	}
-	
 	/**
 	 * Utilisé pour faire le test de correspondance.
 	 * @return le temps nécéssaire au trajet entre les gares, s'il est envisageable pour une correspondance

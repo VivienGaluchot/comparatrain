@@ -28,6 +28,7 @@ import gui.elements.PanneauGroupe;
 import gui.elements.MyJFrame;
 import gui.elements.SpinnerChamp;
 import offre.Comparateur;
+import offre.Offre;
 import offre.Resultat;
 import gui.elements.PropTextField;
 import train.Siege;
@@ -201,7 +202,7 @@ public class PanneauClient extends JPanel {
         		// Bar
 				pref.setBar(cbWBar.isSelected());
 				
-				Resultat resultats = Comparateur.comparer(pref,Donnees.getBillets());
+				Resultat<Offre> resultats = Comparateur.comparer(pref,Donnees.getBillets());
 
                 frameRes = new FenetreRes(resultats);
                 frameRes.setVisible(true);

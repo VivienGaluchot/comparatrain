@@ -3,6 +3,7 @@ package offre;
 import java.util.ArrayList;
 import java.util.List;
 
+import elements.Evaluable;
 import elements.Indexable;
 import elements.Preference;
 import elements.SegmentHoraire;
@@ -19,7 +20,7 @@ import utilisateur.Client;
  * 
  * Représente un Billet de train
  */
-public class Billet extends Indexable{
+public class Billet extends Indexable implements Evaluable<Preference>{
 	private SegmentHoraire segment;
 	private Train train;
 	private Client client;
@@ -39,6 +40,10 @@ public class Billet extends Indexable{
 		this.siege = siege;
 	}
 	
+	public double eval(Preference pref){
+		return 0;
+	}
+	
 	public String toString(){
 		return "Billet " + getId() + ", train " + train.getId() + ", client " + client.getId();
 	}
@@ -52,19 +57,20 @@ public class Billet extends Indexable{
 		for(OffreSimple o : offres.getOffres()){
 			ArrayList<Billet> billets = new ArrayList<Billet>();
 			
-			// Recherche des sieges libres
-			ArrayList<Siege> sieges = new ArrayList<Siege>();
+			// Recherche des sieges libres			
+			Resultat<Siege> res = new Resultat<Siege>(pref);
+			
 			Rame rame = o.getTrain().getRame();
 			if(rame != null){
 				for(Wagon w : rame.getWagons())
 					for(Banc b : w.getBancs())
 						for(Siege s : b.getSieges())
 							if(estLibre(s,o,list))
-								sieges.add(s);
+								res.add(s);
 				
 				// Premiers sieges
-				for(int i=0;i<sieges.size() && i<pref.getNbPlace();i++)
-					billets.add(new Billet(o,null,sieges.get(i)));
+				for(Siege s : res.getMeilleurs(pref.getNbPlace()))
+					billets.add(new Billet(o,null,s));
 				
 				o.setBillets(billets);
 			}

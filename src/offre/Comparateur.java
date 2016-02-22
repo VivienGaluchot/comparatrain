@@ -34,11 +34,11 @@ public class Comparateur {
         return Comparateur.instance;
     }
 	
-	public final static Resultat comparer(Preference pref, List<Billet> list){
+	public final static Resultat<Offre> comparer(Preference pref, List<Billet> list){
 		if(graph == null) return null;
 		List<Offre> offres = graph.trouverOffre(pref);
 		
-		Resultat resultat = new Resultat();		
+		Resultat<Offre> resultat = new Resultat<Offre>(pref);		
 		for(Offre o : offres){
 			Billet.chercherBillets(o, pref, list);
 			if(o.eval(pref) > 0)

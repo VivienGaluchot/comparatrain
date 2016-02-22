@@ -6,7 +6,7 @@ package elements;
  * 
  * Un objet de type Indexable est composé d'un identifiant entier
  */
-public abstract class Indexable implements Comparable<Indexable>{
+public abstract class Indexable{
 	private Integer id;
 	
 	public Indexable(){
@@ -37,9 +37,5 @@ public abstract class Indexable implements Comparable<Indexable>{
 		}
 		Indexable other = (Indexable) obj;
 		return id == other.id;
-	}
-	
-	public int compareTo(Indexable o){
-		return getId() - o.getId();
 	}
 }

@@ -14,7 +14,7 @@ import gui.elements.MyJFrame;
 
 @SuppressWarnings("serial")
 public class FenetreRes extends MyJFrame{
-	public FenetreRes(Resultat res) {
+	public FenetreRes(Resultat<Offre> res) {
 		setTitle("Recherche");
 		
 		JPanel main = new JPanel();
