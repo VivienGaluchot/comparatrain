@@ -36,7 +36,7 @@ public class WagonFrame extends MyJFrame{
 			box.add(id);
 		main.add(box);
 		box = new JPanel();
-			String[] st = {"1er Classe","2ieme Classe","Wagon Bar"};
+			String[] st = {"Première cl.","Seconde cl.","Wagon Bar"};
 			JComboBox<String> ComboBoxWagon = new JComboBox<String>(st);
 			box.add(ComboBoxWagon);
 		main.add(box);
@@ -60,9 +60,9 @@ public class WagonFrame extends MyJFrame{
 			valider.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
         		
         		Integer type;
-        		if(((String)ComboBoxWagon.getSelectedItem()).compareTo("1er Classe") == 0)
+        		if(((String)ComboBoxWagon.getSelectedItem()).compareTo(st[0]) == 0)
         			type = Wagon.PREMIERE;
-        		else if(((String)ComboBoxWagon.getSelectedItem()).compareTo("2ieme Classe") == 0)
+        		else if(((String)ComboBoxWagon.getSelectedItem()).compareTo(st[1]) == 0)
         			type = Wagon.SECONDE;
         		else
         			type = Wagon.BAR;
@@ -84,6 +84,12 @@ public class WagonFrame extends MyJFrame{
 		// Mise a jour des champs
 		if(wagon.getId() != null)
 			id.setValue(wagon.getId());
+		if(wagon.getType() != null && wagon.getType() == Wagon.PREMIERE)
+			ComboBoxWagon.setSelectedIndex(0);
+		else if(wagon.getType() != null && wagon.getType() == Wagon.SECONDE)
+			ComboBoxWagon.setSelectedIndex(1);
+		else if(wagon.getType() != null && wagon.getType() == Wagon.BAR)
+			ComboBoxWagon.setSelectedIndex(2);
 		
 		add(main);
 		

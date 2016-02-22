@@ -50,8 +50,11 @@ public class PanneauListe<E> extends PanneauGroupe{
 		setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		
 		typeClass = paramClass;
-		if(elements == null) this.elements = new ArrayList<E>();
-		else  this.elements = elements;		
+		if(elements == null)
+			this.elements = new ArrayList<E>();
+		else 
+			this.elements = elements;
+		
 		final PanneauListe<E> thisElement = this;
 		
 		listeM = new DefaultListModel<E>();

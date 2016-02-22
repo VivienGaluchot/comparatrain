@@ -45,11 +45,13 @@ public class OffreSimple extends DefaultWeightedEdge{
 	}
 	
 	public double eval(Preference pref) {
-		if(billets == null || billets.size() > pref.getNbPlace()) return 0;
-		Double res = 1.;
-//		for(Billet b : billets)
-//			res *= b.eval(pref);
-		return res;
+		if(billets == null || billets.size()==0 || billets.size() < pref.getNbPlace()) return 0;
+		// moyenne des evaluations des billets
+		Double moy = 0.;
+		for(Billet b : billets)
+			moy += b.eval(pref);
+		moy /= billets.size();
+		return moy;
 	}
 	
 	/**

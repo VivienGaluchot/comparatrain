@@ -34,9 +34,19 @@ public class Offre extends Indexable implements Evaluable<Preference>{
 		res *= getDepart().eval(pref.getLieuxDepart(),pref.getHDepart());
 		res *= getArrivee().eval(pref.getLieuxArrivee(),pref.getHArrivee());
 		res *= getDepart().horaire.eval(getArrivee().horaire)/2.0 + 0.5;
+		
+		if(offres == null || offres.size()==0) return 0;
+		// moyenne de l'évaluation de tout les billets
+		Double moy = 0.;
 		for(OffreSimple o : offres){
-			res *= o.eval(pref);
+			Double temp = o.eval(pref);
+			if(temp == 0) return 0; // pas de billet trouvé
+			moy += temp;
 		}
+		moy /= offres.size();
+		
+		res *= moy;
+		
 		eval = res;
 		return res;
 	}
