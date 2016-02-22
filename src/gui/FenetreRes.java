@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import elements.Preference;
 import gui.elements.PanneauGroupe;
 import offre.Offre;
 import offre.Resultat;
@@ -14,7 +15,7 @@ import gui.elements.MyJFrame;
 
 @SuppressWarnings("serial")
 public class FenetreRes extends MyJFrame{
-	public FenetreRes(Resultat<Offre> res) {
+	public FenetreRes(Preference pref, Resultat<Offre> res) {
 		setTitle("Recherche");
 		
 		JPanel main = new JPanel();
@@ -23,8 +24,17 @@ public class FenetreRes extends MyJFrame{
 		List<Offre> r = res.getMeilleurs(10);
 		
 		JPanel header = new JPanel();
-		header.add(new JLabel(r.size() + " offres correspondants à vos critères"));
+		if(r.size() == 0)
+			header.add(new JLabel("Aucune offre ne corresponds à vos critères :"));
+		else if(r.size() == 1)
+			header.add(new JLabel("Une offre corresponds à vos critères :"));
+		else
+			header.add(new JLabel(r.size() + " offres correspondent à vos critères :"));
 		main.add(header);
+		
+		JPanel info = new JPanel();
+		info.add(new JLabel(pref.toString()));
+		main.add(info);
 		
 		int i = 1;
 		for(Offre o : r){

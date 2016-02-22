@@ -47,6 +47,15 @@ public class Preference {
 		bar = null;
 	}
 	
+	public String toString(){
+		String res = lieuxDepart + " -> " + lieuxArrivee + " ";
+		if(hDepart != null)
+			res += "Depart : " + hDepart;
+		if(hArrivee != null)
+			res += "Arrivee : " + hDepart;
+		return res;		
+	}
+	
 	// Getters
 	public String getLieuxDepart() { return lieuxDepart; }
 

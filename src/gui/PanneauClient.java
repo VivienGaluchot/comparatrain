@@ -204,7 +204,7 @@ public class PanneauClient extends JPanel {
 				
 				Resultat<Offre> resultats = Comparateur.comparer(pref,Donnees.getBillets());
 
-                frameRes = new FenetreRes(resultats);
+                frameRes = new FenetreRes(pref, resultats);
                 frameRes.setVisible(true);
         	}
         }});
