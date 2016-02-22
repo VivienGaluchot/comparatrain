@@ -37,7 +37,7 @@ public class WagonFrame extends MyJFrame{
 		main.add(box);
 		box = new JPanel();
 			String[] st = {"1er Classe","2ieme Classe","Wagon Bar"};
-			JComboBox<String> ComboBoxWagon = new JComboBox<String>(st);
+			final JComboBox<String> ComboBoxWagon = new JComboBox<String>(st);
 			box.add(ComboBoxWagon);
 		main.add(box);
 		

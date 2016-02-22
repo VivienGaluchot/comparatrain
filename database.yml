@@ -7,114 +7,158 @@
    prenom: Jean
 - !utilisateur.Client
    id: 1
-   login: Herta2
-   motDePasse: '789'
-   nom: Bon
-   prenom: JeanPatric
+   login: ciseaux
+   motDePasse: mdp
+   nom: Feuille
+   prenom: Pierre
 - !utilisateur.Client
    id: 2
-   login: Pamoul
-   motDePasse: '123456'
-   nom: Moulu
-   prenom: Patrice
-- &1 !utilisateur.Client
+   login: test
+   motDePasse: mdp
+   nom: Test
+   prenom: Robert
+- !utilisateur.Client
    id: 3
    login: Vivien
    motDePasse: mdp
    nom: Galuchot
    prenom: Vivien
-- &2 !utilisateur.Client
+- !utilisateur.Client
    id: 4
    login: Vincent
    motDePasse: mdp
    nom: Hernandez
    prenom: Vincent
 --- !java.util.Collections$UnmodifiableRandomAccessList
-- &3 !elements.Ville
+- &1 !elements.Ville
    id: 0
    nom: Paris
-- &4 !elements.Ville
+- &2 !elements.Ville
    id: 1
    nom: Marseille
-- &5 !elements.Ville
+- &3 !elements.Ville
    id: 2
    nom: Nantes
-- &6 !elements.Ville
+- &4 !elements.Ville
    id: 3
    nom: Avignon
-- &7 !elements.Ville
+- &5 !elements.Ville
    id: 4
    nom: Lyon
-- &8 !elements.Ville
+- &6 !elements.Ville
    id: 5
    nom: Aix-en-Provence
-- &9 !elements.Ville
+- &7 !elements.Ville
    id: 6
    nom: Angers
-- &10 !elements.Ville
+- &8 !elements.Ville
    id: 7
    nom: Strasbourg
-- &11 !elements.Ville
+- &9 !elements.Ville
    id: 8
    nom: Reims
 - !elements.Ville
    id: 9
    nom: Lille
+- &10 !elements.Ville
+   id: 20
+   nom: villeTest-20
+- &11 !elements.Ville
+   id: 30
+   nom: villeTest-30
+- &12 !elements.Ville
+   id: 40
+   nom: villeTest-40
+- &13 !elements.Ville
+   id: 50
+   nom: villeTest-50
 --- !java.util.Collections$UnmodifiableRandomAccessList
-- &12 !elements.Gare
+- &14 !elements.Gare
    id: 0
    nom: Gare de Lyon
-   ville: *3
+   ville: *1
 - !elements.Gare
    id: 1
    nom: Gare du Nord
-   ville: *3
+   ville: *1
 - !elements.Gare
    id: 2
    nom: Gare Montparnasse
-   ville: *3
-- &13 !elements.Gare
+   ville: *1
+- &15 !elements.Gare
    id: 3
    nom: Massy TGV
-   ville: *3
-- &14 !elements.Gare
+   ville: *1
+- &16 !elements.Gare
    id: 4
    nom: Gare Saint Charles
-   ville: *4
-- &15 !elements.Gare
+   ville: *2
+- &17 !elements.Gare
    id: 5
    nom: Gare de Nantes
-   ville: *5
-- &16 !elements.Gare
+   ville: *3
+- &18 !elements.Gare
    id: 6
    nom: Avignon TGV
-   ville: *6
+   ville: *4
 - !elements.Gare
    id: 7
    nom: Avignon centre
-   ville: *6
-- &17 !elements.Gare
+   ville: *4
+- &19 !elements.Gare
    id: 8
    nom: Lyon Pardieu
-   ville: *7
-- &18 !elements.Gare
+   ville: *5
+- &20 !elements.Gare
    id: 9
    nom: Aix-en-Provence TVG
-   ville: *8
-- &19 !elements.Gare
+   ville: *6
+- &21 !elements.Gare
    id: 10
    nom: Angers Saint-Laud
-   ville: *9
-- &20 !elements.Gare
+   ville: *7
+- &22 !elements.Gare
    id: 11
    nom: Gare de Strasbourg
-   ville: *10
-- &21 !elements.Gare
+   ville: *8
+- &23 !elements.Gare
    id: 12
    nom: Gare de Champagne-Ardenne TGV
+   ville: *9
+- &24 !elements.Gare
+   id: 21
+   nom: GareA-ville20
+   ville: *10
+- &25 !elements.Gare
+   id: 22
+   nom: GareB-ville20
+   ville: *10
+- !elements.Gare
+   id: 23
+   nom: GareC-ville20
+   ville: *10
+- &26 !elements.Gare
+   id: 31
+   nom: GareA-ville30
    ville: *11
+- !elements.Gare
+   id: 32
+   nom: GareB-ville30
+   ville: *11
+- &27 !elements.Gare
+   id: 41
+   nom: GareA-ville40
+   ville: *12
+- !elements.Gare
+   id: 42
+   nom: GareB-ville40
+   ville: *12
+- &28 !elements.Gare
+   id: 51
+   nom: GareA-ville50
+   ville: *13
 --- !java.util.Collections$UnmodifiableRandomAccessList
-- &22 !train.Rame
+- &29 !train.Rame
    id: 10
    wagons: 
    - !train.Wagon
@@ -124,7 +168,7 @@
          id: 0
          cote: 0
          sieges: 
-         - &23 !train.Siege
+         - !train.Siege
             id: 0
             cote: 3
             sens: 1
@@ -132,7 +176,7 @@
          id: 1
          cote: 1
          sieges: 
-         - &24 !train.Siege
+         - !train.Siege
             id: 0
             cote: 3
             sens: 1
@@ -433,7 +477,7 @@
             cote: 4
             sens: 1
       type: 2
-- &25 !train.Rame
+- &30 !train.Rame
    id: 1
    wagons: 
    - !train.Wagon
@@ -628,7 +672,7 @@
             cote: 4
             sens: 1
       type: 1
-- &26 !train.Rame
+- &31 !train.Rame
    id: 2
    wagons: 
    - !train.Wagon
@@ -911,189 +955,211 @@
 - !train.Train
    id: 5540
    arrivee: 
-      gare: *15
+      gare: *17
       horaire: 
          serialTime: 06/01/2016 12h59
    depart: 
-      gare: *14
+      gare: *16
       horaire: 
          serialTime: 06/01/2016 07h40
    escales: 
    - !elements.Escale
-      gare: *18
+      gare: *20
       horaireA: 
          serialTime: 06/01/2016 07h45
       horaireD: 
          serialTime: 06/01/2016 07h50
    - !elements.Escale
-      gare: *16
+      gare: *18
       horaireA: 
          serialTime: 06/01/2016 08h00
       horaireD: 
          serialTime: 06/01/2016 08h02
    - !elements.Escale
-      gare: *17
+      gare: *19
       horaireA: 
          serialTime: 06/01/2016 10h15
       horaireD: 
          serialTime: 06/01/2016 10h20
    - !elements.Escale
-      gare: *13
+      gare: *15
       horaireA: 
          serialTime: 06/01/2016 11h02
       horaireD: 
          serialTime: 06/01/2016 11h05
    - !elements.Escale
-      gare: *19
+      gare: *21
       horaireA: 
          serialTime: 06/01/2016 12h20
       horaireD: 
          serialTime: 06/01/2016 12h22
-   rame: *22
+   rame: *29
 - !train.Train
    id: 5640
    arrivee: 
-      gare: *12
+      gare: *14
       horaire: 
          serialTime: 06/01/2016 11h00
    depart: 
-      gare: *14
+      gare: *16
       horaire: 
          serialTime: 06/01/2016 07h30
    escales: 
    - !elements.Escale
-      gare: *18
+      gare: *20
       horaireA: 
          serialTime: 06/01/2016 07h45
       horaireD: 
          serialTime: 06/01/2016 07h50
    - !elements.Escale
-      gare: *16
+      gare: *18
       horaireA: 
          serialTime: 06/01/2016 08h10
       horaireD: 
          serialTime: 06/01/2016 08h15
    - !elements.Escale
-      gare: *17
+      gare: *19
       horaireA: 
          serialTime: 06/01/2016 10h12
       horaireD: 
          serialTime: 06/01/2016 10h20
-   rame: *25
-- &27 !train.Train
+   rame: *30
+- !train.Train
    id: 5650
-   arrivee: &28
-      gare: *12
+   arrivee: 
+      gare: *14
       horaire: 
          serialTime: 06/01/2016 18h01
    depart: 
-      gare: *14
+      gare: *16
       horaire: 
          serialTime: 06/01/2016 14h32
    escales: 
    - !elements.Escale
-      gare: *18
+      gare: *20
       horaireA: 
          serialTime: 06/01/2016 14h45
       horaireD: 
          serialTime: 06/01/2016 14h57
    - !elements.Escale
-      gare: *16
+      gare: *18
       horaireA: 
          serialTime: 06/01/2016 15h00
-      horaireD: &29
+      horaireD: 
          serialTime: 06/01/2016 15h02
    - !elements.Escale
-      gare: *17
+      gare: *19
       horaireA: 
          serialTime: 06/01/2016 17h12
       horaireD: 
          serialTime: 06/01/2016 17h17
-   rame: *22
+   rame: *29
 - !train.Train
    id: 5642
    arrivee: 
-      gare: *12
+      gare: *14
       horaire: 
          serialTime: 06/01/2016 13h00
    depart: 
-      gare: *14
+      gare: *16
       horaire: 
          serialTime: 06/01/2016 08h30
    escales: 
    - !elements.Escale
-      gare: *18
+      gare: *20
       horaireA: 
          serialTime: 06/01/2016 08h45
       horaireD: 
          serialTime: 06/01/2016 08h50
    - !elements.Escale
-      gare: *16
+      gare: *18
       horaireA: 
          serialTime: 06/01/2016 09h10
       horaireD: 
          serialTime: 06/01/2016 09h13
    - !elements.Escale
-      gare: *17
+      gare: *19
       horaireA: 
          serialTime: 06/01/2016 12h12
       horaireD: 
          serialTime: 06/01/2016 12h20
-   rame: *25
+   rame: *30
 - !train.Train
    id: 7010
    arrivee: 
-      gare: *20
+      gare: *22
       horaire: 
          serialTime: 06/01/2016 13h00
    depart: 
-      gare: *13
+      gare: *15
       horaire: 
          serialTime: 06/01/2016 10h30
    escales: 
    - !elements.Escale
-      gare: *21
+      gare: *23
       horaireA: 
          serialTime: 06/01/2016 11h45
       horaireD: 
          serialTime: 06/01/2016 11h50
-   rame: *26
+   rame: *31
 - !train.Train
    id: 7011
    arrivee: 
-      gare: *20
+      gare: *22
       horaire: 
          serialTime: 06/01/2016 17h00
    depart: 
-      gare: *13
+      gare: *15
       horaire: 
          serialTime: 06/01/2016 13h30
    escales: 
    - !elements.Escale
-      gare: *21
+      gare: *23
       horaireA: 
          serialTime: 06/01/2016 15h45
       horaireD: 
          serialTime: 06/01/2016 15h50
-   rame: *25
---- !java.util.Collections$UnmodifiableRandomAccessList
-- !offre.Billet
-   id: 0
-   client: *1
-   segment: 
-      arrivee: *28
-      depart: 
-         gare: *16
-         horaire: *29
-   siege: *23
-   train: *27
-- !offre.Billet
-   id: 1
-   client: *2
-   segment: 
-      arrivee: *28
-      depart: 
-         gare: *16
-         horaire: *29
-   siege: *24
-   train: *27
+   rame: *30
+- !train.Train
+   id: 1001
+   arrivee: 
+      gare: *27
+      horaire: 
+         serialTime: 23/02/2016 12h00
+   depart: 
+      gare: *24
+      horaire: 
+         serialTime: 23/02/2016 10h00
+   escales: 
+   - !elements.Escale
+      gare: *26
+      horaireA: 
+         serialTime: 23/02/2016 11h00
+      horaireD: 
+         serialTime: 23/02/2016 11h10
+   rame: *30
+- !train.Train
+   id: 1002
+   arrivee: 
+      gare: *28
+      horaire: 
+         serialTime: 23/02/2016 12h30
+   depart: 
+      gare: *26
+      horaire: 
+         serialTime: 23/02/2016 11h05
+   escales: []
+   rame: *30
+- !train.Train
+   id: 1003
+   arrivee: 
+      gare: *28
+      horaire: 
+         serialTime: 23/02/2016 12h40
+   depart: 
+      gare: *25
+      horaire: 
+         serialTime: 23/02/2016 10h00
+   escales: []
+   rame: *29
+--- !java.util.Collections$UnmodifiableRandomAccessList []
