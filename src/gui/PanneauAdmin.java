@@ -15,6 +15,7 @@ import donnee.Donnees;
 import elements.Gare;
 import elements.Ville;
 import offre.Billet;
+import offre.Comparateur;
 import train.Rame;
 import train.Train;
 import utilisateur.Client;
@@ -127,7 +128,8 @@ public class PanneauAdmin extends JPanel{
 		
 			JButton save = new JButton("Sauvegarder");
 			save.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
-	            	Donnees.sauvegarder();
+	            Donnees.sauvegarder();
+	            Comparateur.buildGraph(Donnees.trains.getElements());
 	        }});
 			box5.add(save);
 		this.add(box5);

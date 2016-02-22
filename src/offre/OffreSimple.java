@@ -47,8 +47,8 @@ public class OffreSimple extends DefaultWeightedEdge{
 	public double eval(Preference pref) {
 		if(billets == null || billets.size() > pref.getNbPlace()) return 0;
 		Double res = 1.;
-		for(Billet b : billets)
-			res *= b.eval(pref);
+//		for(Billet b : billets)
+//			res *= b.eval(pref);
 		return res;
 	}
 	

@@ -61,25 +61,9 @@ public class Billet extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public String strPlace(){
-		String res = "Wagon n°" + getWagon().getId();
-		if(getWagon().getType() == Wagon.PREMIERE)
-			res += "\tPremière classe";
-		else if(getWagon().getType() == Wagon.SECONDE)
-			res += "\tSeconde classe";
-		
-		res += "\nBanc n°" + getBanc().getId();
-		if(siege.getSens() == Siege.AVANT)
-			res += "\tSens de la marche";
-		else if(siege.getSens() == Siege.ARRIERE)
-			res += "\tMarche arrière";
-		
-		res += "\nSiège n°" + siege.getId();
-		if(siege.getCote() == Siege.FENETRE)
-			res +=  "\tCoté fenêtre";
-		else if(siege.getSens() == Siege.COULOIR)
-			res += "\tCoté couloir";
-		else
-			res += "\tSiege seul";
+		String res = getWagon().toString() + "\n";
+		res += getBanc() + "\n";
+		res += getSiege();
 		return res;
 	}
 	
@@ -95,7 +79,6 @@ public class Billet extends Indexable implements Evaluable<Preference>{
 							if(estLibre(s,o,list))
 								res.add(new Billet(o,null,s));
 			}
-			
 			ArrayList<Billet> billets = new ArrayList<Billet>();
 			billets.addAll(res.getMeilleurs(pref.getNbPlace()));
 			o.setBillets(billets);
@@ -109,9 +92,8 @@ public class Billet extends Indexable implements Evaluable<Preference>{
 				// si le siege du billet est le bon
 				if(b.getSiege() == s)
 					// si le billet est pas disjoint a l'offre
-					if(! b.getSegment().estDisjoint(offre.getSegment())){
+					if(! b.getSegment().estDisjoint(offre.getSegment()))
 						return false;
-					}
 		}
 		return true;
 	}

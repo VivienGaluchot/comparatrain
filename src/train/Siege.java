@@ -54,7 +54,18 @@ public class Siege extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public String toString(){
-		return "Siege " + getId();
+		String sSens = new String();
+		if(sens == AVANT)
+			sSens="marche avant";
+		else if(sens == ARRIERE)
+			sSens="marche arrière";
+		
+		String sCote = new String();
+		if(cote == FENETRE)
+			sCote="coté fenêtre";
+		else if(cote == COULOIR)
+			sCote="coté couloir";
+		return "Siège " + getId() + " \t" + sSens + " \t" + sCote;
 	}
 
 	public Integer getSens() { return sens; }

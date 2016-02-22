@@ -44,7 +44,7 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 				bancs.add(new Banc(bancs.size(),Banc.DROIT,Banc.DOUBLE));
 				bancs.add(new Banc(bancs.size(),Banc.GAUCHE,Banc.CARRE));
 				bancs.add(new Banc(bancs.size(),Banc.DROIT,Banc.CARRE));
-				bancs.add(new Banc(bancs.size(),Banc.DROIT,Banc.DOUBLE));
+				bancs.add(new Banc(bancs.size(),Banc.GAUCHE,Banc.DOUBLE));
 				bancs.add(new Banc(bancs.size(),Banc.DROIT,Banc.DOUBLE));
 			}
 		}else if(type == BAR){
@@ -54,18 +54,17 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public String toString(){	
-		
 		String sType = new String();
 		if(type == PREMIERE){
-			sType=" 1er classe";
+			sType="Première classe";
 			
 		}else if(type == SECONDE){
-			sType=" 2ieme classe";
+			sType="Seconde classe";
 			
 		}else if(type == BAR){
-			sType=" Bar";
+			sType="Bar";
 		}
-		return "Wagon " + getId() + sType;
+		return "Wagon " + getId() + " \t" + sType;
 	}
 	
 	public double eval(Preference pref){

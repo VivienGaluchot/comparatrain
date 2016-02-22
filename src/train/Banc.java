@@ -19,8 +19,8 @@ public class Banc extends Indexable implements Evaluable<Preference>{
 	public static final Integer DOUBLE = 1;
 	public static final Integer SEUL = 2;
 	
-	
 	private Integer cote;
+	private Integer type;
 	private ArrayList<Siege> sieges = new ArrayList<Siege>();
 	private Wagon father;
 	
@@ -31,6 +31,7 @@ public class Banc extends Indexable implements Evaluable<Preference>{
 	
 	public Banc(int i, Integer cote, Integer type){
 		setId(i);
+		setType(type);
 		this.cote = cote;
 		father = null;
 		if(type == CARRE){
@@ -52,7 +53,20 @@ public class Banc extends Indexable implements Evaluable<Preference>{
 	}
 
 	public String toString(){
-		return "Banc " + getId();
+		String sType = new String();
+		if(type == CARRE)
+			sType="carré";
+		else if(type == DOUBLE)
+			sType="double";
+		else if(type == SEUL)
+			sType="seul";
+		
+		String sCote = new String();
+		if(cote == GAUCHE)
+			sCote="coté gauche";
+		else if(cote == DROIT)
+			sCote="coté droit";
+		return "Banc " + getId() + " \t" + sType + " \t" + sCote;
 	}
 
 	public ArrayList<Siege> getSieges() { return sieges; }
@@ -66,6 +80,9 @@ public class Banc extends Indexable implements Evaluable<Preference>{
 	
 	public Wagon getFather() { return father; }
 	public void link(Wagon father){	this.father = father; }
+	
+	public Integer getType(){ return type; }
+	public void setType(Integer i){ type = i; }
 	
 	public void link(){
 		for(Siege s : sieges)

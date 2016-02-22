@@ -28,18 +28,25 @@ public class Gare extends Indexable implements Evaluable<Gare>{
 	}
 	
 	public double eval(Gare g){
-		double res;
-		if(getVille().getId() == g.getVille().getId()) res = 1;
-		else res = 0;
-		return res;
+		// Meme gare
+		if(getId() == g.getId())
+			return 1;
+		// Gares dans la meme Ville
+		if(getVille().getId() == g.getVille().getId())
+			return 0.8;
+		return 0;
 	}
 	
 	public double eval(String g){
+		// Nom de la gare
 		if(getNom().compareTo(g) == 0) return 1;
-		else if(getVille().getNom().compareTo(g) == 0) return 0.9;
-//		for(Gare g : getVille().getGares()){
-//			
-//		}
+		// Nom de la ville
+		else if(getVille().getNom().compareTo(g) == 0) return 0.8;
+		// Nom d'une gare de la ville
+		for(Gare gare : getVille().getGares()){
+			if(gare != this && gare.getNom().compareTo(g) == 0)
+				return 0.6;
+		}
 		return 0;
 	}
 	
