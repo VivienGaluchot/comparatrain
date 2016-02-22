@@ -64,7 +64,7 @@ public class OffreSimple extends DefaultWeightedEdge{
 			res += segment.depart + " --Train " + train.getId() + "--> " + segment.arrivee;
 			if(billets != null){
 				for(Billet b : billets)
-				res += "\n" + b.strPlace();
+				res += "\n--- Billet ---\n" + b.strPlace();
 			}
 			else {
 				res += "\n" + "Aucune place attribuée";

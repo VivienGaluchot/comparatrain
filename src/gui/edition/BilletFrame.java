@@ -1,8 +1,8 @@
 package gui.edition;
 
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import gui.elements.PanneauGroupe;
 import gui.elements.MyJFrame;
@@ -15,31 +15,40 @@ public class BilletFrame extends MyJFrame{
 
 	public BilletFrame(Billet b, PanneauListe<Billet> f){
 		billet = b;
-		
 		setTitle("Informations");
-		if(billet != null){
 		JPanel main = new JPanel();
 		main.setLayout(new BoxLayout(main,BoxLayout.PAGE_AXIS));
-			JPanel box = new PanneauGroupe("Client");
-			JLabel idc = new JLabel("Id : "+billet.getClient().getId());
-				box.add(idc);
-				JLabel nom = new JLabel("Nom : "+billet.getClient().getNom());
-				box.add(nom);
-				JLabel prenom = new JLabel("Prenom : "+ billet.getClient().getPrenom());
-				box.add(prenom);
+		if(billet != null){
+			JPanel box = new PanneauGroupe("Client");				
+				JTextArea offre = new JTextArea(
+						"Id : "+billet.getClient().getId() + "\n" +
+						"Nom : "+billet.getClient().getNom() + "\n" +
+						"Prenom : "+ billet.getClient().getPrenom());
+				offre.setEditable(false);
+				offre.setBackground(this.getBackground());
+				box.add(offre);
 			main.add(box);
 			
 			box = new PanneauGroupe("Offre");
-				JLabel offre = new JLabel( billet.getSegment().toString());
-				box.add(offre);
-				offre = new JLabel("Train : " + billet.getTrain().getId());
-				box.add(offre);
-				offre = new JLabel("Place : " + billet.getSiege());
+				offre = new JTextArea(
+						billet.getSegment().toString() + "\n" +
+						"Train : " + billet.getTrain().getId() + "\n" +
+						billet.strPlace());
+				offre.setEditable(false);
+				offre.setBackground(this.getBackground());
 				box.add(offre);
 			main.add(box);
-		
-			add(main);
-			positionner();
 		}
+		else{
+			JPanel box = new PanneauGroupe("Information");				
+				JTextArea offre = new JTextArea("Ajout de billet non implémenté");
+				offre.setEditable(false);
+				offre.setBackground(this.getBackground());
+				box.add(offre);
+			main.add(box);
+		}
+		
+		add(main);
+		positionner();
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import elements.Evaluable;
 import elements.GareHoraire;
+import elements.Indexable;
 import elements.Preference;
 import elements.SegmentHoraire;
 import train.Train;
@@ -16,18 +17,14 @@ import train.Train;
  * 
  * Objet représentant une offre, essentiellement une collection d'offre simple
  */
-public class Offre implements Evaluable<Preference>, Comparable<Offre>{
+public class Offre extends Indexable implements Evaluable<Preference>{
 	private static int compteur = 0;
-	
-	private Double eval;
-	int id;
-	
+	private Double eval;	
 	private ArrayList<OffreSimple> offres;
 	
 	public Offre(){
 		eval = null;
-		this.id = compteur;
-		compteur++;
+		setId(compteur++);
 		offres = new ArrayList<OffreSimple>();
 	}
 	
@@ -47,15 +44,9 @@ public class Offre implements Evaluable<Preference>, Comparable<Offre>{
 	public Double getEval() {
 		return eval;
 	}
-
-	public int compareTo(Offre o) {
-		if((getEval() - o.getEval())>0) return 1;
-		else if(getEval() == o.getEval()) return id - o.id;
-		else return -1;
-	}	
 	
 	public boolean equals(Offre o){
-		return getEval() == o.getEval() && id == o.id;
+		return getEval() == o.getEval() && getId() == o.getId();
 	}
 	
 	public GareHoraire getDepart(){

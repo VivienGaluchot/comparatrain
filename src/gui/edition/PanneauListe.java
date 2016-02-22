@@ -56,8 +56,8 @@ public class PanneauListe<E> extends PanneauGroupe{
 		
 		listeM = new DefaultListModel<E>();
 		list = new JList<E>(listeM);
-		if(typeClass == Train.class || typeClass == Gare.class || typeClass == Ville.class || typeClass == Client.class)
-		list.setCellRenderer(new MyListCellRenderer());
+		if(Indexable.class.isAssignableFrom(paramClass))
+			list.setCellRenderer(new MyListCellRenderer());
 		majList();
 		
 		JScrollPane scrollPane = new JScrollPane(list);		
@@ -158,6 +158,7 @@ public class PanneauListe<E> extends PanneauGroupe{
 				}
 				else if(typeClass == Gare.class){
 					Gare gare = (Gare) listeM.getElementAt(list.getSelectedIndex());
+	            	gare.getVille().removeFromGares(gare);
 	            	Donnees.gares.remove(gare);
 				}
 				else if(typeClass == Ville.class){
@@ -168,17 +169,17 @@ public class PanneauListe<E> extends PanneauGroupe{
 					Client client = (Client) listeM.getElementAt(list.getSelectedIndex());
 	            	Donnees.clients.remove(client);
 				}
-				else if(typeClass == Escale.class){
-					Escale escale = (Escale) listeM.getElementAt(list.getSelectedIndex());
-					elements.remove(escale);
-				}
 				else if(typeClass == Billet.class){
 					Billet billet = (Billet) listeM.getElementAt(list.getSelectedIndex());
-					elements.remove(billet);
+					Donnees.billets.remove(billet);
 				}
 				else if(typeClass == Rame.class){
 					Rame rame = (Rame) listeM.getElementAt(list.getSelectedIndex());
-					elements.remove(rame);
+					Donnees.rames.remove(rame);
+				}
+				else if(typeClass == Escale.class){
+					Escale escale = (Escale) listeM.getElementAt(list.getSelectedIndex());
+					elements.remove(escale);
 				}
 				else if(typeClass == Wagon.class){
 					Wagon wagon = (Wagon) listeM.getElementAt(list.getSelectedIndex());

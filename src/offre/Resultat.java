@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.TreeSet;
 
 import elements.Evaluable;
+import elements.Indexable;
 import elements.Preference;
 /**
  * @author Vivien Galuchot - Vincent Hernandez Info 4
@@ -56,8 +57,12 @@ public class Resultat<E extends Evaluable<Preference>>{
 	private class EvalComp implements Comparator<Evaluable<Preference>>{
 		@Override
 		public int compare(Evaluable<Preference> o1, Evaluable<Preference> o2) {
-			if(o1.eval(pref) > o2.eval(pref)) return 1;
-			if(o1.eval(pref) < o2.eval(pref)) return -1;
+			double e1 = o1.eval(pref);
+			double e2 = o2.eval(pref);
+			if(e1 > e2) return 1;
+			if(e1 < e2) return -1;
+			if(Indexable.class.isInstance(o1) && Indexable.class.isInstance(o2))
+					return ((Indexable)o1).getId() - ((Indexable)o2).getId();
 			return 0;
 		}
 	}

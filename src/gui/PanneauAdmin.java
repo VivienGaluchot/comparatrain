@@ -31,14 +31,6 @@ public class PanneauAdmin extends JPanel{
 	
 	
 	public PanneauAdmin(JTabbedPane onglets){
-		
-		adminTrain = new AdminFrame<Train>("Gestion des trains",Train.class,Donnees.getTrains());
-		adminCli = new AdminFrame<Client>("Gestion des clients",Client.class,Donnees.getClients());
-		adminVille = new AdminFrame<Ville>("Gestion des villes",Ville.class,Donnees.getVilles());
-		adminGare = new AdminFrame<Gare>("Gestion des gares",Gare.class,Donnees.getGares());
-		adminBillet = new AdminFrame<Billet>("Gestion des billets",Billet.class,Donnees.getBillets());
-		adminRame = new AdminFrame<Rame>("Gestion des rames",Rame.class,Donnees.getRames());
-		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 		Dimension d = new Dimension(80,20);
 		JPanel box1 = new JPanel();
@@ -46,7 +38,9 @@ public class PanneauAdmin extends JPanel{
 			adminVilleLbl.setPreferredSize(d);
 			JButton adminVilleButton = new JButton("Editer");
 			adminVilleButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
-	            	adminVille.afficher();
+				if(adminVille == null)
+					adminVille = new AdminFrame<Ville>("Gestion des villes",Ville.class,Donnees.getVilles());
+	            adminVille.afficher();
 	        }});
 			box1.add(Box.createHorizontalGlue());
 			box1.add(adminVilleLbl);
@@ -59,7 +53,9 @@ public class PanneauAdmin extends JPanel{
 			adminGaresLbl.setPreferredSize(d);
 			JButton adminGaresButton = new JButton("Editer");
 			adminGaresButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
-	            	adminGare.afficher();
+				if(adminGare == null)
+					adminGare = new AdminFrame<Gare>("Gestion des gares",Gare.class,Donnees.getGares());
+				adminGare.afficher();
 	        }});
 			box2.add(Box.createHorizontalGlue());
 			box2.add(adminGaresLbl);
@@ -72,7 +68,9 @@ public class PanneauAdmin extends JPanel{
 			adminTrainLbl.setPreferredSize(d);
 			JButton adminTrainButton = new JButton("Editer");
 			adminTrainButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
-	            	adminTrain.afficher();
+				if(adminTrain == null)
+					adminTrain = new AdminFrame<Train>("Gestion des trains",Train.class,Donnees.getTrains());
+				adminTrain.afficher();
 	        }});
 			box3.add(Box.createHorizontalGlue());
 			box3.add(adminTrainLbl);
@@ -85,7 +83,9 @@ public class PanneauAdmin extends JPanel{
 			adminRameLbl.setPreferredSize(d);
 			JButton adminRameButton = new JButton("Editer");
 			adminRameButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
-	            	adminRame.afficher();
+				if(adminRame == null)
+					adminRame = new AdminFrame<Rame>("Gestion des rames",Rame.class,Donnees.getRames());
+	            adminRame.afficher();
 	        }});
 			box7.add(Box.createHorizontalGlue());
 			box7.add(adminRameLbl);
@@ -98,7 +98,9 @@ public class PanneauAdmin extends JPanel{
 			adminClientLbl.setPreferredSize(d);
 			JButton adminClientButton = new JButton("Editer");
 			adminClientButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
-	            	adminCli.afficher();
+				if(adminCli == null)
+					adminCli = new AdminFrame<Client>("Gestion des clients",Client.class,Donnees.getClients());
+	            adminCli.afficher();
 	        }});
 			box4.add(Box.createHorizontalGlue());
 			box4.add(adminClientLbl);
@@ -111,7 +113,9 @@ public class PanneauAdmin extends JPanel{
 			adminBilletLbl.setPreferredSize(d);
 			JButton adminBilletButton = new JButton("Editer");
 			adminBilletButton.addActionListener(new ActionListener(){ public void actionPerformed(ActionEvent e){
-	            	adminBillet.afficher();
+	            if(adminBillet == null)
+	            	adminBillet = new AdminFrame<Billet>("Gestion des billets",Billet.class,Donnees.getBillets());
+				adminBillet.afficher();
 	        }});
 			box6.add(Box.createHorizontalGlue());
 			box6.add(adminBilletLbl);

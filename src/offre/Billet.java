@@ -21,12 +21,14 @@ import utilisateur.Client;
  * Représente un Billet de train
  */
 public class Billet extends Indexable implements Evaluable<Preference>{
+	private static int compteur = 0;
 	private SegmentHoraire segment;
 	private Train train;
 	private Client client;
 	private Siege siege;
 	
 	public Billet(){
+		setId(null);
 		segment = null;
 		train = null;
 		client = null;
@@ -34,6 +36,7 @@ public class Billet extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public Billet(OffreSimple offreSegment, Client client, Siege siege){
+		setId(compteur++);
 		train = offreSegment.getTrain();
 		segment = offreSegment.getSegment();
 		this.client = client;
@@ -49,53 +52,53 @@ public class Billet extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public String toString(){
-		return "Billet " + getId() + ", train " + train.getId() + ", client " + client.getId();
+		String res = "Billet " + getId();
+		if(train != null)
+			res += ", train " + train.getId();
+		if(client != null)
+			res += ", client " + client.getId();
+		return res;
 	}
 	
 	public String strPlace(){
-		String res = "Wagon n°" + getWagon().getId() + " Banc n°" + getBanc().getId() + " Siege n°" + siege.getId();
-		// Classe
+		String res = "Wagon n°" + getWagon().getId();
 		if(getWagon().getType() == Wagon.PREMIERE)
-			res += "\nPremière classe";
-		else if(getWagon().getType() == Wagon.PREMIERE)
-			res += "\nSeconde classe";
-		// Sens
+			res += "\tPremière classe";
+		else if(getWagon().getType() == Wagon.SECONDE)
+			res += "\tSeconde classe";
+		
+		res += "\nBanc n°" + getBanc().getId();
 		if(siege.getSens() == Siege.AVANT)
-			res += "\nSens : marche avant";
+			res += "\tSens de la marche";
 		else if(siege.getSens() == Siege.ARRIERE)
-			res += "\nSens : marche arrière";
-		// Coté
+			res += "\tMarche arrière";
+		
+		res += "\nSiège n°" + siege.getId();
 		if(siege.getCote() == Siege.FENETRE)
-			res += "\nCoté fenêtre";
+			res +=  "\tCoté fenêtre";
 		else if(siege.getSens() == Siege.COULOIR)
-			res += "\nCoté couloir";
+			res += "\tCoté couloir";
 		else
-			res += "\nSiege seul";
+			res += "\tSiege seul";
 		return res;
 	}
 	
 	// Recherche	
 	public static void chercherBillets(Offre offres, Preference pref, List<Billet>  list){
 		for(OffreSimple o : offres.getOffres()){
-			ArrayList<Billet> billets = new ArrayList<Billet>();
-			
-			// Recherche des sieges libres			
-			Resultat<Siege> res = new Resultat<Siege>(pref);
-			
+			Resultat<Billet> res = new Resultat<Billet>(pref);			
 			Rame rame = o.getTrain().getRame();
 			if(rame != null){
 				for(Wagon w : rame.getWagons())
 					for(Banc b : w.getBancs())
 						for(Siege s : b.getSieges())
 							if(estLibre(s,o,list))
-								res.add(s);
-				
-				// Premiers sieges
-				for(Siege s : res.getMeilleurs(pref.getNbPlace()))
-					billets.add(new Billet(o,null,s));
-				
-				o.setBillets(billets);
+								res.add(new Billet(o,null,s));
 			}
+			
+			ArrayList<Billet> billets = new ArrayList<Billet>();
+			billets.addAll(res.getMeilleurs(pref.getNbPlace()));
+			o.setBillets(billets);
 		}
 	}
 	

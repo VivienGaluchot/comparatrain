@@ -35,11 +35,12 @@ public class Gare extends Indexable implements Evaluable<Gare>{
 	}
 	
 	public double eval(String g){
-		double res;
-		if(getNom().compareTo(g) == 0) res = 1;
-		else if(getVille().getNom().compareTo(g) == 0) res = 0.8;
-		else res = 0;
-		return res;
+		if(getNom().compareTo(g) == 0) return 1;
+		else if(getVille().getNom().compareTo(g) == 0) return 0.9;
+//		for(Gare g : getVille().getGares()){
+//			
+//		}
+		return 0;
 	}
 	
 	/**
@@ -59,5 +60,8 @@ public class Gare extends Indexable implements Evaluable<Gare>{
 	public void setNom(String nom) { this.nom = nom; }
 
 	public Ville getVille() { return ville; }
-	public void setVille(Ville ville) { this.ville = ville; }
+	public void setVille(Ville ville) {
+		this.ville = ville;
+		ville.addToGares(this);
+	}
 }
