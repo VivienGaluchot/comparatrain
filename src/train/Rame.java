@@ -41,7 +41,7 @@ public class Rame extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public String toString(){
-		return "Rame de " + wagons.size() + " wagons";
+		return "Rame " + getId() + " de " + wagons.size() + " wagons";
 	}
 	
 	public ArrayList<Wagon> getWagons(){ return wagons; }

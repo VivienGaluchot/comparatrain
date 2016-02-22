@@ -29,10 +29,32 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public Wagon(int i, Integer type){
-		setId(i);		
-		bancs = new ArrayList<Banc>();
+		setId(i);
 		father = null;
 		setType(type);
+		build();
+	}
+	
+	public void build(){
+		bancs = new ArrayList<Banc>();
+		if(type == PREMIERE){
+			for(int j=0;j<3;j++){
+				bancs.add(new Banc(bancs.size(),Banc.GAUCHE,Banc.SEUL));
+				bancs.add(new Banc(bancs.size(),Banc.DROIT,Banc.DOUBLE));
+			}
+		}else if(type == SECONDE){
+			for(int j=0;j<1;j++){
+				bancs.add(new Banc(bancs.size(),Banc.GAUCHE,Banc.DOUBLE));
+				bancs.add(new Banc(bancs.size(),Banc.DROIT,Banc.DOUBLE));
+				bancs.add(new Banc(bancs.size(),Banc.GAUCHE,Banc.CARRE));
+				bancs.add(new Banc(bancs.size(),Banc.DROIT,Banc.CARRE));
+				bancs.add(new Banc(bancs.size(),Banc.GAUCHE,Banc.DOUBLE));
+				bancs.add(new Banc(bancs.size(),Banc.DROIT,Banc.DOUBLE));
+			}
+		}else if(type == BAR){
+			// pas de bancs
+		}
+		link();
 	}
 	
 	public String toString(){	
@@ -69,25 +91,5 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 	}	
 	
 	public Integer getType(){ return type; }
-	public void setType(Integer i){
-		type = i;
-		if(type == PREMIERE){
-			for(int j=0;j<3;j++){
-				bancs.add(new Banc(bancs.size(),Banc.GAUCHE,Banc.SEUL));
-				bancs.add(new Banc(bancs.size(),Banc.DROIT,Banc.DOUBLE));
-			}
-		}else if(type == SECONDE){
-			for(int j=0;j<1;j++){
-				bancs.add(new Banc(bancs.size(),Banc.GAUCHE,Banc.DOUBLE));
-				bancs.add(new Banc(bancs.size(),Banc.DROIT,Banc.DOUBLE));
-				bancs.add(new Banc(bancs.size(),Banc.GAUCHE,Banc.CARRE));
-				bancs.add(new Banc(bancs.size(),Banc.DROIT,Banc.CARRE));
-				bancs.add(new Banc(bancs.size(),Banc.GAUCHE,Banc.DOUBLE));
-				bancs.add(new Banc(bancs.size(),Banc.DROIT,Banc.DOUBLE));
-			}
-		}else if(type == BAR){
-			// pas de bancs
-		}
-		link();
-	}
+	public void setType(Integer i){	type = i; }
 }

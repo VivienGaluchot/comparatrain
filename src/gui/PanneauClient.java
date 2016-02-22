@@ -173,7 +173,8 @@ public class PanneauClient extends JPanel {
         		Horaire hArr = null;
 				if(champHoraire.getComboBox().getSelectedItem().equals("Départ")){
 					hDep = h;
-				}else{
+				}
+				else{
 					hArr = h;
 				}
 				

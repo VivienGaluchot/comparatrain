@@ -75,6 +75,7 @@ public class WagonFrame extends MyJFrame{
         		else{
         			wagon.setId(id.getValue());
         			wagon.setType(type);
+        			wagon.build();
         		}
         		
             	father.majList();

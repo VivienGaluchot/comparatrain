@@ -52,7 +52,7 @@ public class Preference {
 		if(hDepart != null)
 			res += "Depart : " + hDepart;
 		if(hArrivee != null)
-			res += "Arrivee : " + hDepart;
+			res += "Arrivee : " + hArrivee;
 		return res;		
 	}
 	
