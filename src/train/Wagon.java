@@ -87,11 +87,6 @@ public class Wagon extends Indexable implements Evaluable<Preference>{
 			b.link(this);
 	}	
 	
-	public Integer getType(){
-		return type;
-	}
-	
-	public void setType(Integer i){
-		type = i;
-	}
+	public Integer getType(){ return type; }
+	public void setType(Integer i){ type = i; }
 }

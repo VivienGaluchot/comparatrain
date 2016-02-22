@@ -41,7 +41,11 @@ public class Billet extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public double eval(Preference pref){
-		return 0;
+		Double res = 1.;
+		res *= getRame().eval(pref);
+		res *= getWagon().eval(pref);
+		res *= getSiege().eval(pref);
+		return res;
 	}
 	
 	public String toString(){
@@ -49,7 +53,25 @@ public class Billet extends Indexable implements Evaluable<Preference>{
 	}
 	
 	public String strPlace(){
-		return "Wagon n°" + getWagon().getId() + " Banc n°" + getBanc().getId() + " Siege n°" + siege.getId();
+		String res = "Wagon n°" + getWagon().getId() + " Banc n°" + getBanc().getId() + " Siege n°" + siege.getId();
+		// Classe
+		if(getWagon().getType() == Wagon.PREMIERE)
+			res += "\nPremière classe";
+		else if(getWagon().getType() == Wagon.PREMIERE)
+			res += "\nSeconde classe";
+		// Sens
+		if(siege.getSens() == Siege.AVANT)
+			res += "\nSens : marche avant";
+		else if(siege.getSens() == Siege.ARRIERE)
+			res += "\nSens : marche arrière";
+		// Coté
+		if(siege.getCote() == Siege.FENETRE)
+			res += "\nCoté fenêtre";
+		else if(siege.getSens() == Siege.COULOIR)
+			res += "\nCoté couloir";
+		else
+			res += "\nSiege seul";
+		return res;
 	}
 	
 	// Recherche	
@@ -104,7 +126,7 @@ public class Billet extends Indexable implements Evaluable<Preference>{
 	public Siege getSiege() { return siege; }
 	public void setSiege(Siege siege) { this.siege = siege; }
 
-	public Rame getRame() { return siege.getFather().getFather().getFather(); }
-	public Wagon getWagon() { return siege.getFather().getFather(); }	
+	public Rame getRame() { return getWagon().getFather(); }
+	public Wagon getWagon() { return getBanc().getFather(); }	
 	public Banc getBanc() { return siege.getFather(); }
 }
