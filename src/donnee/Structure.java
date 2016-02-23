@@ -60,7 +60,7 @@ public class Structure<E extends Indexable>{
 	}
 	
 	public int getFreeId(){
-		for(int i = 0; i<100000 ;i++){
+		for(int i = 1; i<100000 ;i++){
 			if(get(i) == null) return i;
 		}
 		return -1;

@@ -85,10 +85,10 @@ public class RameFrame extends MyJFrame{
 		main.add(box);
 		
 		// Mise a jour des champs
-		if(rame.getId() != null)
+		if(rame.getId() != null && rame.getId() != 0)
 			id.setValue(rame.getId());
 		else
-			id.setValue(Donnees.rames.getFreeId());		
+			id.setValue(Donnees.rames.getFreeId());
 		
 		add(main);
 		

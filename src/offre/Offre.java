@@ -33,6 +33,7 @@ public class Offre extends Indexable implements Evaluable<Preference>{
 		if(pref.getDirect() && getNbTrains()>1) res *= 1./getNbTrains();
 		res *= getDepart().eval(pref.getLieuxDepart(),pref.getHDepart());
 		res *= getArrivee().eval(pref.getLieuxArrivee(),pref.getHArrivee());
+		// temps de trajet
 		res *= getDepart().horaire.eval(getArrivee().horaire)/2.0 + 0.5;
 		
 		if(offres == null || offres.size()==0) return 0;

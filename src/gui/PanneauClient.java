@@ -223,7 +223,7 @@ public class PanneauClient extends JPanel {
     	};
     	int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
     	if (option == JOptionPane.OK_OPTION) {
-    	    if (username.getText().equals("") && password.getText().equals("") && onglets.getTabCount()<2) {
+    	    if (username.getText().equals("admin") && password.getText().equals("admin") && onglets.getTabCount()<2) {
     	    	setSize(550, 600);
     	    	onglets.addTab("Admin", null, PAdmin, null);
     	    	onglets.setSelectedIndex(1);
@@ -231,7 +231,7 @@ public class PanneauClient extends JPanel {
     			deconnexion.setVisible(true);
     			parent.positionner();
     	        System.out.println("Login admin successful");
-    	    } else if(username.getText().equals("") && password.getText().equals("")){
+    	    } else if(username.getText().equals("admin") && password.getText().equals("admin")){
     	    	onglets.setSelectedIndex(1);
     			connexion.setVisible(false);
     			deconnexion.setVisible(true);

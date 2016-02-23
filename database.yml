@@ -1751,6 +1751,79 @@
             sens: 1
          type: 1
       type: 2
+- &32 !train.Rame
+   id: 3
+   wagons: 
+   - !train.Wagon
+      id: 1
+      bancs: 
+      - !train.Banc
+         id: 0
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         type: 2
+      - !train.Banc
+         id: 1
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+         type: 1
+      - !train.Banc
+         id: 2
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         type: 2
+      - !train.Banc
+         id: 3
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+         type: 1
+      - !train.Banc
+         id: 4
+         cote: 0
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         type: 2
+      - !train.Banc
+         id: 5
+         cote: 1
+         sieges: 
+         - !train.Siege
+            id: 0
+            cote: 3
+            sens: 1
+         - !train.Siege
+            id: 1
+            cote: 4
+            sens: 1
+         type: 1
+      type: 1
 --- !java.util.Collections$UnmodifiableRandomAccessList
 - !train.Train
    id: 5540
@@ -1949,7 +2022,7 @@
       horaire: 
          serialTime: 23/02/2016 11h05
    escales: []
-   rame: *31
+   rame: *32
 - !train.Train
    id: 1003
    arrivee: 
